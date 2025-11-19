@@ -3,7 +3,7 @@
 <head>
    @include('layouts.dashboard.includes.head')
 </head>
-<body class="vertical-layout vertical-menu-modern 1-column  bg-cyan bg-lighten-2 menu-expanded blank-page blank-page"
+<body class="vertical-layout vertical-menu-modern 1-column   bg-lighten-2 menu-expanded blank-page blank-page"
       data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
 
 @include('layouts.dashboard.auth.includes.nav')
@@ -12,5 +12,6 @@
 
 
 @include('layouts.dashboard.auth.includes.auth-script')
+{!! NoCaptcha::renderJs() !!}
 </body>
 </html>

@@ -182,22 +182,22 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#confirm-color').on('click',function(){
+	$('#logout-admin').on('click',function(e){
+        e.preventDefault();
 		swal({
-		    title: "Are you sure?",
-		    text: "You will not be able to recover this imaginary file!",
+		    title: "Are you sure you want to logout?",
 		    icon: "warning",
 		    showCancelButton: true,
 		    buttons: {
                 cancel: {
-                    text: "No, cancel plx!",
+                    text: "No, cancel!",
                     value: null,
                     visible: true,
                     className: "btn-warning",
                     closeModal: false,
                 },
                 confirm: {
-                    text: "Yes, delete it!",
+                    text: "Yes, logout!",
                     value: true,
                     visible: true,
                     className: "",
@@ -206,9 +206,9 @@ $(document).ready(function(){
 		    }
 		}).then(isConfirm => {
 		    if (isConfirm) {
-		        swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                $("#logout-form-admin").submit();
 		    } else {
-		        swal("Cancelled", "Your imaginary file is safe :)", "error");
+		        swal("Cancelled", "You are still logged in :)", "error");
 		    }
 		});
 	});

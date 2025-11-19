@@ -24,6 +24,9 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'email', 'max:50'],
             'password' => ['required', 'max:40'],
+            'remember_me' => ['nullable', 'in:on'],
+            'g-recaptcha-response' => ['required', 'captcha']
+
         ];
     }
 }

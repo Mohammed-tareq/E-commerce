@@ -20,6 +20,22 @@ return Application::configure(basePath: dirname(__DIR__))
         }
     )
     ->withMiddleware(function (Middleware $middleware): void {
+
+        $middleware->redirectGuestsTo(function () {
+            if (request()->is('*/dashboard/*'))
+                return route('dashboard.show-login');
+
+//                return route();
+        });
+
+        $middleware->redirectUsersTo(function () {
+            if (Auth::guard('admin')->check() && request()->is('*/dashboard/*'))
+                return route('dashboard.welcome');
+            else
+                return route('home');
+        });
+
+
         $middleware->alias([
             'localize' => LaravelLocalizationRoutes::class,
             'localizationRedirect' => LaravelLocalizationRedirectFilter::class,

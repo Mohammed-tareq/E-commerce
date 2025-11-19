@@ -7,7 +7,8 @@
                                 class="ft-menu font-large-1"></i></a></li>
                 <li class="nav-item mr-auto">
                     <a class="navbar-brand" href="index.html">
-                        <img class="brand-logo" alt="modern admin logo" src="{{ asset('assets/dashboard') }}/images/logo/logo.png">
+                        <img class="brand-logo" alt="modern admin logo"
+                             src="{{ asset('assets/dashboard') }}/images/logo/logo.png">
                         <h3 class="brand-text">{{ config('app.name') }}</h3>
                     </a>
                 </li>
@@ -221,7 +222,14 @@
                             <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>
                             <a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="ft-power"></i> Logout</a>
+                            <a class="dropdown-item" href="javascript:void(0)" id="logout-admin"><i class="ft-power" ></i> {{ __('auth.logout') }}</a>
+
+                            <form id="logout-form-admin" action="{{ route('dashboard.logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+
+
+
                         </div>
                     </li>
                     <li class="dropdown dropdown-language nav-item">
@@ -229,20 +237,20 @@
                            id="dropdown-flag" href="#"
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false"><i
-                                    class="flag-icon @if(LaravelLocalization::getCurrentLocale() === 'ar') flag-icon-eg @else flag-icon-us @endif"></i><span class="selected-language"></span></a>
+                                    class="flag-icon @if(LaravelLocalization::getCurrentLocale() === 'ar') flag-icon-eg @else flag-icon-us @endif"></i><span
+                                    class="selected-language"></span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
 
                             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
 
-                                    <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
-                                       href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                        <i class="flag-icon @if($localeCode === 'ar') flag-icon-eg @else flag-icon-us @endif"></i> {{ $properties['native'] }}
-                                    </a>
+                                <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
+                                   href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                    <i class="flag-icon @if($localeCode === 'ar') flag-icon-eg @else flag-icon-us @endif"></i> {{ $properties['native'] }}
+                                </a>
                             @endforeach
 
                         </div>
                     </li>
-
 
 
                     <li class="dropdown dropdown-notification nav-item">

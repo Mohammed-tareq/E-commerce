@@ -43,15 +43,21 @@
                                                 <input type="password" name="password" class="form-control" id="user-password"
                                                        placeholder="{{ __('auth.enter_password') }}">
                                             </fieldset>
+                                            <fieldset class="form-group floating-label-form-group mb-1">
+                                                {!! NoCaptcha::display() !!}
+                                                @error('g-recaptcha-response')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </fieldset>
                                             <div class="form-group row">
                                                 <div class="col-md-6 col-12 text-center text-sm-left">
                                                     <fieldset>
-                                                        <input type="checkbox" name="remember" id="remember-me">
+                                                        <input type="checkbox" name="remember_me" id="remember-me">
                                                         <label for="remember-me">{{ __('auth.remember_me') }}</label>
                                                     </fieldset>
                                                 </div>
                                                 <div class="col-md-6 col-12 float-sm-left text-center text-sm-right"><a
-                                                            href="#"
+                                                            href="{{ route('dashboard.forget.password.show') }}"
                                                             class="card-link">{{ __('auth.forget_password') }}</a></div>
                                             </div>
                                             <button type="submit" class="btn btn-outline-info btn-block"><i

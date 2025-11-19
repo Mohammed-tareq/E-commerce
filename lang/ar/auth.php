@@ -34,5 +34,7 @@ return [
     'enter_email' => 'ادخل  البريد الخاص بك',
     'enter_password' => 'ادخل كلمه المرور الخاصه بك',
     'invalid_credentials' => 'خطأ في مطلوبات الدخول',
+    'otp_input' => 'ادخل رمز التحقق',
+    'otp_check' => 'تأكيد رمز التحقق'
 
 ];
