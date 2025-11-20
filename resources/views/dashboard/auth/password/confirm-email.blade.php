@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form-horizontal" action="{{ route('dashboard.verify.email.otp') }}" method="post">
+                                        <form class="form-horizontal" autocomplete="off" action="{{ route('dashboard.verify.email.otp') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="email" value="{{ $email }}">
                                             <fieldset class="form-group position-relative has-icon-left">

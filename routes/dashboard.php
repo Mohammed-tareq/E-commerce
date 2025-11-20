@@ -24,8 +24,8 @@ Route::group(
     ################################### Reset Password ###############################
     Route::prefix('password')->group(function () {
         Route::controller(ForgetpasswordController::class)->group(function () {
-            Route::get('forget-password', 'showForgetPasswordForm')->name('forget.password.show');
-            Route::post('forget-password', 'sendResetLinkEmail')->name('forget.password.send');
+            Route::get('forget-password', 'showForgetPassword')->name('forget.password.show');
+            Route::post('forget-password', 'sendOtp')->name('forget.password.send');
         });
 
         Route::controller(VerifyEmailController::class)->group(function () {

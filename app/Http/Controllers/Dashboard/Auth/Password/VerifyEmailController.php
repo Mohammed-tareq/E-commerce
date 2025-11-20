@@ -3,44 +3,32 @@
 namespace App\Http\Controllers\Dashboard\Auth\Password;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
-use Ichtrojan\Otp\Otp;
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\CheckEmailAndOtp;
+use App\Services\Auth\PasswordService;
+
 
 class VerifyEmailController extends Controller
 {
 
-    public $otp;
 
-    Public function __construct()
+    public function __construct(protected PasswordService $passwordService)
     {
-        $this->otp = new Otp();
-
     }
+
     public function showVerifyEmailForm($email)
     {
-        return view('dashboard.auth.password.confirm-email',compact('email'));
+        return view('dashboard.auth.password.confirm-email', compact('email'));
     }
-    public function verifyOtp(Request $request )
+
+    public function verifyOtp(CheckEmailAndOtp $request)
     {
-        $request->validate([
-            'otp'=>'required|numeric',
-            'email' =>'required|email|string'
-        ]);
+        $data = $request->only('email', 'otp');
 
-       $user = Admin::whereEmail($request->email)->first();
-       if(!$user)
-       {
-           return redirect()->back()->withErrors(['otp'=>__('auth.invalid_credentials')]);
-       }
+        if (!$this->passwordService->verifyOtp($data)) {
+            return redirect()->back()->withErrors(['otp' => __('auth.try_again')]);
+        }
 
-       $otpCheck = $this->otp->validate($request->email, $request->otp);
-       if($otpCheck->status === false)
-       {
-           return redirect()->back()->withErrors(['otp'=>__('auth.invalid_credentials')]);
-       }
-
-       return redirect()->route('dashboard.reset.password.show',$request->email);
+        return redirect()->route('dashboard.reset.password.show', $request->email);
 
     }
 }

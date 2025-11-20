@@ -35,6 +35,7 @@ return [
     'enter_password'=>'Enter Your Password',
     'invalid_credentials'=>'Invalid Credentials',
     'otp_input'=>'Enter OTP',
-    'otp_check'=>'Confirm OTP'
+    'otp_check'=>'Confirm OTP',
+    'try_again'=>'Try Again'
 
 ];

@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form-horizontal" action="{{ route('dashboard.forget.password.send') }}" method="POST" >
+                                        <form class="form-horizontal" autocomplete="off" action="{{ route('dashboard.forget.password.send') }}" method="POST" >
                                             @csrf
                                             <fieldset class="form-group position-relative has-icon-left">
                                                 <input type="email" class="form-control form-control-lg input-lg" id="user-email"

@@ -3,14 +3,19 @@
 namespace App\Http\Controllers\Dashboard\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Dashboard\Auth\LoginRequest;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Services\Auth\LoginService;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller implements HasMiddleware
 {
+    public function __construct(
+        protected LoginService $loginService
+    )
+    {
+    }
 
     public static function middleware()
     {
@@ -27,21 +32,20 @@ class LoginController extends Controller implements HasMiddleware
 
     public function login(LoginRequest $request)
     {
-        $email = $request->input('email');
-        $password = $request->input('password');
         $request->merge([
             'remember_me' => $request->has('remember_me') ? true : false,
         ]);
+        $credential = $request->only(['email', 'password']);
 
-        if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password], $request->remember_me)) {
-            return redirect()->route('dashboard.welcome');
+        if ($this->loginService->login($credential, $request->remember_me, 'admin')) {
+            return redirect()->intended(route('dashboard.welcome'));
         }
         return redirect()->back()->withErrors(['email' => __('auth.invalid_credentials')]);
     }
 
     public function logout(Request $request)
     {
-        Auth::guard('admin')->logout();
+        $this->loginService->logout('admin');
         return redirect()->route('dashboard.login');
     }
 }
