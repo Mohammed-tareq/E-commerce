@@ -46,4 +46,19 @@ class Admin extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+   public function haspermission($permission)
+   {
+       $admin = $this->role;
+       if(!$admin || !is_array($admin->permissions))
+       {
+           return false;
+       }
+       return in_array($permission,$admin->permissions);
+   }
 }

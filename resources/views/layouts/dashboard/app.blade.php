@@ -15,5 +15,7 @@
 @include('layouts.dashboard.includes.footer')
 
 @include('layouts.dashboard.includes.script')
+
+
 </body>
 </html>

@@ -198,6 +198,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'role.ar' =>'Role in arabic',
+        'role.en' =>'Role in English'
+    ],
 
 ];

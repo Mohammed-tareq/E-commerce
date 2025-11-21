@@ -24,9 +24,8 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form-horizontal" autocomplete="off" action="{{ route('dashboard.reset.password') }}" method="post">
+                                        <form class="form-horizontal" autocomplete="off" action="{{ route('dashboard.reset.password', $email) }}" method="post">
                                             @csrf
-                                            <input type="hidden" name="email" value="{{ $email }}">
                                             <fieldset class="form-group position-relative has-icon-left">
                                                 <input type="password" class="form-control form-control-lg input-lg" id="user-email"
                                                        name="password" placeholder="{{ __('auth.enter_password') }}" required>

@@ -15,9 +15,10 @@ class ResetpasswordController extends Controller
         return view('dashboard.auth.password.reset-pass',compact('email'));
     }
 
-    public function ResetPassword(ResetPassword $request)
+    public function ResetPassword(ResetPassword $request,$email)
     {
-        if(!$this->passwordService->resetPassword($request->email,$request->password))
+
+        if(!$this->passwordService->resetPassword($email,$request->password))
         {
             return redirect()->back()->withErrors(['password' => __('auth.try_again')]);
         }

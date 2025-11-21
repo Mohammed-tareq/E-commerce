@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\Auth\LoginController;
 use App\Http\Controllers\Dashboard\Auth\Password\ForgetpasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\ResetpasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\VerifyEmailController;
+use App\Http\Controllers\Dashboard\Role\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(
@@ -35,13 +36,22 @@ Route::group(
 
         Route::controller(ResetpasswordController::class)->group(function () {
             Route::get('reset-password/{email}', 'showResetPasswordForm')->name('reset.password.show');
-            Route::post('reset-password', 'ResetPassword')->name('reset.password');
+            Route::post('reset-password/{email}', 'ResetPassword')->name('reset.password');
         });
     });
 
 
-    Route::get('/welcome', function () {
-        return view('dashboard/welcome');
-    })->name('welcome')->middleware('auth:admin');
+    Route::middleware('auth:admin')->group(function () {
+
+
+        ###################################### Roles ######################################
+        Route::resource('roles', RoleController::class)->except(['show']);
+
+        Route::get('/welcome', function () {
+            return view('dashboard/welcome');
+        })->name('welcome');
+    });
+
+
 
 });
