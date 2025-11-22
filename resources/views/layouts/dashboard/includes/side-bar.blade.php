@@ -32,6 +32,20 @@
                     </ul>
                 </li>
             @endcan
+
+            @can('admins')
+                <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main"><i
+                                class="la la-user-secret"></i>{{ __('dashboard.admins') }}</a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="{{ route('dashboard.admins.index') }}"
+                               data-i18n="nav.templates.horz.classic">{{ __('dashboard.admins') }}</a>
+                        </li>
+                        <li><a class="menu-item" href="{{ route('dashboard.admins.create') }}"
+                               data-i18n="nav.templates.horz.top_icon">{{ __('dashboard.create_admin') }}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
         </ul>
     </div>
 </div>

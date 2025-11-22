@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\Admin\AdminController;
 use App\Http\Controllers\Dashboard\Auth\LoginController;
 use App\Http\Controllers\Dashboard\Auth\Password\ForgetpasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\ResetpasswordController;
@@ -46,6 +47,10 @@ Route::group(
 
         ###################################### Roles ######################################
         Route::resource('roles', RoleController::class)->except(['show']);
+
+        ###################################### Admins ######################################
+        Route::resource('admins', AdminController::class);
+        Route::get('admins/{id}/status', [AdminController::class, 'changeStatus'])->name('admins.status');
 
         Route::get('/welcome', function () {
             return view('dashboard/welcome');

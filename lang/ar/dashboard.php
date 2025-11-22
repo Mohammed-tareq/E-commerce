@@ -1,21 +1,37 @@
 <?php
 return [
-    'operation_success' =>'تمت العمليه بنجاح',
-    'operation_error' =>'حدث خطأ الرجاء اعاده المحاوله',
-    'create' => 'أنشاء' ,
+    'operation_success' => 'تمت العمليه بنجاح',
+    'operation_error' => 'حدث خطأ الرجاء اعاده المحاوله',
+    'create' => 'أنشاء',
     'edit' => " تعديل",
-    'delete' =>" حذف " ,
-    'show' => " عرض" ,
+    'delete' => " حذف ",
+    'show' => " عرض",
     'save' => 'حفظ',
     'cancel' => 'إلغاء',
     'close' => 'إغلاق',
     'change_status' => " تغير الحاله",
+    'status' => 'الحاله',
     'dashboard' => 'لوحه التحكم',
     'roles' => 'ألادوار',
+    'select_role' => 'اختر الدور',
     'create.role' => 'أنشاء دور',
     'edit.role' => 'تعديل دور',
     'permissions' => 'صلاحيات',
     'actions' => 'اجراءات',
     'show_permission' => "عرض الصلاحيات",
-    'delete_alert' => 'هل ترغم في اتمام عمليه الحذف؟'
+    'delete_alert' => 'هل ترغم في اتمام عمليه الحذف؟',
+    'admins' => 'المسئولين',
+    'create_admin' => "انشاء مسئول",
+    'edit_admin' => 'تعديل مسئول',
+    'name' => 'الاسم',
+    'username' => 'اسم المُستخدم',
+    'email' => 'البريد الالكتروني',
+    'created_at' => 'تمت اضافته',
+    'active' => "مفعل",
+    'inActive' => " غير مفعل",
+    'password' => "كلمه المرور",
+    'password_confirm' => "تأكيد كلمه المرور",
+
+
+
 ];

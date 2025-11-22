@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,7 +22,8 @@ class Admin extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id'
+        'role_id',
+        'status',
     ];
 
     /**
@@ -60,5 +62,17 @@ class Admin extends Authenticatable
            return false;
        }
        return in_array($permission,$admin->permissions);
+   }
+
+   public function scopeActive($query)
+   {
+       return $query->where('status',true);
+   }
+
+   public function status(): Attribute
+   {
+       return Attribute::make(
+           get: fn($valus) => (bool)$valus ? 'Active' : 'Inactive'
+       );
    }
 }

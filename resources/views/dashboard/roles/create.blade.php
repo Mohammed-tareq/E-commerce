@@ -16,9 +16,11 @@ Roles | Create
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard.welcome') }}">{{ __('dashboard.dashboard') }}</a>
+                                <li class="breadcrumb-item"><a
+                                            href="{{ route('dashboard.welcome') }}">{{ __('dashboard.dashboard') }}</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard.roles.index') }}">{{ __('dashboard.roles') }}</a>
+                                <li class="breadcrumb-item"><a
+                                            href="{{ route('dashboard.roles.index') }}">{{ __('dashboard.roles') }}</a>
                                 </li>
                                 <li class="breadcrumb-item active"><a href="#">{{ __('dashboard.create.role') }}</a>
                                 </li>
@@ -62,6 +64,9 @@ Roles | Create
                                                                    placeholder="{{ __('placeHolder.role_ar') }}"
                                                                    name="name[ar]">
                                                         </div>
+                                                        @error('name.ar')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -70,6 +75,9 @@ Roles | Create
                                                                    placeholder="{{ __('placeHolder.role_en') }}"
                                                                    name="name[en]">
                                                         </div>
+                                                        @error('name.en')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <h4 class="form-section"><i
@@ -104,6 +112,9 @@ Roles | Create
                                                             </div>
                                                         @endforeach
                                                     @endif
+                                                    @error('permissions')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
 
 
                                                 </div>
@@ -115,6 +126,7 @@ Roles | Create
                                                         <i class="la la-check-square-o"></i> {{ __('dashboard.create') }}
                                                     </button>
                                                 </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>

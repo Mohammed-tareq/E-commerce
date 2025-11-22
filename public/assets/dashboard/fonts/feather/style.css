@@ -567,9 +567,9 @@
 .ft-share:before {
   content: "\e9ae";
 }
-.ft-shield:before {
-  content: "\e9af";
-}
+/*.ft-shield:before {*/
+/*  content: "\e9af";*/
+/*}*/
 .ft-shuffle:before {
   content: "\e9b0";
 }
