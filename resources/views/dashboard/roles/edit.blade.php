@@ -1,8 +1,8 @@
 @extends('layouts.dashboard.app')
 
-@session('title')
+@section('title')
 Roles | Edit
-@endsession
+@endsection
 
 
 

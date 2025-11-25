@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="@if(app()->getLocale() === 'ar') rtl @else ltr @endif">
+<html class="loading" lang="{{ app()->getLocale() }}" data-textdirection="@if(app()->getLocale() === 'ar') rtl @else ltr @endif">
 <head>
    @include('layouts.dashboard.includes.head')
 </head>

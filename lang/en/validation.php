@@ -248,6 +248,7 @@ return [
         'permissions'           => 'Permissions',
         'role_id'               => 'Role',
         'status'                => 'Status',
+        'image'                 => 'Image',
     ],
 
 

@@ -44,11 +44,11 @@ class AdminController extends Controller implements HasMiddleware
         return redirect()->route('dashboard.admins.index')->with('success', __('dashboard.operation_success'));
     }
 
-    public function show(string $id)
-    {
-        $admin = $this->adminService->getAdmin($id);
-        return view('dashboard.admins.show', compact('admin'));
-    }
+//    public function show(string $id)
+//    {
+//        $admin = $this->adminService->getAdmin($id);
+//        return view('dashboard.admins.show', compact('admin'));
+//    }
 
 
     public function edit(string $id)

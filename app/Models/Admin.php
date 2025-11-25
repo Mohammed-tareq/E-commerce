@@ -72,7 +72,7 @@ class Admin extends Authenticatable
    public function status(): Attribute
    {
        return Attribute::make(
-           get: fn($valus) => (bool)$valus ? 'Active' : 'Inactive'
+           get: fn($valus) => (bool)$valus ? __('dashboard.Active') : __('dashboard.Inactive')
        );
    }
 }

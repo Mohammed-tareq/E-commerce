@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('image')->nullable();
             $table->boolean('status')->default(true);
+
+            $table->foreignId('country_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('governorate_id')->constrained()->cascadeOnDelete();
             $table->foreignId('city_id')->constrained()->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();

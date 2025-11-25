@@ -11,4 +11,9 @@ class City extends Model
     public $timestamps = false;
     protected $fillable = ['name','governorate_id'];
     protected $translatable = ['name'];
+
+    public function governorate()
+    {
+        return $this->belongsTo(Governorate::class);
+    }
 }

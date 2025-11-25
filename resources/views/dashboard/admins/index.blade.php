@@ -1,8 +1,8 @@
 @extends('layouts.dashboard.app')
 
-@session('title')
+@section('title')
 Admins
-@endsession
+@endsection
 
 @section('content')
 
@@ -63,7 +63,7 @@ Admins
                                         <td>{{ $admin->role->name }}</td>
                                         <td>{{ $admin->created_at->format('Y-m-d') }}</td>
                                         <td>
-                                            <span class="badge badge-{{ $admin->status === 'Active' ? 'success' : 'danger' }} px-2 " >
+                                            <span class="badge badge-{{ $admin->status === __('dashboard.Active') ? 'success' : 'danger' }} px-2 " >
                                                 {{ $admin->status }}
                                             </span>
                                         </td>

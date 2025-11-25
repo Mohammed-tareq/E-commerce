@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Governorate;
+use App\Models\ShippingPrice;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -54,7 +55,13 @@ class GovernorateSeeder extends Seeder
 
         foreach($governorates as  $governorate)
         {
-            Governorate::create($governorate);
+           $gov = Governorate::create($governorate);
+
+
+           ShippingPrice::create([
+               'price' => random_int(1000, 10000),
+               'governorate_id' => $gov->id
+           ]);
         }
     }
 }

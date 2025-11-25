@@ -17,10 +17,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/forms/toggle/switchery.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/weather-icons/climacons.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/fonts/meteocons/style.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/morris.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/chartist.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/chartist-plugin-tooltip.css">
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/morris.css">--}}
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/chartist.css">--}}
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/chartist-plugin-tooltip.css">--}}
     <!-- END VENDOR CSS-->
+
     <!-- BEGIN MODERN CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/css-rtl/app.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/css-rtl/custom-rtl.css">
@@ -35,15 +36,14 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
 
-
 @else
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/fonts/meteocons/style.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/forms/toggle/bootstrap-switch.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/forms/toggle/switchery.min.css">    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/css/vendors.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/weather-icons/climacons.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/morris.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/chartist.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/chartist-plugin-tooltip.css">
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/morris.css">--}}
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/chartist.css">--}}
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/charts/chartist-plugin-tooltip.css">--}}
     <!-- END VENDOR CSS-->
     <!-- BEGIN MODERN CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/css/app.css">
