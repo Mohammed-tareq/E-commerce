@@ -161,7 +161,7 @@
 @endsection
 
 @push('js')
-
+{{--change status--}}
     <script>
         $(document).on('switchChange.bootstrapSwitch', '.change_status', function (e) {
             e.preventDefault();
@@ -199,6 +199,7 @@
         })
     </script>
 
+    {{--change price--}}
     <script>
         $(document).on('submit', '.update_shipping_price', function (e) {
             e.preventDefault();
@@ -224,13 +225,13 @@
                         $('.input_price_' + id).val('');
 
                         setTimeout(function () {
-                            $('#tostar_success').hide();
+                            $('#tostar-success').hide();
                         }, 3000);
 
                     }
                 },
                 error: function (data) {
-                    var response = $.parseJSON(data.responseText);
+                    var response = data.responseJSON;
                     $('#errors_' + id).text(response.errors.price).show();
                 },
             });

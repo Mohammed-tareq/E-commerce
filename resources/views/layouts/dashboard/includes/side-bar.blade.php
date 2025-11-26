@@ -47,19 +47,16 @@
                 </li>
             @endcan
 
-
-
+            @can('shipping')
                 <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main"><i
                                 class="la la-map"></i>{{ __('dashboard.countries') }}</a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{ route('dashboard.countries.index') }}"
                                data-i18n="nav.templates.horz.classic">{{ __('dashboard.countries') }}</a>
                         </li>
-{{--                        <li><a class="menu-item" href="{{ route('dashboard.admins.create') }}"--}}
-{{--                               data-i18n="nav.templates.horz.top_icon">{{ __('dashboard.create_admin') }}</a>--}}
-{{--                        </li>--}}
                     </ul>
                 </li>
+            @endcan
         </ul>
     </div>
 </div>
