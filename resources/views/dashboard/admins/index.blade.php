@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.app')
 
 @section('title')
-Admins
+    {{ __('dashboard.admins') }}
 @endsection
 
 @section('content')

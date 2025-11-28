@@ -22,7 +22,7 @@ class WorldRepository
 
     public function getCountries()
     {
-        return Country::when(!empty(request()->search), function ($query) {
+        return Country::with(['users','governorates'])->withCount(['users','governorates'])->when(!empty(request()->search), function ($query) {
             $query->where('name', 'like', '%' . request()->search . '%');
         })->paginate(10);
     }
@@ -30,7 +30,7 @@ class WorldRepository
     public function getGovernorateByCountry($country)
     {
 
-        return $country->governorates()->when(!empty(request()->search), function ($query) {
+        return $country->governorates()->with(['users','cities','shippingPrices','country'])->withCount(['users','cities'])->when(!empty(request()->search), function ($query) {
             $query->where('name', 'like', '%' . request()->search . '%');
         })->paginate(10);
     }

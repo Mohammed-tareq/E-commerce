@@ -12,19 +12,22 @@
         "php": "^8.2",
         "anhskohbo/no-captcha": "^3.7",
         "codezero/laravel-unique-translation": "^4.3",
+        "cviebrock/eloquent-sluggable": "^12.0",
         "ichtrojan/laravel-otp": "^2.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "mcamara/laravel-localization": "^2.3",
         "php-flasher/flasher-laravel": "^2.2",
         "php-flasher/flasher-notyf-laravel": "^2.2",
-        "spatie/laravel-translatable": "^6.11"
+        "spatie/laravel-translatable": "^6.11",
+        "yajra/laravel-datatables": "12.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",
         "laravel/sail": "^1.41",
+        "laravel/telescope": "^5.15",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "pestphp/pest": "^4.1",

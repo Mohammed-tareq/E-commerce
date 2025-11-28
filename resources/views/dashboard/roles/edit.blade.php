@@ -3,7 +3,10 @@
 @section('title')
 Roles | Edit
 @endsection
+@push('css')
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/vendors/css/forms/toggle/switchery.min.css') }}">
 
+@endpush
 
 
 @section('content')
@@ -150,22 +153,22 @@ Roles | Edit
 @push('js')
     <script src="{{ asset('assets/dashboard') }}/vendors/js/forms/toggle/switchery.min.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var elems = Array.prototype.slice.call(document.querySelectorAll('.switchery'));
-            elems.forEach(function (html) {
-                if (!html.classList.contains('switchery-initialized')) {
-                    new Switchery(html, {
-                        color: html.dataset.color || '#4099ff', // لون الـ ON
-                        secondaryColor: '#DDDDDD',             // لون الـ OFF
-                        jackColor: '#FFFFFF',                   // لون الدائرة
-                        size: 'default'                           // الحجم: small, default, large
-                    });
-                    html.classList.add('switchery-initialized');
-                }
-            });
-        });
-    </script>
+{{--    <script>--}}
+{{--        document.addEventListener("DOMContentLoaded", function () {--}}
+{{--            var elems = Array.prototype.slice.call(document.querySelectorAll('.switchery'));--}}
+{{--            elems.forEach(function (html) {--}}
+{{--                if (!html.classList.contains('switchery-initialized')) {--}}
+{{--                    new Switchery(html, {--}}
+{{--                        color: html.dataset.color || '#4099ff', // لون الـ ON--}}
+{{--                        secondaryColor: '#DDDDDD',             // لون الـ OFF--}}
+{{--                        jackColor: '#FFFFFF',                   // لون الدائرة--}}
+{{--                        size: 'default'                           // الحجم: small, default, large--}}
+{{--                    });--}}
+{{--                    html.classList.add('switchery-initialized');--}}
+{{--                }--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
 
 @endpush
 

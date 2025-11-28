@@ -48,5 +48,9 @@ return [
     'price' => "Price",
     'change_price' => "Change Price",
     'gov_shipping' =>"Governorate & Shipping",
-
+    'categories' => "Categories",
+    'create_category' => "Create Category",
+    'brands' => 'Brands' ,
+    'create_brand' => 'Create Brand',
+    'created'=>'Created At'
 ];

@@ -1,0 +1,2 @@
+<a href="{{route('dashboard.categories.edit',$category->id)}}" class="btn btn-outline-primary">Edit</a>
+<a href="{{route('dashboard.categories.destroy',$category->id)}}" class="btn btn-outline-primary">Delete</a>

@@ -90,13 +90,13 @@
                                                 {{ $governorate->country->getTranslation('name', app()->getLocale()) }}
                                             </span>
                                         </td>
-                                        <td><span class="badge badge-{{ $governorate->users()->count() > 0 ? 'success' : 'danger' }} px-2 ">
-                                                {{ $governorate->users()->count() }}
+                                        <td><span class="badge badge-{{ $governorate->users_count > 0 ? 'success' : 'danger' }} px-2 ">
+                                                {{ $governorate->users_count }}
                                             </span>
                                         </td>
 
-                                        <td><span class="badge badge-{{ $governorate->cities->count() > 0 ? 'success' : 'danger' }} px-2 ">
-                                                {{ $governorate->cities->count() }}
+                                        <td><span class="badge badge-{{ $governorate->cities_count > 0 ? 'success' : 'danger' }} px-2 ">
+                                                {{ $governorate->cities_count }}
                                             </span>
                                         </td>
                                         <td>

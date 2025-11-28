@@ -48,6 +48,11 @@ return [
     'price' =>'السعر',
     'change_price' =>'تغير السعر',
     'gov_shipping' =>"إداره الشحن&المحافظات",
+    'categories' => "الأقسام",
+    'create_category' => "إنشاء قسم",
+    'brands' => 'العلامات التجاريه' ,
+    'create_brand' => 'إنشاء علامه تجاريه',
+    'created'=>"منذ",
 
 
 

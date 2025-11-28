@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.app')
 
 @section('title')
-Roles
+    {{ __('dashboard.roles') }}
 @endsection
 
 @section('content')

@@ -86,13 +86,13 @@ Countries
                                                 {{ $country->phone_code }}
                                             </span>
                                         </td>
-                                        <td><span class="badge badge-{{ $country->users()->count() > 0 ? 'success' : 'danger' }} px-2 ">
-                                                {{ $country->users()->count() }}
+                                        <td><span class="badge badge-{{ $country->users_count > 0 ? 'success' : 'danger' }} px-2 ">
+                                                {{ $country->users_count }}
                                             </span>
                                         </td>
 
-                                        <td><span class="badge badge-{{ $country->governorates->count() > 0 ? 'success' : 'danger' }} px-2 ">
-                                                {{ $country->governorates->count() }}
+                                        <td><span class="badge badge-{{ $country->governorates_count > 0 ? 'success' : 'danger' }} px-2 ">
+                                                {{ $country->governorates_count }}
                                             </span>
                                         </td>
                                         <td>

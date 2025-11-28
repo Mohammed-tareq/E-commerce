@@ -5,6 +5,8 @@ use App\Http\Controllers\Dashboard\Auth\LoginController;
 use App\Http\Controllers\Dashboard\Auth\Password\ForgetpasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\ResetpasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\VerifyEmailController;
+use App\Http\Controllers\Dashboard\Category\BrandController;
+use App\Http\Controllers\Dashboard\Category\CategoryController;
 use App\Http\Controllers\Dashboard\Role\RoleController;
 use App\Http\Controllers\Dashboard\World\WorldController;
 use Illuminate\Support\Facades\Route;
@@ -63,11 +65,29 @@ Route::group(
 
             Route::prefix('governorates')->name('governorates.')->group(function () {
                 Route::get('governorates/{id}/status', 'changeStatusForGovernorate')->name('status');
-                Route::put('/{id}/price' , 'changeShippingPrice')->name('price');
+                Route::put('/{id}/price', 'changeShippingPrice')->name('price');
             });
 
-
         });
+
+
+        ###################################### Categories ######################################
+            Route::resource('categories', CategoryController::class);
+            Route::get('categories-all', [CategoryController::class, 'getCategories'])->name('categories.all');
+
+
+        ###################################### Brands ######################################
+        Route::prefix('brands')->name('brands.')->group(function () {
+            Route::resource('/', BrandController::class);
+        });
+
+
+
+
+
+
+
+
         Route::get('/welcome', function () {
             return view('dashboard/welcome');
         })->name('welcome');

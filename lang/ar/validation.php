@@ -186,6 +186,5 @@ return [
         'permissions' => 'الصلاحيات',
         'role_id' => 'الدور',
         'status' => 'الحاله',
-        'price' => "السعر",
     ],
 ];
