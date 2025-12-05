@@ -4,10 +4,7 @@
     {{ __('dashboard.categories') }}
 @endsection
 
-@push('css')
-    <link rel="stylesheet" href="//cdn.datatables.net/2.3.5/css/dataTables.dataTables.min.css">
 
-@endpush
 
 @section('content')
     <div class="app-content content">
@@ -59,7 +56,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- body  --}}
+                                {{-- body  --}}
 
                                 </tbody>
                                 <tfoot>
@@ -79,40 +76,75 @@
         </div>
         <!-- Hoverable rows end -->
     </div>
+    @include('incloudes.sweet-delete')
+
 @endsection
 
-@include('incloudes.sweet-delete')
 
+@push('css')
+    @include('layouts.dashboard.includes.data-table.css')
+
+@endpush
 @push('js')
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
-
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    @include('layouts.dashboard.includes.data-table.js')
 
     <script>
         let lang = '{{ app()->getLocale() }}';
         $('#yajra_table').DataTable({
             processing: true,
             serverSide: true,
-           ajax:"{{ route('dashboard.categories.all') }}",
-            columns:[
-                {data:"DT_RowIndex","orderable":false,"searchable":false},
-                {data:"name"},
-                {data:"status"},
-                {data:"created_at"},
-                {data:"action","orderable":false,"searchable":false},
+            colReorder: true,
+            fixedColumns: true,
+            fixedHeader: true,
+            select: {
+                style: 'multi',
+                selector: 'td:not(:last-child)',
+                className: 'selected'
+            },
+            responsive: {
+                details: {
+                    display: DataTable.Responsive.display.modal({
+                        header: function (row) {
+                            var data = row.data();
+                            return 'Details for ' + data['name'];
+                        }
+                    }),
+                    renderer: DataTable.Responsive.renderer.tableAll({
+                        tableClass: 'table'
+                    })
+                }
+            },
+
+            ajax: "{{ route('dashboard.categories.all') }}",
+            columns: [
+                {data: "DT_RowIndex", "orderable": false, "searchable": false},
+                {data: "name"},
+                {data: "status"},
+                {data: "created_at"},
+                {data: "action", "orderable": false, "searchable": false, "width": "10%", 'selectable': false,},
             ],
 
-            language:lang === 'ar' ? {
+            layout: {
+                topStart: {
+                    pageLength: true,
+                    buttons:
+                        [
+                            'copy', 'excel', 'pdf', 'csv', 'print', 'colvis'
+                        ]
+                }
+            },
+            language: lang === 'ar' ? {
                 url: '//cdn.datatables.net/plug-ins/2.3.5/i18n/ar.json',
                 paginate: {
                     next: "التالي",
                     previous: "السابق"
                 }
-            }: {},
+            } : {},
         });
 
+
     </script>
+
+
 @endpush

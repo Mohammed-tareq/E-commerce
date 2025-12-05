@@ -5,6 +5,7 @@ return [
     'create' => 'أنشاء',
     'edit' => " تعديل",
     'delete' => " حذف ",
+    'deleted' => 'تم الحذف بنجاح',
     'show' => " عرض",
     'save' => 'حفظ',
     'cancel' => 'إلغاء',

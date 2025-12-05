@@ -36,6 +36,7 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
 
+
 @else
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/fonts/meteocons/style.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard') }}/vendors/css/forms/toggle/bootstrap-switch.min.css">

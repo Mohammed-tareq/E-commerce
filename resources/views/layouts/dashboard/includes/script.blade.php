@@ -11,9 +11,8 @@
         type="text/javascript"></script>
 <!-- END PAGE VENDOR JS-->
 
-{{-- Sweet Alert --}}
-<script src="{{ asset('assets/dashboard') }}/vendors/js/extensions/sweetalert.min.js" type="text/javascript"></script>
-<script src="{{ asset('assets/dashboard') }}/js/scripts/extensions/sweet-alerts.js" type="text/javascript"></script>
+
+
 
 
 <script src="{{ asset('assets/dashboard') }}/vendors/js/forms/toggle/bootstrap-switch.min.js"
