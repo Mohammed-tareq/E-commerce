@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Admin;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Coupon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,6 +37,12 @@ class ViewCountServiceProvider extends ServiceProvider
             if (!Cache::has('brands_count')) {
                 Cache::remember('brands_count', now()->addMinutes(60), function () {
                     return Brand::count();
+                });
+            }
+
+            if (!Cache::has('coupons_count')) {
+                Cache::remember('coupons_count', now()->addMinutes(60), function () {
+                    return Coupon::count();
                 });
             }
 

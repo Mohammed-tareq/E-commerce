@@ -61,6 +61,9 @@ return [
     'created'=>'Created At',
     'image' => "Image",
     'not_found' => 'Not Found',
-    'product_count' => 'Product Count'
+    'product_count' => 'Product Count',
+    'coupons' => 'Coupons',
+    'create_coupon' => 'Create Coupon',
+    'edit_coupon' => 'Edit Coupon',
 
 ];

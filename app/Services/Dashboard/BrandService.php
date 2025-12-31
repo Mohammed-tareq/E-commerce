@@ -4,6 +4,7 @@ namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\BrandRepository;
 use App\Utils\ImageManagement;
+use Illuminate\Support\Facades\Cache;
 use Yajra\DataTables\DataTables;
 
 class BrandService
@@ -71,6 +72,7 @@ class BrandService
         {
             $this->imageManagement->deleteImageFromLocal($brand->image);
         }
+        self::updateCache();
         return $this->brandRepository->deleteBrand($brand);
     }
     public function changeStatus($id)
@@ -79,4 +81,8 @@ class BrandService
         return $this->brandRepository->changeStatus($brand);
     }
 
+    private function updateCache()
+    {
+        Cache::forget('brands_count');
+    }
 }

@@ -61,6 +61,9 @@ return [
     'created'=>"منذ",
     'image' => "الصور",
     'not_found' => 'لا يوجد',
-    'product_count' => 'عدد المنتجات'
+    'product_count' => 'عدد المنتجات',
+    'coupons' => 'الكوبونات',
+    'create_coupon' => 'إنشاء كوبون',
+    'edit_coupon' => 'تعديل كوبون',
 
 ];

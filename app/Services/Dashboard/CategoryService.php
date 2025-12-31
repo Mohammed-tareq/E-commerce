@@ -54,6 +54,7 @@ class CategoryService
     public function deleteCategory($id)
     {
         $category = $this->getById($id);
+        self::updateCache();
         return $this->categoryRepository->deleteCategory($category);
     }
 
@@ -72,6 +73,11 @@ class CategoryService
         $category = $this->getById($id);
         return $this->categoryRepository->changeStatus($category);
 
+    }
+
+    private function updateCache()
+    {
+        cache()->forget('categories_count');
     }
 
 }

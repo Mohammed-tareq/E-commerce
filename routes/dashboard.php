@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\Auth\Password\ResetpasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\VerifyEmailController;
 use App\Http\Controllers\Dashboard\Category\BrandController;
 use App\Http\Controllers\Dashboard\Category\CategoryController;
+use App\Http\Controllers\Dashboard\Coupon\CouponController;
 use App\Http\Controllers\Dashboard\Role\RoleController;
 use App\Http\Controllers\Dashboard\World\WorldController;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +81,11 @@ Route::group(
         Route::resource('brands', BrandController::class)->except(['show']);
         Route::get('/brands-all', [BrandController::class, 'getBrands'])->name('brands.all');
         Route::get('brand/{id}/status', [BrandController::class, 'changeStatus'])->name('brand.status');
+
+        ###################################### Coupons ######################################
+        Route::resource('coupons', CouponController::class)->except(['show']);
+        Route::get('/coupons-all', [CouponController::class, 'getCoupons'])->name('coupons.all');
+        Route::get('coupon/{id}/status', [CouponController::class, 'changeStatus'])->name('coupon.status');
 
 
         Route::get('/welcome', function () {
