@@ -249,6 +249,8 @@ return [
         'role_id'               => 'Role',
         'status'                => 'Status',
         'image'                 => 'Image',
+        'name.ar'               => 'Name in Arabic',
+        'name.en'               => 'Name in English',
     ],
 
 

@@ -46,6 +46,14 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        'brands' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/brands'),
+            'url' => env('APP_URL').'/uploads/brands',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

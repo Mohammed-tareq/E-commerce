@@ -33,7 +33,7 @@
                     ) {
                         swalWithBootstrapButtons.fire({
                             title: "{{ __('dashboard.cancel') }}",
-                            icon: "error"
+                            icon: "error",
                         });
                     }
                 });

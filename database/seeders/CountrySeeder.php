@@ -16,6 +16,9 @@ class CountrySeeder extends Seeder
     {
 
 
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('countries')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $countries = [
             ['id' => 1, 'name' => ['ar' => 'مصر', 'en' => 'Egypt'], 'phone_code' => '+20', 'status' => false],

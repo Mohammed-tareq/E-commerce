@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\DB;
 
 class GovernorateSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+
     public function run(): void
     {
 
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('governorates')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $governorates = [
             ['id' => 1, 'country_id' => 1, 'name' => ['ar' => 'القاهرة', 'en' => 'Cairo']],
             ['id' => 2, 'country_id' => 1, 'name' => ['ar' => 'الجيزة', 'en' => 'Giza']],

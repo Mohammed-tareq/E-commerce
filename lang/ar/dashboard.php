@@ -26,6 +26,8 @@ return [
     'create_admin' => "انشاء مسئول",
     'edit_admin' => 'تعديل مسئول',
     'name' => 'الاسم',
+    'name_ar' => 'الاسم باللغه العربيه',
+    'name_en' => 'الاسم باللغه الانجليزيه',
     'username' => 'اسم المُستخدم',
     'email' => 'البريد الالكتروني',
     'created_at' => 'تمت اضافته',
@@ -51,11 +53,14 @@ return [
     'gov_shipping' =>"إداره الشحن&المحافظات",
     'categories' => "الأقسام",
     'create_category' => "إنشاء قسم",
+    'edit_category' =>'تعديل قسم',
+    'category_parent' => 'القسم الرئيسي',
     'brands' => 'العلامات التجاريه' ,
     'create_brand' => 'إنشاء علامه تجاريه',
+    'update_brand' => 'تعديل علامه تجاريه',
     'created'=>"منذ",
-
-
-
+    'image' => "الصور",
+    'not_found' => 'لا يوجد',
+    'product_count' => 'عدد المنتجات'
 
 ];

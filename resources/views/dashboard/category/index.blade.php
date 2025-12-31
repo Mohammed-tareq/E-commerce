@@ -50,6 +50,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>{{ __('dashboard.name') }}</th>
+                                    <th>{{ __('dashboard.product_count') }}</th>
                                     <th>{{ __('dashboard.status') }}</th>
                                     <th> {{ __('dashboard.created') }}</th>
                                     <th>{{ __('dashboard.actions') }}</th>
@@ -63,6 +64,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>{{ __('dashboard.name') }}</th>
+                                    <th>{{ __('dashboard.product_count') }}</th>
                                     <th>{{ __('dashboard.status') }}</th>
                                     <th> {{ __('dashboard.created') }}</th>
                                     <th>{{ __('dashboard.actions') }}</th>
@@ -120,6 +122,7 @@
             columns: [
                 {data: "DT_RowIndex", "orderable": false, "searchable": false},
                 {data: "name"},
+                {data: "products_count"},
                 {data: "status"},
                 {data: "created_at"},
                 {data: "action", "orderable": false, "searchable": false, "width": "10%", 'selectable': false,},
@@ -130,7 +133,13 @@
                     pageLength: true,
                     buttons:
                         [
-                            'copy', 'excel', 'pdf', 'csv', 'print', 'colvis'
+                            'copy', 'excel', 'pdf', 'csv',
+                            {
+                                extend: 'print',
+                                exportOptions: {
+                                    columns: ':not(:last-child)'
+                                }
+                            }, 'colvis'
                         ]
                 }
             },
@@ -146,5 +155,40 @@
 
     </script>
 
+@endpush
 
+
+@push('js')
+
+    <script>
+        $(document).on('click', '.change-status', function (e) {
+            e.preventDefault();
+
+            let id = $(this).data('id');
+            let url = " {{ route('dashboard.category.status', ':id') }}";
+            url = url.replace(':id', id);
+
+            $.ajax({
+                'url': url,
+                'type': 'GET',
+                'success': function (data) {
+                    $('#yajra_table').DataTable().ajax.reload();
+                    $('#tostar-success').show();
+                    $('#tostar-success').text(data.message);
+                    setTimeout(function () {
+                        $('#tostar-success').hide();
+                    }, 5000);
+                },
+
+                'error': function (data) {
+                    $('#tostar-error').show();
+                    $('#tostar-error').text(data.responseJSON.message);
+                    setTimeout(function () {
+                        $('#tostar-error').hide();
+                    }, 5000);
+                }
+
+            })
+        })
+    </script>
 @endpush

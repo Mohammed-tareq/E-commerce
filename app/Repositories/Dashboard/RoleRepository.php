@@ -10,7 +10,7 @@ class RoleRepository
 
     public function getRoles()
     {
-        return Role::select('id','name','permissions')->paginate(8);
+        return Role::select('id','name','permissions')->latest()->paginate(8);
     }
     public function createRole($request)
     {

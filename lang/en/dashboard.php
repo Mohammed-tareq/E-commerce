@@ -26,6 +26,8 @@ return [
     'create_admin' => 'Create Admin',
     'edit_admin' => 'Edit Admin',
     'name' => 'Name',
+    'name_ar' => 'Name in Arabic',
+    'name_en' => 'Name in English',
     'username' => 'Username',
     'email' => 'Email',
     'created_at' => 'Created At',
@@ -51,7 +53,14 @@ return [
     'gov_shipping' =>"Governorate & Shipping",
     'categories' => "Categories",
     'create_category' => "Create Category",
+    'edit_category' =>'Edit Category',
+    'category_parent' =>'Category Parent',
     'brands' => 'Brands' ,
     'create_brand' => 'Create Brand',
-    'created'=>'Created At'
+    'update_brand' => 'Update Brand',
+    'created'=>'Created At',
+    'image' => "Image",
+    'not_found' => 'Not Found',
+    'product_count' => 'Product Count'
+
 ];

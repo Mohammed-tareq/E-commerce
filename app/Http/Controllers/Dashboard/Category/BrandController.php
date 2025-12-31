@@ -3,63 +3,90 @@
 namespace App\Http\Controllers\Dashboard\Category;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Dashboard\Brand\BrandRequest;
+use App\Services\Dashboard\BrandService;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Support\Arr;
 
-class BrandController extends Controller
+class BrandController extends Controller implements HasMiddleware
 {
-    /**
-     * Display a listing of the resource.
-     */
+   public function __construct(public BrandService $brandService){}
+
+    public static function middleware()
+    {
+        return ['can:brands'];
+    }
     public function index()
     {
-        //
+        return view('dashboard.brand.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function getBrands()
+    {
+        return $this->brandService->getBrands();
+    }
     public function create()
     {
-        //
+        return view('dashboard.brand.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+    public function store(BrandRequest $request)
     {
-        //
+        $data = Arr::only($request->validated(), ['name' , 'status' , 'image']);
+
+        if(!$this->brandService->storeBrand($data)){
+            return redirect()->back()->with('error', __('dashboard.operation_failed'));
+        }
+        return redirect()->route('dashboard.brands.index')->with('success', __('dashboard.operation_success'));
+
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $brand  = $this->brandService->getBrand($id);
+        return view('dashboard.brand.edit' , compact('brand'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+
+    public function update(BrandRequest $request, string $id)
     {
-        //
+        $data = Arr::only($request->validated(), ['name' , 'status' , 'image']);
+        if(!$this->brandService->updateBrand($data , $id)){
+            return redirect()->back()->with('error', __('dashboard.operation_failed'));
+        }
+        return redirect()->route('dashboard.brands.index')->with('success', __('dashboard.operation_success'));
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
-        //
+        if(!$this->brandService->deleteBrand($id))
+        {
+            return redirect()->back()->with('error', __('dashboard.operation_error'));
+        }
+        return redirect()->back()->with('success', __('dashboard.operation_success'));
+
+    }
+    public function changeStatus($id)
+    {
+        $status = $this->brandService->changeStatus($id);
+        if(!$status){
+            return response()->json([
+                'status' => false,
+                'message' => __('dashboard.operation_error')
+            ], 400);
+        }
+        return response()->json([
+            'status' => true,
+            'message' => __('dashboard.operation_success')
+        ], 200);
     }
 }

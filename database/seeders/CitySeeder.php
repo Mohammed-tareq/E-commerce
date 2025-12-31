@@ -14,6 +14,10 @@ class CitySeeder extends Seeder
      */
     public function run(): void
     {
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('cities')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $cities = [
             // القاهرة
             ['id' => 1, 'governorate_id' => 1, 'name' => ['ar' => 'القاهرة', 'en' => 'Cairo']],
