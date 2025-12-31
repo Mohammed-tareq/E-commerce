@@ -12,3 +12,9 @@ make dashboard auth  and forget password  with otp using laravel-otp
 fix Security Vulnerability for email reset password
 
 add role and permission for admin dashboard and handel it for multi lang
+
+add cuntry and state for address using ajax for change state
+add category and subcategory for product using ajax for change state
+add brand for product using ajax for change state
+add coupon for product using ajax for change state
+
