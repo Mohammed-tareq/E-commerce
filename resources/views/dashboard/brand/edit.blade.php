@@ -50,6 +50,7 @@
                                         <form class="form" method="POST"
                                               action="{{ route('dashboard.brands.update', $brand->id) }}" enctype="multipart/form-data">
                                             @csrf
+                                            @method('PUT')
                                             <div class="form-body">
                                                 <h4 class="form-section"><i
                                                             class="ft-shield"></i>{{ __('dashboard.brands') }}</h4>
@@ -59,7 +60,8 @@
                                                             <label for="projectinput1">{{ __('dashboard.name_ar') }}</label>
                                                             <input type="text" id="projectinput1" class="form-control"
                                                                    placeholder="{{ __('placeHolder.name_ar') }}"
-                                                                   name="name[ar]">
+                                                                   name="name[ar]"
+                                                                  value="{{ $brand->getTranslation('name', 'ar') }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">

@@ -19,7 +19,7 @@
 
             @can('roles')
                 <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main"><i
-                                class="la la-shield"></i>{{ __('dashboard.roles') }}<span class="badge badge badge-success float-right mr-2">New</span></a>
+                                class="la la-shield"></i>{{ __('dashboard.roles') }}</a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{ route('dashboard.roles.index') }}"
                                data-i18n="nav.templates.horz.classic">{{ __('dashboard.roles') }}</a>
@@ -33,7 +33,7 @@
 
             @can('admins')
                 <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main"><i
-                                class="la la-user-secret"></i>{{ __('dashboard.admins') }}</a>
+                                class="la la-user-secret"></i>{{ __('dashboard.admins') }}<span class="badge badge badge-success float-right mr-2">{{ $admins_count }}</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{ route('dashboard.admins.index') }}"
                                data-i18n="nav.templates.horz.classic">{{ __('dashboard.admins') }}</a>
@@ -59,7 +59,7 @@
 
             @can('categories')
                 <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main"><i
-                                class="la la-user-secret"></i>{{ __('dashboard.categories') }}<span class="badge badge badge-success float-right mr-2">New</span></a>
+                                class="la la-user-secret"></i>{{ __('dashboard.categories') }}<span class="badge badge badge-success float-right mr-2">{{ $categories_count }}</span></a>
                     <ul class="menu-content">
                         <li><a class="menu-item" href="{{ route('dashboard.categories.index') }}"
                                data-i18n="nav.templates.horz.classic">{{ __('dashboard.categories') }}</a>
@@ -73,7 +73,7 @@
 
             @can('brands')
                 <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main"><i
-                                class="la la-user-secret"></i>{{ __('dashboard.brands') }}<span class="badge badge badge-success float-right mr-2">New</span></a>
+                                class="la la-user-secret"></i>{{ __('dashboard.brands') }}<span class="badge badge badge-success float-right mr-2">{{ $brands_count }}</span></a>
                     <ul class="menu-content">
                                 <li><a class="menu-item" href="{{ route('dashboard.brands.index') }}"
                                data-i18n="nav.templates.horz.classic">{{ __('dashboard.brands') }}</a>

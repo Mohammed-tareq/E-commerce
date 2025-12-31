@@ -19,6 +19,7 @@
         "mcamara/laravel-localization": "^2.3",
         "php-flasher/flasher-laravel": "^2.2",
         "php-flasher/flasher-notyf-laravel": "^2.2",
+        "predis/predis": "^3.3",
         "spatie/laravel-translatable": "^6.11",
         "yajra/laravel-datatables": "12.0"
     },

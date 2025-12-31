@@ -46,10 +46,7 @@ class CategoryController extends Controller implements HasMiddleware
     }
 
 
-    public function show(string $id)
-    {
-        //
-    }
+
 
 
     public function edit(string $id)

@@ -56,6 +56,11 @@ class BrandService
     public function updateBrand($data , $id)
     {
         $brand = $this->getBrand($id);
+        if(!empty($data['image']))
+        {
+            $this->imageManagement->deleteImageFromLocal($brand->image);
+            $data['image'] = $this->imageManagement->uploadSingleImage('/',$data['image'],'brands');
+        }
         return $this->brandRepository->updateBrand($data , $brand);
     }
 

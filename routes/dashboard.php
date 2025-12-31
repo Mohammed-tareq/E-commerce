@@ -72,14 +72,14 @@ Route::group(
 
 
         ###################################### Categories ######################################
-        Route::resource('categories', CategoryController::class);
+        Route::resource('categories', CategoryController::class)->except(['show']);
         Route::get('categories-all', [CategoryController::class, 'getCategories'])->name('categories.all');
         Route::get('category/{id}/status', [CategoryController::class, 'changeStatus'])->name('category.status');
 
         ###################################### Brands ######################################
-            Route::resource('brands', BrandController::class);
-            Route::get('/brands-all', [BrandController::class, 'getBrands'])->name('brands.all');
-            Route::get('brand/{id}/status', [BrandController::class, 'changeStatus'])->name('brand.status');
+        Route::resource('brands', BrandController::class)->except(['show']);
+        Route::get('/brands-all', [BrandController::class, 'getBrands'])->name('brands.all');
+        Route::get('brand/{id}/status', [BrandController::class, 'changeStatus'])->name('brand.status');
 
 
         Route::get('/welcome', function () {
