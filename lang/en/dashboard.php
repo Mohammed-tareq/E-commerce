@@ -71,5 +71,14 @@ return [
     'end_date' => 'End Date',
     'limiter' => 'Limiter',
     'used' => 'number of used',
+    'faq' => 'FAQ',
+    'create_faq' => 'Create FAQ',
+    'edit_faq' => 'Edit FAQ',
+    'question' => 'Question',
+    'answer' => 'Answer',
+    'question_en' => 'Question in English',
+    'answer_en' => 'Answer in English',
+    'question_ar' => 'Question in Arabic',
+    'answer_ar' => 'Answer in Arabic',
 
 ];

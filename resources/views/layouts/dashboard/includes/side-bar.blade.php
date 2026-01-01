@@ -89,9 +89,16 @@
                 </li>
             @endcan
             @can('coupons')
-                <li><a class="menu-item" href="{{ route('dashboard.coupons.index') }}" data-i18n="nav.templates.horz.main"><i
+                <li><a class="menu-item" href="{{ route('dashboard.coupons.index') }}"
+                       data-i18n="nav.templates.horz.main"><i
                                 class="la la-user-secret"></i>{{ __('dashboard.coupons') }}<span
                                 class="badge badge badge-success float-right mr-2">{{ $coupons_count }}</span></a>
+                </li>
+            @endcan
+            @can('faqs')
+                <li><a class="menu-item" href="{{ route('dashboard.faqs.index') }}" data-i18n="nav.templates.horz.main"><i
+                                class="la la-user-secret"></i>{{ __('dashboard.faq') }}<span
+                                class="badge badge badge-success float-right mr-2">{{ $faqs_count }}</span></a>
                 </li>
             @endcan
         </ul>

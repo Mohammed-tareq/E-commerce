@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\Auth\Password\VerifyEmailController;
 use App\Http\Controllers\Dashboard\Category\BrandController;
 use App\Http\Controllers\Dashboard\Category\CategoryController;
 use App\Http\Controllers\Dashboard\Coupon\CouponController;
+use App\Http\Controllers\Dashboard\Faq\FaqController;
 use App\Http\Controllers\Dashboard\Role\RoleController;
 use App\Http\Controllers\Dashboard\World\WorldController;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +49,6 @@ Route::group(
 
     Route::middleware('auth:admin')->group(function () {
 
-
         ###################################### Roles ######################################
         Route::resource('roles', RoleController::class)->except(['show']);
 
@@ -71,7 +71,6 @@ Route::group(
 
         });
 
-
         ###################################### Categories ######################################
         Route::resource('categories', CategoryController::class)->except(['show']);
         Route::get('categories-all', [CategoryController::class, 'getCategories'])->name('categories.all');
@@ -83,9 +82,12 @@ Route::group(
         Route::get('brand/{id}/status', [BrandController::class, 'changeStatus'])->name('brand.status');
 
         ###################################### Coupons ######################################
-        Route::resource('coupons', CouponController::class)->except(['show','create' , 'edit']);
+        Route::resource('coupons', CouponController::class)->except(['show', 'create', 'edit']);
         Route::get('/coupons-all', [CouponController::class, 'getCoupons'])->name('coupons.all');
         Route::get('coupon/{id}/status', [CouponController::class, 'changeStatus'])->name('coupon.status');
+
+        ######################################Faqs ######################################
+        Route::resource('faqs', FaqController::class)->except(['show', 'create', 'edit']);
 
 
         Route::get('/welcome', function () {

@@ -43,6 +43,7 @@ class CouponService
     public function deleteCoupon ($id)
     {
         $coupon = $this->getCoupon($id);
+        self::updateCache();
         return $this->couponRepository->deleteCoupon($coupon);
     }
 
