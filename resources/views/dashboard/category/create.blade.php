@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.app')
 
 @section('title')
-    Category | Create
+    {{ __('dashboard.categories') }} | {{ __('dashboard.create_category') }}
 @endsection
 
 

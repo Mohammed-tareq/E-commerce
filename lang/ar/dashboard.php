@@ -65,5 +65,10 @@ return [
     'coupons' => 'الكوبونات',
     'create_coupon' => 'إنشاء كوبون',
     'edit_coupon' => 'تعديل كوبون',
-
+    'code' => 'الكود',
+    'discount_percentage' => 'نسبة الخصم',
+    'start_date' => 'تاريخ البدء',
+    'end_date' => 'تاريخ الانتهاء',
+    'limiter' => 'الحد الاقصى',
+    'used' => 'عدد الاستخدام',
 ];

@@ -65,5 +65,11 @@ return [
     'coupons' => 'Coupons',
     'create_coupon' => 'Create Coupon',
     'edit_coupon' => 'Edit Coupon',
+    'code' => 'Code',
+    'discount_percentage' => 'Discount Percentage',
+    'start_date' => 'Start Date',
+    'end_date' => 'End Date',
+    'limiter' => 'Limiter',
+    'used' => 'number of used',
 
 ];

@@ -16,6 +16,5 @@
 
 @include('layouts.dashboard.includes.script')
 
-
 </body>
 </html>

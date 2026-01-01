@@ -8,4 +8,9 @@ return[
     'password_confirmation' => 'Enter Password Confirmation',
     'name_ar' => 'Enter Name in Arabic',
     'name_en' => 'Enter Name in English',
+    'code' => 'Enter Code',
+    'start_date' => 'Enter Start Date',
+    'end_date' => 'Enter End Date',
+    'limiter' => 'Enter Limiter',
+    'discount_percentage'=> 'Enter Discount Percentage',
     ];

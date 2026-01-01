@@ -22,35 +22,19 @@ class ViewCountServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view()->composer('dashboard.*', function () {
-            if (!Cache::has('admins_count')) {
-                Cache::remember('admins_count', now()->addMinutes(60), function () {
-                    return Admin::count();
-                });
+            $models = [
+                'admins_count' => Admin::class,
+                'categories_count' => Category::class,
+                'brands_count' => Brand::class,
+                'coupons_count' => Coupon::class,
+            ];
+
+            $counts = [];
+            foreach ($models as $key => $model) {
+                $counts[$key] = Cache::remember($key, 3600, fn() => $model::count());
             }
 
-            if (!Cache::has('categories_count')) {
-                Cache::remember('categories_count', now()->addMinutes(60), function () {
-                    return Category::count();
-                });
-            }
-
-            if (!Cache::has('brands_count')) {
-                Cache::remember('brands_count', now()->addMinutes(60), function () {
-                    return Brand::count();
-                });
-            }
-
-            if (!Cache::has('coupons_count')) {
-                Cache::remember('coupons_count', now()->addMinutes(60), function () {
-                    return Coupon::count();
-                });
-            }
-
-            view()->share([
-                'admins_count' => Cache::get('admins_count'),
-                'categories_count' => Cache::get('categories_count'),
-                'brands_count' => Cache::get('brands_count'),
-            ]);
+            view()->share($counts);
         });
     }
 }

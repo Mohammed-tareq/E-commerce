@@ -17,12 +17,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
-//            AdminSeeder::class,
+            AdminSeeder::class,
             CountrySeeder::class,
             GovernorateSeeder::class,
             CitySeeder::class,
             CategorySeeder::class,
             BrandSeeder::class,
+            CouponSeeder::class,
         ]);
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.app')
 
 @section('title')
-    Brand | Create
+    {{ __('dashboard.brands') }} | {{ __('dashboard.create_brand') }}
 @endsection
 
 
