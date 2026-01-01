@@ -279,9 +279,9 @@
 
     <script>
 
+
         $(document).on('click', '.edit-coupon', function (e) {
             e.preventDefault();
-
 
             $('#coupon-code').val($(this).data('coupon-code'));
             $('#discount-percentage').val($(this).data('discount'));
@@ -294,11 +294,10 @@
             } else {
                 $('#status-inactive').prop('checked', true);
             }
-            $('#error-list').empty();
-            $('#error-block').hide();
+            $('#error-list-edit').empty();
+            $('#error-block-edit').hide();
             $('#editCouponModal').modal('show');
         })
-
         // update coupon form
 
         $(document).on('submit', '#update-coupon-form', function (e) {
@@ -346,8 +345,8 @@
                 },
                 'error': function (data) {
                     $.each(data.responseJSON.errors, function (key, value) {
-                        $('#error-list').append('<li>' + value[0] + '</li>');
-                        $('#error-block').show();
+                        $('#error-list-edit').append('<li>' + value[0] + '</li>');
+                        $('#error-block-edit').show();
                         $('#editCouponModal').modal('show');
                     });
                 },

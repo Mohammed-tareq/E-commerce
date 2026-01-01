@@ -9,6 +9,7 @@
            data-limiter = "{{ $coupon->limiter }}"
            data-status = "{{ $coupon->status === __('dashboard.Active') ? 1 : 0 }}"
             data-bs-toggle="modal" data-bs-target="#editCouponModal"
+            id="edit-coupon-{{ $coupon->id }}"
     >{{ __('dashboard.edit') }}</button>
 
     <a href="javascript:void(0);" data-id="{{ $coupon->id }}"

@@ -1,6 +1,7 @@
-<div class="modal fade" id="editCouponModal" tabindex="-1" aria-labelledby="editCouponModalLabel"
+
+<div class="modal fade overflow-auto" id="editCouponModal" tabindex="-1" aria-labelledby="editCouponModalLabel"
      aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editCouponModalLabel">{{ __('dashboard.edit_coupon') }}</h5>
@@ -9,8 +10,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="alert alert-danger" style="display:none" id="error-block">
-                    <ul id="error-list">
+                <div class="alert alert-danger" style="display:none" id="error-block-edit">
+                    <ul id="error-list-edit">
                     </ul>
                 </div>
 

@@ -1,4 +1,4 @@
-<div class="modal fade" id="createCouponModal" tabindex="-1" aria-labelledby="createCouponModalLabel"
+<div class="modal fade overflow-auto" id="createCouponModal" tabindex="-1" aria-labelledby="createCouponModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
