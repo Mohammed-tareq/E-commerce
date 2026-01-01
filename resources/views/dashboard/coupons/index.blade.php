@@ -99,8 +99,6 @@
         </div>
         <!-- Hoverable rows end -->
     </div>
-    @include('incloudes.sweet-delete')
-
 @endsection
 
 
@@ -188,6 +186,7 @@
         $(document).on('click', '.change-status', function (e) {
             e.preventDefault();
 
+            let currentPage = $('#yajra_table').DataTable().page();
             let id = $(this).data('id');
             let url = " {{ route('dashboard.coupon.status', ':id') }}";
             url = url.replace(':id', id);
@@ -196,7 +195,7 @@
                 'url': url,
                 'type': 'GET',
                 'success': function (data) {
-                    $('#yajra_table').DataTable().ajax.reload();
+                    $('#yajra_table').DataTable().page(currentPage).draw(false);
                     $('#tostar-success').show();
                     $('#tostar-success').text(data.message);
                     setTimeout(function () {
@@ -227,7 +226,8 @@
 
         $('#create-coupon-form').on('submit', function (e) {
             e.preventDefault();
-            alert('test');
+
+            let currentPage = $('#yajra_table').DataTable().page();
             let url = "{{ route('dashboard.coupons.store') }}";
             let formData = new FormData(this);
             $('#error-list').empty();
@@ -242,7 +242,7 @@
 
                 'success': function (data) {
                     if (data.status === true) {
-                        $('#yajra_table').DataTable().ajax.reload();
+                        $('#yajra_table').DataTable().page(currentPage).draw(false);
                         $('#create-coupon-form')[0].reset();
                         $('#createCouponModal').modal('hide');
                         Swal.fire({
@@ -276,19 +276,18 @@
         })
     </script>
 
-
+    {{--    update coupon --}}
     <script>
-
 
         $(document).on('click', '.edit-coupon', function (e) {
             e.preventDefault();
+            let status = $(this).data('status');
 
             $('#coupon-code').val($(this).data('coupon-code'));
             $('#discount-percentage').val($(this).data('discount'));
             $('#start-date').val($(this).data('start_date'));
             $('#end-date').val($(this).data('end_date'));
             $('#limit-used').val($(this).data('limiter'));
-            let status = $(this).data('status');
             if (status == 1) {
                 $('#status-active').prop('checked', true);
             } else {
@@ -298,11 +297,11 @@
             $('#error-block-edit').hide();
             $('#editCouponModal').modal('show');
         })
-        // update coupon form
 
+        // update coupon form
         $(document).on('submit', '#update-coupon-form', function (e) {
             e.preventDefault();
-
+            let currentPage = $('#yajra_table').DataTable().page();
             let id = $('.edit-coupon').data('id');
             let url = "{{ route('dashboard.coupons.update', ':id') }}";
             url = url.replace(':id', id);
@@ -323,7 +322,7 @@
                     if (data.status === true) {
                         $('#update-coupon-form')[0].reset();
                         $('#editCouponModal').modal('hide');
-                        $('#yajra_table').DataTable().ajax.reload();
+                        $('#yajra_table').DataTable().page(currentPage).draw(false);
                         Swal.fire({
                             position: "center",
                             icon: "success",
@@ -353,6 +352,68 @@
 
             });
         })
+
+
+    </script>
+    <script>
+
+        // delete coupon
+        $(document).on('click', '.delete_coupon', function (e) {
+            e.preventDefault();
+
+            let currentPage = $('#yajra_table').DataTable().page();
+            let id = $(this).data('id');
+            let url = "{{ route('dashboard.coupons.destroy', ':id') }}".replace(':id', id);
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: true
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: "{{ __('dashboard.delete_alert') }}",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "{{ __('dashboard.delete') }}",
+                cancelButtonText: "{{ __('dashboard.cancel') }}",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            _method: 'DELETE'
+                        },
+                        success: function (data) {
+                            if (data.status === true) {
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: data.message,
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                                $('#yajra_table').DataTable().page(currentPage).draw(false);
+                            } else {
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "error",
+                                    title: data.message,
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
 
     </script>
 

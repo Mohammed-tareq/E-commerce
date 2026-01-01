@@ -15,6 +15,9 @@ class CouponService
         $coupons =  $this->couponRepository->getCoupons();
         return DataTables::of($coupons)
             ->addIndexColumn()
+            ->addColumn('discount_percentage', function ($coupon) {
+                return $coupon->discount_percentage . '%';
+            })
             ->addColumn('action', function ($coupon) {
                 return view('dashboard.coupons.action', compact('coupon'));
             })

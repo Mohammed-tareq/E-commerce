@@ -83,7 +83,7 @@ Route::group(
         Route::get('brand/{id}/status', [BrandController::class, 'changeStatus'])->name('brand.status');
 
         ###################################### Coupons ######################################
-        Route::resource('coupons', CouponController::class)->except(['show']);
+        Route::resource('coupons', CouponController::class)->except(['show','create' , 'edit']);
         Route::get('/coupons-all', [CouponController::class, 'getCoupons'])->name('coupons.all');
         Route::get('coupon/{id}/status', [CouponController::class, 'changeStatus'])->name('coupon.status');
 

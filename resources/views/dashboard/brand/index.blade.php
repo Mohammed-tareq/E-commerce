@@ -161,6 +161,7 @@
     <script>
         $(document).on('click', '.change-status', function (e) {
             e.preventDefault();
+            let currentPage = $('#yajra_table').DataTable().page();
             let id = $(this).data('id');
             let url = " {{ route('dashboard.brand.status', ':id')}} ";
             url = url.replace(':id' , id);
@@ -169,7 +170,7 @@
                 "url": url,
                 "type": 'GET',
                 success: function (data) {
-                   $('#yajra_table').DataTable().ajax.reload();
+                   $('#yajra_table').DataTable().page(currentPage).draw(false);
                     $('#tostar-success').show();
                     $('#tostar-success').text(data.message);
                     setTimeout(function () {

@@ -15,14 +15,8 @@
     <a href="javascript:void(0);" data-id="{{ $coupon->id }}"
        class="btn btn-outline-info change-status">{{ __('dashboard.change_status') }}</a>
 
-    <a href="javascript:void(0);" data-id="{{ $coupon->id }}"
-       class="btn btn-outline-danger delete-btn delete">{{ __('dashboard.delete') }}</a>
+    <button data-id="{{ $coupon->id }}" class="btn btn-outline-danger delete-btn delete delete_coupon">{{ __('dashboard.delete') }}</button>
 
-    <form id="delete_{{$coupon->id}}" action="{{ route('dashboard.coupons.destroy', $coupon->id) }}"
-          method="post" style="display: none;">
-        @csrf
-        @method('delete')
-    </form>
 </div>
 
 
