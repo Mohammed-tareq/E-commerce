@@ -18,3 +18,4 @@ add category and subcategory for product using ajax for change state
 add brand for product using ajax for change state
 add coupon for product using ajax for all crud using model bootstrap
 Add FAQ management module with CRUD functionality, repository-service structure, caching, multilingual support, and AJAX integration.
+Add settings management module with CRUD functionality, repository-service structure, multilingual support, middleware, and AJAX integration.
