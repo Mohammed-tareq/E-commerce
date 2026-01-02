@@ -49,40 +49,44 @@
                             </button>
                             {{--  crate and edit model  --}}
                             @include('dashboard.faq.create')
-                            @include('dashboard.faq.edit')
                         </div>
 
 
                         <div class="card-body card-dashboard">
                             <div class="col-md-12">
                                 <div class="card" id="headingCollapse51">
-                                    <div role="tabpanel" class="card-header border-success">
-                                        <a data-toggle="collapse" href="#collapse51" aria-expanded="true"
-                                           aria-controls="collapse51"
-                                           class="font-medium-1 primary">Collapsible Group Item #1</a>
-                                        <a  href="javascript:void(0)" class=" float-right delete-faq" data-id="1">
-                                            <i class="danger la la-trash"></i>
-                                        </a>
-                                        <a href="javascript:void(0)"  class="float-right mx-2" data-id="1">
-                                            <i class="primary la la-edit"></i>
-                                        </a>
-                                    </div>
-                                    <div id="collapse51" role="tabpanel" aria-labelledby="headingCollapse51"
-                                         class="card-collapse collapse show"
-                                         aria-expanded="true">
-                                        <div class="card-body">
-                                            Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly
-                                            beans. Caramels
-                                            chocolate cake liquorice cake wafer jelly beans croissant apple
-                                            pie. Oat cake brownie pudding jelly beans. Wafer liquorice chocolate
-                                            bar chocolate bar liquorice. Tootsie roll gingerbread gingerbread
-                                            chocolate bar tart chupa chups sugar plum toffee. Carrot cake
-                                            macaroon sweet danish. Cupcake soufflé toffee marzipan candy
-                                            canes pie jelly-o. Cotton candy bonbon powder topping carrot
-                                            cake cookie caramels lemon drops liquorice. Dessert cookie ice
-                                            cream toffee apple pie.
+                                    @forelse($faqs as $faq)
+                                        <div role="tabpanel" class="card-header border-success">
+                                            <a data-toggle="collapse" href="#collapse51_{{ $faq->id }}"
+                                               aria-expanded="true"
+                                               aria-controls="collapse51_{{ $faq->id }}"
+                                               class="font-medium-1 primary">{{ $faq->getTranslation('question',app()->getLocale()) }}</a>
+                                            <a href="javascript:void(0)" class=" float-right delete-faq" data-id="{{ $faq->id }}">
+                                                <i class="danger la la-trash"></i>
+                                            </a>
+                                            <a href="javascript:void(0)"
+                                               class="edit-faq float-right mx-2"
+                                               data-id="{{ $faq->id }}"
+                                               data-toggle="modal"
+                                               data-target="#editFaqModal-{{ $faq->id }}">
+                                                <i class="primary la la-edit"></i>
+                                            </a>
+
                                         </div>
-                                    </div>
+                                        @include('dashboard.faq.edit', ['faq'=>$faq])
+                                        <div id="collapse51_{{ $faq->id }}" role="tabpanel"
+                                             aria-labelledby="headingCollapse51"
+                                             class="card-collapse collapse @if($loop->first) show @endif"
+                                             aria-expanded="true">
+                                            <div class="card-body">
+                                                {{ $faq->getTranslation('answer',app()->getLocale()) }}
+                                            </div>
+                                        </div>
+                                    @empty
+                                        <div class="d-flex justify-content-center ">
+                                            <p>No FAQ </p>
+                                        </div>
+                                    @endforelse
                                 </div>
                             </div>
 
@@ -97,12 +101,22 @@
 @endsection
 
 @push('js')
+
     <script>
+
+        $(document).on('click', '#create-faq', function (e) {
+            e.preventDefault();
+            $('#error-list-edit').empty();
+            $('#error-block-edit').hide();
+        })
+
+
         $('#create-faq-form').on('submit', function (e) {
             e.preventDefault();
 
             let url = "{{ route('dashboard.faqs.store') }}";
             let data = new FormData(this);
+            let lang = "{{ app()->getLocale() }}"
 
             $.ajax({
                 url: url,
@@ -112,6 +126,49 @@
                 contentType: false,
 
                 success: function (data) {
+                    if (data.status === true) {
+                        $('#headingCollapse51').prepend(`<div role="tabpanel" class="card-header border-success">
+                                            <a data-toggle="collapse" href="#collapse51_${data.faq.id}"
+                                               aria-expanded="true"
+                                               aria-controls="collapse51_${data.faq.id}"
+                                               class="font-medium-1 primary">${data.faq.question[lang]}</a>
+                                            <a href="javascript:void(0)" class=" float-right delete-faq" data-id="${data.faq.id}">
+                                                <i class="danger la la-trash"></i>
+                                            </a>
+                                            <a href="javascript:void(0)"
+                                               class="edit-faq float-right mx-2"
+                                               data-id="${data.faq.id}"
+                                               data-toggle="modal"
+                                               data-target="#editFaqModal-${data.faq.id}">
+                                                <i class="primary la la-edit"></i>
+                                            </a>
+                                        </div>
+                        <div id="collapse51_${data.faq.id}" role="tabpanel"
+                                             aria-labelledby="headingCollapse51"
+                                             class="card-collapse collapse"
+                                             aria-expanded="true">
+                                            <div class="card-body">
+                                                ${data.faq.answer[lang]}
+                        </div>
+                    </div>`)
+                        $('#create-faq-form')[0].reset();
+                        $('#createFaqModal').modal('hide');
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    }
                 },
 
                 error: function (data) {
@@ -126,8 +183,68 @@
         });
     </script>
 
+
+    {{--   update faq --}}
     <script>
 
+        $(document).on('click', '.edit-faq', function (e) {
+            e.preventDefault();
+            $('#error-list-edit').empty();
+            $('#error-block-edit').hide();
+        });
+
+        $('#update-coupon-form').on('submit',function(e){
+            e.preventDefault();
+            $('#error-list-edit').empty();
+            $('#error-block-edit').hide();
+            let id = $(this).data('id');
+            let url = "{{ route('dashboard.faqs.update' ,':id') }}";
+            url = url.replace(':id', id);
+            let data = new FormData(this);
+            data.append('_method', 'PUT');
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: data,
+                processData: false,
+                contentType: false,
+
+                success: function (data) {
+                    if (data.status === true) {
+                        $('#editFaqModal-' + id).modal('hide');
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+
+                    }
+                },
+
+                error: function (data) {
+                    $.each(data.responseJSON.errors, function (key, value) {
+                        $('#error-list-edit').append('<li>' + value[0] + '</li>');
+                        $('#error-block-edit').show();
+                        $('#editFaqModal-' + id).modal('show');
+                    })
+                },
+            });
+        })
+    </script>
+
+    {{--    delete faq--}}
+    <script>
         $(document).on('click', '.delete-faq', function (e) {
             e.preventDefault();
             let id = $(this).data('id');

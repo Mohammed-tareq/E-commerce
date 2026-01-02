@@ -36,11 +36,13 @@ class FaqController extends Controller implements HasMiddleware
             return response()->json([
                 'status' => false,
                 'message' => __('dashboard.operation_error')
+
             ]);
         }
         return response()->json([
             'status' => true,
-            'message' => __('dashboard.operation_success')
+            'message' => __('dashboard.operation_success'),
+            'faq' => $data
         ]);
 
     }
