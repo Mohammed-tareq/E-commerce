@@ -41,7 +41,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
@@ -49,7 +49,15 @@ return [
         'brands' => [
             'driver' => 'local',
             'root' => public_path('uploads/brands'),
-            'url' => env('APP_URL').'/uploads/brands',
+            'url' => env('APP_URL') . '/uploads/brands',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+        'settings' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/settings'),
+            'url' => env('APP_URL') . '/uploads/settings',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
