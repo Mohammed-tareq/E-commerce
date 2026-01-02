@@ -43,12 +43,12 @@ class SettingServiceProvider extends ServiceProvider
                 "logo" => 'logo.png',
                 "favicon" => 'favicon.png',
                 "site_email" => 'info@example.com',
-                "site_phone" => '+123456789',
                 "email_support" => 'support@example.com',
                 "facebook" => 'https://www.facebook.com/example',
                 "instagram" => 'https://www.instagram.com/example',
                 "linkedin" => 'https://www.linkedin.com/company/example',
                 "promotion_video_url" => 'https://www.youtube.com/watch?v=example',
+                'youtube' => 'https://www.youtube.com/channel/example',
             ]);
         });
     }

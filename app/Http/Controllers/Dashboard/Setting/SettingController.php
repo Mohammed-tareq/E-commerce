@@ -27,7 +27,7 @@ class SettingController extends Controller implements HasMiddleware
 
     public function update(SettingRequest $request)
     {
-        $data = Arr::only($request->validated(), ['site_name', 'site_desc', 'meta_desc', 'site_copy_right', 'logo', 'favicon', 'site_email', 'site_phone', 'email_support', 'facebook', 'instagram', 'linkedin', 'promotion_video_url']);
+        $data = Arr::only($request->validated(), ['site_name', 'site_desc', 'meta_desc', 'site_copy_right', 'logo', 'favicon', 'site_email', 'email_support', 'facebook', 'instagram', 'linkedin', 'youtube', 'promotion_video_url']);
         if (!$this->settingService->updateSetting($data)) {
             return response()->json([
                 'status' => false,

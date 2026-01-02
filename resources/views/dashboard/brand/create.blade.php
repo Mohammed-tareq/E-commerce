@@ -48,7 +48,8 @@
                                     @include('incloudes.validate-error')
                                     <div class="card-body">
                                         <form class="form" method="POST"
-                                              action="{{ route('dashboard.brands.store') }}" enctype="multipart/form-data">
+                                              action="{{ route('dashboard.brands.store') }}"
+                                              enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-body">
                                                 <h4 class="form-section"><i
@@ -118,7 +119,7 @@
         </div>
     </div>
 @endsection
-@include('incloudes.file-input')
+@include('incloudes.file-input.file-input')
 
 
 

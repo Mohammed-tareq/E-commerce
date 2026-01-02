@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\Category\CategoryController;
 use App\Http\Controllers\Dashboard\Coupon\CouponController;
 use App\Http\Controllers\Dashboard\Faq\FaqController;
 use App\Http\Controllers\Dashboard\Role\RoleController;
+use App\Http\Controllers\Dashboard\Setting\SettingController;
 use App\Http\Controllers\Dashboard\World\WorldController;
 use Illuminate\Support\Facades\Route;
 
@@ -88,6 +89,12 @@ Route::group(
 
         ######################################Faqs ######################################
         Route::resource('faqs', FaqController::class)->except(['show', 'create', 'edit']);
+
+        ######################################Settings ######################################
+        Route::prefix('settings')->name('settings.')->group(function () {
+            Route::get('/', [SettingController::class, 'index'])->name('index');
+            Route::put('/update', [SettingController::class, 'update'])->name('update');
+        });
 
 
         Route::get('/welcome', function () {

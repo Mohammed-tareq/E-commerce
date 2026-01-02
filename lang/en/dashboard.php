@@ -81,10 +81,14 @@ return [
     'question_ar' => 'Question in Arabic',
     'answer_ar' => 'Answer in Arabic',
     'settings' => 'Settings',
-    'site_name' => 'Site Name',
-    'site_desc' => 'Site Description',
-    'meta_desc' => 'Meta Description',
-    'site_copy_right' => 'Site Copy Right',
+    'site_name_ar' => 'Site Name in Arabic',
+    'site_name_en' => 'Site Name in English',
+    'site_desc_ar' => 'Site Description in Arabic',
+    'site_desc_en' => 'Site Description in English',
+    'meta_desc_ar' => 'Meta Description in Arabic',
+    'meta_desc_en' => 'Meta Description in English',
+    'site_copy_right_ar' => 'Site Copy Right in Arabic',
+    'site_copy_right_en' => 'Site Copy Right in English',
     'logo' => 'Logo',
     'favicon' => 'Favicon',
     'site_email' => 'Site Email',
@@ -93,6 +97,9 @@ return [
     'facebook' => 'Facebook',
     'instagram' => 'Instagram',
     'linkedin' => 'Linkedin',
+    'youtube' => 'Youtube',
     'promotion_video_url' => 'Promotion Video URL',
+    'links' => 'Links',
+
 
 ];

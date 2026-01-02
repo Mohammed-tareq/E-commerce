@@ -25,11 +25,11 @@ class Setting extends Model
         "logo",
         "favicon",
         "site_email",
-        "site_phone",
         "email_support",
         "facebook",
         "instagram",
         "linkedin",
+        'youtube',
         "promotion_video_url",
     ];
 

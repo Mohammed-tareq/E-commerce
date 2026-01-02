@@ -101,6 +101,11 @@
                                 class="badge badge badge-success float-right mr-2">{{ $faqs_count }}</span></a>
                 </li>
             @endcan
+            @can('settings')
+                <li><a class="menu-item" href="{{ route('dashboard.settings.index') }}" data-i18n="nav.templates.horz.main"><i
+                                class="la la-user-secret"></i>{{ __('dashboard.settings') }}</a>
+                </li>
+            @endcan
         </ul>
     </div>
 </div>

@@ -48,7 +48,8 @@
                                     @include('incloudes.validate-error')
                                     <div class="card-body">
                                         <form class="form" method="POST"
-                                              action="{{ route('dashboard.brands.update', $brand->id) }}" enctype="multipart/form-data">
+                                              action="{{ route('dashboard.brands.update', $brand->id) }}"
+                                              enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <div class="form-body">
@@ -61,7 +62,7 @@
                                                             <input type="text" id="projectinput1" class="form-control"
                                                                    placeholder="{{ __('placeHolder.name_ar') }}"
                                                                    name="name[ar]"
-                                                                  value="{{ $brand->getTranslation('name', 'ar') }}">
+                                                                   value="{{ $brand->getTranslation('name', 'ar') }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -70,7 +71,7 @@
                                                             <input type="text" id="projectinput1" class="form-control"
                                                                    placeholder="{{ __('placeHolder.name_en') }}"
                                                                    name="name[en]"
-                                                            value="{{ $brand->getTranslation('name', 'en') }}">
+                                                                   value="{{ $brand->getTranslation('name', 'en') }}">
                                                         </div>
                                                     </div>
 
@@ -81,7 +82,7 @@
                                                             <label for="single-image">{{ __('dashboard.image') }}</label>
                                                             <input type="file" class="form-control"
                                                                    name="image" id="single-image"
-                                                                    value="{{ $brand->getTranslation('name', 'ar') }}">
+                                                                   value="{{ $brand->getTranslation('name', 'ar') }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -92,8 +93,10 @@
                                                             <label for="status">{{ __('dashboard.status') }}</label>
                                                             <select name="status"
                                                                     class="form-control" id="status">
-                                                                <option @if($brand->status == 'Active') selected @endif value="1">{{ __('dashboard.Active') }}</option>
-                                                                <option @if($brand->status == 'Inactive') selected @endif value="0">{{ __('dashboard.Inactive') }}</option>
+                                                                <option @if($brand->status == 'Active') selected
+                                                                        @endif value="1">{{ __('dashboard.Active') }}</option>
+                                                                <option @if($brand->status == 'Inactive') selected
+                                                                        @endif value="0">{{ __('dashboard.Inactive') }}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -122,7 +125,7 @@
         </div>
     </div>
 @endsection
-@include('incloudes.file-input', ['dataEdit' => $brand->image ?? null])
+@include('incloudes.file-input.file-input', ['dataEdit' => $brand->image ?? null])
 
 
 
