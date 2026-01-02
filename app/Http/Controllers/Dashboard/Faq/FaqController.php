@@ -31,27 +31,22 @@ class FaqController extends Controller implements HasMiddleware
     public function store(FaqRequest $request)
     {
         $data = Arr::only($request->validated(), ['question', 'answer']);
-
-        if (!$this->faqService->create($data)) {
+        $faq = $this->faqService->create($data);
+        if (!$faq) {
             return response()->json([
                 'status' => false,
                 'message' => __('dashboard.operation_error')
-
             ]);
         }
         return response()->json([
             'status' => true,
             'message' => __('dashboard.operation_success'),
-            'faq' => $data
+            'faq' => $faq
         ]);
 
     }
 
 
-    public function show(string $id)
-    {
-        //
-    }
 
 
     public function update(FaqRequest $request,$id)
@@ -64,9 +59,11 @@ class FaqController extends Controller implements HasMiddleware
                 'message' => __('dashboard.operation_error')
             ]);
         }
+        $faq = $this->faqService->getFaq($id);
         return response()->json([
             'status' => true,
-            'message' => __('dashboard.operation_success')
+            'message' => __('dashboard.operation_success'),
+            'faq' => $faq
         ]);
     }
 

@@ -17,11 +17,11 @@ class FaqRequest extends FormRequest
     {
         return [
             'question' => 'required|array',
-            'question.ar' => 'required|string|max:255',
-            'question.en' => 'required|string|max:255',
+            'question.ar' => 'required|string|min:5|max:255',
+            'question.en' => 'required|string|min:5|max:255',
             'answer' => 'required|array',
-            'answer.ar' => 'required|string|max:5000',
-            'answer.en' => 'required|string|max:5000',
+            'answer.ar' => 'required|string|min:10|max:5000',
+            'answer.en' => 'required|string|min:10|max:5000',
         ];
     }
 }

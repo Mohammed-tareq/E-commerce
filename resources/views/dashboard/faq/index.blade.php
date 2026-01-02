@@ -56,30 +56,34 @@
                             <div class="col-md-12">
                                 <div class="card" id="headingCollapse51">
                                     @forelse($faqs as $faq)
-                                        <div role="tabpanel" class="card-header border-success">
-                                            <a data-toggle="collapse" href="#collapse51_{{ $faq->id }}"
-                                               aria-expanded="true"
-                                               aria-controls="collapse51_{{ $faq->id }}"
-                                               class="font-medium-1 primary">{{ $faq->getTranslation('question',app()->getLocale()) }}</a>
-                                            <a href="javascript:void(0)" class=" float-right delete-faq" data-id="{{ $faq->id }}">
-                                                <i class="danger la la-trash"></i>
-                                            </a>
-                                            <a href="javascript:void(0)"
-                                               class="edit-faq float-right mx-2"
-                                               data-id="{{ $faq->id }}"
-                                               data-toggle="modal"
-                                               data-target="#editFaqModal-{{ $faq->id }}">
-                                                <i class="primary la la-edit"></i>
-                                            </a>
+                                        <div id="faq_container_{{ $faq->id }}">
+                                            <div role="tabpanel" class="card-header border-success">
+                                                <a id="faq_question_{{ $faq->id }}" data-toggle="collapse"
+                                                   href="#collapse51_{{ $faq->id }}"
+                                                   aria-expanded="true"
+                                                   aria-controls="collapse51_{{ $faq->id }}"
+                                                   class="font-medium-1 primary">{{ $faq->getTranslation('question',app()->getLocale()) }}</a>
+                                                <a href="javascript:void(0)" class=" float-right delete-faq"
+                                                   data-id="{{ $faq->id }}">
+                                                    <i class="danger la la-trash"></i>
+                                                </a>
+                                                <a href="javascript:void(0)"
+                                                   class="edit-faq float-right mx-2"
+                                                   data-id="{{ $faq->id }}"
+                                                   data-toggle="modal"
+                                                   data-target="#editFaqModal-{{ $faq->id }}">
+                                                    <i class="primary la la-edit"></i>
+                                                </a>
 
-                                        </div>
-                                        @include('dashboard.faq.edit', ['faq'=>$faq])
-                                        <div id="collapse51_{{ $faq->id }}" role="tabpanel"
-                                             aria-labelledby="headingCollapse51"
-                                             class="card-collapse collapse @if($loop->first) show @endif"
-                                             aria-expanded="true">
-                                            <div class="card-body">
-                                                {{ $faq->getTranslation('answer',app()->getLocale()) }}
+                                            </div>
+                                            @include('dashboard.faq.edit', ['faq'=>$faq])
+                                            <div id="collapse51_{{ $faq->id }}" role="tabpanel"
+                                                 aria-labelledby="headingCollapse51"
+                                                 class="card-collapse collapse @if($loop->first) show @endif"
+                                                 aria-expanded="true">
+                                                <div class="card-body" id="faq_answer_{{ $faq->id }}">
+                                                    {{ $faq->getTranslation('answer',app()->getLocale()) }}
+                                                </div>
                                             </div>
                                         </div>
                                     @empty
@@ -126,9 +130,10 @@
                 contentType: false,
 
                 success: function (data) {
+                    console.log(data.faq.id);
                     if (data.status === true) {
                         $('#headingCollapse51').prepend(`<div role="tabpanel" class="card-header border-success">
-                                            <a data-toggle="collapse" href="#collapse51_${data.faq.id}"
+                                            <a id="faq_question_${data.faq.id}" data-toggle="collapse" href="#collapse51_${data.faq.id}"
                                                aria-expanded="true"
                                                aria-controls="collapse51_${data.faq.id}"
                                                class="font-medium-1 primary">${data.faq.question[lang]}</a>
@@ -147,7 +152,7 @@
                                              aria-labelledby="headingCollapse51"
                                              class="card-collapse collapse"
                                              aria-expanded="true">
-                                            <div class="card-body">
+                                            <div class="card-body" id="faq_answer_${data.faq.id}">
                                                 ${data.faq.answer[lang]}
                         </div>
                     </div>`)
@@ -197,11 +202,12 @@
             e.preventDefault();
             $('#error-list-edit').empty();
             $('#error-block-edit').hide();
-            let id = $(this).data('id');
+            let id = $('.edit-faq').data('id');
             let url = "{{ route('dashboard.faqs.update' ,':id') }}";
             url = url.replace(':id', id);
             let data = new FormData(this);
             data.append('_method', 'PUT');
+            let lang = "{{ app()->getLocale() }}"
 
             $.ajax({
                 url: url,
@@ -213,6 +219,8 @@
                 success: function (data) {
                     if (data.status === true) {
                         $('#editFaqModal-' + id).modal('hide');
+                        $('#faq_question_' + id).empty().text(data.faq.question[lang]).removeClass('primary').addClass('danger');
+                        $('#faq_answer_' + id).empty().text(data.faq.answer[lang]);
                         Swal.fire({
                             position: "center",
                             icon: "success",
@@ -248,6 +256,7 @@
         $(document).on('click', '.delete-faq', function (e) {
             e.preventDefault();
             let id = $(this).data('id');
+
             let url = "{{ route('dashboard.faqs.destroy' ,':id') }}";
             url = url.replace(':id', id);
 
@@ -277,6 +286,7 @@
                         },
                         success: function (data) {
                             if (data.status === true) {
+                                $('#faq_container_'+id).remove();
                                 Swal.fire({
                                     position: "center",
                                     icon: "success",
