@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashboard\Category\BrandController;
 use App\Http\Controllers\Dashboard\Category\CategoryController;
 use App\Http\Controllers\Dashboard\Coupon\CouponController;
 use App\Http\Controllers\Dashboard\Faq\FaqController;
+use App\Http\Controllers\Dashboard\Product\Attribute\AttributeController;
 use App\Http\Controllers\Dashboard\Role\RoleController;
 use App\Http\Controllers\Dashboard\Setting\SettingController;
 use App\Http\Controllers\Dashboard\World\WorldController;
@@ -95,6 +96,11 @@ Route::group(
             Route::get('/', [SettingController::class, 'index'])->name('index');
             Route::put('/update', [SettingController::class, 'update'])->name('update');
         });
+
+        ###################################### product Attributes ######################################
+        Route::resource('attributes', AttributeController::class)->except(['show', 'create', 'edit']);
+        Route::get('/attributes-all', [AttributeController::class, 'getAttributes'])->name('attributes.all');
+
 
 
         Route::get('/welcome', function () {

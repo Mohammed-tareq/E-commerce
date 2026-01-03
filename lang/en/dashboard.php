@@ -100,6 +100,14 @@ return [
     'youtube' => 'Youtube',
     'promotion_video_url' => 'Promotion Video URL',
     'links' => 'Links',
+    'attributes' => 'Attributes',
+    'create_attribute' => 'Create Attribute',
+    'edit_attribute' => 'Edit Attribute',
+    'attribute_name_ar' => 'Attribute Name in Arabic',
+    'attribute_name_en' => 'Attribute Name in English',
+    'attribute_value_ar' => 'Attribute Value in Arabic',
+    'attribute_value_en' => 'Attribute Value in English',
+    'attribute_value' => 'Attribute Value',
 
 
 ];

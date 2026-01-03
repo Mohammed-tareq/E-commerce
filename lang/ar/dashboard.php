@@ -100,5 +100,13 @@ return [
     'youtube' => 'يوتيوب',
     'promotion_video_url' => 'رابط الفيديو الترويجي',
     'links' => 'الروابط',
+    'attributes' => 'الخصائص',
+    'create_attribute' => 'إنشاء خاصه',
+    'edit_attribute' => 'تعديل خاصه',
+    'attribute_name_ar' => 'اسم الخاصه بالعربي',
+    'attribute_name_en' => 'اسم الخاصه بالانجليزي',
+    'attribute_value_ar' => 'قيمه الخاصه بالعربي',
+    'attribute_value_en' => 'قيمه الخاصه بالانجليزي',
+    'attribute_value' => 'قيمه الخاصه',
 
 ];

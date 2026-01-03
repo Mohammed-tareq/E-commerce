@@ -13,4 +13,9 @@ return[
     'end_date' => 'Enter End Date',
     'limiter' => 'Enter Limiter',
     'discount_percentage'=> 'Enter Discount Percentage',
+    'attribute_name_ar' => 'Enter Attribute Name in Arabic',
+    'attribute_name_en' => 'Enter Attribute Name in English',
+    'attribute_value_ar' => 'Enter Attribute Value in Arabic',
+    'attribute_value_en' => 'Enter Attribute Value in English',
+
     ];

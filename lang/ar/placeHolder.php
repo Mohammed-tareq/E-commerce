@@ -13,4 +13,8 @@ return[
     'end_date' => 'تاريخ النهايه',
     'limiter' => 'عدد الاستخدام',
     'discount_percentage'=> 'نسبه المئويه للخصم',
+    'attribute_name_ar' => 'اسم الخاصه بالعربي',
+    'attribute_name_en' => 'اسم الخاصه بالانجليزي',
+    'attribute_value_ar' => 'قيمه الخاصه بالعربي',
+    'attribute_value_en' => 'قيمه الخاصه بالانجليزي',
     ];

@@ -7,6 +7,7 @@ return [
     'brands' => 'Manage Brands',
     'coupons' => 'Manage Coupons',
     'products' => 'Manage Products',
+    'attributes' => 'Manage Attributes',
     'orders' => 'Manage Orders',
     'users' => 'Manage Users',
     'roles' => 'Manage Roles',
