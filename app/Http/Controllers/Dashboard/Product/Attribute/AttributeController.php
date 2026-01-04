@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\Product\Attribute;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Attribute\AttributeRequest;
-use App\Services\Dashboard\Dashboard\AttributeService;
+use App\Services\Dashboard\AttributeService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Arr;

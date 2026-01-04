@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Services\Dashboard\Dashboard;
+namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\AttributeRepository;
 use App\Repositories\Dashboard\AttributeValueRepository;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\ValidationException;
 use Yajra\DataTables\DataTables;
 
 class AttributeService

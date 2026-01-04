@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\Coupon;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Coupon\CouponRequest;
-use App\Services\Dashboard\Dashboard\CouponService;
+use App\Services\Dashboard\CouponService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Arr;
 

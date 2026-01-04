@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Admin\AdminRequest;
-use App\Services\Dashboard\Dashboard\AdminService;
-use App\Services\Dashboard\Dashboard\RoleService;
+use App\Services\Dashboard\AdminService;
+use App\Services\Dashboard\RoleService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
 class AdminController extends Controller implements HasMiddleware

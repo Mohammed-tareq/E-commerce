@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\Faq;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Faq\FaqRequest;
-use App\Services\Dashboard\Dashboard\FaqService;
+use App\Services\Dashboard\FaqService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Arr;
 

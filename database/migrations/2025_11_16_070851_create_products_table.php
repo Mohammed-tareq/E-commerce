@@ -19,17 +19,19 @@ return new class extends Migration
             $table->longText('desc');
             $table->boolean('status')->default(true);
             $table->string('sku');
-            $table->decimal('price', 8, 3);
             $table->date('available_for')->nullable();
+            $table->integer('views')->default(0);
 
+            $table->boolean('has_variants')->default(0);
+            $table->decimal('price', 8, 3)->nullable();
+            $table->boolean('has_discount')->default(0);
             $table->decimal('discount')->nullable();
             $table->date('discount_start')->nullable();
             $table->date('discount_end')->nullable();
 
             $table->boolean('manage_stock')->default(false);
-            $table->integer('qty')->default(0);
+            $table->integer('qty')->nullable();
             $table->integer('available_qty')->default(1);
-            $table->integer('views')->default(0);
 
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->foreignId('brand_id')->constrained()->cascadeOnDelete();

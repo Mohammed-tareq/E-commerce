@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\Category;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Category\CategoryRequest;
-use App\Services\Dashboard\Dashboard\CategoryService;
+use App\Services\Dashboard\CategoryService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
 class CategoryController extends Controller implements HasMiddleware

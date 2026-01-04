@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Dashboard\Dashboard;
+namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\CategoryRepository;
 use Yajra\DataTables\Facades\DataTables;

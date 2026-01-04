@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Dashboard\Dashboard;
+namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\BrandRepository;
 use App\Utils\ImageManagement;
