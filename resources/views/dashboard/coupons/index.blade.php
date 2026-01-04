@@ -288,6 +288,8 @@
             $('#start-date').val($(this).data('start_date'));
             $('#end-date').val($(this).data('end_date'));
             $('#limit-used').val($(this).data('limiter'));
+            var couponId = $(this).data('id');
+            $('#update-coupon-form').attr('coupon-id', couponId);
             if (status == 1) {
                 $('#status-active').prop('checked', true);
             } else {
@@ -302,14 +304,14 @@
         $(document).on('submit', '#update-coupon-form', function (e) {
             e.preventDefault();
             let currentPage = $('#yajra_table').DataTable().page();
-            let id = $('.edit-coupon').data('id');
+            let id = $(this).attr('coupon-id');
             let url = "{{ route('dashboard.coupons.update', ':id') }}";
             url = url.replace(':id', id);
 
             let formData = new FormData(this);
             formData.append('_method', 'PUT');
-            $('#error-list').empty();
-            $('#error-block').hide();
+            $('#error-list-edit').empty();
+            $('#error-block-edit').hide();
 
             $.ajax({
                 'url': url,

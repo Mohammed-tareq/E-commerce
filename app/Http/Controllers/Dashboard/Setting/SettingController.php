@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\Setting;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Setting\SettingRequest;
-use App\Services\Dashboard\SettingService;
+use App\Services\Dashboard\Dashboard\SettingService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Arr;
 

@@ -3,23 +3,27 @@
 namespace App\Http\Controllers\Dashboard\Product\Attribute;
 
 use App\Http\Controllers\Controller;
-use App\Services\Dashboard\AttributeService;
-use Illuminate\Http\Request;
+use App\Http\Requests\Dashboard\Attribute\AttributeRequest;
+use App\Services\Dashboard\Dashboard\AttributeService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Arr;
 
 class AttributeController extends Controller implements HasMiddleware
 {
     public function __construct(
         protected AttributeService $attributeService,
-    ) {
+    )
+    {
     }
+
     public static function middleware()
     {
         return [
             new Middleware(['can:attributes']),
         ];
     }
+
     public function index()
     {
         return view('dashboard.attribute.index');
@@ -30,38 +34,60 @@ class AttributeController extends Controller implements HasMiddleware
         return $this->attributeService->getAttributes();
     }
 
-    public function create()
+
+    public function store(AttributeRequest $request)
     {
-        //
+        try{
+            $data = Arr::only($request->validated(), ['name', 'attribute_value']);
+            $this->attributeService->createAttribute($data);
+            return response()->json([
+                'status' => true,
+                'message' => __('dashboard.operation_success')
+            ], 200);
+        }catch (\Throwable $e){
+            report($e);
+            return response()->json([
+                'status' => false,
+                'message' => __('dashboard.operation_error')
+            ], 500);
+        }
+
+
     }
 
 
-    public function store(Request $request)
+    public function update(AttributeRequest $request, string $id)
     {
-        //
+        try {
+            $data = Arr::only($request->validated(), ['name', 'attribute_value']);
+            $this->attributeService->updateAttribute($id, $data);
+            return response()->json([
+                'status' => true,
+                'message' => __('dashboard.operation_success')
+            ], 200);
+
+        } catch (\Throwable $e) {
+            report($e);
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+
     }
 
 
-    public function show(string $id)
+    public function destroy($id)
     {
-        //
-    }
-
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-
-    public function destroy(string $id)
-    {
-        //
+        if (!$this->attributeService->deleteAttrbute($id)) {
+            return response()->json([
+                'status' => false,
+                'message' => __('dashboard.operation_error')
+            ], 500);
+        }
+        return response()->json([
+            'status' => true,
+            'message' => __('dashboard.operation_success')
+        ], 200);
     }
 }

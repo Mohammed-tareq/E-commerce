@@ -186,5 +186,8 @@ return [
         'permissions' => 'الصلاحيات',
         'role_id' => 'الدور',
         'status' => 'الحاله',
+        'attribute_value' => 'القيمه ',
+        'attribute_value.*.ar' => 'القيمه باللغه العربيه',
+        'attribute_value.*.en' => 'القيمه باللغه الانجليزيه',
     ],
 ];

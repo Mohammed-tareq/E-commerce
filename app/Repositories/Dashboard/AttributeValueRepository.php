@@ -2,16 +2,21 @@
 
 namespace App\Repositories\Dashboard;
 
+use Illuminate\Support\Facades\DB;
+
 class AttributeValueRepository
 {
-    public function create($attribute, $data)
+    public function createOrUpdateAttributeValues($attribute, $data)
     {
-        return $attribute->attribute_values()->create($data);
+         return  $attribute->attributeValues()->createMany($data);
     }
 
-    public function update($attributeValue, $data)
+
+    public function deleteAttribute($attribute)
     {
-        return $attributeValue->update($data);
+        return $attribute->attributeValues()->delete();
     }
+
+
 
 }

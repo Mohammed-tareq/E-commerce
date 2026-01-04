@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Services\Dashboard;
+namespace App\Services\Dashboard\Dashboard;
 
 use App\Repositories\Dashboard\CouponRepository;
 use Yajra\DataTables\DataTables;
+
 class CouponService
 {
     public function __construct(protected CouponRepository $couponRepository)

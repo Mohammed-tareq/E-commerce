@@ -3,6 +3,7 @@
 namespace App\Repositories\Dashboard;
 
 use App\Models\Attribute;
+use Illuminate\Support\Facades\DB;
 
 class AttributeRepository
 {
@@ -17,17 +18,21 @@ class AttributeRepository
         return Attribute::with('attributeValues')->find($id);
     }
 
-    public function create($data)
+    public function createAttribute($data)
     {
-        return Attribute::create($data);
+         return Attribute::create([
+            'name' => $data,
+        ]);
     }
 
-    public function update($attribute , $data)
+    public function updateAttribute($attribute , $data)
     {
-        return $attribute->update($data);
+        return $attribute->update([
+            'name' => $data,
+        ]);
     }
 
-    public function delete($attribute)
+    public function deleteAttribute($attribute)
     {
         return $attribute->delete();
     }

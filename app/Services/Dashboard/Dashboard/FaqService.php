@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Dashboard;
+namespace App\Services\Dashboard\Dashboard;
 
 use App\Repositories\Dashboard\FaqRepository;
 use Illuminate\Support\Facades\Cache;

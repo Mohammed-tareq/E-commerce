@@ -108,6 +108,8 @@ return [
     'attribute_value_ar' => 'Attribute Value in Arabic',
     'attribute_value_en' => 'Attribute Value in English',
     'attribute_value' => 'Attribute Value',
+    'attribute_name' => 'Attribute Name',
+
 
 
 ];

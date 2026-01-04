@@ -15,7 +15,7 @@
                     </ul>
                 </div>
 
-                <form id="update-coupon-form" method="post">
+                <form id="update-coupon-form" method="post" >
                     @csrf
                     @method('put')
                     <div class="row">

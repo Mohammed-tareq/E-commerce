@@ -21,3 +21,4 @@ Add settings management module with CRUD functionality, repository-service struc
 and AJAX integration.
 Add attribute management module with CRUD functionality, repository-service structure, seeder, multilingual support,
 middleware, Blade updates, and AJAX integration.
+Add attribute management module enhancements: CRUD functionality, repository-service updates, multilingual support, validation improvements, middleware integration, Blade and AJAX updates.

@@ -251,6 +251,9 @@ return [
         'image'                 => 'Image',
         'name.ar'               => 'Name in Arabic',
         'name.en'               => 'Name in English',
+        'attribute_value'       => 'Attribute Value',
+        'attribute_value.*.ar'  => 'Attribute Value in Arabic',
+        'attribute_value.*.en'  => 'Attribute Value in English',
     ],
 
 

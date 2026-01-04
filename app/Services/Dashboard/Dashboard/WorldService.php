@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Services\Dashboard;
+namespace App\Services\Dashboard\Dashboard;
 
-use App\Models\Governorate;
 use App\Repositories\Dashboard\WorldRepository;
 
 class WorldService

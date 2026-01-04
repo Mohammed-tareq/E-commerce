@@ -108,5 +108,6 @@ return [
     'attribute_value_ar' => 'قيمه الخاصه بالعربي',
     'attribute_value_en' => 'قيمه الخاصه بالانجليزي',
     'attribute_value' => 'قيمه الخاصه',
+    'attribute_name' => 'اسم الخاصه',
 
 ];

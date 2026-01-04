@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="alert alert-danger" style="display:none" id="error-block">
+                <div class="alert alert-danger" style="display:none"   id="error-block">
                     <ul id="error-list">
                     </ul>
                 </div>
@@ -21,7 +21,9 @@
                             <div class="form-group">
                                 <label for="attribute_name_ar">{{ __('dashboard.attribute_name_ar') }}</label>
                                 <input type="text" class="form-control" id="attribute_name_ar"
-                                       placeholder="{{ __('placeHolder.attribute_name_ar') }}" name="attribute_name[ar]">
+                                       placeholder="{{ __('placeHolder.attribute_name_ar') }}"
+                                       name="name[ar]">
+                                <span class="text-danger error-message" id="error_name_ar"></span>
 
                             </div>
                         </div>
@@ -29,43 +31,44 @@
                             <div class="form-group">
                                 <label for="attribute_name_en">{{ __('dashboard.attribute_name_en') }}</label>
                                 <input type="text" class="form-control" id="attribute_name_en"
-                                       placeholder="{{ __('placeHolder.attribute_name_en') }}" name="attribute_name[en]">
-
+                                       placeholder="{{ __('placeHolder.attribute_name_en') }}"
+                                       name="name[en]">
+                                <span class="text-danger error-message" id="error_name_en"></span>
                             </div>
                         </div>
-                        <div class="row">
-
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label for="attribute_value">{{ __('dashboard.attribute_value') }}</label>
-                                    <input type="text" class="form-control" id="attribute_value"
-                                           placeholder="{{ __('placeHolder.attribute_value') }}" name="attribute_value">
-
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <p><label>{{ __('dashboard.status') }}</label></p>
-                                    <input type="radio" id="status_active" name="status" value="1">
-                                    name="discount_percentage">
-
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-danger change-status" readonly id="delete-value">
-                                       <i class="la la-trash"></i>
-                                    </button>
-                                </div>
+                    </div>
+                    <div class=" row add-row-value">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="attribute_value_ar">{{ __('dashboard.attribute_value_ar') }}</label>
+                                <input type="text" class="form-control" id="attribute_value_ar"
+                                       placeholder="{{ __('placeHolder.attribute_value_ar') }}"
+                                       name="attribute_value[0][ar]">
+                                <span class="text-danger error-message" id="error_attribute_value_0_ar"></span>
                             </div>
                         </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="attribute_value_en">{{ __('dashboard.attribute_value_en') }}</label>
+                                <input type="text" class="form-control" id="attribute_value_en"
+                                       placeholder="{{ __('placeHolder.attribute_value_en') }}"
+                                       name="attribute_value[0][en]">
+                                <span class="text-danger error-message" id="error_attribute_value_0_en"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
                         <div class="col-md-12">
                             <div class="form-group">
-                                <button type="button" class="btn btn-danger change-status" readonly id="add-value">
+                                <button type="button" class="btn btn-primary float-left m-1" id="add-value">
                                     <i class="la la-plus"></i>
                                 </button>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">{{ __('dashboard.create') }}</button>

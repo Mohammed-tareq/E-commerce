@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Dashboard\Role;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Role\RoleRequest;
-use App\Models\Role;
-use App\Services\Dashboard\RoleService;
-use Illuminate\Http\Request;
+use App\Services\Dashboard\Dashboard\RoleService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\Session;
 

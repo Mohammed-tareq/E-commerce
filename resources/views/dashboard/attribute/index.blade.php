@@ -49,7 +49,7 @@
                             </button>
                             {{--  crate and edit model  --}}
                             @include('dashboard.attribute.create')
-{{--                            @include('dashboard.attribute.edit')--}}
+                            @include('dashboard.attribute.edit')
 
 
                         </div>
@@ -60,7 +60,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                   <th>{{ __('dashboard.attribute_name') }}</th>
+                                    <th>{{ __('dashboard.attribute_name') }}</th>
                                     <th>{{ __('dashboard.attribute_value') }}</th>
                                     <th>{{ __('dashboard.actions') }}</th>
                                 </tr>
@@ -128,7 +128,7 @@
             ajax: "{{ route('dashboard.attributes.all') }}",
             columns: [
                 {data: "DT_RowIndex", "orderable": false, "searchable": false},
-                {data: "name"},
+                {data: "name", "width": "20%"},
                 {data: "attribute_values"},
                 {data: "action", "orderable": false, "searchable": false, "width": "10%", 'selectable': false,},
             ],
@@ -160,14 +160,318 @@
 
     </script>
 
+    <script>
+        $(document).ready(function () {
 
-    {{-- clear create model form error and create coupon        --}}
+            let indexNum = 1;
+            //add value for attribute
+            $('#add-value').on('click', function () {
+
+
+                let newValues = ` <div class=" row add-row-value">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="attribute_value_ar">{{ __('dashboard.attribute_value_ar') }}</label>
+                                <input type="text" class="form-control" id="attribute_value_ar"
+                                       placeholder="{{ __('placeHolder.attribute_value_ar') }}"
+                                       name="attribute_value[${indexNum}][ar]">
+                                <span class="text-danger error-message" id="error_attribute_value_${indexNum}_ar"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="attribute_value_en">{{ __('dashboard.attribute_value_en') }}</label>
+                                <input type="text" class="form-control" id="attribute_value_en"
+                                       placeholder="{{ __('placeHolder.attribute_value_en') }}"
+                                       name="attribute_value[${indexNum}][en]">
+                                <span class="text-danger error-message" id="error_attribute_value_${indexNum}_en"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-danger remove mt-2"
+                                        id="delete-value">
+                                    <i class="la la-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>`;
+
+                $('.add-row-value:last').after(newValues);
+                indexNum++;
+            });
+        });
+
+        //delete value for attribute
+        $(document).on('click', '.remove', function () {
+            $(this).closest('.add-row-value').remove();
+        });
+    </script>
+
+
+    {{-- clear create model form error and create attribute        --}}
     <script>
         $(document).on('click', '#create-attribute', function (e) {
             e.preventDefault();
-            $('#error-list').empty();
-            $('#error-block').hide();
+            $('.error-message').empty();
         });
 
 
+        $('#create-attribute-form').on('submit', function (e) {
+            e.preventDefault();
+
+            let url = "{{ route('dashboard.attributes.store') }}"
+            let data = new FormData(this);
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+
+                success: function (data) {
+                    if (data.status === true) {
+                        $('.error-message').empty();
+                        $('#createAttributeModal').modal('hide');
+                        $('#yajra_table').DataTable().ajax.reload(false);
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    }
+
+                },
+
+                error: function (data) {
+                    $.each(data.responseJSON.errors, function (key, value) {
+                        let sanitizedKey = key.replace(/\./g, '_');
+                        $('#error_' + sanitizedKey).text(value[0]);
+                    })
+                }
+            });
+        });
+    </script>
+
+
+    {{--    clear edit model form error and edit --}}
+    <script>
+        $(document).on('click', '.edit-attribute', function (e) {
+            e.preventDefault();
+            $('.error-message').empty();
+            $('#editAttributeModal').modal('show');
+            $('#edit-values-container').html('');
+
+            var attrId = $(this).data('id');
+            let attrNameAr = $(this).data('name-ar');
+            let attrNameEn = $(this).data('name-en');
+
+            $('#update-attribute-form').attr('attribute-id', attrId);
+            $('#edit_attribute_name_ar').val(attrNameAr);
+            $('#edit_attribute_name_en').val(attrNameEn);
+            let values = $(this).data('values');
+
+            values.forEach(value => {
+                $('#edit-values-container').append(`<div class=" row edit-row-value">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="edit_attribute_value_ar">{{ __('dashboard.attribute_value_ar') }}</label>
+                                <input type="text" class="form-control" id="edit_attribute_value_${value.id}_ar"
+                                       placeholder="{{ __('placeHolder.attribute_value_ar') }}"
+                                       name="attribute_value[${value.id}][ar]"
+                                       value="${value.valueAr}">
+                                <span class="text-danger error-message" id="error_edit_attribute_value_${value.id}_ar"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="edit_attribute_value_en">{{ __('dashboard.attribute_value_en') }}</label>
+                                <input type="text" class="form-control" id="edit_attribute_value_${value.id}_en"
+                                       placeholder="{{ __('placeHolder.attribute_value_en') }}"
+                                       name="attribute_value[${value.id}][en]"
+                                                value="${value.valueEn}">
+                                <span class="text-danger error-message" id="error_edit_attribute_value_${value.id}_en"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-danger remove-edit mt-2"
+                                        id="delete-value">
+                                    <i class="la la-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>`);
+            });
+
+
+        });
+
+
+        let editIndexNum = $('#edit-values-container .edit-row-value').length + 1;
+        $('#add-value-edit').on('click', function () {
+
+
+            let newValuesEdit = ` <div class=" row edit-row-value">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="edit_attribute_value_ar">{{ __('dashboard.attribute_value_ar') }}</label>
+                                <input type="text" class="form-control" id="edit_attribute_value_${editIndexNum}_ar"
+                                       placeholder="{{ __('placeHolder.attribute_value_ar') }}"
+                                       name="attribute_value[${editIndexNum}][ar]">
+                                <span class="text-danger error-message" id="error_edit_attribute_value_${editIndexNum}_ar"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="edit_attribute_value_en">{{ __('dashboard.attribute_value_en') }}</label>
+                                <input type="text" class="form-control" id="edit_attribute_value_${editIndexNum}_en"
+                                       placeholder="{{ __('placeHolder.attribute_value_en') }}"
+                                       name="attribute_value[${editIndexNum}][en]">
+                                <span class="text-danger error-message" id="error_edit_attribute_value_${editIndexNum}_en"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-danger remove-edit mt-2"
+                                        id="delete-value">
+                                    <i class="la la-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>`;
+
+            $('#edit-values-container').append(newValuesEdit);
+            editIndexNum++;
+        });
+
+        $(document).on('click', '.remove-edit', function () {
+            $(this).closest('.edit-row-value').remove();
+        });
+
+        $('#update-attribute-form').on('submit', function (e) {
+            e.preventDefault();
+
+            let attrId = $(this).attr('attribute-id');
+            console.log(attrId);
+            let url = "{{ route('dashboard.attributes.update', ':id') }}".replace(':id', attrId);
+            let data = new FormData(this);
+            data.append('_method', 'PUT');
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+
+                success: function (data) {
+                    if (data.status === true) {
+                        $('.error-message').empty();
+                        $('#editAttributeModal').modal('hide');
+                        $('#yajra_table').DataTable().ajax.reload(false);
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    }
+                },
+                error: function (error) {
+                    $.each(error.responseJSON.errors, function (key, value) {
+                        let sanitizedKey = key.replace(/\./g, '_');
+                        $('#error_edit_' + sanitizedKey).text(value[0]);
+                    });
+                },
+            });
+        });
+    </script>
+
+
+    {{--    delete attribute--}}
+    <script>
+        $(document).on('click','.attribute-delete' , function (e){
+            e.preventDefault();
+            let id = $(this).data('id');
+            let url = "{{ route('dashboard.attributes.destroy', ':id') }}"
+           url =  url.replace(':id' , id);
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: true
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: "{{ __('dashboard.delete_alert') }}",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "{{ __('dashboard.delete') }}",
+                cancelButtonText: "{{ __('dashboard.cancel') }}",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            _method: 'DELETE'
+                        },
+                        success: function (data) {
+                            if (data.status === true) {
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: data.message,
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                                $('#yajra_table').DataTable().ajax.reload(false);
+                            } else {
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "error",
+                                    title: data.message,
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                            }
+                        },
+                        error:function (data){
+                            console.log(data.responsJSON.message);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endpush
