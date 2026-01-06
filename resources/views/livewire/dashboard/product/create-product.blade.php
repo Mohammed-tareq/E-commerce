@@ -1,6 +1,7 @@
 <section id="icon-tabs">
     @if (!empty($successMessage))
-        <div id="successMessageWire" class="alert bg-success alert-icon-left alert-arrow-left alert-dismissible mb-2" role="alert">
+        <div id="successMessageWire" class="alert bg-success alert-icon-left alert-arrow-left alert-dismissible mb-2"
+             role="alert">
             <span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -38,9 +39,9 @@
                     <div class="form-group">
                         <label for="name_ar"> {{ __('dashboard.product_ar') }} :</label>
                         <input wire:model="name_ar" type="text" class="form-control" id="name_ar"
-                            placeholder="{{ __('dashboard.product_ar') }}">
+                               placeholder="{{ __('dashboard.product_ar') }}">
                         @error('name_ar')
-                            <span class="text-danger" role="alert">{{ $message }}</span>
+                        <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -48,9 +49,9 @@
                     <div class="form-group">
                         <label for="name_en"> {{ __('dashboard.product_en') }} :</label>
                         <input wire:model="name_en" type="text" class="form-control" id="name_en"
-                            placeholder="{{ __('dashboard.product_en') }}">
+                               placeholder="{{ __('dashboard.product_en') }}">
                         @error('name_en')
-                            <span class="text-danger" role="alert">{{ $message }}</span>
+                        <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -63,7 +64,7 @@
                             :</label>
                         <textarea wire:model="small_desc_ar" class="form-control" id="small_desc_ar"></textarea>
                         @error('small_desc_ar')
-                            <span class="text-danger" role="alert">{{ $message }}</span>
+                        <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -73,7 +74,7 @@
                             :</label>
                         <textarea wire:model="small_desc_en" class="form-control" id="small_desc_en"></textarea>
                         @error('small_desc_en')
-                            <span class="text-danger" role="alert">{{ $message }}</span>
+                        <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -84,7 +85,7 @@
                         <label for="desc_ar"> {{ __('dashboard.desc_ar') }} :</label>
                         <textarea wire:model="desc_ar" class="form-control" id="desc_ar"></textarea>
                         @error('desc_ar')
-                            <span class="text-danger" role="alert">{{ $message }}</span>
+                        <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -93,7 +94,7 @@
                         <label for="desc_en"> {{ __('dashboard.desc_en') }} :</label>
                         <textarea wire:model="desc_en" class="form-control" id="desc_en"></textarea>
                         @error('desc_en')
-                            <span class="text-danger" role="alert">{{ $message }}</span>
+                        <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -109,7 +110,7 @@
                             @endforeach
                         </select>
                         @error('category_id')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -124,7 +125,7 @@
                             @endforeach
                         </select>
                         @error('brand_id')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -133,7 +134,7 @@
                         <label for="sku"> {{ __('dashboard.sku') }} :</label>
                         <input wire:model="sku" type="text" class="form-control" id="sku">
                         @error('sku')
-                            <span class="text-danger" role="alert">{{ $message }}</span>
+                        <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -144,7 +145,7 @@
                         <label for="available_for"> {{ __('dashboard.available_for') }} :</label>
                         <input wire:model="available_for" type="date" class="form-control" id="available_for">
                         @error('available_for')
-                            <span class="text-danger" role="alert">{{ $message }}</span>
+                        <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -152,16 +153,16 @@
                     <div class="form-group">
                         <label for="tags"> {{ __('dashboard.tags') }} :</label>
                         <input type="text" wire:model="tags" id="tags" class="form-control"
-                            placeholder="Add tags">
+                               placeholder="Add tags">
                         @error('tags')
-                            <span class="text-danger" role="alert">{{ $message }}</span>
+                        <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
 
             </div>
             <button class="btn btn-primary pull-right mb-3" wire:click="fristStep"
-                type="button">{{ __('dashboard.next') }}</button>
+                    type="button">{{ __('dashboard.next') }}</button>
         </div>
 
         {{-- second step Product Variants? --}}
@@ -172,12 +173,12 @@
                     <div class="form-group">
                         <label for="has_variants"> {{ __('dashboard.has_variants') }} :</label>
                         <select name="has_variants" id="has_variants" wire:model.live="has_variants"
-                            class="form-control">
+                                class="form-control">
                             <option value="0" selected>{{ __('dashboard.no') }}</option>
                             <option value="1">{{ __('dashboard.yes') }}</option>
                         </select>
                         @error('has_variants')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -186,9 +187,9 @@
                         <div class="form-group">
                             <label for="price">{{ __('dashboard.price') }} :</label>
                             <input type="number" class="form-control" name="price" id="price"
-                                wire:model="price" placeholder="{{ __('dashboard.price') }}">
+                                   wire:model="price" placeholder="{{ __('dashboard.price') }}">
                             @error('price')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -196,12 +197,12 @@
                         <div class="form-group">
                             <label for="quantity">{{ __('dashboard.manage_stock') }} :</label>
                             <select name="manage_stock" id="status" class="form-control"
-                                wire:model.live="manage_stock">
+                                    wire:model.live="manage_stock">
                                 <option value="0" selected>{{ __('dashboard.no') }}</option>
                                 <option value="1">{{ __('dashboard.yes') }}</option>
                             </select>
                             @error('manage_stock')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -209,15 +210,17 @@
                     <input type="hidden" wire:model.live="manage_stock" value="0">
                 @endif
 
+
+
                 {{-- depend on Manage stock --}}
                 @if ($manage_stock == 1)
                     <div class="col-6">
                         <div class="form-group">
                             <label for="qty">{{ __('dashboard.qty') }} :</label>
                             <input type="number" class="form-control" name="qty" id="qty"
-                                wire:model="qty" placeholder="{{ __('dashboard.qty') }}">
+                                   wire:model="qty" placeholder="{{ __('dashboard.qty') }}">
                             @error('qty')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -232,7 +235,7 @@
                             <option value="1">{{ __('dashboard.yes') }}</option>
                         </select>
                         @error('has_discount')
-                            <span class="text-danger">{{ $message }}</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -242,9 +245,9 @@
                         <div class="form-group">
                             <label for="discount">{{ __('dashboard.discount') }}</label>
                             <input class="form-control" type="number" wire:model.live="discount"
-                                placeholder="{{ __('dashboard.discount') }}">
+                                   placeholder="{{ __('dashboard.discount') }}">
                             @error('discount')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -252,9 +255,9 @@
                         <div class="form-group">
                             <label for="start_discount">{{ __('dashboard.discount_start') }}</label>
                             <input type="date" wire:model.live="start_discount" class="form-control"
-                                placeholder="{{ __('dashboard.discount_start') }}">
+                                   placeholder="{{ __('dashboard.discount_start') }}">
                             @error('start_discount')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -262,20 +265,74 @@
                         <div class="form-group">
                             <label for="end_discount">{{ __('dashboard.discount_end') }}</label>
                             <input type="date" wire:model.live="end_discount" class="form-control"
-                                placeholder="{{ __('dashboard.discount_end') }}">
+                                   placeholder="{{ __('dashboard.discount_end') }}">
                             @error('end_discount')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                 @endif
+
+
             </div>
+            {{-- has variants--}}
+            @if ($has_variants == 1)
+                <hr class="bg-black">
+
+                @for ($i = 0; $i < $addRowValues; $i++)
+                    <div class="row">
+                        <hr>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="price">Product Price</label>
+                                <input wire:model="prices.{{ $i }}" type="number" class="form-control"
+                                       placeholder="Product Price">
+                                @error('prices.' . $i)
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="price">Product Quantity</label>
+                                <input wire:model="quantities.{{ $i }}" type="number"
+                                       class="form-control" placeholder="Product Quantity">
+                                @error('quantities.' . $i)
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        @foreach ($attributesItem as $attr)
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="price">Product {{ $attr->name }}</label>
+                                    <select wire:model="attributeValues.{{ $i }}.{{ $attr->id }}"
+                                            class="form-control">
+                                        <option value="" selected>Select</option>
+
+                                        @foreach ($attr->attributeValues as $item)
+                                            <option value="{{ $item->id }}">{{ $item->value }}</option>
+                                        @endforeach
+                                    </select>
+
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                    <hr class="bg-black">
+                @endfor
+                <button type="button" wire:click="addNewVariant" class="btn btn-success"><i class="la la-plus"></i>
+                    Add New Variant</button>
+                <button type="button" wire:click="removeVariant" class="btn btn-danger"><i class="la la-minus"></i>
+                    Remove Variant</button>
+            @endif
 
 
             <button class="btn btn-primary pull-right  mb-3 ml-1" type="button"
-                wire:click="secondStep">{{ __('dashboard.next') }}</button>
+                    wire:click="secondStep">{{ __('dashboard.next') }}</button>
             <button class="btn btn-danger  pull-right" type="button"
-                wire:click="backStep">{{ __('dashboard.back') }}</button>
+                    wire:click="backStep">{{ __('dashboard.back') }}</button>
         </div>
 
         {{-- third step Product Images --}}
@@ -288,9 +345,9 @@
                     </div>
                 </div>
                 @error('images')
-                    <div class="col-md-12 alert  alert-danger">
-                        {{ $message }}
-                    </div>
+                <div class="col-md-12 alert  alert-danger">
+                    {{ $message }}
+                </div>
                 @enderror
 
                 @if ($images)
@@ -298,16 +355,17 @@
                         @foreach ($images as $key => $image)
                             <div class="position-relative d-inline-block mr-2 mb-2">
                                 <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail rounded-md"
-                                    width="200px" height="200px">
+                                     width="200px" height="200px">
                                 {{--  Delete Button --}}
                                 <button type="button" wire:click="deleteImage({{ $key }})"
-                                    class="btn btn-danger btn-sm position-absolute" style="top: 5px; right: 5px;">
+                                        class="btn btn-danger btn-sm position-absolute" style="top: 5px; right: 5px;">
                                     <i class="la la-trash"></i>
                                 </button>
 
                                 {{--  Fullscreen Button --}}
                                 <button type="button" wire:click="openFullscreen({{ $key }})"
-                                    class="btn btn-primary btn-sm position-absolute" style="bottom: 5px; right: 5px;">
+                                        class="btn btn-primary btn-sm position-absolute"
+                                        style="bottom: 5px; right: 5px;">
                                     <i class="la la-expand"></i>
                                 </button>
                             </div>
@@ -318,20 +376,21 @@
 
             <!-- Fullscreen Modal (Optional) -->
             <div wire:ignore.self class="modal fade" id="fullscreenModal" tabindex="-1"
-                aria-labelledby="fullscreenModalLabel" aria-hidden="true">
+                 aria-labelledby="fullscreenModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-body">
                             <img src="{{ $fullscreenImage }}" class="img-fluid" id="fullscreenImage"
-                                alt="Full Screen Image">
+                                 alt="Full Screen Image">
                         </div>
                     </div>
                 </div>
             </div>
             <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click="thirdStep"
-                type="button">{{ __('dashboard.next') }}!</button>
+                    type="button">{{ __('dashboard.next') }}!
+            </button>
             <button class="btn btn-danger  pull-right  mb-3" type="button"
-                wire:click="backStep">{{ __('dashboard.back') }}</button>
+                    wire:click="backStep">{{ __('dashboard.back') }}</button>
 
         </div>
 
@@ -343,9 +402,10 @@
             </div>
 
             <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click="submitForm"
-                type="button">{{ __('dashboard.create') }}!</button>
+                    type="button">{{ __('dashboard.create') }}!
+            </button>
             <button class="btn btn-danger  pull-right  mb-3" type="button"
-                wire:click="backStep">{{ __('dashboard.back') }}</button>
+                    wire:click="backStep">{{ __('dashboard.back') }}</button>
 
         </div>
     </form>

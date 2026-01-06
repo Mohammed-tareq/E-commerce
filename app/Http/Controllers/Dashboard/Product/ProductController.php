@@ -18,9 +18,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
-        $brands  = Brand::all();
-        return view('dashboard.product.create', compact('categories', 'brands'));
+
+        return view('dashboard.product.create');
     }
 
     /**
