@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(
     [
@@ -8,8 +9,10 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ], function () {
 
-    Route::get('/', function () {
-        return'wlecome in home web';
-    })->name('home');
+        // routes/web.php
 
-});
+        Route::get('/', function () {
+            return 'wlecome in home web';
+        })->name('home');
+
+    });

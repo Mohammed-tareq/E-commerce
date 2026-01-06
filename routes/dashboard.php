@@ -10,103 +10,112 @@ use App\Http\Controllers\Dashboard\Category\CategoryController;
 use App\Http\Controllers\Dashboard\Coupon\CouponController;
 use App\Http\Controllers\Dashboard\Faq\FaqController;
 use App\Http\Controllers\Dashboard\Product\Attribute\AttributeController;
+use App\Http\Controllers\Dashboard\Product\ProductController;
 use App\Http\Controllers\Dashboard\Role\RoleController;
 use App\Http\Controllers\Dashboard\Setting\SettingController;
 use App\Http\Controllers\Dashboard\World\WorldController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale() . '/dashboard',
         'as' => 'dashboard.',
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
-    ], function () {
+    ],
+    function () {
 
-
-    ###################################### login ####################################
-    Route::controller(LoginController::class)->group(function () {
-        Route::get('login', 'showLogin')->name('show-login');
-        Route::post('login', 'login')->name('login');
-        Route::post('logout', 'logout')->name('logout');
-    });
-
-    ################################### Reset Password ###############################
-    Route::prefix('password')->group(function () {
-        Route::controller(ForgetpasswordController::class)->group(function () {
-            Route::get('forget-password', 'showForgetPassword')->name('forget.password.show');
-            Route::post('forget-password', 'sendOtp')->name('forget.password.send');
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::post('/' . app()->getLocale() . '/livewire/update', $handle);
+        });
+        ###################################### login ####################################
+        Route::controller(LoginController::class)->group(function () {
+            Route::get('login', 'showLogin')->name('show-login');
+            Route::post('login', 'login')->name('login');
+            Route::post('logout', 'logout')->name('logout');
         });
 
-        Route::controller(VerifyEmailController::class)->group(function () {
-            Route::get('verify-email/{email}', 'showVerifyEmailForm')->name('verify.email.show');
-            Route::post('verify-email', 'verifyOtp')->name('verify.email.otp');
-        });
-
-        Route::controller(ResetpasswordController::class)->group(function () {
-            Route::get('reset-password/{email}', 'showResetPasswordForm')->name('reset.password.show');
-            Route::post('reset-password/{email}', 'ResetPassword')->name('reset.password');
-        });
-    });
-
-
-    Route::middleware('auth:admin')->group(function () {
-
-        ###################################### Roles ######################################
-        Route::resource('roles', RoleController::class)->except(['show']);
-
-        ###################################### Admins ######################################
-        Route::resource('admins', AdminController::class)->except(['show']);
-        Route::get('admins/{id}/status', [AdminController::class, 'changeStatus'])->name('admins.status');
-
-        ###################################### Countries ######################################
-        Route::controller(WorldController::class)->group(function () {
-            Route::prefix('countries')->name('countries.')->group(function () {
-                Route::get('/', 'getCountries')->name('index');
-                Route::get('/{id}/status', 'changeStatusForCountry')->name('status');
-                Route::get('/governorates/{country}', 'getGovernorateByCountry')->name('governorates');
+        ################################### Reset Password ###############################
+        Route::prefix('password')->group(function () {
+            Route::controller(ForgetpasswordController::class)->group(function () {
+                Route::get('forget-password', 'showForgetPassword')->name('forget.password.show');
+                Route::post('forget-password', 'sendOtp')->name('forget.password.send');
             });
 
-            Route::prefix('governorates')->name('governorates.')->group(function () {
-                Route::get('governorates/{id}/status', 'changeStatusForGovernorate')->name('status');
-                Route::put('/{id}/price', 'changeShippingPrice')->name('price');
+            Route::controller(VerifyEmailController::class)->group(function () {
+                Route::get('verify-email/{email}', 'showVerifyEmailForm')->name('verify.email.show');
+                Route::post('verify-email', 'verifyOtp')->name('verify.email.otp');
             });
 
+            Route::controller(ResetpasswordController::class)->group(function () {
+                Route::get('reset-password/{email}', 'showResetPasswordForm')->name('reset.password.show');
+                Route::post('reset-password/{email}', 'ResetPassword')->name('reset.password');
+            });
         });
 
-        ###################################### Categories ######################################
-        Route::resource('categories', CategoryController::class)->except(['show']);
-        Route::get('categories-all', [CategoryController::class, 'getCategories'])->name('categories.all');
-        Route::get('category/{id}/status', [CategoryController::class, 'changeStatus'])->name('category.status');
 
-        ###################################### Brands ######################################
-        Route::resource('brands', BrandController::class)->except(['show']);
-        Route::get('/brands-all', [BrandController::class, 'getBrands'])->name('brands.all');
-        Route::get('brand/{id}/status', [BrandController::class, 'changeStatus'])->name('brand.status');
+        Route::middleware('auth:admin')->group(function () {
 
-        ###################################### Coupons ######################################
-        Route::resource('coupons', CouponController::class)->except(['show', 'create', 'edit']);
-        Route::get('/coupons-all', [CouponController::class, 'getCoupons'])->name('coupons.all');
-        Route::get('coupon/{id}/status', [CouponController::class, 'changeStatus'])->name('coupon.status');
+            ###################################### Roles ######################################
+            Route::resource('roles', RoleController::class)->except(['show']);
 
-        ######################################Faqs ######################################
-        Route::resource('faqs', FaqController::class)->except(['show', 'create', 'edit']);
+            ###################################### Admins ######################################
+            Route::resource('admins', AdminController::class)->except(['show']);
+            Route::get('admins/{id}/status', [AdminController::class, 'changeStatus'])->name('admins.status');
 
-        ######################################Settings ######################################
-        Route::prefix('settings')->name('settings.')->group(function () {
-            Route::get('/', [SettingController::class, 'index'])->name('index');
-            Route::put('/update', [SettingController::class, 'update'])->name('update');
+            ###################################### Countries ######################################
+            Route::controller(WorldController::class)->group(function () {
+                Route::prefix('countries')->name('countries.')->group(function () {
+                    Route::get('/', 'getCountries')->name('index');
+                    Route::get('/{id}/status', 'changeStatusForCountry')->name('status');
+                    Route::get('/governorates/{country}', 'getGovernorateByCountry')->name('governorates');
+                });
+
+                Route::prefix('governorates')->name('governorates.')->group(function () {
+                    Route::get('governorates/{id}/status', 'changeStatusForGovernorate')->name('status');
+                    Route::put('/{id}/price', 'changeShippingPrice')->name('price');
+                });
+            });
+
+            ###################################### Categories ######################################
+            Route::resource('categories', CategoryController::class)->except(['show']);
+            Route::get('categories-all', [CategoryController::class, 'getCategories'])->name('categories.all');
+            Route::get('category/{id}/status', [CategoryController::class, 'changeStatus'])->name('category.status');
+
+            ###################################### Brands ######################################
+            Route::resource('brands', BrandController::class)->except(['show']);
+            Route::get('/brands-all', [BrandController::class, 'getBrands'])->name('brands.all');
+            Route::get('brand/{id}/status', [BrandController::class, 'changeStatus'])->name('brand.status');
+
+            ###################################### Coupons ######################################
+            Route::resource('coupons', CouponController::class)->except(['show', 'create', 'edit']);
+            Route::get('/coupons-all', [CouponController::class, 'getCoupons'])->name('coupons.all');
+            Route::get('coupon/{id}/status', [CouponController::class, 'changeStatus'])->name('coupon.status');
+
+            ######################################Faqs ######################################
+            Route::resource('faqs', FaqController::class)->except(['show', 'create', 'edit']);
+
+            ######################################Settings ######################################
+            Route::prefix('settings')->name('settings.')->group(function () {
+                Route::get('/', [SettingController::class, 'index'])->name('index');
+                Route::put('/update', [SettingController::class, 'update'])->name('update');
+            });
+
+            ###################################### product Attributes ######################################
+            Route::resource('attributes', AttributeController::class)->except(['show', 'create', 'edit']);
+            Route::get('/attributes-all', [AttributeController::class, 'getAttributes'])->name('attributes.all');
+
+
+            ###################################### product Attributes ######################################
+            Route::resource('products', ProductController::class);
+            //        Route::get('/products-all', [ProductController::class, 'getProducts'])->name('attributes.all');
+
+
+
+            Route::get('/welcome', function () {
+                return view('dashboard/welcome');
+            })->name('welcome');
         });
-
-        ###################################### product Attributes ######################################
-        Route::resource('attributes', AttributeController::class)->except(['show', 'create', 'edit']);
-        Route::get('/attributes-all', [AttributeController::class, 'getAttributes'])->name('attributes.all');
-
-
-
-        Route::get('/welcome', function () {
-            return view('dashboard/welcome');
-        })->name('welcome');
-    });
-
-
-});
+    }
+);

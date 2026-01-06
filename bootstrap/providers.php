@@ -8,4 +8,5 @@ return [
     App\Providers\TelescopeServiceProvider::class,
     App\Providers\ViewCountServiceProvider::class,
     Yajra\DataTables\DataTablesServiceProvider::class,
+    
 ];
