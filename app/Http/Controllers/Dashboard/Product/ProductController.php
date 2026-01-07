@@ -5,21 +5,40 @@ namespace App\Http\Controllers\Dashboard\Product;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Services\Dashboard\AttributeService;
+use App\Services\Dashboard\BrandService;
+use App\Services\Dashboard\CategoryService;
+use App\Services\Dashboard\ProductService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct(protected CategoryService $categoryService ,
+                                protected BrandService $brandService,
+                                protected AttributeService $attributeService,
+                                protected ProductService $productService)
+    {
+
+    }
 
     public function index()
     {
-        //
+        return view('dashboard.product.index');
+    }
+
+    public function getProducts()
+    {
+        return $this->productService->getProducts();
     }
 
 
     public function create()
     {
+        $categories = $this->categoryService->getCategoriesList();
+        $brands = $this->brandService->getBrandsList();
+        $attributesItem = $this->attributeService->getAttributesList();
 
-        return view('dashboard.product.create');
+        return view('dashboard.product.create', compact('categories' , 'brands' , 'attributesItem'));
     }
 
     /**

@@ -7,6 +7,20 @@ use App\Models\Product;
 class ProductRepository
 {
 
+    public function getProduct($id)
+    {
+        return Product::with(['category:id,name' , 'brand:id,name'])->find($id);
+    }
+
+    public function getProducts()
+    {
+        return Product::with([
+            'category:id,name',
+            'brand:id,name',
+            'images:id,name',
+            'variants.variantAttributes.attributeValue'
+        ])->latest()->get();
+    }
 
 
     public function createProduct($data)

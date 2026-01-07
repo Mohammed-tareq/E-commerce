@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Faq;
+use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,6 +30,7 @@ class ViewCountServiceProvider extends ServiceProvider
                 'brands_count' => Brand::class,
                 'coupons_count' => Coupon::class,
                 'faqs_count' => Faq::class,
+                'products_count' => Product::class,
             ];
 
             $counts = [];

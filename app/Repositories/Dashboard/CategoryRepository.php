@@ -9,8 +9,9 @@ class CategoryRepository
 
     public function getCategories()
     {
-        return Category::withCount('products')->select('id','name' , 'parent' , 'status' , 'created_at')->latest()->get();
+        return Category::withCount('products')->latest()->get();
     }
+
 
     public function getById($id)
     {

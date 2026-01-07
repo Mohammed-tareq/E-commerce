@@ -7,23 +7,49 @@ use App\Repositories\Dashboard\Product\ProductVariantAttributeRepository;
 use App\Repositories\Dashboard\Product\ProductVariantRepository;
 use App\Utils\ImageManagement;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 class ProductService
 {
-    public function __construct( protected ProductRepository $productRepository ,
-                                protected ProductVariantRepository $productVariantRepository,
+    public function __construct(protected ProductRepository                 $productRepository,
+                                protected ProductVariantRepository          $productVariantRepository,
                                 protected ProductVariantAttributeRepository $productVariantAttributeRepository,
-                                protected ImageManagement $imageManagement){
+                                protected ImageManagement                   $imageManagement)
+    {
     }
 
-    public function createProduct($productData , $variants , $images)
+
+    public function getproduct($id)
+    {
+        return $this->productRepository->getProduct($id) ?? abort(404);
+    }
+
+
+    public function getProducts()
+    {
+        $products = $this->productRepository->getProducts();
+
+        return DataTables::of($products)
+            ->addIndexColumn()
+            ->addColumn('name', fn($product) => $product->getTranslation('name', app()->getLocale()))
+            ->addColumn('has_variants', fn($product) => $product->hasVariants())
+            ->addColumn('price', fn($product) => $product->price())
+            ->addColumn('qty', fn($product) => $product->qty())
+            ->addColumn('category', fn($product) => $product->category->name)
+            ->addColumn('brand', fn($product) => $product->brand->name)
+            ->addColumn('action', fn() => view('dashboard.product.data-table.action'))
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    public function createProduct($productData, $variants, $images)
     {
         try {
-        DB::beginTransaction();
+            DB::beginTransaction();
 
-        $product = $this->productRepository->createProduct($productData);
+            $product = $this->productRepository->createProduct($productData);
 
-            foreach($variants as $variant){
+            foreach ($variants as $variant) {
 
                 $variant['product_id'] = $product->id;
                 $productVariant = $this->productVariantRepository->createProductVarinat($variant);
@@ -36,12 +62,12 @@ class ProductService
                 }
             }
 
-            $this->imageManagement->UploadImages($images, $product , 'products');
+            $this->imageManagement->UploadImages($images, $product, 'products');
 
 
-        DB::commit();
+            DB::commit();
 
-        } catch (\Exception $e ) {
+        } catch (\Exception $e) {
             DB::rollBack();
         }
     }

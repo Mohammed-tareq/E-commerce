@@ -3,9 +3,7 @@
 namespace App\Livewire\Dashboard\Product;
 
 
-use App\Models\Attribute;
-use App\Models\Brand;
-use App\Models\Category;
+
 use App\Services\Dashboard\ProductService;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -14,7 +12,7 @@ class CreateProduct extends Component
 {
     use WithFileUploads;
 
-    public $categories = [], $brands = [], $attributesItem = [];
+    public $categories, $brands , $attributesItem;
     public $successMessage = '';
     public $currentStep = 1;
     public $fullscreenImage = '';
@@ -38,11 +36,11 @@ class CreateProduct extends Component
     {
         $this->productService = $productService;
     }
-    public function mount()
+    public function mount($categories , $brands , $attributesItem)
     {
-        $this->categories = Category::all();
-        $this->brands = Brand::all();
-        $this->attributesItem = Attribute::with('attributeValues')->get();
+        $this->categories = $categories;
+        $this->brands = $brands;
+        $this->attributesItem =$attributesItem;
     }
 
     public function render()
@@ -159,8 +157,8 @@ class CreateProduct extends Component
 
         $this->productService->createProduct($product, $productWithVariant , $this->images);
 
-        $this->successMessage = __('dashboard.operation_success');
         $this->resetExcept(['categories', 'brands', 'attributesItem']);
+        $this->successMessage = __('dashboard.operation_success');
         $this->currentStep = 1;
 
 

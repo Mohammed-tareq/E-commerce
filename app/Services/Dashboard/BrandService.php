@@ -14,6 +14,11 @@ class BrandService
 
     }
 
+    public function getBrandsList()
+    {
+        return $this->brandRepository->getBrands();
+    }
+
     public function getBrands()
     {
         $brands =  $this->brandRepository->getBrands();
@@ -26,9 +31,9 @@ class BrandService
             ->addColumn('image' , function ($brand) {
                 return view('dashboard.brand.data-table.image' , compact('brand'));
             })
-            ->addColumn('products_count' , function ($brand) {
-                return $brand->products_count == 0 ? __('dashboard.not_found') : $brand->products_count;
-            })
+            // ->addColumn('products_count' , function ($brand) {
+            //     return $brand->products_count == 0 ? __('dashboard.not_found') : $brand->products_count;
+            // })
             ->addColumn('action' , function ($brand) {
                 return view('dashboard.brand.data-table.action' , compact('brand'));
             })

@@ -9,7 +9,7 @@ class BrandRepository
 
     public function getBrands()
     {
-        return Brand::withCount('products')->select('id','name' , 'image', 'status' ,'created_at')->latest()->get();
+        return Brand::withCount('products')->latest()->get();
     }
 
     public function getBrand($id)

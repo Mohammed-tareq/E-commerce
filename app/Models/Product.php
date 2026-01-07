@@ -51,6 +51,21 @@ class Product extends Model
     }
 
 
+    public function hasVariants()
+    {
+        return $this->isSimple() ? __('dashboard.no_has_variants'):__('dashboard.has_variants') ;
+    }
+
+    public function price()
+    {
+        return $this->isSimple()? $this->price : __('dashboard.has_variants');
+    }
+
+    public function qty()
+    {
+        return $this->isSimple()? $this->qty : __('dashboard.has_variants');
+
+    }
 
     public function createdAt(): Attribute
     {

@@ -109,7 +109,7 @@ Route::group(
 
             ###################################### product Attributes ######################################
             Route::resource('products', ProductController::class);
-            //        Route::get('/products-all', [ProductController::class, 'getProducts'])->name('attributes.all');
+                    Route::get('/products-all', [ProductController::class, 'getProducts'])->name('products.all');
 
 
 

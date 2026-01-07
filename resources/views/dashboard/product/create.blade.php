@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        @livewire('dashboard.product.create-product')
+                                        @livewire('dashboard.product.create-product', ['categories' => $categories, 'brands' => $brands, 'attributesItem' => $attributesItem])
                                     </div>
                                 </div>
                             </div>
@@ -87,6 +87,6 @@
         setInterval(() => {
                 $('#successMessageWire').hide()
             }
-            , 5000)
+            , 8000)
     </script>
 @endpush

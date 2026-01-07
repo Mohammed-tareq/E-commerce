@@ -1,5 +1,5 @@
 <section id="icon-tabs">
-    @if (!empty($successMessage))
+    @if (!empty($successMessage) && $currentStep == 1)
         <div id="successMessageWire" class="alert bg-success alert-icon-left alert-arrow-left alert-dismissible mb-2"
              role="alert">
             <span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>

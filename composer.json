@@ -21,7 +21,8 @@
         "php-flasher/flasher-laravel": "^2.2",
         "php-flasher/flasher-notyf-laravel": "^2.2",
         "predis/predis": "^3.3",
-        "spatie/laravel-translatable": "^6.11"
+        "spatie/laravel-translatable": "^6.11",
+        "yajra/laravel-datatables-oracle": "12"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

@@ -5,7 +5,6 @@ namespace App\Services\Dashboard;
 use App\Repositories\Dashboard\AttributeRepository;
 use App\Repositories\Dashboard\AttributeValueRepository;
 use Illuminate\Support\Facades\DB;
-use Yajra\DataTables\DataTables;
 
 class AttributeService
 {
@@ -19,6 +18,10 @@ class AttributeService
         return $this->attributeRepository->getAttribute($id) ?? abort(404);
     }
 
+    public function getAttributesList()
+    {
+        return $this->attributeRepository->getAttributes();
+    }
     public function getAttributes()
     {
         $attributes = $this->attributeRepository->getAttributes();

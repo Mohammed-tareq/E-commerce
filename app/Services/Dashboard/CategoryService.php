@@ -12,6 +12,11 @@ class CategoryService
 
     }
 
+    public function getCategoriesList()
+    {
+        return $this->categoryRepository->getCategories();
+    }
+
     public function getCategories()
     {
         $categories = $this->categoryRepository->getCategories();
