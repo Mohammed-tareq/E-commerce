@@ -165,9 +165,9 @@
                     type="button">{{ __('dashboard.next') }}</button>
         </div>
 
-        {{-- second step Product Variants? --}}
+{{--         second step Product Variants?--}}
         <div class="setup-content {{ $currentStep != 2 ? 'displayNone' : '' }}" id="step-2">
-            {{-- Basic --}}
+             Basic
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -212,7 +212,7 @@
 
 
 
-                {{-- depend on Manage stock --}}
+{{--                 depend on Manage stock--}}
                 @if ($manage_stock == 1)
                     <div class="col-6">
                         <div class="form-group">
@@ -226,7 +226,7 @@
                     </div>
                 @endif
 
-                {{-- edit this part --}}
+{{--                 edit this part--}}
                 <div class="col-6">
                     <div class="form-group">
                         <label for="status">{{ __('dashboard.has_discount') }} :</label>
@@ -240,7 +240,7 @@
                     </div>
                 </div>
                 @if ($has_discount == 1)
-                    {{-- depend on has discount --}}
+{{--                     depend on has discount--}}
                     <div class="col-6">
                         <div class="form-group">
                             <label for="discount">{{ __('dashboard.discount') }}</label>
@@ -275,7 +275,7 @@
 
 
             </div>
-            {{-- has variants--}}
+{{--             has variants--}}
             @if ($has_variants == 1)
                 <hr class="bg-black">
 
@@ -335,64 +335,64 @@
                     wire:click="backStep">{{ __('dashboard.back') }}</button>
         </div>
 
-        {{-- third step Product Images --}}
-        <div class="setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="images"> {{ __('dashboard.product_images') }} :</label>
-                        <input type="file" wire:model.live="images" class="form-control" multiple>
-                    </div>
-                </div>
-                @error('images')
-                <div class="col-md-12 alert  alert-danger">
-                    {{ $message }}
-                </div>
-                @enderror
+{{--        --}}{{-- third step Product Images --}}
+{{--        <div class="setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-12">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="images"> {{ __('dashboard.product_images') }} :</label>--}}
+{{--                        <input type="file" wire:model.live="images" class="form-control" multiple>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                @error('images')--}}
+{{--                <div class="col-md-12 alert  alert-danger">--}}
+{{--                    {{ $message }}--}}
+{{--                </div>--}}
+{{--                @enderror--}}
 
-                @if ($images)
-                    <div class="col-md-12">
-                        @foreach ($images as $key => $image)
-                            <div class="position-relative d-inline-block mr-2 mb-2">
-                                <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail rounded-md"
-                                     width="200px" height="200px">
-                                {{--  Delete Button --}}
-                                <button type="button" wire:click="deleteImage({{ $key }})"
-                                        class="btn btn-danger btn-sm position-absolute" style="top: 5px; right: 5px;">
-                                    <i class="la la-trash"></i>
-                                </button>
+{{--                @if ($images)--}}
+{{--                    <div class="col-md-12">--}}
+{{--                        @foreach ($images as $key => $image)--}}
+{{--                            <div class="position-relative d-inline-block mr-2 mb-2">--}}
+{{--                                <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail rounded-md"--}}
+{{--                                     width="200px" height="200px">--}}
+{{--                                --}}{{--  Delete Button --}}
+{{--                                <button type="button" wire:click="deleteImage({{ $key }})"--}}
+{{--                                        class="btn btn-danger btn-sm position-absolute" style="top: 5px; right: 5px;">--}}
+{{--                                    <i class="la la-trash"></i>--}}
+{{--                                </button>--}}
 
-                                {{--  Fullscreen Button --}}
-                                <button type="button" wire:click="openFullscreen({{ $key }})"
-                                        class="btn btn-primary btn-sm position-absolute"
-                                        style="bottom: 5px; right: 5px;">
-                                    <i class="la la-expand"></i>
-                                </button>
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
+{{--                                --}}{{--  Fullscreen Button --}}
+{{--                                <button type="button" wire:click="openFullscreen({{ $key }})"--}}
+{{--                                        class="btn btn-primary btn-sm position-absolute"--}}
+{{--                                        style="bottom: 5px; right: 5px;">--}}
+{{--                                    <i class="la la-expand"></i>--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                @endif--}}
+{{--            </div>--}}
 
-            <!-- Fullscreen Modal (Optional) -->
-            <div wire:ignore.self class="modal fade" id="fullscreenModal" tabindex="-1"
-                 aria-labelledby="fullscreenModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <img src="{{ $fullscreenImage }}" class="img-fluid" id="fullscreenImage"
-                                 alt="Full Screen Image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click="thirdStep"
-                    type="button">{{ __('dashboard.next') }}!
-            </button>
-            <button class="btn btn-danger  pull-right  mb-3" type="button"
-                    wire:click="backStep">{{ __('dashboard.back') }}</button>
+{{--            <!-- Fullscreen Modal (Optional) -->--}}
+{{--            <div wire:ignore.self class="modal fade" id="fullscreenModal" tabindex="-1"--}}
+{{--                 aria-labelledby="fullscreenModalLabel" aria-hidden="true">--}}
+{{--                <div class="modal-dialog modal-dialog-centered">--}}
+{{--                    <div class="modal-content">--}}
+{{--                        <div class="modal-body">--}}
+{{--                            <img src="{{ $fullscreenImage }}" class="img-fluid" id="fullscreenImage"--}}
+{{--                                 alt="Full Screen Image">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click="thirdStep"--}}
+{{--                    type="button">{{ __('dashboard.next') }}!--}}
+{{--            </button>--}}
+{{--            <button class="btn btn-danger  pull-right  mb-3" type="button"--}}
+{{--                    wire:click="backStep">{{ __('dashboard.back') }}</button>--}}
 
-        </div>
+{{--        </div>--}}
 
         {{-- Confirm Step Display Data --}}
         <div class="setup-content {{ $currentStep != 4 ? 'displayNone' : '' }}" id="step-4">
@@ -402,7 +402,7 @@
             </div>
 
             <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click="submitForm"
-                    type="button">{{ __('dashboard.create') }}!
+                    type="button">{{ __('dashboard.edit') }}!
             </button>
             <button class="btn btn-danger  pull-right  mb-3" type="button"
                     wire:click="backStep">{{ __('dashboard.back') }}</button>
@@ -410,3 +410,4 @@
         </div>
     </form>
 </section>
+

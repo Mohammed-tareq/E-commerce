@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Coupon\CouponRequest;
 use App\Services\Dashboard\CouponService;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Arr;
 
 class CouponController extends Controller implements HasMiddleware
@@ -16,7 +17,9 @@ class CouponController extends Controller implements HasMiddleware
 
     public static function middleware()
     {
-        return ['can:coupons'];
+        return [
+            new Middleware('can:coupons'),
+        ];
     }
 
     public function index()

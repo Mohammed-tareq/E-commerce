@@ -9,6 +9,10 @@ class ProductRepository
 
     public function getProduct($id)
     {
+        return Product::find($id);
+    }
+    public function getProductEagerLoad($id)
+    {
         return Product::with([
             'category:id,name',
             'brand:id,name',
@@ -16,6 +20,7 @@ class ProductRepository
             'variants.variantAttributes.attributeValue.attribute:id,name',
         ])->find($id);
     }
+
 
     public function getProducts()
     {

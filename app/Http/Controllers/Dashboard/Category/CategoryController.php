@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Category\CategoryRequest;
 use App\Services\Dashboard\CategoryService;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 class CategoryController extends Controller implements HasMiddleware
 {
@@ -15,7 +16,9 @@ class CategoryController extends Controller implements HasMiddleware
 
     public static function middleware()
     {
-        return ['can:categories'];
+        return [
+            new Middleware('can:categories'),
+        ];
     }
 
     public function index()

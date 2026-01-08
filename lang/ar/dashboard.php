@@ -138,6 +138,7 @@ return [
     'available_qty' => 'الكميه المتاحه',
     'images' => 'الصور',
     'tags' => 'الوسوم',
+    'views' => 'عدد المشاهدات',
     'reviews' => 'التقييمات',
     'select_brand'=>'اختر العلامه التجاريه',
     'select_category'=>'اختر القسم',

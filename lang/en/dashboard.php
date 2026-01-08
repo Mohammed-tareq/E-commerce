@@ -128,6 +128,7 @@ return [
     'available_for' => 'Available For',
     'has_variants' => 'Has Variants',
     'no_has_variants' =>'Has not Variants',
+    'views' => 'Views',
     'variants' => 'Variants',
     'has_discount' => 'Has Discount',
     'discount' => 'Discount',

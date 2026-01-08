@@ -16,11 +16,11 @@ class ProductImages extends Model
         return $this->belongsTo(Product::class);
     }
 
-//    public function name():Attribute
-//    {
-//        return Attribute::make(
-//            get: fn($value)=> 'uploads/products/'.$value
-//        );
-//    }
+    public function name():Attribute
+    {
+        return Attribute::make(
+            get: fn($value)=> 'uploads/products/'.$value
+        );
+    }
 }
 

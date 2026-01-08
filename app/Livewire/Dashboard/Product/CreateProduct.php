@@ -3,7 +3,6 @@
 namespace App\Livewire\Dashboard\Product;
 
 
-
 use App\Services\Dashboard\ProductService;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -12,7 +11,7 @@ class CreateProduct extends Component
 {
     use WithFileUploads;
 
-    public $categories, $brands , $attributesItem;
+    public $categories, $brands, $attributesItem;
     public $successMessage = '';
     public $currentStep = 1;
     public $fullscreenImage = '';
@@ -25,22 +24,24 @@ class CreateProduct extends Component
         $small_desc_ar, $small_desc_en,
         $desc_ar, $desc_en,
         $category_id, $brand_id,
-        $sku, $available_for, $tags, $price, $qty, $discount, $start_discount, $end_discount;
+        $sku, $available_for, $tags, $price, $qty, $discount, $discount_start, $discount_end;
 
 
     public $has_discount = 0, $manage_stock = 0, $has_variants = 0;
 
 
     protected $productService;
-    public function boot( ProductService $productService)
+
+    public function boot(ProductService $productService)
     {
         $this->productService = $productService;
     }
-    public function mount($categories , $brands , $attributesItem)
+
+    public function mount($categories, $brands, $attributesItem)
     {
         $this->categories = $categories;
         $this->brands = $brands;
-        $this->attributesItem =$attributesItem;
+        $this->attributesItem = $attributesItem;
     }
 
     public function render()
@@ -82,8 +83,8 @@ class CreateProduct extends Component
         }
         if ($this->has_discount == 1) {
             $data['discount'] = 'required|integer|min:0|max:100';
-            $data['start_discount'] = 'required|date|after_or_equal:today';
-            $data['end_discount'] = 'required|date|after_or_equal:start_discount';
+            $data['discount_start'] = 'required|date|after_or_equal:today';
+            $data['discount_end'] = 'required|date|after_or_equal:discount_start';
         }
 
         if ($this->has_variants == 1) {
@@ -139,23 +140,23 @@ class CreateProduct extends Component
             'qty' => $this->has_variants != 0 ? null : $this->qty,
             'has_discount' => $this->has_discount,
             'discount' => $this->has_discount != 0 ? $this->discount : null,
-            'start_discount' => $this->has_discount != 0 ? $this->start_discount : null,
-            'end_discount' => $this->has_discount != 0 ? $this->end_discount : null,
+            'discount_start' => $this->has_discount != 0 ? $this->discount_start : null,
+            'discount_end' => $this->has_discount != 0 ? $this->discount_end : null,
         ];
 
-       if($this->has_variants == 1){
-           $productWithVariant = [];
-           foreach($this->prices as $index => $values){
-               $productWithVariant[] = [
-                   'product_id' => null ,
-                   'price' => $values,
-                   'qty' => $this->quantities[$index],
-                   'attribute_values' => $this->attributeValues[$index]
-               ];
-           }
-       }
+        $productWithVariant = [];
+        if ($this->has_variants == 1) {
+            foreach ($this->prices as $index => $values) {
+                $productWithVariant[] = [
+                    'product_id' => null,
+                    'price' => $values,
+                    'qty' => $this->quantities[$index],
+                    'attribute_values' => $this->attributeValues[$index]
+                ];
+            }
+        }
 
-        $this->productService->createProduct($product, $productWithVariant , $this->images);
+        $this->productService->createProduct($product, $productWithVariant, $this->images);
 
         $this->resetExcept(['categories', 'brands', 'attributesItem']);
         $this->successMessage = __('dashboard.operation_success');

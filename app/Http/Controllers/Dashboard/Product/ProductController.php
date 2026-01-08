@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Dashboard\Product;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
-use App\Models\Category;
+
 use App\Services\Dashboard\AttributeService;
 use App\Services\Dashboard\BrandService;
 use App\Services\Dashboard\CategoryService;
 use App\Services\Dashboard\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class ProductController extends Controller
+class ProductController extends Controller implements HasMiddleware
 {
     public function __construct(protected CategoryService $categoryService ,
                                 protected BrandService $brandService,
@@ -19,6 +20,13 @@ class ProductController extends Controller
                                 protected ProductService $productService)
     {
 
+    }
+
+    public static function middleware()
+    {
+        return [
+            new Middleware('can:products')
+        ];
     }
 
     public function index()
@@ -48,12 +56,14 @@ class ProductController extends Controller
         return view('dashboard.product.show', compact('product'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
-        //
+        $productId = $id;
+        $categories = $this->categoryService->getCategoriesList();
+        $brands = $this->brandService->getBrandsList();
+        $attributesItem = $this->attributeService->getAttributesList();
+        return view('dashboard.product.edit', compact('productId' , 'categories' , 'brands' , 'attributesItem'));
     }
 
     /**
@@ -95,5 +105,22 @@ class ProductController extends Controller
             'status' => true,
             'message' => __('dashboard.operation_success')
         ],200);
+    }
+
+    public function deleteVariant($productId , $variantId)
+    {
+        $product = $this->productService->deleteVariant($productId , $variantId);
+        if(!$product)
+        {
+            return response()->json([
+                'status' => false,
+                'message' => __('dashboard.operation_error')
+            ],400);
+        }
+        return response()->json([
+            'status' => true,
+            'message' => __('dashboard.operation_success'),
+            'product' => $product->variants
+        ]);
     }
 }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\World\PriceRequest;
 use App\Services\Dashboard\WorldService;
 use Illuminate\Routing\Controllers\HasMiddleware;
-
+use Illuminate\Routing\Controllers\Middleware;
 
 class WorldController extends Controller implements HasMiddleware
 {
@@ -20,7 +20,7 @@ class WorldController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            'can:shipping'
+            new Middleware('can:shipping')
         ];
     }
 

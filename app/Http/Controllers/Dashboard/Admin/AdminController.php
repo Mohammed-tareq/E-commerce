@@ -7,6 +7,7 @@ use App\Http\Requests\Dashboard\Admin\AdminRequest;
 use App\Services\Dashboard\AdminService;
 use App\Services\Dashboard\RoleService;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 class AdminController extends Controller implements HasMiddleware
 {
@@ -16,7 +17,9 @@ class AdminController extends Controller implements HasMiddleware
 
     public static function middleware()
     {
-        return ['can:admins'];
+        return [
+            new Middleware('can:admins'),
+        ];
     }
 
 

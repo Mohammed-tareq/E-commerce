@@ -111,6 +111,7 @@ Route::group(
             Route::resource('products', ProductController::class);
             Route::get('/products-all', [ProductController::class, 'getProducts'])->name('products.all');
             Route::get('product/{id}/status',[ProductController::class,'changeStatus'])->name('product.status');
+            Route::delete('product/{productId}/variants/{variantId}',[ProductController::class,'deleteVariant'])->name('product.variant.delete');
 
 
             Route::get('/welcome', function () {

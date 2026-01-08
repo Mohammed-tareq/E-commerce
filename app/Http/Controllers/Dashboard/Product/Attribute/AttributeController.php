@@ -20,7 +20,7 @@ class AttributeController extends Controller implements HasMiddleware
     public static function middleware()
     {
         return [
-            new Middleware(['can:attributes']),
+            new Middleware('can:attributes'),
         ];
     }
 

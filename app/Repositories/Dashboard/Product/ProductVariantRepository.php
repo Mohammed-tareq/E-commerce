@@ -7,8 +7,18 @@ use App\Models\ProductVariant;
 class ProductVariantRepository
 {
 
-    public function createProductVarinat($data)
+    public function createProductVariant($data)
     {
         return ProductVariant::create($data);
+    }
+
+    public function getProductVariant($id)
+    {
+        return ProductVariant::find($id);
+    }
+
+    public function deleteProductVariant($productVariant)
+    {
+            return $productVariant->delete();
     }
 }

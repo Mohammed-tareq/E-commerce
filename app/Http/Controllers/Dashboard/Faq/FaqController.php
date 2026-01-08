@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Faq\FaqRequest;
 use App\Services\Dashboard\FaqService;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Arr;
 
 class FaqController extends Controller implements HasMiddleware
@@ -17,7 +18,9 @@ class FaqController extends Controller implements HasMiddleware
 
     public static function middleware()
     {
-        return ['can:faqs'];
+        return [
+            new Middleware('can:faqs'),
+        ];
     }
 
     public function index()

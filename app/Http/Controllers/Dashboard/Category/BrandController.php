@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Brand\BrandRequest;
 use App\Services\Dashboard\BrandService;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Arr;
 
 class BrandController extends Controller implements HasMiddleware
@@ -14,7 +15,9 @@ class BrandController extends Controller implements HasMiddleware
 
     public static function middleware()
     {
-        return ['can:brands'];
+        return [
+            new Middleware('can:brands'),
+        ];
     }
     public function index()
     {

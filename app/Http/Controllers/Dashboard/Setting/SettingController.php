@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Setting\SettingRequest;
 use App\Services\Dashboard\SettingService;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Arr;
 
 class SettingController extends Controller implements HasMiddleware
@@ -17,7 +18,9 @@ class SettingController extends Controller implements HasMiddleware
 
     public static function middleware()
     {
-        return ['can:settings'];
+        return [
+            new Middleware('can:settings'),
+        ];
     }
 
     public function index()

@@ -50,12 +50,12 @@ class Product extends Model
         return !$this->has_variants;
     }
 
-//    public function imagesPath():Attribute
-//    {
-//        return Attribute::make(
-//            get: fn() => $this->images->map(fn($image)=> $image->name)
-//        );
-//    }
+    public function imagesPath():Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->images->map(fn($image)=> $image->name)
+        );
+    }
 
     public function hasVariants()
     {

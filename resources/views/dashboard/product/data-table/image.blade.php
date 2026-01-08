@@ -26,7 +26,7 @@
                     <div class="carousel-inner">
                         @foreach($product->images as  $image)
                             <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                <img src="{{ asset('uploads/products/' . $image->name) }}" class="d-block w-100"
+                                <img src="{{ asset($image->name) }}" class="d-block w-100"
                                      style="max-height: 400px; object-fit: contain;">
                             </div>
                         @endforeach
