@@ -41,20 +41,11 @@ class ProductController extends Controller
         return view('dashboard.product.create', compact('categories' , 'brands' , 'attributesItem'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $product = $this->productService->showProduct($id);
+        return view('dashboard.product.show', compact('product'));
     }
 
     /**
@@ -73,11 +64,36 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+    public function destroy($id)
     {
-        //
+        if(!$this->productService->deleteProduct($id))
+        {
+            return response()->json([
+                'status' => false,
+                'message' => __('dashboard.operation_error')
+            ],400);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => __('dashboard.operation_success')
+        ],200);
+    }
+
+    public function changeStatus($id)
+    {
+        if(!$this->productService->changeStatus($id))
+        {
+            return response()->json([
+                'status' => false,
+                'message' => __('dashboard.operation_error')
+            ],400);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => __('dashboard.operation_success')
+        ],200);
     }
 }

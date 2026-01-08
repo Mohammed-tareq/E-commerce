@@ -28,7 +28,7 @@ class Product extends Model
 
     public function images()
     {
-        return $this->hasMany(ProductImages::class);
+        return $this->hasMany(ProductImages::class,'product_id');
     }
 
     public function tags()
@@ -50,6 +50,12 @@ class Product extends Model
         return !$this->has_variants;
     }
 
+//    public function imagesPath():Attribute
+//    {
+//        return Attribute::make(
+//            get: fn() => $this->images->map(fn($image)=> $image->name)
+//        );
+//    }
 
     public function hasVariants()
     {
@@ -68,6 +74,12 @@ class Product extends Model
     }
 
     public function createdAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => date('Y-m-d', strtotime($value))
+        );
+    }
+    public function updatedAt(): Attribute
     {
         return Attribute::make(
             get: fn($value) => date('Y-m-d', strtotime($value))

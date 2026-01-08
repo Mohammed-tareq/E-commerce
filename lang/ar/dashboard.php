@@ -116,6 +116,7 @@ return [
     'product_ar' => 'المنتج بالعربي',
     'product_en' => 'المنتج بالانجليزي',
     'create_product' => 'إنشاء منتج',
+    'show_product' => 'عرض منتج',
     'edit_product' => 'تعديل منتج',
     'small_desc' => 'الوصف المختصر',
     'small_desc_ar' => ' الوصف المختصر بالعربي',
@@ -148,4 +149,5 @@ return [
     'confirmation' => 'التأكيد',
     'next' => 'التالي',
     'back' => 'السابق',
+    'updated_at' => 'تم تعديله',
 ];

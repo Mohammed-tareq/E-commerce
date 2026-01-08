@@ -25,3 +25,4 @@ Add attribute management module enhancements: CRUD functionality, repository-ser
 Add product creation module with wizard-based form workflow, validations, Livewire component, Blade views, and pagination integration.
 Enhance product creation flow with variant management: add dynamic price, quantity, and attributes handling, refactor to repository-service structure, and update Livewire and Blade components.
 Refactor product creation module: streamline dependency management in `CreateProduct`, enhance reusable Blade components, update routes, and optimize repositories for categories and brands. Implement Yajra Datatables for product listing.
+Enhance product module: add product details view, update image management with carousel display, improve DataTables functionality, implement status change and deletion via AJAX, and update localization and routes.

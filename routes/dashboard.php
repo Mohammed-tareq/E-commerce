@@ -109,8 +109,8 @@ Route::group(
 
             ###################################### product Attributes ######################################
             Route::resource('products', ProductController::class);
-                    Route::get('/products-all', [ProductController::class, 'getProducts'])->name('products.all');
-
+            Route::get('/products-all', [ProductController::class, 'getProducts'])->name('products.all');
+            Route::get('product/{id}/status',[ProductController::class,'changeStatus'])->name('product.status');
 
 
             Route::get('/welcome', function () {

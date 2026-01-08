@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 
 class ProductImages extends Model
 {
@@ -13,5 +15,12 @@ class ProductImages extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+//    public function name():Attribute
+//    {
+//        return Attribute::make(
+//            get: fn($value)=> 'uploads/products/'.$value
+//        );
+//    }
 }
 

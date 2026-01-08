@@ -20,7 +20,7 @@
                                             href="{{ route('dashboard.welcome') }}">{{ __('dashboard.dashboard') }}</a>
                                 </li>
                                 <li class="breadcrumb-item"><a
-                                            href="{{ route('dashboard.categories.index') }}">{{ __('dashboard.product') }}</a>
+                                            href="{{ route('dashboard.products.index') }}">{{ __('dashboard.product') }}</a>
                                 </li>
                                 <li class="breadcrumb-item active">{{ __('dashboard.create_product') }}
                                 </li>

@@ -33,12 +33,13 @@ class ProductService
             ->addIndexColumn()
             ->addColumn('name', fn($product) => $product->getTranslation('name', app()->getLocale()))
             ->addColumn('has_variants', fn($product) => $product->hasVariants())
+            ->addColumn('images', fn($product) => view('dashboard.product.data-table.image',compact('product')))
             ->addColumn('price', fn($product) => $product->price())
             ->addColumn('qty', fn($product) => $product->qty())
             ->addColumn('category', fn($product) => $product->category->name)
             ->addColumn('brand', fn($product) => $product->brand->name)
-            ->addColumn('action', fn() => view('dashboard.product.data-table.action'))
-            ->rawColumns(['action'])
+            ->addColumn('action', fn($product) => view('dashboard.product.data-table.action', compact('product')))
+            ->rawColumns(['action','images'])
             ->make(true);
     }
 
@@ -70,6 +71,26 @@ class ProductService
         } catch (\Exception $e) {
             DB::rollBack();
         }
+    }
+
+
+    public function showProduct($id)
+    {
+        return $this->productRepository->getProduct($id);
+    }
+    public function deleteProduct($id)
+    {
+        $product = $this->productRepository->getProduct($id);
+        foreach ($product->images_path as $image) {
+            $this->imageManagement->deleteImageFromLocal($image);
+        }
+        return $this->productRepository->deleteProduct($product);
+    }
+
+    public function changeStatus($id)
+    {
+        $product = $this->productRepository->getProduct($id);
+        return $this->productRepository->changeStatus($product);
     }
 
 }

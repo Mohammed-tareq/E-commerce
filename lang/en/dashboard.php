@@ -117,6 +117,7 @@ return [
     'product_en' => 'product in English',
     'create_product' => ' Create Product',
     'edit_product' => 'Edit Product',
+    'show_product' => 'Show Product',
     'small_desc' => 'Short Description',
     'small_desc_ar' => 'Short Description in Arabic',
     'small_desc_en' => 'Short Description in English',
@@ -148,6 +149,7 @@ return [
     'confirmation' => 'Confirmation',
     'next' => 'Next',
     'back' => 'Back',
+    'updated_at' => 'Updated At',
 
 
 

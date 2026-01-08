@@ -40,8 +40,7 @@
                             </ul>
                         </div>
                     </div>
-                    @include('incloudes.tostar.tostar-success')
-                    @include('incloudes.tostar.tostar-error')
+
                     <div class="card-content collapse show">
                         <div class="card-body card-dashboard">
                             <p class="card-text">{{ __('dashboard.yajra_table') }}</p>
@@ -50,7 +49,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>{{ __('dashboard.name') }}</th>
-                                    {{--                                    <th>{{ __('dashboard.image') }}</th>--}}
+                                    <th>{{ __('dashboard.image') }}</th>
                                     <th>{{ __('dashboard.has_variants') }}</th>
                                     <th>{{ __('dashboard.sku') }}</th>
                                     <th>{{ __('dashboard.available_for') }}</th>
@@ -70,7 +69,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>{{ __('dashboard.name') }}</th>
-                                    {{--                                    <th>{{ __('dashboard.image') }}</th>--}}
+                                    <th>{{ __('dashboard.image') }}</th>
                                     <th>{{ __('dashboard.has_variants') }}</th>
                                     <th>{{ __('dashboard.sku') }}</th>
                                     <th>{{ __('dashboard.available_for') }}</th>
@@ -113,7 +112,7 @@
             fixedHeader: true,
             select: {
                 style: 'multi',
-                selector: 'td:not(:last-child)',
+                selector: 'td:not(:last-child):not(:first-child):not(:nth-child(3))',
                 className: 'selected'
             },
             responsive: {
@@ -135,7 +134,7 @@
             columns: [
                 {data: "DT_RowIndex", "orderable": false, "searchable": false},
                 {data: "name"},
-                // {data: "image" , "orderable": false, "searchable": false,},
+                {data: "images" , "orderable": false, "searchable": false,},
                 {data: "has_variants"},
                 {data: "sku"},
                 {data: "available_for"},
@@ -144,7 +143,6 @@
                 {data: "category"},
                 {data: "price"},
                 {data: "qty"},
-                {data: "created_at"},
                 {data: "action", "orderable": false, "searchable": false, "width": "10%", 'selectable': false,},
             ],
 
@@ -172,7 +170,88 @@
             } : {},
         });
 
+    </script>
 
+    <script>
+        $(document).on('click', '.change-status', function (e) {
+            e.preventDefault();
+
+            let id = $(this).data('id');
+            let url = "{{ route('dashboard.product.status',':id') }}"
+            url = url.replace(':id', id);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (data) {
+                    if (data.status === true) {
+                        $('#yajra_table').DataTable().ajax.reload(false);
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: data.message,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    }
+                },
+            });
+        });
+
+        // delete coupon
+        $(document).on('click', '.delete-product', function (e) {
+            e.preventDefault();
+
+            let id = $(this).data('id');
+            let url = "{{ route('dashboard.products.destroy', ':id') }}".replace(':id', id);
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: true
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: "{{ __('dashboard.delete_alert') }}",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "{{ __('dashboard.delete') }}",
+                cancelButtonText: "{{ __('dashboard.cancel') }}",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            _method: 'DELETE'
+                        },
+                        success: function (data) {
+
+                            Swal.fire({
+                                position: "center",
+                                icon: data.status ? "success" : 'error',
+                                title: data.message,
+                                showConfirmButton: false,
+                                timer: 2000
+                            });
+                            $('#yajra_table').DataTable().page(currentPage).draw(false);
+                        }
+                    });
+                }
+            });
+        });
     </script>
 
 @endpush

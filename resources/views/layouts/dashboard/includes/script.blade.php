@@ -19,6 +19,7 @@
 </script>
 <script src="{{ asset('assets/dashboard') }}/vendors/js/forms/toggle/bootstrap-checkbox.min.js" type="text/javascript">
 </script>
+
 <script src="{{ asset('assets/dashboard') }}/vendors/js/forms/toggle/switchery.min.js" type="text/javascript"></script>
 
 <script src="{{ asset('assets/dashboard') }}/js/scripts/forms/switch.js" type="text/javascript"></script>
