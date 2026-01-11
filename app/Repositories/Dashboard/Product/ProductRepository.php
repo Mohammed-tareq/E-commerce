@@ -3,6 +3,7 @@
 namespace App\Repositories\Dashboard\Product;
 
 use App\Models\Product;
+use App\Models\ProductImages;
 
 class ProductRepository
 {
@@ -47,5 +48,10 @@ class ProductRepository
         return $product->update([
             'status' => !$product->getRawOriginal('status')
         ]);
+    }
+
+    public function deleteProductImage($imageId)
+    {
+        return ProductImages::find($imageId)->delete();
     }
 }

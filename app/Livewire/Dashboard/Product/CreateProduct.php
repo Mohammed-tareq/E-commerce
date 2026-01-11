@@ -96,8 +96,10 @@ class CreateProduct extends Component
             $data['attributeValues.*'] = ['required', 'array'];
             $data['attributeValues.*.*'] = ['required', 'integer', 'exists:attribute_values,id'];
         }
-        $this->validate($data);
-        $this->currentStep++;
+
+            $this->validate($data);
+            $this->currentStep++;
+
     }
 
     public function thirdStep()

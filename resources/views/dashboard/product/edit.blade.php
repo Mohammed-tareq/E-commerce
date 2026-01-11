@@ -78,15 +78,15 @@
 
 
 
-{{--        document.addEventListener('livewire:init', () => {--}}
-{{--            Livewire.on('openFullScreenImage', () => {--}}
-{{--                $('#fullscreenModal').modal('show');--}}
-{{--            });--}}
-{{--        });--}}
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('openFullScreenImage', () => {
+                $('#fullscreenModal').modal('show');
+            });
+        });
 
-{{--        setInterval(() => {--}}
-{{--                $('#successMessageWire').hide()--}}
-{{--            }--}}
-{{--            , 8000)--}}
+        setInterval(() => {
+                $('#successMessageWire').hide()
+            }
+            , 8000)
     </script>
 @endpush

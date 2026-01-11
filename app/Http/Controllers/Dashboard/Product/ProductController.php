@@ -66,9 +66,6 @@ class ProductController extends Controller implements HasMiddleware
         return view('dashboard.product.edit', compact('productId' , 'categories' , 'brands' , 'attributesItem'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         //

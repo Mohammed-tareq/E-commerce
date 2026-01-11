@@ -313,8 +313,8 @@
                                         @foreach ($attr->attributeValues as $item)
                                             <option value="{{ $item->id }}">{{ $item->value }}</option>
                                         @endforeach
-                                    </select>
 
+                                    </select>
                                 </div>
                             </div>
                         @endforeach
@@ -322,10 +322,15 @@
                     </div>
                     <hr class="bg-black">
                 @endfor
+
                 <button type="button" wire:click="addNewVariant" class="btn btn-success"><i class="la la-plus"></i>
-                    Add New Variant</button>
-                <button type="button" wire:click="removeVariant" class="btn btn-danger"><i class="la la-minus"></i>
-                    Remove Variant</button>
+                    Add New Variant
+                </button>
+                @if($addRowValues > 1)
+                    <button type="button" wire:click="removeVariant" class="btn btn-danger"><i class="la la-minus"></i>
+                        Remove Variant
+                    </button>
+                @endif
             @endif
 
 

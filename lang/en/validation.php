@@ -254,7 +254,7 @@ return [
         'attribute_value'       => 'Attribute Value',
         'attribute_value.*.ar'  => 'Attribute Value in Arabic',
         'attribute_value.*.en'  => 'Attribute Value in English',
-        'price.*'               =>'Price',
+        'prices.*'               =>'Price',
         'quantities.*'          =>'Quantities'
     ],
 

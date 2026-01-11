@@ -121,4 +121,26 @@ class ProductService
 
     }
 
+    public function getProductSingleImage($imageId)
+    {
+       $image = $this->productRepository->deleteProductImage($imageId);
+       if($image)
+       {
+          return $image;
+       }
+       return false;
+    }
+    public function deleteProductImage($imageId , $imagePath)
+    {
+        if($imagePath)
+        {
+            $this->imageManagement->deleteImageFromLocal($imagePath);
+        }
+        if($imageId)
+        {
+            return $this->getProductSingleImage($imageId);
+        }
+
+    }
+
 }

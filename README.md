@@ -27,3 +27,4 @@ Enhance product creation flow with variant management: add dynamic price, quanti
 Refactor product creation module: streamline dependency management in `CreateProduct`, enhance reusable Blade components, update routes, and optimize repositories for categories and brands. Implement Yajra Datatables for product listing.
 Enhance product module: add product details view, update image management with carousel display, improve DataTables functionality, implement status change and deletion via AJAX, and update localization and routes.
 Add product editing module: new Livewire component, Blade view with wizard-based form for step-wise updates, data prepopulation, validation, and dynamic variant handling.
+Enhance product editing module: improve image management with upload, delete, and fullscreen preview features; refine validation and dynamic variant handling; add repository and service methods for image deletion; update Blade views for better UI consistency.
