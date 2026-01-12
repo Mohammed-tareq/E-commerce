@@ -10,7 +10,7 @@
             showClose: true,
             maxFileCount: 1,
             allowedFileTypes: ['image'],
-            @if(!is_null($dataEdit))
+            @if(!empty($dataEdit))
             initialPreviewAsData: true,
             initialPreview: ['{{ asset($dataEdit) }}'],
             @endif

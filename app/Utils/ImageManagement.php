@@ -26,7 +26,6 @@ class ImageManagement
                 'name' => $path
             ];
         }
-
         $model->images()->createMany($allImages);
     }
 

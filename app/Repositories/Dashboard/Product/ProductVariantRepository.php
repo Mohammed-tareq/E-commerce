@@ -17,6 +17,11 @@ class ProductVariantRepository
         return ProductVariant::find($id);
     }
 
+    public function deleteProductVariantByProductId($productId)
+    {
+        return ProductVariant::where('product_id',$productId)->delete();
+    }
+
     public function deleteProductVariant($productVariant)
     {
             return $productVariant->delete();

@@ -38,6 +38,11 @@ class ProductRepository
         return Product::create($data);
     }
 
+    public function updateProduct($product,$data)
+    {
+        return $product->update($data);
+    }
+
     public function deleteProduct($product)
     {
         return $product->delete();

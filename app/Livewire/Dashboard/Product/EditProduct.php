@@ -24,7 +24,7 @@ class EditProduct extends Component
     public $newImages = [];
     public $fullscreenImage = '';
 
-    public $successMessage = '';
+    public $successMessage = '', $errorMessage = '';
     public $addRowValues = 0;
     protected ProductService $productService;
 
@@ -71,7 +71,6 @@ class EditProduct extends Component
                 $this->attributeValues[$index][$variantAttribute->attributeValue->attribute_id] = $variantAttribute->attribute_value_id;
             }
         }
-
         // third step
 
         $this->images = $this->product->images;
@@ -169,6 +168,62 @@ class EditProduct extends Component
     public function backStep()
     {
         $this->currentStep--;
+    }
+
+
+    public function submitForm()
+    {
+        if (count($this->images) == 0) {
+            $this->validate(
+                [
+                    'newImages' => ['required', 'array'],
+                    'newImages.*' => ['required', 'image']
+                ]
+            );
+        }
+
+        $productData = ['name' => [
+            'ar' => $this->name_ar,
+            'en' => $this->name_en
+        ],
+            'small_desc' => [
+                'ar' => $this->small_desc_ar,
+                'en' => $this->small_desc_en
+            ],
+            'desc' => [
+                'ar' => $this->desc_ar,
+                'en' => $this->desc_en
+            ],
+            'category_id' => $this->category_id,
+            'brand_id' => $this->brand_id,
+            'sku' => $this->sku,
+            'available_for' => $this->available_for,
+            'has_variants' => $this->has_variants,
+            'price' => $this->has_variants != 0 ? null : $this->price,
+            'manage_stock' => $this->has_variants != 0 ? false : $this->manage_stock,
+            'qty' => $this->has_variants != 0 ? null : $this->qty,
+            'has_discount' => $this->has_discount,
+            'discount' => $this->has_discount != 0 ? $this->discount : null,
+            'discount_start' => $this->has_discount != 0 ? $this->discount_start : null,
+            'discount_end' => $this->has_discount != 0 ? $this->discount_end : null
+        ];
+        $productVariants = [];
+        foreach ($this->prices as $index => $price) {
+            $productVariants[] = [
+                'product_id' => $this->product->id,
+                'price' => $price,
+                'qty' => $this->quantities[$index],
+                'attribute_values' => $this->attributeValues[$index]
+            ];
+        }
+
+        $productUpdated = $this->productService->updateProduct($this->product, $productData, $productVariants, $this->newImages);
+        if (!$productUpdated) {
+            $this->errorMessage = __('dashboard.operation_error');
+            return false;
+        }
+
+        return redirect()->route('dashboard.products.index')->with('success', __('dashboard.operation_success'));
     }
 
     public function render()

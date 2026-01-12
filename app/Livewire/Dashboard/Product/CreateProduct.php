@@ -63,7 +63,7 @@ class CreateProduct extends Component
             'brand_id' => 'required|exists:brands,id',
             'sku' => 'required|string|max:255',
             'available_for' => 'required|date|after_or_equal:today',
-            'tags' => 'required|string|max:255',
+//            'tags' => 'required|string|max:255',
         ]);
         $this->currentStep++;
     }

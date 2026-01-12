@@ -151,8 +151,7 @@ return [
     'next' => 'Next',
     'back' => 'Back',
     'updated_at' => 'Updated At',
-
-
+    'error_Image' => 'Product Should Have Images'
 
 
 ];

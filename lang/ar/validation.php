@@ -190,6 +190,8 @@ return [
         'attribute_value.*.ar' => 'القيمه باللغه العربيه',
         'attribute_value.*.en' => 'القيمه باللغه الانجليزيه',
         'price.*' => 'السعر',
-        'quantities.*' => 'الكميه'
+        'quantities.*' => 'الكميه',
+        'newImages' => 'االصور',
+        'newImages.*' => 'الصوره'
     ],
 ];

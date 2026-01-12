@@ -149,16 +149,16 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="tags"> {{ __('dashboard.tags') }} :</label>
-                        <input type="text" wire:model="tags" id="tags" class="form-control"
-                               placeholder="Add tags">
-                        @error('tags')
-                        <span class="text-danger" role="alert">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
+{{--                <div class="col-md-6">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="tags"> {{ __('dashboard.tags') }} :</label>--}}
+{{--                        <input type="text" wire:model="tags" id="tags" class="form-control"--}}
+{{--                               placeholder="Add tags">--}}
+{{--                        @error('tags')--}}
+{{--                        <span class="text-danger" role="alert">{{ $message }}</span>--}}
+{{--                        @enderror--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
             </div>
             <button class="btn btn-primary pull-right mb-3" wire:click="fristStep"

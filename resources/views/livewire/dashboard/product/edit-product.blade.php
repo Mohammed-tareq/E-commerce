@@ -9,6 +9,16 @@
             <strong>{{ $successMessage }}!</strong>
         </div>
     @endif
+        @if (!empty($errorMessage) && $currentStep == 3)
+            <div id="successMessageWire" class="alert bg-danger alert-icon-left alert-arrow-left alert-dismissible mb-2"
+                 role="alert">
+                <span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>{{ $errorMessage }}!</strong>
+            </div>
+        @endif
 
     <ul class="wizard-timeline center-align">
         <li class="{{ $currentStep > 1 ? 'completed' : '' }}">
@@ -22,10 +32,6 @@
         <li class="active {{ $currentStep > 3 ? 'completed' : '' }}">
             <span class="step-num">3</span>
             <label>{{ __('dashboard.product_images') }}</label>
-        </li>
-        <li class="{{ $currentStep == 4 ? 'completed' : '' }}">
-            <span class="step-num">4</span>
-            <label>{{ __('dashboard.confirmation') }}</label>
         </li>
     </ul>
 
@@ -149,16 +155,16 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="tags"> {{ __('dashboard.tags') }} :</label>
-                        <input type="text" wire:model="tags" id="tags" class="form-control"
-                               placeholder="Add tags">
-                        @error('tags')
-                        <span class="text-danger" role="alert">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
+{{--                <div class="col-md-6">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="tags"> {{ __('dashboard.tags') }} :</label>--}}
+{{--                        <input type="text" wire:model="tags" id="tags" class="form-control"--}}
+{{--                               placeholder="Add tags">--}}
+{{--                        @error('tags')--}}
+{{--                        <span class="text-danger" role="alert">{{ $message }}</span>--}}
+{{--                        @enderror--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
             </div>
             <button class="btn btn-primary pull-right mb-3" wire:click="fristStep"
@@ -309,7 +315,7 @@
                                     <select wire:model="attributeValues.{{ $i }}.{{ $attr->id }}"
                                             class="form-control">
 
-                                        <option value="" selected>Select</option>
+                                            <option value="" selected>Select</option>
                                         @foreach ($attr->attributeValues as $item)
                                             <option value="{{ $item->id}}">{{ $item->value }}</option>
                                         @endforeach
@@ -413,21 +419,6 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click="thirdStep"
-                    type="button">{{ __('dashboard.next') }}!
-            </button>
-            <button class="btn btn-danger  pull-right  mb-3" type="button"
-                    wire:click="backStep">{{ __('dashboard.back') }}</button>
-
-        </div>
-
-        {{-- Confirm Step Display Data --}}
-        <div class="setup-content {{ $currentStep != 4 ? 'displayNone' : '' }}" id="step-4">
-            <div class="row">
-                <!-- Product Details -->
-
-            </div>
-
             <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click="submitForm"
                     type="button">{{ __('dashboard.edit') }}!
             </button>
@@ -435,6 +426,7 @@
                     wire:click="backStep">{{ __('dashboard.back') }}</button>
 
         </div>
+
     </form>
 </section>
 

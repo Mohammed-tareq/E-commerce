@@ -7,6 +7,7 @@ use App\Repositories\Dashboard\Product\ProductVariantAttributeRepository;
 use App\Repositories\Dashboard\Product\ProductVariantRepository;
 use App\Utils\ImageManagement;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class ProductService
@@ -55,30 +56,85 @@ class ProductService
 
             $product = $this->productRepository->createProduct($productData);
 
+            if (!$product) {
+                return false;
+            }
             if (!empty($variants)) {
                 foreach ($variants as $variant) {
                     $variant['product_id'] = $product->id;
                     $productVariant = $this->productVariantRepository->createProductVariant($variant);
+                    if (!$productVariant) {
+                        return false;
+                    }
 
                     foreach ($variant['attribute_values'] as $productVariantAttribute) {
-                        $this->productVariantAttributeRepository->createProductVariantAttribute([
+                        $productVariantAttributeCreated = $this->productVariantAttributeRepository->createProductVariantAttribute([
                             'product_variant_id' => $productVariant->id,
                             'attribute_value_id' => $productVariantAttribute
                         ]);
+                        if (!$productVariantAttributeCreated) {
+                            return false;
+                        }
                     }
                 }
             }
 
             $this->imageManagement->UploadImages($images, $product, 'products');
 
-
             DB::commit();
+            return true;
 
         } catch (\Exception $e) {
             DB::rollBack();
+            return false;
         }
     }
 
+    public function updateProduct($product, $productData, $variants , $images)
+    {
+        try {
+
+            DB::beginTransaction();
+
+            $productStatus = $this->productRepository->updateProduct($product, $productData);
+            if (!$productStatus) {
+                return false;
+            }
+
+            if (!empty($variants)) {
+
+                $deleteProductVariant = $this->productVariantRepository->deleteProductVariantByProductId($product->id);
+                if (!$deleteProductVariant)
+                {
+                    return false;
+                }
+
+                foreach ($variants as $variant) {
+                    $variantCreated = $this->productVariantRepository->createProductVariant($variant);
+                    if (!$variantCreated)
+                    {
+                        return false;
+                    }
+
+                    foreach ($variant['attribute_values'] as $attributeValues) {
+                        $attributeValueCreated = $this->productVariantAttributeRepository->createProductVariantAttribute([
+                            'product_variant_id' => $variantCreated->id,
+                            'attribute_value_id' => $attributeValues
+                        ]);
+                        if (!$attributeValueCreated) {
+                            return false;
+                        }
+                    }
+                }
+                $this->imageManagement->UploadImages($images , $product , 'products');
+                DB::commit();
+                return true;
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return false;
+        }
+    }
 
     public function showProduct($id)
     {
@@ -123,21 +179,19 @@ class ProductService
 
     public function getProductSingleImage($imageId)
     {
-       $image = $this->productRepository->deleteProductImage($imageId);
-       if($image)
-       {
-          return $image;
-       }
-       return false;
+        $image = $this->productRepository->deleteProductImage($imageId);
+        if ($image) {
+            return $image;
+        }
+        return false;
     }
-    public function deleteProductImage($imageId , $imagePath)
+
+    public function deleteProductImage($imageId, $imagePath)
     {
-        if($imagePath)
-        {
+        if ($imagePath) {
             $this->imageManagement->deleteImageFromLocal($imagePath);
         }
-        if($imageId)
-        {
+        if ($imageId) {
             return $this->getProductSingleImage($imageId);
         }
 

@@ -1,0 +1,1 @@
+Enhance product module: add product update functionality in repositories and services, refine Livewire components for validation and error handling, update image and variant management logic, and improve Blade views for better user experience and localization.

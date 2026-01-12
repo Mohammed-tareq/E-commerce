@@ -5,6 +5,7 @@ namespace App\Services\Dashboard;
 use App\Repositories\Dashboard\AttributeRepository;
 use App\Repositories\Dashboard\AttributeValueRepository;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 class AttributeService
 {
