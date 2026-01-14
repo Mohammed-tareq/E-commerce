@@ -1,1 +1,2 @@
 Enhance product module: add product update functionality in repositories and services, refine Livewire components for validation and error handling, update image and variant management logic, and improve Blade views for better user experience and localization.
+Add user management module: implement user creation with address dropdown, validation, and dynamic status handling; enhance DataTables for listing, status changes, and deletion via AJAX; add seeder, factory, localization, and Livewire components for better user flow.

@@ -62,6 +62,14 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        'users' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/users'),
+            'url' => env('APP_URL') . '/uploads/users',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
         'settings' => [
             'driver' => 'local',
             'root' => public_path('uploads/settings'),

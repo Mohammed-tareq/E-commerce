@@ -42,8 +42,8 @@ class ProductService
             ->addColumn('images', fn($product) => view('dashboard.product.data-table.image', compact('product')))
             ->addColumn('price', fn($product) => $product->price())
             ->addColumn('qty', fn($product) => $product->qty())
-            ->addColumn('category', fn($product) => $product->category->name)
-            ->addColumn('brand', fn($product) => $product->brand->name)
+            ->addColumn('category', fn($product) => $product->category->getTranslation('name', app()->getLocale()))
+            ->addColumn('brand', fn($product) => $product->brand->getTranslation('name', app()->getLocale()))
             ->addColumn('action', fn($product) => view('dashboard.product.data-table.action', compact('product')))
             ->rawColumns(['action', 'images'])
             ->make(true);

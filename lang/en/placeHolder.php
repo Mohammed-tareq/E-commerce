@@ -17,5 +17,8 @@ return[
     'attribute_name_en' => 'Enter Attribute Name in English',
     'attribute_value_ar' => 'Enter Attribute Value in Arabic',
     'attribute_value_en' => 'Enter Attribute Value in English',
-
+    'phone' => 'Enter Phone number',
+    'country' => 'Select Country',
+    'governorate' => 'Select Governorate',
+    'city' => 'Select City',
     ];

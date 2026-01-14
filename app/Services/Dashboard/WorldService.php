@@ -24,16 +24,19 @@ class WorldService
 
     public function getGovernorateById($id)
     {
-        $governorate = $this->worldRepository->getGovernorateById($id);
-        if (!$governorate) {
-            abort(404);
-        }
+        $governorate = $this->worldRepository->getGovernorateById($id) ?? false;
+
         return $governorate;
     }
 
-    public function getCountries()
+    public function getCounties()
     {
-        $countries = $this->worldRepository->getCountries();
+        return $this->worldRepository->getCounties();
+    }
+
+    public function getCountriesWithEagerLoad()
+    {
+        $countries = $this->worldRepository->getCountriesWithEagerLoad();
         if (!$countries) {
             abort(404);
         }
@@ -50,14 +53,21 @@ class WorldService
         return $governorates;
     }
 
+    public function getGovernorateByCountryId($id)
+    {
+        return $this->worldRepository->getGovernorateByCountryId($id) ?? abort(404);
+    }
+
     public function getCityByGovernorate($id)
     {
         $governorate = self::getGovernorateById($id);
-        $cities = $this->worldRepository->getCityByGovernorate($governorate);
-        if (!$cities) {
-            abort(404);
+
+        if ($governorate) {
+            $cities = $this->worldRepository->getCityByGovernorate($governorate) ?? false;
+            return $cities;
         }
-        return $cities;
+        return abort(404);
+
     }
 
     public function changeStatusForCountry($id)
@@ -84,7 +94,7 @@ class WorldService
     public function changeShippingPrice($date)
     {
         $governorate = self::getGovernorateById($date['governorate_id']);
-        $shippingPrice = $this->worldRepository->changeShippingPrice($governorate,$date['price']);
+        $shippingPrice = $this->worldRepository->changeShippingPrice($governorate, $date['price']);
         return $shippingPrice;
 
     }

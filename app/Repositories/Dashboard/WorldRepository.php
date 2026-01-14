@@ -20,7 +20,17 @@ class WorldRepository
         return Governorate::find($id);
     }
 
-    public function getCountries()
+    public function getGovernorateByCountryId($id)
+    {
+        return Governorate::where('country_id',$id)->get();
+    }
+
+    public function getCounties()
+    {
+        return Country::all();
+    }
+
+    public function getCountriesWithEagerLoad()
     {
         return Country::with(['users','governorates'])->withCount(['users','governorates'])->when(!empty(request()->search), function ($query) {
             $query->where('name', 'like', '%' . request()->search . '%');

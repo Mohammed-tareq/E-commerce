@@ -151,7 +151,14 @@ return [
     'next' => 'Next',
     'back' => 'Back',
     'updated_at' => 'Updated At',
-    'error_Image' => 'Product Should Have Images'
+    'error_Image' => 'Product Should Have Images',
+    'users' => 'Users',
+    'create_user' => 'Create User',
+    'error_order_message' => 'User Have Order Not Completed',
+    'phone' => 'Phone Number',
+    'country' => 'Country',
+    'governorate' => 'Governorate',
+    'city' => 'City'
 
 
 ];

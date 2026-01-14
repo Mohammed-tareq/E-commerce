@@ -1,5 +1,5 @@
 <?php
-return[
+return [
     'role_ar' => 'اكتب الدور بالعربي',
     'role_en' => 'اكتب الدور بالانجليزي',
     'name' => 'اكتب الاسم  ',
@@ -12,9 +12,13 @@ return[
     'start_date' => 'تاريخ البدايه',
     'end_date' => 'تاريخ النهايه',
     'limiter' => 'عدد الاستخدام',
-    'discount_percentage'=> 'نسبه المئويه للخصم',
+    'discount_percentage' => 'نسبه المئويه للخصم',
     'attribute_name_ar' => 'اسم الخاصه بالعربي',
     'attribute_name_en' => 'اسم الخاصه بالانجليزي',
     'attribute_value_ar' => 'قيمه الخاصه بالعربي',
     'attribute_value_en' => 'قيمه الخاصه بالانجليزي',
-    ];
+    'phone' => 'ادخل رقم الهاتف',
+    'country' => 'اختر البلد',
+    'governorate' => 'اختر المحافظه',
+    'city' => 'اختر المدينه',
+];

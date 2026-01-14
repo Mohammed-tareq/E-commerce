@@ -28,7 +28,7 @@ class WorldController extends Controller implements HasMiddleware
     public function getCountries()
     {
 
-        $countries = $this->worldService->getCountries();
+        $countries = $this->worldService->getCountriesWithEagerLoad();
         if (!$countries) {
             return redirect()->back()->with('error', __('dashboard.operation_error'));
         }

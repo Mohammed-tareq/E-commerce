@@ -47,6 +47,13 @@
                 </li>
             @endcan
 
+            @can('users')
+                <li><a class="menu-item" href="{{ route('dashboard.user.index') }}"
+                       data-i18n="nav.templates.horz.main"><i
+                                class="la la-user-secret"></i>{{ __('dashboard.users') }}<span
+                                class="badge badge badge-success float-right mr-2">{{ $users_count }}</span></a>
+                </li>
+            @endcan
             @can('shipping')
                 <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main"><i
                                 class="la la-map"></i>{{ __('dashboard.countries') }}</a>

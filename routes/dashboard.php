@@ -13,6 +13,7 @@ use App\Http\Controllers\Dashboard\Product\Attribute\AttributeController;
 use App\Http\Controllers\Dashboard\Product\ProductController;
 use App\Http\Controllers\Dashboard\Role\RoleController;
 use App\Http\Controllers\Dashboard\Setting\SettingController;
+use App\Http\Controllers\Dashboard\User\UserController;
 use App\Http\Controllers\Dashboard\World\WorldController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
@@ -113,6 +114,14 @@ Route::group(
             Route::get('product/{id}/status',[ProductController::class,'changeStatus'])->name('product.status');
             Route::delete('product/{productId}/variants/{variantId}',[ProductController::class,'deleteVariant'])->name('product.variant.delete');
 
+            ######################################### Users ###############################################
+            Route::prefix('users')->controller(UserController::class)->name('user.')->group(function (){
+                Route::get('/','index')->name('index');
+                Route::get('/users-all' , 'getUsers')->name('all');
+                Route::post('/create','createUser')->name('create');
+                Route::get('/{id}/status','changeStatus')->name('status');
+                Route::delete('/{id}/delete','deleteUser')->name('delete');
+            });
 
             Route::get('/welcome', function () {
                 return view('dashboard/welcome');
