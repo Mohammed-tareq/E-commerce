@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\Auth\Password\ResetpasswordController;
 use App\Http\Controllers\Dashboard\Auth\Password\VerifyEmailController;
 use App\Http\Controllers\Dashboard\Category\BrandController;
 use App\Http\Controllers\Dashboard\Category\CategoryController;
+use App\Http\Controllers\Dashboard\contact\ContactController;
 use App\Http\Controllers\Dashboard\Coupon\CouponController;
 use App\Http\Controllers\Dashboard\Faq\FaqController;
 use App\Http\Controllers\Dashboard\Product\Attribute\AttributeController;
@@ -122,6 +123,9 @@ Route::group(
                 Route::get('/{id}/status','changeStatus')->name('status');
                 Route::delete('/{id}/delete','deleteUser')->name('delete');
             });
+
+            ######################################### contact ###############################################
+            Route::get('contacts' , [ContactController::class , 'index'])->name('contact.index');
 
             Route::get('/welcome', function () {
                 return view('dashboard/welcome');

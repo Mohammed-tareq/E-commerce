@@ -12,9 +12,6 @@
 <!-- END PAGE VENDOR JS-->
 
 
-
-
-
 <script src="{{ asset('assets/dashboard') }}/vendors/js/forms/toggle/bootstrap-switch.min.js" type="text/javascript">
 </script>
 <script src="{{ asset('assets/dashboard') }}/vendors/js/forms/toggle/bootstrap-checkbox.min.js" type="text/javascript">
@@ -32,6 +29,8 @@
 <!-- END MODERN JS-->
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="{{ asset('assets/dashboard') }}/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script>
+<script src="{{ asset('assets/dashboard/') }}js/scripts/pages/email-application.js" type="text/javascript"></script>
+
 <!-- END PAGE LEVEL JS-->
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

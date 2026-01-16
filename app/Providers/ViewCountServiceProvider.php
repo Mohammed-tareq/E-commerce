@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Admin;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Coupon;
 use App\Models\Faq;
 use App\Models\Product;
@@ -24,7 +25,7 @@ class ViewCountServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        view()->composer('dashboard.*', function () {
+        view()->composer('dashboard.*', callback: function () {
             $models = [
                 'admins_count' => Admin::class,
                 'categories_count' => Category::class,
@@ -39,6 +40,10 @@ class ViewCountServiceProvider extends ServiceProvider
             foreach ($models as $key => $model) {
                 $counts[$key] = Cache::remember($key, 3600, fn() => $model::count());
             }
+
+
+            $counts['contact_count'] = Cache::remember('contact_count', 3600,
+                fn() => Contact::where('is_read', true)->count());
 
             view()->share($counts);
         });
