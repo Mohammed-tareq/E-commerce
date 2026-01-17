@@ -19,7 +19,11 @@ return new class extends Migration
             $table->string('phone');
             $table->string('subject');
             $table->text('message');
+            $table->boolean('star')->default(false);
+            $table->boolean('replayed')->default(false);
+            $table->boolean('spam')->default(false);
             $table->boolean('is_read')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

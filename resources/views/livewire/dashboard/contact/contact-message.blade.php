@@ -12,7 +12,13 @@
         <div id="users-list" class="list-group">
             <div class="users-list-padding media-list">
                 @forelse($messages as $msg)
-                    <a href="#" wire:click="showMessage({{ $msg->id }})"
+                    <a href="#"
+                       wire:key="message-{{ $msg->id }}"
+                       @if($screen === 'trashed')
+                           wire:click.debounce="showDeletedMessage({{ $msg->id }})"
+                       @else
+                           wire:click="showMessage({{ $msg->id }})"
+                       @endif
                        class="media border-0"
                        style="background-color: {{ $messageSelected == $msg->id ? '#D3DCED' : '' }}">
                         <div class="media-left pr-1">
@@ -31,9 +37,13 @@
                                 {{substr($msg->subject,0,20) }}...</p>
                             <p class="list-group-item-text mb-0">
                                 {{ substr($msg->message,0,20) }}...
-                                <span class="float-right primary">
-                          <span class="badge badge-danger mr-1">New Contact</span> <i
-                                            class="font-medium-1 ft-star blue-grey lighten-3"></i></span>
+                                @if(!$msg->is_read)
+                                    <span class="float-right  badge badge-danger">
+                                       New Contact</span>
+                                @else
+                                    <span class="float-right  badge badge-success">
+                                      Readed</span>
+                                @endif
                             </p>
                         </div>
                     </a>

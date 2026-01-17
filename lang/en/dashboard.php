@@ -158,7 +158,13 @@ return [
     'phone' => 'Phone Number',
     'country' => 'Country',
     'governorate' => 'Governorate',
-    'city' => 'City'
+    'city' => 'City',
+    'contacts' => 'Contacts',
+    'subject' => 'Subject',
+    'messages' => 'Messages',
+    'replay_message' => ' Replay Message',
+    'replay_contact'=> 'Replay Contact',
+    'message_form' => 'Message From'
 
 
 ];

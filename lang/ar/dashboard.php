@@ -158,6 +158,13 @@ return [
     'phone' => 'رقم الهاتف',
     'country' => 'البلد',
     'governorate' => 'الماحفظه',
-    'city' => 'المدينه'
+    'city' => 'المدينه',
+    'contacts' => 'التواصل',
+    'subject' => 'العنوان',
+    'messages' => 'الرسايل',
+    'replay_message' =>  'اعاده توجيه',
+    'replay_contact' =>'إعاده توجيه المحتوى',
+    'message_form' => 'رساله من'
+
 
 ];

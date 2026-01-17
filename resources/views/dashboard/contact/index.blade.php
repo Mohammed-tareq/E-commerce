@@ -23,6 +23,9 @@
         {{-- contact show--}}
         @livewire('dashboard.contact.contact-show')
     </div>
+
+    {{-- replay contact modal--}}
+    @livewire('dashboard.contact.replay-contact')
 @endsection
 
 @push('js')
@@ -48,7 +51,7 @@
                     reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Livewire.dispatch('delete-message', [id] );
+                        Livewire.dispatch('delete-message', [id]);
                     }
                 });
             });
@@ -57,10 +60,83 @@
                 Swal.fire({
                     position: "center",
                     icon: "success",
-                    title: msg,
+                    title: "{{ __('dashboard.operation_success') }}",
                     showConfirmButton: false,
                     timer: 2000
                 });
+            });
+            Livewire.on('force-message-deleted', () => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "{{ __('dashboard.operation_success') }}",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            });
+
+            // updating read contact
+            Livewire.on('update-contact-read', (msg) => {
+                if (msg) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "{{ __('dashboard.operation_success') }}",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "{{ __('dashboard.operation_error') }}",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            });
+
+
+            // updating spam contact
+            Livewire.on('update-contact-spam', (msg) => {
+                if (msg) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "{{ __('dashboard.operation_success') }}",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "{{ __('dashboard.operation_error') }}",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            });
+
+            {{--// updating star contact--}}
+            Livewire.on('update-contact-star', (msg) => {
+                if (msg) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "{{ __('dashboard.operation_success') }}",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "{{ __('dashboard.operation_error') }}",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
             });
         })
     </script>

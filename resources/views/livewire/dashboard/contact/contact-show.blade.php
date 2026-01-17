@@ -5,165 +5,148 @@
         <div class="content-body">
             <div class="card email-app-details d-none d-lg-block">
                 <div class="card-content">
-                    <div class="email-app-options card-body">
-                        <div class="row">
-                            <div class="col-md-6 col-12">
-                                <div class="btn-group" role="group"
-                                     aria-label="Basic example">
-                                    <button type="button"
-                                            class="btn btn-sm btn-outline-secondary"
-                                            data-toggle="tooltip"
-                                            data-placement="top"
-                                            data-original-title="Replay"><i
-                                                class="la la-reply"></i></button>
-                                    <button type="button"
-                                            class="btn btn-sm btn-outline-secondary"
-                                            data-toggle="tooltip"
-                                            data-placement="top"
-                                            data-original-title="Replay All"><i
-                                                class="la la-reply-all"></i></button>
-                                    <button type="button"
-                                            class="btn btn-sm btn-outline-secondary"
-                                            data-toggle="tooltip"
-                                            data-placement="top"
-                                            data-original-title="Report SPAM"><i
-                                                class="ft-alert-octagon"></i></button>
-                                    <button type="button"
-                                            wire:click="$dispatch('ask-delete', {{ $lastMessage->id }})"
-                                            class="btn btn-sm btn-outline-secondary"
-                                            data-toggle="tooltip"
-                                            data-placement="top"
-                                            data-original-title="Delete"><i
-                                                class="ft-trash-2"></i></button>
+                    @if($lastMessage)
+                        <div class="email-app-options card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <div class="btn-group" role="group"
+                                         aria-label="Basic example">
+                                        <button type="button"
+                                                wire:click="repalyContact({{ $lastMessage->id }})"
+                                                class="btn btn-sm btn-primary"
+                                                data-toggle="tooltip"
+                                                data-placement="top"
+                                                data-original-title="Replay"><i
+                                                    class="la la-reply"></i></button>
+                                        <button type="button"
+                                                wire:click="$dispatch('ask-delete', {{ $lastMessage->id }})"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                data-toggle="tooltip"
+                                                data-placement="top"
+                                                data-original-title="Delete"><i
+                                                    class="ft-trash-2"></i></button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-12 text-right">
-                                <div class="btn-group" role="group"
-                                     aria-label="Basic example">
-                                    <button type="button"
-                                            class="btn btn-sm btn-outline-secondary"
-                                            data-toggle="tooltip"
-                                            data-placement="top"
-                                            data-original-title="Previous"><i
-                                                class="la la-angle-left"></i></button>
-                                    <button type="button"
-                                            class="btn btn-sm btn-outline-secondary"
-                                            data-toggle="tooltip"
-                                            data-placement="top" data-original-title="Next">
-                                        <i class="la la-angle-right"></i></button>
-                                </div>
-                                <div class="btn-group ml-1">
-                                    <button type="button"
-                                            class="btn btn-sm btn-outline-secondary dropdown-toggle"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">More
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Mark as unread</a>
-                                        <a class="dropdown-item" href="#">Mark as
-                                            unimportant</a>
-                                        <a class="dropdown-item" href="#">Add star</a>
-                                        <a class="dropdown-item" href="#">Add to task</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Filter mail</a>
+                                <div class="col-md-6 col-12 text-right">
+                                    <div class="btn-group" role="group"
+                                         aria-label="Basic example">
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                data-toggle="tooltip"
+                                                data-placement="top"
+                                                data-original-title="Previous"><i
+                                                    class="la la-angle-left"></i></button>
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-secondary"
+                                                data-toggle="tooltip"
+                                                data-placement="top" data-original-title="Next">
+                                            <i class="la la-angle-right"></i></button>
+                                    </div>
+                                    <div class="btn-group ml-1">
+                                        <button type="button"
+                                                class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">More
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            @if($lastMessage->is_read)
+                                                <a class="dropdown-item"
+                                                   wire:click.prevent="changeReadStatus({{ $lastMessage->id }})"
+                                                   href="#">Mark
+                                                    as unread</a>
+                                            @else
+                                                <a class="dropdown-item"
+                                                   wire:click.prevent="changeReadStatus({{ $lastMessage->id }})"
+                                                   href="#">Mark
+                                                    as Read</a>
+                                            @endif
+
+                                            @if($lastMessage->spam)
+                                                <a class="dropdown-item"
+                                                   wire:click.prevent="changeSpamStatus({{ $lastMessage->id }})"
+                                                   href="#">Mark
+                                                    As unimportant</a>
+                                            @else
+                                                <a class="dropdown-item"
+                                                   wire:click.prevent="changeSpamStatus({{ $lastMessage->id }})"
+                                                   href="#">Mark
+                                                    As important</a>
+                                            @endif
+                                            @if($lastMessage->star)
+                                                <a class="dropdown-item"
+                                                   wire:click.prevent="changeStarStatus({{ $lastMessage->id }})"
+                                                   href="#">
+                                                    Remove Form Star</a>
+                                            @else
+                                                <a class="dropdown-item"
+                                                   wire:click.prevent="changeStarStatus({{ $lastMessage->id }})"
+                                                   href="#">
+                                                    Add To Star</a>
+                                            @endif
+                                            @if($lastMessage->deleted_at)
+                                                <a class="dropdown-item"
+                                                   wire:click.prevent="restoreContact({{ $lastMessage->id }})"
+                                                   href="#">
+                                                    Restore From Trash</a>
+                                                @if($screen === 'trashed')
+                                                    <a class="dropdown-item"
+                                                       wire:click.prevent="forceDeleteMessage({{ $lastMessage->id }})"
+                                                       href="#">
+                                                        Delete For ever</a>
+
+                                                @endif
+                                            @else
+                                                <a class="dropdown-item"
+                                                   wire:click.prevent="forceDeleteMessage({{ $lastMessage->id }})"
+                                                   href="#">
+                                                    Delete For ever</a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="email-app-title card-body">
-                        <h3 class="list-group-item-heading">{{ __('dashboard.messages') }}</h3>
-                        <p class="list-group-item-text">
+                        <div class="email-app-title card-body">
+                            <h3 class="list-group-item-heading">{{ __('dashboard.messages') }}</h3>
+                            <p class="list-group-item-text">
                   <span class="primary">
                     <span class="badge badge-primary">{{ __('dashboard.message_form') }} {{ $lastMessage->name ?? '' }}</span> <i
                               class="float-right font-medium-3 ft-star warning"></i></span>
-                        </p>
-                    </div>
-                    <div class="media-list">
-                        <div id="headingCollapse1" class="card-header p-0">
-                            <a data-toggle="collapse" href="#collapse1" aria-expanded="true"
-                               aria-controls="collapse1"
-                               class="collapsed email-app-sender media border-0 bg-blue-grey bg-lighten-5">
-                                <div class="media-left pr-1">
+                            </p>
+                        </div>
+                        <div class="media-list">
+                            <div id="headingCollapse1" class="card-header p-0">
+                                <a data-toggle="collapse" href="#collapse1" aria-expanded="true"
+                                   aria-controls="collapse1"
+                                   class="collapsed email-app-sender media border-0 bg-blue-grey bg-lighten-5">
+                                    <div class="media-left pr-1">
                       <span class="avatar avatar-md">
                         <img class="media-object rounded-circle"
                              src="{{ asset($lastMessage->user->image) }}"
                              alt="{{ $lastMessage->user->name }}">
                       </span>
-                                </div>
-                                <div class="media-body w-100">
-                                    <h6 class="list-group-item-heading">{{ $lastMessage->user->name }}</h6>
-                                    <p class="list-group-item-text text-primary">
-                                        {{ $lastMessage->subject  }}
-                                        <span class="float-right text-primary muted">{{ $lastMessage->created_at->diffForHumans() }}</span>
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                        <div id="collapse1" role="tabpanel"
-                             aria-labelledby="headingCollapse1"
-                             class="card-collapse collapse"
-                             aria-expanded="true">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <p>{{ $lastMessage->message }}</p>
+                                    </div>
+                                    <div class="media-body w-100">
+                                        <h6 class="list-group-item-heading">{{ $lastMessage->user->name }}</h6>
+                                        <p class="list-group-item-text text-primary">
+                                            {{ $lastMessage->subject  }}
+                                            <span class="float-right text-primary muted">{{ $lastMessage->created_at->diffForHumans() }}</span>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div id="collapse1" role="tabpanel"
+                                 aria-labelledby="headingCollapse1"
+                                 class="card-collapse collapse"
+                                 aria-expanded="true">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <p>{{ $lastMessage->message }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-
-                        {{--                        <div id="headingCollapse2" class="card-header p-0">--}}
-                        {{--                            <a data-toggle="collapse" href="#collapse2"--}}
-                        {{--                               aria-expanded="false" aria-controls="collapse2"--}}
-                        {{--                               class="email-app-sender media border-0">--}}
-                        {{--                                <div class="media-left pr-1">--}}
-                        {{--                      <span class="avatar avatar-md">--}}
-                        {{--                        <img class="media-object rounded-circle"--}}
-                        {{--                             src="../../../app-assets/images/portrait/small/avatar-s-7.png"--}}
-                        {{--                             alt="Generic placeholder image">--}}
-                        {{--                      </span>--}}
-                        {{--                                </div>--}}
-                        {{--                                <div class="media-body w-100">--}}
-                        {{--                                    <h6 class="list-group-item-heading">Wayne Burton</h6>--}}
-                        {{--                                    <p class="list-group-item-text">to me--}}
-                        {{--                                        <span>Today</span>--}}
-                        {{--                                        <span class="float-right">--}}
-                        {{--                          <i class="la la-reply mr-1"></i>--}}
-                        {{--                          <i class="la la-arrow-right mr-1"></i>--}}
-                        {{--                          <i class="la la-ellipsis-v"></i>--}}
-                        {{--                        </span>--}}
-                        {{--                                    </p>--}}
-                        {{--                                </div>--}}
-                        {{--                            </a>--}}
-                        {{--                        </div>--}}
-                        {{--                        <div id="collapse2" role="tabpanel"--}}
-                        {{--                             aria-labelledby="headingCollapse2" class="card-collapse"--}}
-                        {{--                             aria-expanded="false">--}}
-                        {{--                            <div class="card-content">--}}
-                        {{--                                <div class="email-app-text card-body">--}}
-                        {{--                                    <div class="email-app-message">--}}
-                        {{--                                        <p>Hi John,</p>--}}
-                        {{--                                        <p>Thanks for your feedback ! Here's a new layout--}}
-                        {{--                                            for a new--}}
-                        {{--                                            Modern Admin theme.</p>--}}
-                        {{--                                        <p>We will start the new application development--}}
-                        {{--                                            soon once this--}}
-                        {{--                                            will be completed, I will provide you more--}}
-                        {{--                                            details after--}}
-                        {{--                                            this Saturday. Hope that will be fine for--}}
-                        {{--                                            you.</p>--}}
-                        {{--                                        <p>Hope your like it, or feel free to comment,--}}
-                        {{--                                            feedback or rebound--}}
-                        {{--                                            !--}}
-                        {{--                                        </p>--}}
-                        {{--                                        <p>Cheers~</p>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
-
-
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>

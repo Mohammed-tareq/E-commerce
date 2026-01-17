@@ -1,37 +1,51 @@
 <div class="email-app-menu col-md-8 card d-none mx-1 d-lg-block">
     <div class="form-group form-group-compose text-center">
-        <button type="button" class="btn btn-danger btn-block my-1"><i
-                    class="ft-mail"></i> Compose
+
+        <button type="button"
+                class="btn btn-danger btn-block my-1 dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"><i
+                    class="ft-mail mx-1"></i>Compose
         </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" wire:click.prevent="markAllAsRead" href="#">Mark All as Read</a>
+            <a class="dropdown-item" wire:click.prevent="deleteAllSpam" href="#">Delete All Spam</a>
+            <a class="dropdown-item" wire:click.prevent="deleteAllTrash" href="#">Delete All Trash</a>
+        </div>
     </div>
-    <h6 class="text-muted text-bold-500 mb-1">Messages</h6>
+    <h6 class="text-muted text-bold-500 mb-1">{{ __('dashboard.messages') }}</h6>
     <div class="list-group list-group-messages">
-        <a href="#" class="list-group-item active border-0">
+        <a wire:click="getScreen('index')"
+           href="#" class="list-group-item @if($screen === 'index') active @endif  border-0">
             <i class="ft-inbox mr-1"></i> Inbox
-            <span class="badge badge-secondary badge-pill float-right">8</span>
+            <span class="badge badge-secondary badge-pill float-right">{{ $inboxCount }}</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action border-0"><i
-                    class="la la-paper-plane-o mr-1"></i> Sent</a>
-        <a href="#" class="list-group-item list-group-item-action border-0"><i
-                    class="ft-file mr-1"></i> Draft</a>
-        <a href="#" class="list-group-item list-group-item-action border-0"><i
-                    class="ft-star mr-1"></i> Starred<span
-                    class="badge badge-danger badge-pill float-right">3</span>
+        <a wire:click="getScreen('readed')"
+           href="#" class="list-group-item @if($screen === 'readed') active @endif border-0">
+            <i class="ft-inbox mr-1"></i> Readed
+            <span class="badge badge-secondary badge-pill float-right">{{ $readedCount }}</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action border-0"><i
-                    class="ft-trash-2 mr-1"></i> Trash</a>
+        <a wire:click="getScreen('answered')"
+           href="#" class="list-group-item @if($screen === 'answered') active @endif border-0">
+            <i class="ft-inbox mr-1"></i> Answered
+            <span class="badge badge-secondary badge-pill float-right">{{ $replayedCount }}</span>
+        </a>
+        <a wire:click="getScreen('stared')"
+           href="#" class="list-group-item @if($screen === 'stared') active @endif border-0">
+            <i class="ft-inbox mr-1"></i> Starred
+            <span class="badge badge-secondary badge-pill float-right">{{ $starCount }}</span>
+        </a>
+        <a wire:click="getScreen('spamed')"
+           href="#" class="list-group-item @if($screen === 'spamed') active @endif border-0">
+            <i class="ft-inbox mr-1"></i> Spam
+            <span class="badge badge-secondary badge-pill float-right">{{ $spamCount }}</span>
+        </a>
+        <a wire:click="getScreen('trashed')"
+           href="#" class="list-group-item @if($screen === 'trashed') active @endif border-0">
+            <i class="ft-inbox mr-1"></i> Trash
+            <span class="badge badge-secondary badge-pill float-right">{{ $trashedCount }}</span>
+        </a>
+
     </div>
-    <h6 class="text-muted text-bold-500 mt-1 mb-1">Labels</h6>
-    <div class="list-group list-group-messages">
-        <a href="#" class="list-group-item list-group-item-action border-0">
-            <i class="ft-circle mr-1 warning"></i> Work
-            <span class="badge badge-warning badge-pill float-right">5</span>
-        </a>
-        <!--<a href="#" class="list-group-item list-group-item-action border-0"><i class="ft-circle mr-1 danger"></i> Family</a>-->
-        <!--<a href="#" class="list-group-item list-group-item-action border-0"><i class="ft-circle mr-1 primary"></i> Friends</a>-->
-        <a href="#" class="list-group-item list-group-item-action border-0"><i
-                    class="ft-circle mr-1 success"></i> Private <span
-                    class="badge badge-success badge-pill float-right">3</span>
-        </a>
-    </div>
+
 </div>
