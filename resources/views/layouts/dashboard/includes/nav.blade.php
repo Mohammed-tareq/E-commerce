@@ -8,7 +8,7 @@
                 <li class="nav-item mr-auto">
                     <a class="navbar-brand" href="index.html">
                         <img class="brand-logo" alt="modern admin logo"
-                             src="{{ asset('assets/dashboard') }}/images/logo/logo.png">
+                             src="{{ asset($setting->logo) }}">
                         <h3 class="brand-text">{{ config('app.name') }}</h3>
                     </a>
                 </li>

@@ -2,3 +2,7 @@ Enhance product module: add product update functionality in repositories and ser
 Add user management module: implement user creation with address dropdown, validation, and dynamic status handling; enhance DataTables for listing, status changes, and deletion via AJAX; add seeder, factory, localization, and Livewire components for better user flow.
 Add contact management module: implement migration, model, factory, seeder, repository-service pattern, Livewire components, views for listing and message display; add routes and blade updates for better user interaction.
 Add contact reply feature: implement Livewire component, modal for composing replies, and replay logic with service integration; update email layout, contact sidebar, and message display for improved user interaction.
+Add home module: implement `HomeController` with index method, update dashboard navigation for dynamic logo display, and integrate required CSS for frontend styling.
+Add website layout and update favicon implementation
+
+Introduced initial website layout including home view, header, footer, and related components. Updated the dashboard favicon handling to use dynamic settings instead of static paths for improved flexibility.
