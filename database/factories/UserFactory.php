@@ -20,7 +20,7 @@ class UserFactory extends Factory
     {
         do {
         $country = Country::inRandomOrder()->first();
-        } while ($country->governorates->count() ===0);
+        } while ($country->governorates->count() === 0);
         do {
             $govenorate = $country->governorates()->inRandomOrder()->first();
         } while ($govenorate->cities->count() === 0);
