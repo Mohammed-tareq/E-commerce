@@ -16,6 +16,7 @@
         "ichtrojan/laravel-otp": "^2.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "laravel/ui": "^4.6",
         "livewire/livewire": "^3.7",
         "mcamara/laravel-localization": "^2.3",
         "php-flasher/flasher-laravel": "^2.2",
