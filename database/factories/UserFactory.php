@@ -27,7 +27,8 @@ class UserFactory extends Factory
 
         $city = $govenorate->cities()->inRandomOrder()->first();
         return [
-            'name' => fake()->name(),
+            'first_name' => fake()->name(),
+            'last_name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->phoneNumber(),
             'country_id' => $country->id,

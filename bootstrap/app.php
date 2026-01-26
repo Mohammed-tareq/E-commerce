@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\setLocal;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -25,17 +24,16 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->redirectGuestsTo(function () {
             if (request()->is('*/dashboard/*'))
-
                 return route('dashboard.show-login');
-
-//                return route();
+            else
+                return route('website.login');
         });
 
         $middleware->redirectUsersTo(function () {
             if (Auth::guard('admin')->check() && request()->is('*/dashboard/*'))
                 return route('dashboard.welcome');
             else
-                return route('home');
+                return route('website.home');
         });
 
 

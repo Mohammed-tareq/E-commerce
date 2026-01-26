@@ -20,7 +20,7 @@ class ContactFactory extends Factory
         $user = User::inRandomOrder()->first();
         return [
             'user_id' => $user->id,
-            'name' => $user->name,
+            'name' => $user->first_name . ' ' . $user->last_name,
             'email' => $user->email,
             'phone' => $user->phone,
             'subject' => fake()->sentences(3,true),

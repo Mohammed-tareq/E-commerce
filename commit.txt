@@ -6,3 +6,4 @@ Add home module: implement `HomeController` with index method, update dashboard 
 Add website layout and update favicon implementation
 
 Introduced initial website layout including home view, header, footer, and related components. Updated the dashboard favicon handling to use dynamic settings instead of static paths for improved flexibility.
+Add user profile module: create `UserProfileController`, `SliderRepository`, authentication routes, and user registration/login views with localization support; refactor `User` model and migrations for first/last name fields, update filesystem config with `sliders` disk, and revise website layout.

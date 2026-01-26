@@ -8,7 +8,7 @@
 @include('layouts.website.inc.header')
 
 
-@yield('contact')
+@yield('content')
 
 
 @include('layouts.website.inc.footer')
