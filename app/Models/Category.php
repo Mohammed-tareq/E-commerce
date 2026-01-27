@@ -11,7 +11,7 @@ class Category extends Model
 {
     use Sluggable, HasTranslations;
 
-    protected $fillable = ['name', 'slug', 'parent', 'status'];
+    protected $fillable = ['name', 'slug', 'parent', 'status', 'image'];
 
     public $translatable = ['name'];
 
@@ -46,6 +46,13 @@ class Category extends Model
     {
         return Attribute::make(
             get: fn($valus) => (bool)$valus ? __('dashboard.Active') : __('dashboard.Inactive')
+        );
+    }
+
+    public function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn($valus) => 'uploads/categories/' . $valus
         );
     }
 

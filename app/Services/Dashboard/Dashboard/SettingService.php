@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Dashboard;
+namespace App\Services\Dashboard\Dashboard;
 
 use App\Repositories\Dashboard\SettingRepository;
 use App\Utils\ImageManagement;

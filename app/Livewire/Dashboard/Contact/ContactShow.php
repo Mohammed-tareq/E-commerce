@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Dashboard\Contact;
 
-use App\Services\Dashboard\ContactService;
+use App\Services\Dashboard\Dashboard\ContactService;
 use Livewire\Attributes\On;
 use Livewire\Component;
 

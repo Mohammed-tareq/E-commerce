@@ -34,6 +34,7 @@ class CategoryRequest extends FormRequest
                 })->whereNot('id', $this->route('id')),
 
             ],
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required|in:1,0',
         ];
     }

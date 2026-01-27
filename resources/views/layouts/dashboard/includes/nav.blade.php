@@ -222,12 +222,13 @@
                             <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>
                             <a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0)" id="logout-admin"><i class="ft-power" ></i> {{ __('auth.logout') }}</a>
+                            <a class="dropdown-item" href="javascript:void(0)"  onclick="document.getElementById('logout-form-admin').submit();" id="logout-admin"><i
+                                        class="ft-power"></i> {{ __('auth.logout') }}</a>
 
-                            <form id="logout-form-admin" action="{{ route('dashboard.logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-
+                            <form id="logout-form-admin" action="{{ route('dashboard.logout') }}" method="POST"
+                                  style="display: none;">
+                                @csrf
+                            </form>
 
 
                         </div>

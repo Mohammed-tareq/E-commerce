@@ -2,7 +2,7 @@
 
 namespace App\Livewire\General;
 
-use App\Services\Dashboard\WorldService;
+use App\Services\Dashboard\Dashboard\WorldService;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 

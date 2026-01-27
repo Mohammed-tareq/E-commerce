@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Dashboard\Product;
 
 use App\Http\Controllers\Controller;
 
-use App\Services\Dashboard\AttributeService;
-use App\Services\Dashboard\BrandService;
-use App\Services\Dashboard\CategoryService;
-use App\Services\Dashboard\ProductService;
+use App\Services\Dashboard\Dashboard\AttributeService;
+use App\Services\Dashboard\Dashboard\BrandService;
+use App\Services\Dashboard\Dashboard\CategoryService;
+use App\Services\Dashboard\Dashboard\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;

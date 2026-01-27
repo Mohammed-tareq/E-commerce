@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Dashboard\Product;
 
-use App\Services\Dashboard\ProductService;
+use App\Services\Dashboard\Dashboard\ProductService;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
