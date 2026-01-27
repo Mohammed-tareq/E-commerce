@@ -10,9 +10,14 @@
             showClose: true,
             maxFileCount: 1,
             allowedFileTypes: ['image'],
+            allowedFileExtensions: ['jpg','jpeg','png','gif','svg','webp'],
+
             @if(!empty($dataEdit))
             initialPreviewAsData: true,
             initialPreview: ['{{ asset($dataEdit) }}'],
+            initialPreviewConfig: [
+                { showRemove: false}
+            ],
             @endif
         });
     </script>

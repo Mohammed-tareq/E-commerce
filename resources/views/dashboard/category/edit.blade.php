@@ -50,7 +50,7 @@
                                 <div class="card-content collapse show">
                                     @include('incloudes.validate-error')
                                     <div class="card-body">
-                                        <form class="form" method="POST"
+                                        <form class="form" method="POST" enctype="multipart/form-data"
                                               action="{{ route('dashboard.categories.update', $category->id) }}">
                                             @csrf
                                             @method('PUT')
@@ -103,6 +103,15 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="single-image">{{ __('dashboard.image') }}</label>
+                                                            <input type="file" class="form-control"
+                                                                   name="image" id="single-image">
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                 <div class="form-actions">
                                                     <button type="reset" class="btn btn-warning mr-1">
@@ -127,6 +136,8 @@
         </div>
     </div>
 @endsection
+@include('incloudes.file-input.file-input',['dataEdit'=>$category->image])
+
 
 
 

@@ -1,0 +1,1 @@
+<img src="{{ asset($category->image) }}" class="img-fluid" width="50px" height="50px" alt="{{ $category->name }}">

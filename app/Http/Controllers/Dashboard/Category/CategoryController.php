@@ -41,7 +41,7 @@ class CategoryController extends Controller implements HasMiddleware
 
     public function store(CategoryRequest $request)
     {
-        $data = $request->only('name', 'parent' , 'status');
+        $data = $request->only('name', 'parent' , 'status', 'image');
         if(!$this->categoryService->storeCategory($data)){
             return redirect()->back()->with('error', __('dashboard.operation_failed'));
         }

@@ -51,6 +51,7 @@
                                     <th>#</th>
                                     <th>{{ __('dashboard.name') }}</th>
                                     <th>{{ __('dashboard.product_count') }}</th>
+                                    <th>{{ __('dashboard.image') }}</th>
                                     <th>{{ __('dashboard.status') }}</th>
                                     <th> {{ __('dashboard.created') }}</th>
                                     <th>{{ __('dashboard.actions') }}</th>
@@ -65,6 +66,7 @@
                                     <th>#</th>
                                     <th>{{ __('dashboard.name') }}</th>
                                     <th>{{ __('dashboard.product_count') }}</th>
+                                    <th>{{ __('dashboard.image') }}</th>
                                     <th>{{ __('dashboard.status') }}</th>
                                     <th> {{ __('dashboard.created') }}</th>
                                     <th>{{ __('dashboard.actions') }}</th>
@@ -123,6 +125,7 @@
                 {data: "DT_RowIndex", "orderable": false, "searchable": false},
                 {data: "name"},
                 {data: "products_count"},
+                {data: "image"},
                 {data: "status"},
                 {data: "created_at"},
                 {data: "action", "orderable": false, "searchable": false, "width": "10%", 'selectable': false,},
