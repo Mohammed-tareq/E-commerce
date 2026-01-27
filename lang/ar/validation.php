@@ -192,6 +192,8 @@ return [
         'price.*' => 'السعر',
         'quantities.*' => 'الكميه',
         'newImages' => 'االصور',
-        'newImages.*' => 'الصوره'
+        'newImages.*' => 'الصوره',
+        'note.*' => 'الوصف'
+
     ],
 ];

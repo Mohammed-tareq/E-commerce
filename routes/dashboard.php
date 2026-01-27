@@ -14,6 +14,7 @@ use App\Http\Controllers\Dashboard\Product\Attribute\AttributeController;
 use App\Http\Controllers\Dashboard\Product\ProductController;
 use App\Http\Controllers\Dashboard\Role\RoleController;
 use App\Http\Controllers\Dashboard\Setting\SettingController;
+use App\Http\Controllers\Dashboard\Slider\SliderController;
 use App\Http\Controllers\Dashboard\User\UserController;
 use App\Http\Controllers\Dashboard\World\WorldController;
 use Illuminate\Support\Facades\Route;
@@ -102,6 +103,13 @@ Route::group(
             Route::prefix('settings')->name('settings.')->group(function () {
                 Route::get('/', [SettingController::class, 'index'])->name('index');
                 Route::put('/update', [SettingController::class, 'update'])->name('update');
+            });
+            ###################################### Slider ######################################
+            Route::prefix('slider')->name('slider.')->group(function () {
+                Route::get('/', [SliderController::class, 'index'])->name('index');
+                Route::get('/slider-all', [SliderController::class, 'getSliders'])->name('all');
+                Route::post('/create', [SliderController::class, 'store'])->name('store');
+                Route::delete('/delete/{id}', [SliderController::class, 'delete'])->name('delete');
             });
 
             ###################################### product Attributes ######################################

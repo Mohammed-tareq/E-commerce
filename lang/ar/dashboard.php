@@ -26,6 +26,8 @@ return [
     'create_admin' => "انشاء مسئول",
     'edit_admin' => 'تعديل مسئول',
     'name' => 'الاسم',
+    'first_name' => 'الاسم الاول',
+    'last_name' => 'الاسم الاخير',
     'name_ar' => 'الاسم باللغه العربيه',
     'name_en' => 'الاسم باللغه الانجليزيه',
     'username' => 'اسم المُستخدم',
@@ -164,7 +166,11 @@ return [
     'messages' => 'الرسايل',
     'replay_message' =>  'اعاده توجيه',
     'replay_contact' =>'إعاده توجيه المحتوى',
-    'message_form' => 'رساله من'
+    'message_form' => 'رساله من',
+    'slider' => 'السلايدر',
+    'create_slider' => 'إنشاء سلايدر',
+    'note' => 'الملاحظة',
+    'yajra_table' => 'جدول البيانات'
 
 
 ];

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -36,10 +38,9 @@ class RegisterController extends Controller implements HasMiddleware
     protected $redirectTo = '/home';
 
 
-
     public static function middleware()
     {
-        return[
+        return [
             new Middleware('guest')
         ];
     }
@@ -47,6 +48,28 @@ class RegisterController extends Controller implements HasMiddleware
     public function showRegistrationForm()
     {
         return view('website.auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        if (!$this->checkTerms($request->terms)) {
+            return redirect()->back()->withErrors([
+                'terms' => 'You must accept the terms and conditions'
+            ]);
+        }
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
     }
 
     protected function validator(array $data)
@@ -58,9 +81,20 @@ class RegisterController extends Controller implements HasMiddleware
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['required', 'string', 'max:255'],
             'country_id' => ['required', 'integer', 'exists:countries,id'],
-            'governorate_id' => ['required', 'integer','exists:governorates,id'],
-            'city_id' => ['required', 'integer' , 'exists:cities,id'],
+            'governorate_id' => ['required', 'integer', 'exists:governorates,id'],
+            'city_id' => ['required', 'integer', 'exists:cities,id'],
+            'terms' => ['required', 'in:on']
         ]);
+    }
+
+    public function checkTerms($terms)
+    {
+        if ($terms === 'on' || $terms === 1) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 
@@ -77,6 +111,7 @@ class RegisterController extends Controller implements HasMiddleware
             'city_id' => $data['city_id']
         ]);
     }
+
     protected function guard()
     {
         return Auth::guard('web');
@@ -85,5 +120,6 @@ class RegisterController extends Controller implements HasMiddleware
     protected function registered(Request $request, $user)
     {
         Session::flash('success', __('dashboard.operation_success'));
+        return redirect()->route('website.user-profile');
     }
 }

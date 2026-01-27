@@ -149,6 +149,12 @@
                                 class="la la-user-secret"></i>{{ __('dashboard.settings') }}</a>
                 </li>
             @endcan
+            @can('slider')
+                <li><a class="menu-item" href="{{ route('dashboard.slider.index') }}"
+                       data-i18n="nav.templates.horz.main"><i
+                                class="la la-user-secret"></i>{{ __('dashboard.slider') }}</a>
+                </li>
+            @endcan
         </ul>
     </div>
 </div>

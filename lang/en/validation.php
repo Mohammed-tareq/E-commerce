@@ -257,7 +257,9 @@ return [
         'prices.*'               =>'Price',
         'quantities.*'          =>'Quantities',
         'newImages'             => 'Images',
-        'newImages.*'           => 'Image'
+        'newImages.*'           => 'Image',
+        'note.*'                  => 'Note',
+
     ],
 
 

@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             FaqSeeder::class,
             AttributeSeeder::class,
             UserSeeder::class,
-            ContactSeeder::class
+            ContactSeeder::class,
+            SliderSeeder::class
 
         ]);
     }

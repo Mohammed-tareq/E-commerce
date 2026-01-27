@@ -21,4 +21,6 @@ return[
     'country' => 'Select Country',
     'governorate' => 'Select Governorate',
     'city' => 'Select City',
+    'name_ar' => 'Enter Name in Arabic',
+    'name_en' => 'Enter Name in English'
     ];

@@ -28,4 +28,5 @@ return [
     'socials' => 'Manage Socials',
     'menus' => 'Manage Menus',
     'shipping' => 'Manage Shipping',
+    'slider' => 'Manage Slider',
 ];

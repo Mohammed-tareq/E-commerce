@@ -60,7 +60,8 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{ __('dashboard.name') }}</th>
+                                    <th>{{ __('dashboard.first_name') }}</th>
+                                    <th>{{ __('dashboard.last_name') }}</th>
                                     <th>{{ __('dashboard.email') }}</th>
                                     <th>{{ __('dashboard.phone') }}</th>
                                     <th> {{ __('dashboard.image') }}</th>
@@ -79,7 +80,8 @@
                                 <tfoot>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{ __('dashboard.name') }}</th>
+                                    <th>{{ __('dashboard.first_name') }}</th>
+                                    <th>{{ __('dashboard.last_name') }}</th>
                                     <th>{{ __('dashboard.email') }}</th>
                                     <th>{{ __('dashboard.phone') }}</th>
                                     <th> {{ __('dashboard.image') }}</th>
@@ -142,7 +144,8 @@
             ajax: "{{ route('dashboard.user.all') }}",
             columns: [
                 {data: "DT_RowIndex", "orderable": false, "searchable": false},
-                {data: "name"},
+                {data: "first_name"},
+                {data: "last_name"},
                 {data: "email"},
                 {data: "phone"},
                 {data: "image"},

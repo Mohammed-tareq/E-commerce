@@ -71,4 +71,11 @@ class User extends Authenticatable
             get: fn($value) => $value ? __('dashboard.Active') : __('dashboard.Inactive')
         );
     }
+
+    public function createdAt():Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => date('Y-m-d', strtotime($value))
+        );
+    }
 }

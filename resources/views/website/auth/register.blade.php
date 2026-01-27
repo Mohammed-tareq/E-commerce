@@ -63,7 +63,7 @@
                         </div>
                         <div class="review-form-name checkbox">
                             <div class="checkbox-item">
-                                <input type="checkbox" required>
+                                <input type="checkbox" name="terms" required>
                                 <p class="remember">
                                    {{ __('website.i_agree') }} <span class="inner-text">ShopUs.</span></p>
                             </div>

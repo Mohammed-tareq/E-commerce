@@ -29,6 +29,8 @@ return [
     'name_ar' => 'Name in Arabic',
     'name_en' => 'Name in English',
     'username' => 'Username',
+    'first_name' => 'First Name',
+    'last_name' => 'Last Name',
     'email' => 'Email',
     'created_at' => 'Created At',
     'Active' => "Active",
@@ -164,7 +166,11 @@ return [
     'messages' => 'Messages',
     'replay_message' => ' Replay Message',
     'replay_contact'=> 'Replay Contact',
-    'message_form' => 'Message From'
+    'message_form' => 'Message From',
+    'slider' => 'Slider',
+    'create_slider' => 'Create Slider',
+    'note' => 'Note',
+    'yajra_table' => 'Data Table'
 
 
 ];
