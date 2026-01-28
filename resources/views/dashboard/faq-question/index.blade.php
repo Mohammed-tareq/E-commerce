@@ -52,7 +52,7 @@
                                     <th>{{ __('dashboard.name') }}</th>
                                     <th>{{ __('dashboard.email') }}</th>
                                     <th>{{ __('dashboard.subject') }}</th>
-                                    <th>{{ __('dashboard.message') }}</th>
+                                    <th>{{ __('dashboard.content') }}</th>
                                     <th> {{ __('dashboard.created') }}</th>
                                     <th>{{ __('dashboard.actions') }}</th>
                                 </tr>
@@ -64,11 +64,10 @@
                                 <tfoot>
                                 <tr>
                                     <th>#</th>
-                                    <th>#</th>
                                     <th>{{ __('dashboard.name') }}</th>
                                     <th>{{ __('dashboard.email') }}</th>
                                     <th>{{ __('dashboard.subject') }}</th>
-                                    <th>{{ __('dashboard.message') }}</th>
+                                    <th>{{ __('dashboard.content') }}</th>
                                     <th> {{ __('dashboard.created') }}</th>
                                     <th>{{ __('dashboard.actions') }}</th>
                                 </tr>
@@ -121,7 +120,7 @@
                 }
             },
 
-            ajax: "{{ route('dashboard.page.all') }}",
+            ajax: "{{ route('dashboard.faq-question.all') }}",
             columns: [
                 {data: "DT_RowIndex", "orderable": false, "searchable": false},
                 {data: "name"},

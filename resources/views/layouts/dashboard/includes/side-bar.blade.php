@@ -152,8 +152,8 @@
                                             class="la la-user-secret"></i>{{ __('dashboard.faq') }}<span
                                             class="badge badge badge-success float-right mr-2">{{ $faqs_count }}</span></a>
                             </li>
-                        <li><a class="menu-item" href="{{ route('dashboard.faqs.index') }}"
-                               data-i18n="nav.templates.horz.top_icon">{{ __('dashboard.faq.question') }}</a>
+                        <li><a class="menu-item" href="{{ route('dashboard.faq-question.index') }}"
+                               data-i18n="nav.templates.horz.top_icon">{{ __('dashboard.faq_question') }}</a>
                         </li>
                     </ul>
                 </li>
