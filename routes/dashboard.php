@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\Category\CategoryController;
 use App\Http\Controllers\Dashboard\contact\ContactController;
 use App\Http\Controllers\Dashboard\Coupon\CouponController;
 use App\Http\Controllers\Dashboard\Faq\FaqController;
+use App\Http\Controllers\Dashboard\Faq\FaqQuestionController;
 use App\Http\Controllers\Dashboard\Page\PageController;
 use App\Http\Controllers\Dashboard\Product\Attribute\AttributeController;
 use App\Http\Controllers\Dashboard\Product\ProductController;
@@ -98,7 +99,16 @@ Route::group(
             Route::get('coupon/{id}/status', [CouponController::class, 'changeStatus'])->name('coupon.status');
 
             ######################################Faqs ######################################
-            Route::resource('faqs', FaqController::class)->except(['show', 'create', 'edit']);
+            Route::middleware('can:faqs')->group(function () {
+                Route::resource('faqs', FaqController::class)->except(['show', 'create', 'edit']);
+                ###################################### faqQuestion ############################
+                Route::controller(FaqQuestionController::class)->name('faq-question.')->group(function () {
+                    Route::get('faq-question', 'index')->name('index');
+                    Route::get('faq-question/all', 'getFaqQuestionForDataTables')->name('all');
+                    Route::delete('faq-question/{id}', 'deleteFaqQuestion')->name('delete');
+                });
+
+            });
 
             ######################################Settings ######################################
             Route::prefix('settings')->name('settings.')->group(function () {
@@ -121,29 +131,29 @@ Route::group(
             ###################################### product Attributes ######################################
             Route::resource('products', ProductController::class);
             Route::get('/products-all', [ProductController::class, 'getProducts'])->name('products.all');
-            Route::get('product/{id}/status',[ProductController::class,'changeStatus'])->name('product.status');
-            Route::delete('product/{productId}/variants/{variantId}',[ProductController::class,'deleteVariant'])->name('product.variant.delete');
+            Route::get('product/{id}/status', [ProductController::class, 'changeStatus'])->name('product.status');
+            Route::delete('product/{productId}/variants/{variantId}', [ProductController::class, 'deleteVariant'])->name('product.variant.delete');
 
             ######################################### Users ###############################################
-            Route::prefix('users')->controller(UserController::class)->name('user.')->group(function (){
-                Route::get('/','index')->name('index');
-                Route::get('/users-all' , 'getUsers')->name('all');
-                Route::post('/create','createUser')->name('create');
-                Route::get('/{id}/status','changeStatus')->name('status');
-                Route::delete('/{id}/delete','deleteUser')->name('delete');
+            Route::prefix('users')->controller(UserController::class)->name('user.')->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/users-all', 'getUsers')->name('all');
+                Route::post('/create', 'createUser')->name('create');
+                Route::get('/{id}/status', 'changeStatus')->name('status');
+                Route::delete('/{id}/delete', 'deleteUser')->name('delete');
             });
 
             ######################################### pages ###############################################
-            Route::middleware('can:pages')->group(function (){
-                Route::resource('pages',PageController::class)->except(['show']);
-                Route::get('pages/pages-all' , [PageController::class,'getPagesForDataTable'])->name('page.all');
-                Route::get('page/{id}/status' , [PageController::class,'changeStaus'])->name('page.status');
-                Route::post('page/{id}/delete-image' , [PageController::class,'deleteImagePage'])->name('page.delete.image');
+            Route::middleware('can:pages')->group(function () {
+                Route::resource('pages', PageController::class)->except(['show']);
+                Route::get('pages/pages-all', [PageController::class, 'getPagesForDataTable'])->name('page.all');
+                Route::get('page/{id}/status', [PageController::class, 'changeStaus'])->name('page.status');
+                Route::post('page/{id}/delete-image', [PageController::class, 'deleteImagePage'])->name('page.delete.image');
 
             });
 
             ######################################### contact ###############################################
-            Route::get('contacts' , [ContactController::class , 'index'])->name('contact.index');
+            Route::get('contacts', [ContactController::class, 'index'])->name('contact.index');
 
             Route::get('/welcome', function () {
                 return view('dashboard/welcome');
