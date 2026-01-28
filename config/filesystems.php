@@ -86,6 +86,14 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        'pages' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/pages'),
+            'url' => env('APP_URL') . '/uploads/pages',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
         'sliders' => [
             'driver' => 'local',
             'root' => public_path('uploads/sliders'),

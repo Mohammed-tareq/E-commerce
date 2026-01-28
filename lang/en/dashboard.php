@@ -28,6 +28,10 @@ return [
     'name' => 'Name',
     'name_ar' => 'Name in Arabic',
     'name_en' => 'Name in English',
+    'title.ar' => 'Title in Arabic',
+    'title_en' => 'Title in English',
+    'content_ar' => 'Content in Arabic',
+    'content_en' => 'Content in English',
     'username' => 'Username',
     'first_name' => 'First Name',
     'last_name' => 'Last Name',
@@ -170,7 +174,14 @@ return [
     'slider' => 'Slider',
     'create_slider' => 'Create Slider',
     'note' => 'Note',
-    'yajra_table' => 'Data Table'
+    'yajra_table' => 'Data Table',
+    'title' => 'Title',
+    'pages' => 'Pages',
+    'page' => 'Page',
+    'content' => 'Content',
+    'create_page' => 'Create Page',
+    'edit_page' => 'Edit Page',
+    'faq_question' => 'FAQ Question'
 
 
 ];

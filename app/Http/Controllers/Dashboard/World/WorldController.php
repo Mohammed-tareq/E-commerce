@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\World;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\World\PriceRequest;
-use App\Services\Dashboard\Dashboard\WorldService;
+use App\Services\Dashboard\WorldService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 

@@ -1,12 +1,14 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Website\DynamicPage\PageController;
+use App\Http\Controllers\Website\Faq\FaqController;
 use App\Http\Controllers\Website\Home\HomeController;
 use App\Http\Controllers\Website\UserProfile\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use  App\Http\Controllers\Auth\LoginController;
 
 Auth::routes();
 
@@ -34,9 +36,15 @@ Route::group(
         Route::post('/register', 'register')->name('register.post');
     });
 
+    ####################################### global routes ###########################################
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('page/{slug}', [PageController::class, 'getPage'])->name('dynamic.page');
+    Route::get('/faqs', [FaqController::class, 'index'])->name('faq.index');
 
+
+
+    ####################################### auth routes ###########################################
     Route::middleware('auth:web')->group(function () {
-        Route::get('/home', [HomeController::class, 'index'])->name('home');
 
         Route::controller(UserProfileController::class)->group(function () {
             Route::get('/user-profile', 'index')->name('user-profile');

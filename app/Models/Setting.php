@@ -46,4 +46,19 @@ class Setting extends Model
             get: fn($value) => 'uploads/settings/' . $value,
         );
     }
+
+    public function promotionVideoUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $this->convertToEmbed($value),
+        );
+    }
+
+    public function convertToEmbed($url)
+    {
+        if(str_contains($url,'watch?v=')){
+            return str_replace('watch?v=','embed/',$url);
+        }
+        return $url;
+    }
 }

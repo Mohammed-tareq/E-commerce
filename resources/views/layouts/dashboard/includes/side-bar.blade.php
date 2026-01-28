@@ -130,19 +130,43 @@
 
             </li>
             @endcan
-            @can('coupons')
+
+            @can('pages')
+                <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main"><i
+                                class="la la-user-secret"></i>{{ __('dashboard.pages') }}</a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="{{ route('dashboard.pages.index') }}"
+                               data-i18n="nav.templates.horz.classic">{{ __('dashboard.pages') }}</a>
+                        </li>
+                        <li><a class="menu-item" href="{{ route('dashboard.pages.create') }}"
+                               data-i18n="nav.templates.horz.top_icon">{{ __('dashboard.create_page') }}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+            @can('faqs')
+                <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main"><i
+                                class="la la-user-secret"></i>{{ __('dashboard.faq') }}</a>
+                    <ul class="menu-content">
+                            <li><a class="menu-item" href="{{ route('dashboard.faqs.index') }}" data-i18n="nav.templates.horz.main"><i
+                                            class="la la-user-secret"></i>{{ __('dashboard.faq') }}<span
+                                            class="badge badge badge-success float-right mr-2">{{ $faqs_count }}</span></a>
+                            </li>
+                        <li><a class="menu-item" href="{{ route('dashboard.faqs.index') }}"
+                               data-i18n="nav.templates.horz.top_icon">{{ __('dashboard.faq.question') }}</a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
+
+        @can('coupons')
                 <li><a class="menu-item" href="{{ route('dashboard.coupons.index') }}"
                        data-i18n="nav.templates.horz.main"><i
                                 class="la la-user-secret"></i>{{ __('dashboard.coupons') }}<span
                                 class="badge badge badge-success float-right mr-2">{{ $coupons_count }}</span></a>
                 </li>
             @endcan
-            @can('faqs')
-                <li><a class="menu-item" href="{{ route('dashboard.faqs.index') }}" data-i18n="nav.templates.horz.main"><i
-                                class="la la-user-secret"></i>{{ __('dashboard.faq') }}<span
-                                class="badge badge badge-success float-right mr-2">{{ $faqs_count }}</span></a>
-                </li>
-            @endcan
+
             @can('settings')
                 <li><a class="menu-item" href="{{ route('dashboard.settings.index') }}"
                        data-i18n="nav.templates.horz.main"><i
@@ -155,6 +179,7 @@
                                 class="la la-user-secret"></i>{{ __('dashboard.slider') }}</a>
                 </li>
             @endcan
+
         </ul>
     </div>
 </div>

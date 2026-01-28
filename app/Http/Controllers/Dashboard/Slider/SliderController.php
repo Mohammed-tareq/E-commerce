@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\Slider;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Slider\SliderRequest;
-use App\Services\Dashboard\Dashboard\SliderService;
+use App\Services\Dashboard\SliderService;
 
 class SliderController extends Controller
 {

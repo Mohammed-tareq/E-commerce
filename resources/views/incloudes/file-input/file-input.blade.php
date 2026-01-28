@@ -18,6 +18,7 @@
             initialPreviewConfig: [
                 { showRemove: false}
             ],
+
             @endif
         });
     </script>

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Services\Dashboard\Dashboard;
+namespace App\Services\Dashboard;
 
 use App\Repositories\Dashboard\Product\ProductRepository;
 use App\Repositories\Dashboard\Product\ProductVariantAttributeRepository;
 use App\Repositories\Dashboard\Product\ProductVariantRepository;
 use App\Utils\ImageManagement;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 
 class ProductService

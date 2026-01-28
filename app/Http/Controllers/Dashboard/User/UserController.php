@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\User\UserRequest;
-use App\Services\Dashboard\Dashboard\UserService;
+use App\Services\Dashboard\UserService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 

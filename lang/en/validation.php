@@ -259,6 +259,10 @@ return [
         'newImages'             => 'Images',
         'newImages.*'           => 'Image',
         'note.*'                  => 'Note',
+        'title.ar' => 'Title in Arabic',
+        'title_en' => 'Title in English',
+        'content.ar' => 'Content in Arabic',
+        'content_en' => 'Content in English',
 
     ],
 

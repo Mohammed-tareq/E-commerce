@@ -170,7 +170,14 @@ return [
     'slider' => 'السلايدر',
     'create_slider' => 'إنشاء سلايدر',
     'note' => 'الملاحظة',
-    'yajra_table' => 'جدول البيانات'
+    'yajra_table' => 'جدول البيانات',
+    'pages' => 'الصفح',
+    'page' => 'الصفحه',
+    'title' => 'العنوان',
+    'content' => 'المحتوي',
+    'create_page' => 'إنشاء صفحه',
+    'edit_page' => 'تعديل صفحه',
+    'faq_question' => 'الأسئله المكرره'
 
 
 ];

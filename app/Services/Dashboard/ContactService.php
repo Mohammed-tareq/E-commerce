@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Dashboard\Dashboard;
+namespace App\Services\Dashboard;
 
 use App\Mail\ReplayContact;
 use App\Repositories\Dashboard\ContactRepository;

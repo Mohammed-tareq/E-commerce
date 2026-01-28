@@ -1,0 +1,1 @@
+<img src="{{ asset('uploads/pages/'.$page->image) }}" class="img-fluid" width="50px" height="50px" alt="{{ $page->getTranslation('title', app()->getLocale()) }}">

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\Category;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Brand\BrandRequest;
-use App\Services\Dashboard\Dashboard\BrandService;
+use App\Services\Dashboard\BrandService;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Arr;

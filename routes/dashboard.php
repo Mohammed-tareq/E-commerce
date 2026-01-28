@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\Category\CategoryController;
 use App\Http\Controllers\Dashboard\contact\ContactController;
 use App\Http\Controllers\Dashboard\Coupon\CouponController;
 use App\Http\Controllers\Dashboard\Faq\FaqController;
+use App\Http\Controllers\Dashboard\Page\PageController;
 use App\Http\Controllers\Dashboard\Product\Attribute\AttributeController;
 use App\Http\Controllers\Dashboard\Product\ProductController;
 use App\Http\Controllers\Dashboard\Role\RoleController;
@@ -130,6 +131,15 @@ Route::group(
                 Route::post('/create','createUser')->name('create');
                 Route::get('/{id}/status','changeStatus')->name('status');
                 Route::delete('/{id}/delete','deleteUser')->name('delete');
+            });
+
+            ######################################### pages ###############################################
+            Route::middleware('can:pages')->group(function (){
+                Route::resource('pages',PageController::class)->except(['show']);
+                Route::get('pages/pages-all' , [PageController::class,'getPagesForDataTable'])->name('page.all');
+                Route::get('page/{id}/status' , [PageController::class,'changeStaus'])->name('page.status');
+                Route::post('page/{id}/delete-image' , [PageController::class,'deleteImagePage'])->name('page.delete.image');
+
             });
 
             ######################################### contact ###############################################

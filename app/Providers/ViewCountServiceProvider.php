@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Coupon;
 use App\Models\Faq;
+use App\Models\Page;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
@@ -46,6 +47,12 @@ class ViewCountServiceProvider extends ServiceProvider
                 fn() => Contact::where('is_read', true)->count());
 
             view()->share($counts);
+        });
+
+
+        view()->composer('website.*',function(){
+            $pages = Page::active()->select('id','title' , 'slug')->get();
+            view()->share(['pages'=>$pages]);
         });
     }
 }
