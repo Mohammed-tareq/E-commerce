@@ -14,5 +14,6 @@ class HomeController extends Controller
         return view('website.home.home', compact('sliders'));
     }
 
+
 }
 

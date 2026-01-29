@@ -10,4 +10,5 @@ class UserProfileController extends Controller
     {
         return view('website.user-profile.user-profile');
     }
+
 }
