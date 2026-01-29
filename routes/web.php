@@ -7,6 +7,7 @@ use App\Http\Controllers\Website\Category\CategoryController;
 use App\Http\Controllers\Website\DynamicPage\PageController;
 use App\Http\Controllers\Website\Faq\FaqController;
 use App\Http\Controllers\Website\Home\HomeController;
+use App\Http\Controllers\Website\Product\ProductController;
 use App\Http\Controllers\Website\UserProfile\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,11 @@ Route::group(
     Route::controller(BrandController::class)->name('brand.')->group(function () {
         Route::get('/brands', 'index')->name('index');
         Route::get('/brand/{slug}/products', 'getProductsForBrand')->name('products');
+    });
+
+    Route::controller(ProductController::class)->name('product.')->group(function () {
+//        Route::get('/products', 'index')->name('index');
+        Route::get('product/{slug}', 'getProduct')->name('show');
     });
 
 

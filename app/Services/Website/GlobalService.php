@@ -9,6 +9,10 @@ use App\Models\Slider;
 
 class GlobalService
 {
+    public function __construct(protected ProductService $productService)
+    {
+    }
+
     public function getSliders()
     {
         return Slider::all();
@@ -43,6 +47,21 @@ class GlobalService
             ->select('id', 'name', 'slug', 'brand_id', 'category_id', 'price','has_discount','has_variants')
             ->where('category_id', $brand)
             ->paginate(12);
+    }
+
+    public function getNewArrivals($limit)
+    {
+        return $this->productService->getNewArrivals($limit);
+    }
+
+    public function getFlashProduct($limit)
+    {
+        return $this->productService->getFlashProduct($limit);
+    }
+
+    public function getFlashProductTimer($limit)
+    {
+        return $this->productService->getFlashProductTimer($limit);
     }
 
 }

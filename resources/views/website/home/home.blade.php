@@ -15,9 +15,14 @@
         @include('website.home.inc-sections.brand', compact('brands'))
     @endif
 
-    @include('website.home.inc-sections.arrival')
 
-    @include('website.home.inc-sections.flash-sale')
+    @if($newArrivals->count() > 0)
+        @include('website.home.inc-sections.arrival', compact('newArrivals'))
+    @endif
+
+    @if($flashProducts->count() > 0)
+        @include('website.home.inc-sections.flash-sale', compact('flashProducts'))
+    @endif
 
     @include('website.home.inc-sections.top-selling')
 
@@ -25,5 +30,7 @@
 
     @include('website.home.inc-sections.weekly-sale')
 
-    @include('website.home.inc-sections.best-product')
+    @if($flashProduct->count() > 0)
+        @include('website.home.inc-sections.best-product', compact('flashProduct'))
+    @endif
 @endsection
