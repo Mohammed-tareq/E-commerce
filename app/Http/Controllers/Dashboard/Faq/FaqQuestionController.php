@@ -18,7 +18,7 @@ class FaqQuestionController extends Controller
     {
         return $this->faqQuestionService->getFaqQuestionForDataTables();
     }
-    
+
 
     public function deleteFaqQuestion($id)
     {
