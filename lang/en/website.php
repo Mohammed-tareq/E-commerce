@@ -19,6 +19,14 @@ return [
     'massage' => 'Massage',
     'subject' => 'Subject',
     'name' => 'Name',
+    'categories' =>'Categories',
+    'brands' =>'Brands',
+    'our_categories' => 'Our Categories',
+    'view_categories' => 'View Categories',
+    'no_categories_found' => 'No Categories Found',
+    'view_brands' => 'View Brands',
+    'no_brands_found' => 'No Brands Found',
+    'our_brands' => 'Our Brands',
 
 
     // Registration page

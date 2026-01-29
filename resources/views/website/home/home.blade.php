@@ -7,9 +7,13 @@
 
     @include('website.home.inc-sections.fashion')
 
-    @include('website.home.inc-sections.category')
+    @if($categories->count() > 0)
+        @include('website.home.inc-sections.category', compact('categories'))
+    @endif
 
-    @include('website.home.inc-sections.brand')
+    @if($brands->count() > 0)
+        @include('website.home.inc-sections.brand', compact('brands'))
+    @endif
 
     @include('website.home.inc-sections.arrival')
 
@@ -22,6 +26,4 @@
     @include('website.home.inc-sections.weekly-sale')
 
     @include('website.home.inc-sections.best-product')
-
-
 @endsection

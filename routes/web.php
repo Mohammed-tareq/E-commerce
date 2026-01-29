@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Website\Brand\BrandController;
+use App\Http\Controllers\Website\Category\CategoryController;
 use App\Http\Controllers\Website\DynamicPage\PageController;
 use App\Http\Controllers\Website\Faq\FaqController;
 use App\Http\Controllers\Website\Home\HomeController;
@@ -40,6 +42,8 @@ Route::group(
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('page/{slug}', [PageController::class, 'getPage'])->name('dynamic.page');
     Route::get('/faqs', [FaqController::class, 'index'])->name('faq.index');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/brands', [BrandController::class, 'index'])->name('brand.index');
 
 
 
