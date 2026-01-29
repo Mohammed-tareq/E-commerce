@@ -14,4 +14,5 @@ class PageController extends Controller
         }
         return view('website.pages.dynamic-page', compact('page'));
     }
+
 }
