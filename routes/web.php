@@ -42,9 +42,16 @@ Route::group(
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('page/{slug}', [PageController::class, 'getPage'])->name('dynamic.page');
     Route::get('/faqs', [FaqController::class, 'index'])->name('faq.index');
-    Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
-    Route::get('/brands', [BrandController::class, 'index'])->name('brand.index');
 
+    ####################################### category routes ###########################################
+    Route::controller(CategoryController::class)->name('category.')->group(function () {
+        Route::get('/categories', 'index')->name('index');
+        Route::get('/category/{slug}/products', 'getProductsForCategory')->name('products');
+    });
+    Route::controller(BrandController::class)->name('brand.')->group(function () {
+        Route::get('/brands', 'index')->name('index');
+        Route::get('/brand/{slug}/products', 'getProductsForBrand')->name('products');
+    });
 
 
     ####################################### auth routes ###########################################

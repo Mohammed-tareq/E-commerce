@@ -52,4 +52,13 @@ return [
     'placeholder_password' => 'Password',
     'placeholder_password_confirmation' => 'Password Confirmation',
 
+    // Products page
+    'products' => 'Products',
+    'showing' => 'Showing',
+    'of' => 'of',
+    'results' => 'results',
+    'has_variants' => 'Has variants',
+    'add_to_cart' => 'Add to Cart',
+    'no_products_found' => 'No Products Found',
+
 ];

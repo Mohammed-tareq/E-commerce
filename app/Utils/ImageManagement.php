@@ -17,16 +17,20 @@ class ImageManagement
 
     public function UploadImages($images, $model, $disk)
     {
-        $allImages = [];
-        foreach ($images as $image) {
-            self::deleteImageFromLocal($image);
-            $path = self::GenerateNewName($image);
-            self::saveImageLocal($image, '/', $path, $disk);
-            $allImages[] = [
-                'name' => $path
-            ];
+        if ($images) {
+
+            $allImages = [];
+            foreach ($images as $image) {
+                self::deleteImageFromLocal($image);
+                $path = self::GenerateNewName($image);
+                self::saveImageLocal($image, '/', $path, $disk);
+                $allImages[] = [
+                    'name' => $path
+                ];
+            }
+            $model->images()->createMany($allImages);
         }
-        $model->images()->createMany($allImages);
+        return false;
     }
 
     private function saveImageLocal($image, $path, $imageName, $disk)

@@ -28,13 +28,14 @@ class Product extends Model
 
     public function images()
     {
-        return $this->hasMany(ProductImages::class,'product_id');
+        return $this->hasMany(ProductImages::class, 'product_id');
     }
 
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'product_tags', 'product_id', 'tag_id');
     }
+
     public function reviews()
     {
         return $this->hasMany(ProductPreview::class);
@@ -45,31 +46,44 @@ class Product extends Model
         return $this->hasMany(ProductVariant::class);
     }
 
-    public function isSimple()
+    public function scopeActive($q)
+    {
+        return $q->where('status', 1);
+    }
+
+    public function isSimple(): bool
     {
         return !$this->has_variants;
     }
 
-    public function imagesPath():Attribute
+    public function imagesPath(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->images->map(fn($image)=> $image->name)
+            get: fn() => $this->images->map(fn($image) => $image->name)
         );
     }
 
     public function hasVariants()
     {
-        return $this->isSimple() ? __('dashboard.no_has_variants'):__('dashboard.has_variants') ;
+        return $this->isSimple() ? __('dashboard.no_has_variants') : __('dashboard.has_variants');
     }
 
     public function price()
     {
-        return $this->isSimple()? $this->price : __('dashboard.has_variants');
+        return $this->isSimple() ? $this->price : __('dashboard.has_variants');
     }
 
     public function qty()
     {
-        return $this->isSimple()? $this->qty : __('dashboard.has_variants');
+        return $this->isSimple() ? $this->qty : __('dashboard.has_variants');
+    }
+
+    public function getPriceAfterDiscount()
+    {
+        if ($this->has_discount) {
+            return $this->price - $this->discount;
+        }
+        return $this->price;
 
     }
 
@@ -79,6 +93,7 @@ class Product extends Model
             get: fn($value) => date('Y-m-d', strtotime($value))
         );
     }
+
     public function updatedAt(): Attribute
     {
         return Attribute::make(

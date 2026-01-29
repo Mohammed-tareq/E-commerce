@@ -6,15 +6,17 @@
         </div>
         <div class="category-section">
             @forelse($categories as $category)
-            <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
-                <div class="wrapper-img">
-                    <img src="{{ asset($category->image) }}" alt="dress">
-                </div>
-                <div class="wrapper-info">
-                    <a href="product-sidebar.html" class="wrapper-details">{{ $category->name }}</a>
-                </div>
-            </div>
-                @empty
+                <a href="{{ route('website.category.products', $category->slug) }}">
+                    <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
+                        <div class="wrapper-img">
+                            <img src="{{ asset($category->image) }}" alt="dress">
+                        </div>
+                        <div class="wrapper-info">
+                            <p class="wrapper-details">{{ $category->name }}</p>
+                        </div>
+                    </div>
+                </a>
+            @empty
                 <p>{{ __('website.no_categories_found') }}</p>
             @endforelse
         </div>

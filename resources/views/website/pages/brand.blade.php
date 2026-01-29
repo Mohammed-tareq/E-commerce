@@ -24,7 +24,7 @@
                 @forelse($brands as $brand)
                     <div class="product-wrapper m-3 ">
                         <div class="wrapper-img">
-                            <a href="product-sidebar.html">
+                            <a href="{{ route('website.brand.products', $brand->slug) }}">
                                 <img src="{{ asset($brand->image) }}" alt="img">
                             </a>
                         </div>

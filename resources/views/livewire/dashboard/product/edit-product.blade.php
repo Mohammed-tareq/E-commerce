@@ -9,16 +9,16 @@
             <strong>{{ $successMessage }}!</strong>
         </div>
     @endif
-        @if (!empty($errorMessage) && $currentStep == 3)
-            <div id="successMessageWire" class="alert bg-danger alert-icon-left alert-arrow-left alert-dismissible mb-2"
-                 role="alert">
-                <span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <strong>{{ $errorMessage }}!</strong>
-            </div>
-        @endif
+    @if (!empty($errorMessage) && $currentStep == 3)
+        <div id="successMessageWire" class="alert bg-danger alert-icon-left alert-arrow-left alert-dismissible mb-2"
+             role="alert">
+            <span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>{{ $errorMessage }}!</strong>
+        </div>
+    @endif
 
     <ul class="wizard-timeline center-align">
         <li class="{{ $currentStep > 1 ? 'completed' : '' }}">
@@ -155,19 +155,19 @@
                         @enderror
                     </div>
                 </div>
-{{--                <div class="col-md-6">--}}
-{{--                    <div class="form-group">--}}
-{{--                        <label for="tags"> {{ __('dashboard.tags') }} :</label>--}}
-{{--                        <input type="text" wire:model="tags" id="tags" class="form-control"--}}
-{{--                               placeholder="Add tags">--}}
-{{--                        @error('tags')--}}
-{{--                        <span class="text-danger" role="alert">{{ $message }}</span>--}}
-{{--                        @enderror--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                <div class="col-md-6">--}}
+                {{--                    <div class="form-group">--}}
+                {{--                        <label for="tags"> {{ __('dashboard.tags') }} :</label>--}}
+                {{--                        <input type="text" wire:model="tags" id="tags" class="form-control"--}}
+                {{--                               placeholder="Add tags">--}}
+                {{--                        @error('tags')--}}
+                {{--                        <span class="text-danger" role="alert">{{ $message }}</span>--}}
+                {{--                        @enderror--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
 
             </div>
-            <button class="btn btn-primary pull-right mb-3" wire:click="fristStep"
+            <button class="btn btn-primary pull-right mb-3" wire:click="firstStep"
                     type="button">{{ __('dashboard.next') }}</button>
         </div>
 
@@ -315,7 +315,7 @@
                                     <select wire:model="attributeValues.{{ $i }}.{{ $attr->id }}"
                                             class="form-control">
 
-                                            <option value="" selected>Select</option>
+                                        <option value="" selected>Select</option>
                                         @foreach ($attr->attributeValues as $item)
                                             <option value="{{ $item->id}}">{{ $item->value }}</option>
                                         @endforeach
@@ -419,7 +419,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click="submitForm"
+            <button class="btn btn-success  pull-right  mb-3 ml-1" wire:click.prevent="submitForm"
                     type="button">{{ __('dashboard.edit') }}!
             </button>
             <button class="btn btn-danger  pull-right  mb-3" type="button"
