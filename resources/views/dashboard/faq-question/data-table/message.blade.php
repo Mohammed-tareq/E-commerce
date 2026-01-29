@@ -5,7 +5,7 @@
 
 <div class="modal fade animated rollIn text-left" id="content-message{{ $faqQuestion->id }}"
      tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{ __('dashboard.content') }}</h4>
@@ -16,9 +16,7 @@
             <div class="modal-body">
 
                 <div>
-                    <p>
-                        {{ $faqQuestion->message }}
-                    </p>
+                   <p class="text-bg-dark"> {{ $faqQuestion->message }}</p>
                 </div>
 
             </div>

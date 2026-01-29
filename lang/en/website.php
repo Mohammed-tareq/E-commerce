@@ -12,9 +12,13 @@ return [
     'make_your_payment_description' => 'Experience hassle-free online shopping with our service! Simply choose the product you want',
     'fast_delivery' => 'Fast Delivery',
     'fast_delivery_description' => 'Experience hassle-free online shopping with our service! enjoy fast delivery right to your doorstep.',
-   'faq' => 'FAQ',
-    'faq_title'=>'Frequently Asked Questions',
-
+    'faq' => 'FAQ',
+    'faq_title' => 'Frequently Asked Questions',
+    'faq_question' => 'Have Any Question',
+    'send_now' => 'Send Now',
+    'massage' => 'Massage',
+    'subject' => 'Subject',
+    'name' => 'Name',
 
 
     // Registration page
@@ -26,6 +30,11 @@ return [
     'password_confirm' => 'Password Confirmation',
     'i_agree' => 'I agree to',
     'have_account' => 'Already have an account',
+
+
+    // messages
+    'error_faqQuestion' => 'Error in sending your question',
+    'success_faqQuestion' => 'Your question has been sent successfully',
 
     // Placeholders
     'placeholder_first_name' => 'First Name',

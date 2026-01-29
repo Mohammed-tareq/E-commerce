@@ -101,11 +101,6 @@
             colReorder: true,
             fixedColumns: true,
             fixedHeader: true,
-            select: {
-                style: 'multi',
-                selector: 'td:not(:last-child)',
-                className: 'selected'
-            },
             responsive: {
                 details: {
                     display: DataTable.Responsive.display.modal({
@@ -128,7 +123,7 @@
                 {data: "subject"},
                 {data: "message"},
                 {data: "created_at"},
-                {data: "actions", "orderable": false, "searchable": false, "width": "10%", 'selectable': false,},
+                {data: "action", "orderable": false, "searchable": false, "width": "10%", 'selectable': false,},
             ],
 
             layout: {
@@ -136,7 +131,7 @@
                     pageLength: true,
                     buttons:
                         [
-                            'colvis'
+                            'colvis',
                         ]
                 }
             },
@@ -212,5 +207,5 @@
             });
         });
 
-    </>
+    </script>
 @endpush

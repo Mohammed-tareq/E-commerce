@@ -28,8 +28,8 @@ class FaqQuestionController extends Controller
             ]);
         }
         return response()->json([
-            'status' => false,
-            'message' => __('dashboard.operation_error')
+            'status' => true,
+            'message' => __('dashboard.operation_success')
         ]);
     }
 }

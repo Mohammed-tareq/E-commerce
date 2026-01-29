@@ -10,4 +10,7 @@
 
 <script src="{{ asset('assets/website') }}/assets/js/shopus.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 @stack('js')
