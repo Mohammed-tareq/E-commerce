@@ -6,14 +6,14 @@
         </div>
         <div class="brand-section">
             @forelse($brands as $brand)
-            <div class="product-wrapper">
-                <div class="wrapper-img">
-                    <a href="product-sidebar.html">
-                        <img src="{{ asset($brand->image) }}" alt="img">
-                    </a>
-                </div>
-            </div>
-                @empty
+                <a href="{{ route('website.brand.products', $brand->slug) }}">
+                    <div class="product-wrapper">
+                        <div class="wrapper-img">
+                            <img src="{{ asset($brand->image) }}" alt="img">
+                        </div>
+                    </div>
+                </a>
+            @empty
                 <p>No brands found</p>
             @endforelse
 

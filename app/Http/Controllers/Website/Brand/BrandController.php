@@ -14,4 +14,10 @@ class BrandController extends Controller
         $brands = $this->globalService->getBrands();
         return view('website.pages.brand', compact('brands'));
     }
+
+    public function getProductsForBrand($slug)
+    {
+        $products = $this->globalService->getProductsForBrand($slug);
+        return view('website.pages.products', compact('products'));
+    }
 }

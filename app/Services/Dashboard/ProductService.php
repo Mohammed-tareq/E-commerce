@@ -85,6 +85,7 @@ class ProductService
 
         } catch (\Exception $e) {
             DB::rollBack();
+            \Log::error($e->getMessage());
             return false;
         }
     }
@@ -101,7 +102,6 @@ class ProductService
             }
 
             if (!empty($variants)) {
-
                 $deleteProductVariant = $this->productVariantRepository->deleteProductVariantByProductId($product->id);
                 if (!$deleteProductVariant)
                 {
@@ -125,6 +125,10 @@ class ProductService
                         }
                     }
                 }
+                $this->imageManagement->UploadImages($images , $product , 'products');
+                DB::commit();
+                return true;
+            }else{
                 $this->imageManagement->UploadImages($images , $product , 'products');
                 DB::commit();
                 return true;

@@ -15,4 +15,10 @@ class CategoryController extends Controller
         $categories = $this->globalService->getCategories();
         return view('website.pages.category', compact('categories'));
     }
+
+    public function getProductsForCategory($slug)
+    {
+        $products = $this->globalService->getProductsForCategory($slug);
+        return view('website.pages.products', compact('products'));
+    }
 }

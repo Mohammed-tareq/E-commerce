@@ -60,6 +60,7 @@ class EditProduct extends Component
         $this->discount_end = $this->product->discount_end;
         $this->manage_stock = $this->product->manage_stock;
         $this->qty = $this->product->qty;
+        $this->price = $this->product->price;
 
 
         $this->addRowValues = count($this->product->variants);
@@ -76,7 +77,7 @@ class EditProduct extends Component
         $this->images = $this->product->images;
     }
 
-    public function fristStep()
+    public function firstStep()
     {
         $this->validate([
             'name_ar' => 'required|string|min:3|max:100',
@@ -103,13 +104,13 @@ class EditProduct extends Component
             'manage_stock' => 'required|in:0,1'
         ];
         if ($this->has_variants == 0) {
-            $data['price'] = 'required|integer|min:0|max:1000000';
+            $data['price'] = 'required|numeric|min:0|max:1000000';
         }
         if ($this->manage_stock == 1) {
             $data['qty'] = 'required|integer|min:0|max:1000000';
         }
         if ($this->has_discount == 1) {
-            $data['discount'] = 'required|integer|min:0|max:100';
+            $data['discount'] = 'required|numeric|min:0|max:100';
             $data['discount_start'] = 'required|date|after_or_equal:today';
             $data['discount_end'] = 'required|date|after_or_equal:discount_start';
         }
@@ -215,6 +216,9 @@ class EditProduct extends Component
                 'qty' => $this->quantities[$index],
                 'attribute_values' => $this->attributeValues[$index]
             ];
+        }
+        if($this->has_variants == 0){
+            $productVariants = null;
         }
 
         $productUpdated = $this->productService->updateProduct($this->product, $productData, $productVariants, $this->newImages);
