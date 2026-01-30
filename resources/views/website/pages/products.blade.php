@@ -75,7 +75,8 @@
                                                 @endif
 
                                                 <div class="product-cart-items">
-                                                    <a href="{{ route('website.product.show' , $product->slug) }}"
+                                                    <a href="{{ route('website.product.show' , $product->slug) }} "
+                                                       style="all: unset"
                                                        class="cart cart-item">
                                                         <span>
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"

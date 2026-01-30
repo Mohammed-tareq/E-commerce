@@ -24,7 +24,7 @@
             <div class="row g-5">
                 @foreach($flashProductsTimer as  $productDiscounted)
                     <div class="col-lg-3 col-md-6">
-                        <a href="{{ route('website.product.show',$productDiscounted->slug) }}">
+                        <a href="{{ route('website.product.show',$productDiscounted->slug) }}" style="all: unset">
                             <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
                                 <div class="product-img">
                                     <img src="{{ asset($productDiscounted->imagesPath->first()) }}" alt>

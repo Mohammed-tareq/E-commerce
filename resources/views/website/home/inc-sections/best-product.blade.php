@@ -10,7 +10,7 @@
                 @foreach($flashProducts as $flashProduct)
 
                     <div class="col-xl-2 col-md-4">
-                        <a href="{{ route('website.product.show',$flashProduct->slug) }}">
+                        <a href="{{ route('website.product.show',$flashProduct->slug) }}" style="all: unset">
                             <div class="product-wrapper" data-aos="fade-up">
                                 <div class="product-img">
                                     <img src="{{ asset($flashProduct->imagesPath->first()) }}"

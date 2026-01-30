@@ -9,7 +9,7 @@
             <div class="row g-5">
                 @foreach ($newArrivals as $newProduct)
                     <div class="col-lg-3 col-sm-6">
-                        <a href="{{ route('website.product.show',$newProduct->slug) }}">
+                        <a href="{{ route('website.product.show',$newProduct->slug) }}" style="all: unset">
                             <div class="product-wrapper" data-aos="fade-up">
                                 <div class="product-img">
                                     <img src="{{ asset($newProduct->imagesPath->first()) }}"

@@ -27,7 +27,7 @@
             <div class="row g-5">
                 @foreach($flashProductsWeek as  $productDiscountedForWeek)
                     <div class="col-lg-3 col-md-6">
-                        <a href="{{ route('website.product.show',$productDiscountedForWeek->slug) }}">
+                        <a href="{{ route('website.product.show',$productDiscountedForWeek->slug) }}" style="all: unset">
                             <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
                                 <div class="product-img">
                                     <img src="{{ asset($productDiscountedForWeek->imagesPath->first()) }}" alt>

@@ -331,7 +331,7 @@
                 <div class="row g-5">
                     @forelse($productsRelated as $product)
                         <div class="col-lg-3 col-md-6">
-                            <a href="{{ route('website.product.show',$product->slug) }}">
+                            <a href="{{ route('website.product.show',$product->slug) }}" style="all: unset">
                                 <div class="product-wrapper" data-aos="fade-up">
                                     <div class="product-img">
                                         <img src="{{ asset($product->imagesPath->first()) }}"
