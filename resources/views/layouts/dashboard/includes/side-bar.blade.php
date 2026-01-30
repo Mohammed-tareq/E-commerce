@@ -105,7 +105,7 @@
             @endcan
             @can('products')
             <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main"><i
-                            class="la la-user-secret"></i>products<span
+                            class="la la-user-secret"></i>{{ __('dashboard.product') }}<span
                             class="badge badge badge-success float-right mr-2">{{ $products_count }}</span></a>
 
                 @can('attributes')
