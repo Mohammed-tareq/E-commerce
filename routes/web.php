@@ -54,10 +54,10 @@ Route::group(
         Route::get('/brand/{slug}/products', 'getProductsForBrand')->name('products');
     });
 
-    Route::controller(ProductController::class)->name('product.')->group(function () {
-//        Route::get('/products', 'index')->name('index');
-        Route::get('product/show/{slug}', 'getProduct')->name('show');
-        Route::get('product/{type}', 'getProductsForBaseOnSectionHome')->name('section.show');
+    Route::controller(ProductController::class)->prefix('product')->name('product.')->group(function () {
+        Route::get('/{type}', 'getProductsForBaseOnSectionHome')->name('section.show');
+        Route::get('/show/{slug}', 'getProduct')->name('show');
+        Route::get('/related-product/{slug}', 'getRelatedProductBySlug')->name('related.product');
     });
 
 

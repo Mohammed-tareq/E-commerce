@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->belongsTo(Governorate::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(ProductPreview::class);
+    }
+
     public function city()
     {
         return $this->belongsTo(City::class);
@@ -65,14 +70,14 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    public function status():Attribute
+    public function status(): Attribute
     {
         return Attribute::make(
             get: fn($value) => $value ? __('dashboard.Active') : __('dashboard.Inactive')
         );
     }
 
-    public function createdAt():Attribute
+    public function createdAt(): Attribute
     {
         return Attribute::make(
             get: fn($value) => date('Y-m-d', strtotime($value))
