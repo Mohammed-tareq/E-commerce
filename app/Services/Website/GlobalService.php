@@ -34,34 +34,33 @@ class GlobalService
         return Product::with(['brand', 'category', 'images'])
             ->active()
             ->latest()
-            ->select('id', 'name', 'slug', 'brand_id', 'category_id', 'price','has_discount','has_variants')
+            ->select('id', 'name', 'slug', 'brand_id', 'category_id', 'price', 'has_discount', 'has_variants')
             ->where('category_id', $category)
             ->paginate(12);
     }
+
     public function getProductsForBrand($slug)
     {
         $brand = Brand::active()->where('slug', $slug)->first()->id;
         return Product::with(['brand', 'category', 'images'])
             ->active()
             ->latest()
-            ->select('id', 'name', 'slug', 'brand_id', 'category_id', 'price','has_discount','has_variants')
+            ->select('id', 'name', 'slug', 'brand_id', 'category_id', 'price', 'has_discount', 'has_variants')
             ->where('category_id', $brand)
             ->paginate(12);
     }
 
-    public function getNewArrivals($limit)
+
+    public function getHomeProducts($limit = null): array
     {
-        return $this->productService->getNewArrivals($limit);
+        return [
+            'newArrivals' => $this->productService->getNewArrivals($limit),
+            'flashProductsTimer' => $this->productService->getFlashProductTimer($limit),
+            'flashProductsWeek' => $this->productService->getFlashProductWeek($limit),
+            'flashProducts' => $this->productService->getFlashProduct($limit)
+        ];
     }
 
-    public function getFlashProduct($limit)
-    {
-        return $this->productService->getFlashProduct($limit);
-    }
 
-    public function getFlashProductTimer($limit)
-    {
-        return $this->productService->getFlashProductTimer($limit);
-    }
 
 }

@@ -3,36 +3,39 @@
         <div class="section-title">
             <h5>{{ __('website.flash_sale') }}</h5>
             <div class="countdown-section">
-
                 <div class="countdown-items">
-                    <span id="hour" class="number" style="color: skyblue;">0</span>
+                    <span id="day-week" class="number" style="color: red;">0</span>
+                    <span class="text">{{ __('website.days') }}</span>
+                </div>
+                <div class="countdown-items">
+                    <span id="hour-week" class="number" style="color: skyblue;">0</span>
                     <span class="text">{{ __('website.hours') }}</span>
                 </div>
                 <div class="countdown-items">
-                    <span id="minute" class="number" style="color: green;">0</span>
+                    <span id="minute-week" class="number" style="color: green;">0</span>
                     <span class="text">{{ __('website.minutes') }}</span>
                 </div>
                 <div class="countdown-items">
-                    <span id="second" class="number" style="color: red;">0</span>
+                    <span id="second-week" class="number" style="color: red;">0</span>
                     <span class="text">{{ __('website.seconds') }}</span>
                 </div>
             </div>
-            <a href="{{ route('website.product.section.show','flash-product-timer') }}" class="view">{{ __('website.view_all') }}</a>
+            <a href="{{ route('website.product.section.show','flash-product-available-week') }}" class="view">{{ __('website.view_all') }}</a>
         </div>
         <div class="flash-sale-section">
             <div class="row g-5">
-                @foreach($flashProductsTimer as  $productDiscounted)
+                @foreach($flashProductsWeek as  $productDiscountedForWeek)
                     <div class="col-lg-3 col-md-6">
                         <div class="product-wrapper" data-aos="fade-right" data-aos-duration="100">
                             <div class="product-img">
-                                <img src="{{ asset($productDiscounted->imagesPath->first()) }}" alt>
-                                @if($productDiscounted->brand)
+                                <img src="{{ asset($productDiscountedForWeek->imagesPath->first()) }}" alt>
+                                @if($productDiscountedForWeek->brand)
                                     <div class="position-absolute top-0 start-0 bg-dark-subtle  text-white py-2 px-3 m-2 rounded">
-                                        {{ $productDiscounted->brand->getTranslation('name' , app()->getLocale()) }}
+                                        {{ $productDiscountedForWeek->brand->getTranslation('name' , app()->getLocale()) }}
                                     </div>
                                 @endif
                                 <div class="product-cart-items">
-                                    <a href="{{ route('website.product.show' , $productDiscounted->slug) }}"
+                                    <a href="{{ route('website.product.show' , $productDiscountedForWeek->slug) }}"
                                        class="cart cart-item">
                                     <span>
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
@@ -104,14 +107,14 @@
                                     </span>
                                 </div>
                                 <div class="product-description">
-                                    <a href="{{ route('website.product.show' , $productDiscounted->slug) }}"
+                                    <a href="{{ route('website.product.show' , $productDiscountedForWeek->slug) }}"
                                        class="product-details">
-                                        {{ $productDiscounted->getTranslation('name' , app()->getLocale()) }}
+                                        {{ $productDiscountedForWeek->getTranslation('name' , app()->getLocale()) }}
                                     </a>
                                     <div class="price">
-                                        @if($productDiscounted->isSimple())
-                                            <span class="price-cut">${{ $productDiscounted->price }}</span>
-                                            <span class="new-price">${{ $productDiscounted->getPriceAfterDiscount() }}</span>
+                                        @if($productDiscountedForWeek->isSimple())
+                                            <span class="price-cut">${{ $productDiscountedForWeek->price }}</span>
+                                            <span class="new-price">${{ $productDiscountedForWeek->getPriceAfterDiscount() }}</span>
                                         @else
                                             <span class="new-price">{{ __('website.has_variants') }}</span>
                                         @endif
@@ -119,8 +122,8 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('website.category.products' , $productDiscounted->category->slug) }}"
-                                   class="product-btn">{{ $productDiscounted->category->getTranslation('name' , app()->getLocale()) }}</a>
+                                <a href="{{ route('website.category.products' , $productDiscountedForWeek->category->slug) }}"
+                                   class="product-btn">{{ $productDiscountedForWeek->category->getTranslation('name' , app()->getLocale()) }}</a>
                             </div>
                         </div>
                     </div>

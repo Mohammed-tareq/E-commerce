@@ -1,0 +1,121 @@
+<?php
+
+return [
+    // Navigation
+    'home' => 'Home',
+    'shop' => 'Shop',
+    'about' => 'About',
+    'contact' => 'Contact',
+    'blog' => 'Blog',
+    'pages' => 'Pages',
+    
+    // Common
+    'view_all' => 'View All',
+    'search' => 'Search',
+    'cart' => 'Cart',
+    'wishlist' => 'Wishlist',
+    'compare' => 'Compare',
+    'login' => 'Login',
+    'register' => 'Register',
+    'logout' => 'Logout',
+    'account' => 'Account',
+    
+    // Product
+    'new_arrivals' => 'New Arrivals',
+    'flash_sale' => 'Flash Sale',
+    'best_sellers' => 'Best Sellers',
+    'top_selling' => 'Top Selling',
+    'weekly_sale' => 'Weekly Sale',
+    'featured_products' => 'Featured Products',
+    'has_variants' => 'Has Variants',
+    'out_of_stock' => 'Out of Stock',
+    'in_stock' => 'In Stock',
+    'add_to_cart' => 'Add To Cart',
+    'product_details' => 'Product Details',
+    'description' => 'Description',
+    'specifications' => 'Specifications',
+    'reviews' => 'Reviews',
+    'rating' => 'Rating',
+    'price' => 'Price',
+    'category' => 'Category',
+    'categories' => 'Categories',
+    'our_categories' => 'Our Categories',
+    'view_categories' => 'View Categories',
+    'no_categories_found' => 'No categories found',
+    'brand' => 'Brand',
+    'brands' => 'Brands',
+    'view_brands' => 'View Brands',
+    'no_brands_found' => 'No brands found',
+    'size' => 'Size',
+    'color' => 'Color',
+    'quantity' => 'Quantity',
+    
+    // Flash Sale Countdown
+    'days' => 'Days',
+    'hours' => 'Hours',
+    'minutes' => 'Minutes',
+    'seconds' => 'Seconds',
+    'sale_ends_in' => 'Sale Ends In',
+    
+    // Footer
+    'quick_links' => 'Quick Links',
+    'customer_service' => 'Customer Service',
+    'about_us' => 'About Us',
+    'privacy_policy' => 'Privacy Policy',
+    'terms_conditions' => 'Terms & Conditions',
+    'shipping_info' => 'Shipping Information',
+    'returns' => 'Returns',
+    'faq' => 'FAQ',
+    'contact_info' => 'Contact Information',
+    'follow_us' => 'Follow Us',
+    'newsletter' => 'Newsletter',
+    'subscribe' => 'Subscribe',
+    'payment_methods' => 'Payment Methods',
+    'secure_shopping' => 'Secure Shopping',
+    
+    // Forms
+    'first_name' => 'First Name',
+    'last_name' => 'Last Name',
+    'email' => 'Email',
+    'phone' => 'Phone',
+    'password' => 'Password',
+    'confirm_password' => 'Confirm Password',
+    'address' => 'Address',
+    'city' => 'City',
+    'country' => 'Country',
+    'postal_code' => 'Postal Code',
+    'submit' => 'Submit',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'update' => 'Update',
+    
+    // Messages
+    'success' => 'Success',
+    'error' => 'Error',
+    'warning' => 'Warning',
+    'info' => 'Information',
+    'loading' => 'Loading...',
+    'no_results' => 'No results found',
+    'item_added_to_cart' => 'Item added to cart',
+    'item_added_to_wishlist' => 'Item added to wishlist',
+    'login_required' => 'Login required',
+    
+    // Pagination
+    'previous' => 'Previous',
+    'next' => 'Next',
+    'page' => 'Page',
+    'of' => 'of',
+    'showing' => 'Showing',
+    'results' => 'results',
+    
+    // Currency
+    'currency' => '$',
+    'change_currency' => 'Change Currency',
+    
+    // Language
+    'change_language' => 'Change Language',
+    'english' => 'English',
+    'arabic' => 'Arabic',
+];

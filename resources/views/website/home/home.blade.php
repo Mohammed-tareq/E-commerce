@@ -16,13 +16,18 @@
     @endif
 
 
-    @if($newArrivals->count() > 0)
-        @include('website.home.inc-sections.arrival', compact('newArrivals'))
+    @if($homeProducts['newArrivals']->count() > 0)
+        @include('website.home.inc-sections.arrival', ['newArrivals' => $homeProducts['newArrivals']])
     @endif
 
-    @if($flashProducts->count() > 0)
-        @include('website.home.inc-sections.flash-sale', compact('flashProducts'))
+    @if($homeProducts['flashProductsTimer']->count() > 0)
+        @include('website.home.inc-sections.flash-sale', ['flashProductsTimer' => $homeProducts['flashProductsTimer'] ])
     @endif
+
+    @if($homeProducts['flashProductsWeek']->count() > 0)
+        @include('website.home.inc-sections.flash-sale-week', ['flashProductsWeek' => $homeProducts['flashProductsWeek']])
+    @endif
+
 
     @include('website.home.inc-sections.top-selling')
 
@@ -30,7 +35,8 @@
 
     @include('website.home.inc-sections.weekly-sale')
 
-    @if($flashProduct->count() > 0)
-        @include('website.home.inc-sections.best-product', compact('flashProduct'))
+
+    @if($homeProducts['flashProducts']->count() > 0)
+        @include('website.home.inc-sections.best-product', ['flashProducts' => $homeProducts['flashProducts'] ])
     @endif
 @endsection

@@ -2,23 +2,23 @@
     <div class="container">
         <div class="section-title">
             <h5>{{ __('website.new_arrivals') }}</h5>
-            <a href="" class="view">{{ __('website.view_all') }}</a>
+            <a href="{{ route('website.product.section.show','new-arrivals') }}" class="view">{{ __('website.view_all') }}</a>
         </div>
         <div class="arrival-section">
             <div class="row g-5">
-                @foreach ($newArrivals as $product)
+                @foreach ($newArrivals as $newProduct)
                     <div class="col-lg-3 col-sm-6">
                         <div class="product-wrapper" data-aos="fade-up">
                             <div class="product-img">
-                                <img src="{{ asset($product->imagesPath->first()) }}"
-                                     alt="{{ $product->getTranslation('name' , app()->getLocale()) }}">
-                                @if($product->brand)
+                                <img src="{{ asset($newProduct->imagesPath->first()) }}"
+                                     alt="{{ $newProduct->getTranslation('name' , app()->getLocale()) }}">
+                                @if($newProduct->brand)
                                     <div class="position-absolute top-0 start-0 bg-dark-subtle  text-white py-2 px-3 m-2 rounded">
-                                        {{ $product->brand->getTranslation('name' , app()->getLocale()) }}
+                                        {{ $newProduct->brand->getTranslation('name' , app()->getLocale()) }}
                                     </div>
                                 @endif
                                 <div class="product-cart-items">
-                                    <a href="{{ route('website.product.show' , $product->slug) }}"
+                                    <a href="{{ route('website.product.show' , $newProduct->slug) }}"
                                        class="cart cart-item">
                                     <span>
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
@@ -90,17 +90,17 @@
                                 </span>
                                 </div>
                                 <div class="product-description">
-                                    <a href="{{ route('website.product.show' , $product->slug) }}"
+                                    <a href="{{ route('website.product.show' , $newProduct->slug) }}"
                                        class="product-details">
-                                        {{ $product->getTranslation('name' , app()->getLocale()) }}
+                                        {{ $newProduct->getTranslation('name' , app()->getLocale()) }}
                                     </a>
                                     <div class="price">
-                                        @if($product->isSample())
-                                            @if($product->has_discount)
-                                                <span class="price-cut">${{ $product->price }}</span>
-                                                <span class="new-price">${{ $product->getPriceAfterDiscount() }}</span>
+                                        @if($newProduct->isSimple())
+                                            @if($newProduct->has_discount)
+                                                <span class="price-cut">${{ $newProduct->price }}</span>
+                                                <span class="new-price">${{ $newProduct->getPriceAfterDiscount() }}</span>
                                             @else
-                                                <span class="new-price">${{ $product->price }}</span>
+                                                <span class="new-price">${{ $newProduct->price }}</span>
                                             @endif
                                         @else
                                             <span class="new-price">{{ __('website.has_variants') }}</span>
@@ -110,7 +110,7 @@
                                 </div>
                             </div>
                             <div class="product-cart-btn">
-                                <a href="{{ route('website.category.products' , $product->category->slug) }}" class="product-btn">{{$product->category->getTranslation('name' , app()->getLocale())}}</a>
+                                <a href="{{ route('website.category.products' , $newProduct->category->slug) }}" class="product-btn">{{$newProduct->category->getTranslation('name' , app()->getLocale())}}</a>
                             </div>
                         </div>
                     </div>

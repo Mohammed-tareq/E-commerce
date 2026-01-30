@@ -1,0 +1,121 @@
+<?php
+
+return [
+    // Navigation
+    'home' => 'الرئيسية',
+    'shop' => 'المتجر',
+    'about' => 'من نحن',
+    'contact' => 'اتصل بنا',
+    'blog' => 'المدونة',
+    'pages' => 'الصفحات',
+    
+    // Common
+    'view_all' => 'عرض الكل',
+    'search' => 'بحث',
+    'cart' => 'سلة التسوق',
+    'wishlist' => 'المفضلة',
+    'compare' => 'مقارنة',
+    'login' => 'تسجيل الدخول',
+    'register' => 'إنشاء حساب',
+    'logout' => 'تسجيل الخروج',
+    'account' => 'حسابي',
+    
+    // Product
+    'new_arrivals' => 'وصل حديثاً',
+    'flash_sale' => 'تخفيضات سريعة',
+    'best_sellers' => 'الأكثر مبيعاً',
+    'top_selling' => 'الأعلى مبيعاً',
+    'weekly_sale' => 'تخفيضات الأسبوع',
+    'featured_products' => 'منتجات مميزة',
+    'has_variants' => 'له متغيرات',
+    'out_of_stock' => 'غير متوفر',
+    'in_stock' => 'متوفر',
+    'add_to_cart' => 'أضف للسلة',
+    'product_details' => 'تفاصيل المنتج',
+    'description' => 'الوصف',
+    'specifications' => 'المواصفات',
+    'reviews' => 'التقييمات',
+    'rating' => 'التقييم',
+    'price' => 'السعر',
+    'category' => 'الفئة',
+    'categories' => 'الفئات',
+    'our_categories' => 'فئاتنا',
+    'view_categories' => 'عرض الفئات',
+    'no_categories_found' => 'لا توجد فئات',
+    'brand' => 'العلامة التجارية',
+    'brands' => 'العلامات التجارية',
+    'view_brands' => 'عرض العلامات التجارية',
+    'no_brands_found' => 'لا توجد علامات تجارية',
+    'size' => 'المقاس',
+    'color' => 'اللون',
+    'quantity' => 'الكمية',
+    
+    // Flash Sale Countdown
+    'days' => 'يوم',
+    'hours' => 'ساعة',
+    'minutes' => 'دقيقة',
+    'seconds' => 'ثانية',
+    'sale_ends_in' => 'ينتهي العرض خلال',
+    
+    // Footer
+    'quick_links' => 'روابط سريعة',
+    'customer_service' => 'خدمة العملاء',
+    'about_us' => 'من نحن',
+    'privacy_policy' => 'سياسة الخصوصية',
+    'terms_conditions' => 'الشروط والأحكام',
+    'shipping_info' => 'معلومات الشحن',
+    'returns' => 'الإرجاع',
+    'faq' => 'الأسئلة الشائعة',
+    'contact_info' => 'معلومات الاتصال',
+    'follow_us' => 'تابعنا',
+    'newsletter' => 'النشرة البريدية',
+    'subscribe' => 'اشترك',
+    'payment_methods' => 'طرق الدفع',
+    'secure_shopping' => 'تسوق آمن',
+    
+    // Forms
+    'first_name' => 'الاسم الأول',
+    'last_name' => 'الاسم الأخير',
+    'email' => 'البريد الإلكتروني',
+    'phone' => 'رقم الهاتف',
+    'password' => 'كلمة المرور',
+    'confirm_password' => 'تأكيد كلمة المرور',
+    'address' => 'العنوان',
+    'city' => 'المدينة',
+    'country' => 'الدولة',
+    'postal_code' => 'الرمز البريدي',
+    'submit' => 'إرسال',
+    'save' => 'حفظ',
+    'cancel' => 'إلغاء',
+    'edit' => 'تعديل',
+    'delete' => 'حذف',
+    'update' => 'تحديث',
+    
+    // Messages
+    'success' => 'نجح',
+    'error' => 'خطأ',
+    'warning' => 'تحذير',
+    'info' => 'معلومات',
+    'loading' => 'جاري التحميل...',
+    'no_results' => 'لا توجد نتائج',
+    'item_added_to_cart' => 'تمت إضافة المنتج للسلة',
+    'item_added_to_wishlist' => 'تمت إضافة المنتج للمفضلة',
+    'login_required' => 'مطلوب تسجيل الدخول',
+    
+    // Pagination
+    'previous' => 'السابق',
+    'next' => 'التالي',
+    'page' => 'صفحة',
+    'of' => 'من',
+    'showing' => 'عرض',
+    'results' => 'نتيجة',
+    
+    // Currency
+    'currency' => 'ريال',
+    'change_currency' => 'تغيير العملة',
+    
+    // Language
+    'change_language' => 'تغيير اللغة',
+    'english' => 'English',
+    'arabic' => 'العربية',
+];

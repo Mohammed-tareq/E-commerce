@@ -17,32 +17,57 @@ class ProductService
 
     public function getNewArrivals($limit = null)
     {
-        return Product::with(['brand','category','images'])
+        $products = Product::query()->with(['brand', 'category', 'images'])
             ->active()
             ->latest()
-            ->select('id','name','slug','brand_id','category_id','price','has_variants','has_discount')
-            ->paginate($limit);
-
+            ->select('id', 'name', 'slug', 'brand_id', 'category_id', 'price', 'has_variants', 'has_discount');
+        if ($limit) {
+            return $products->paginate($limit);
+        }
+        return $products->get();
     }
 
     public function getFlashProduct($limit = null)
     {
-        return Product::with(['brand','category','images'])
+        $products = Product::query()->with(['brand', 'category', 'images'])
             ->active()
             ->latest()
             ->where('has_discount', true)
-            ->select('id','name','slug','brand_id','category_id','price','has_variants')
-            ->paginate($limit);
+            ->select('id', 'name', 'slug', 'brand_id', 'category_id', 'price', 'has_variants');
+        if ($limit) {
+            return $products->paginate($limit);
+        }
+        return $products->get();
     }
+
     public function getFlashProductTimer($limit = null)
     {
-        return Product::with(['brand','category','images'])
+        $products = Product::query()->with(['brand', 'category', 'images'])
             ->active()
             ->latest()
-            ->where('available_for', date('Y-m-d'))
+            ->where('available_for', today())
             ->whereNotNull('available_for')
-            ->select('id','name','slug','brand_id','category_id','price','has_variants','has_discount')
-            ->paginate($limit);
+            ->where('has_discount', true)
+            ->select('id', 'name', 'slug', 'brand_id', 'category_id', 'price', 'has_variants', 'has_discount');
+        if ($limit) {
+            return $products->paginate($limit);
+        }
+        return $products->get();
+    }
+
+    public function getFlashProductWeek($limit = null)
+    {
+        $products = Product::query()->with(['brand', 'category', 'images'])
+            ->active()
+            ->latest()
+            ->whereBetween('available_for', [today()->addDay(), today()->addWeek()])
+            ->whereNotNull('available_for')
+            ->where('has_discount', true)
+            ->select('id', 'name', 'slug', 'brand_id', 'category_id', 'price', 'has_variants', 'has_discount');
+        if ($limit) {
+            return $products->paginate($limit);
+        }
+        return $products->get();
     }
 
 

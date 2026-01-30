@@ -14,7 +14,7 @@
                     </div>
                 </a>
             @empty
-                <p>No brands found</p>
+                <p>{{ __('website.no_brands_found') }}</p>
             @endforelse
 
         </div>
