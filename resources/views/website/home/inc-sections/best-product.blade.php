@@ -10,18 +10,19 @@
                 @foreach($flashProducts as $flashProduct)
 
                     <div class="col-xl-2 col-md-4">
-                        <div class="product-wrapper" data-aos="fade-up">
-                            <div class="product-img">
-                                <img src="{{ asset($flashProduct->imagesPath->first()) }}"
-                                     alt="{{ $flashProduct->getTranslation('name' , app()->getLocale()) }}">
-                                @if($flashProduct->brand)
-                                    <div class="position-absolute top-0 start-0 bg-dark-subtle  text-white py-2 px-3 m-2 rounded">
-                                        {{ $flashProduct->brand->getTranslation('name' , app()->getLocale()) }}
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="product-info">
-                                <div class="ratings">
+                        <a href="{{ route('website.product.show',$flashProduct->slug) }}">
+                            <div class="product-wrapper" data-aos="fade-up">
+                                <div class="product-img">
+                                    <img src="{{ asset($flashProduct->imagesPath->first()) }}"
+                                         alt="{{ $flashProduct->getTranslation('name' , app()->getLocale()) }}">
+                                    @if($flashProduct->brand)
+                                        <div class="position-absolute top-0 start-0 bg-dark-subtle  text-white py-2 px-3 m-2 rounded">
+                                            {{ $flashProduct->brand->getTranslation('name' , app()->getLocale()) }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="product-info">
+                                    <div class="ratings">
                                     <span>
                                     <svg width="75" height="15" viewBox="0 0 75 15" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -37,23 +38,24 @@
                                           fill="#FFA800"/>
                                     </svg>
                                     </span>
-                                </div>
-                                <div class="product-description">
-                                    <a href="{{ route('website.product.show' , $flashProduct->slug) }}"
-                                       class="product-details">
-                                        {{ $flashProduct->getTranslation('name' , app()->getLocale()) }}
-                                    </a>
-                                    <div class="price">
-                                        @if($flashProduct->isSimple())
-                                            <span class="price-cut">${{ $flashProduct->price }}</span>
-                                            <span class="new-price">${{ $flashProduct->getPriceAfterDiscount() }}</span>
-                                        @else
-                                            <span class="new-price">{{ __('website.has_variants') }}</span>
-                                        @endif
+                                    </div>
+                                    <div class="product-description">
+                                        <a href="{{ route('website.product.show' , $flashProduct->slug) }}"
+                                           class="product-details">
+                                            {{ $flashProduct->getTranslation('name' , app()->getLocale()) }}
+                                        </a>
+                                        <div class="price">
+                                            @if($flashProduct->isSimple())
+                                                <span class="price-cut">${{ $flashProduct->price }}</span>
+                                                <span class="new-price">${{ $flashProduct->getPriceAfterDiscount() }}</span>
+                                            @else
+                                                <span class="new-price">{{ __('website.has_variants') }}</span>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>

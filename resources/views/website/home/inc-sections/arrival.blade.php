@@ -2,24 +2,26 @@
     <div class="container">
         <div class="section-title">
             <h5>{{ __('website.new_arrivals') }}</h5>
-            <a href="{{ route('website.product.section.show','new-arrivals') }}" class="view">{{ __('website.view_all') }}</a>
+            <a href="{{ route('website.product.section.show','new-arrivals') }}"
+               class="view">{{ __('website.view_all') }}</a>
         </div>
         <div class="arrival-section">
             <div class="row g-5">
                 @foreach ($newArrivals as $newProduct)
                     <div class="col-lg-3 col-sm-6">
-                        <div class="product-wrapper" data-aos="fade-up">
-                            <div class="product-img">
-                                <img src="{{ asset($newProduct->imagesPath->first()) }}"
-                                     alt="{{ $newProduct->getTranslation('name' , app()->getLocale()) }}">
-                                @if($newProduct->brand)
-                                    <div class="position-absolute top-0 start-0 bg-dark-subtle  text-white py-2 px-3 m-2 rounded">
-                                        {{ $newProduct->brand->getTranslation('name' , app()->getLocale()) }}
-                                    </div>
-                                @endif
-                                <div class="product-cart-items">
-                                    <a href="{{ route('website.product.show' , $newProduct->slug) }}"
-                                       class="cart cart-item">
+                        <a href="{{ route('website.product.show',$newProduct->slug) }}">
+                            <div class="product-wrapper" data-aos="fade-up">
+                                <div class="product-img">
+                                    <img src="{{ asset($newProduct->imagesPath->first()) }}"
+                                         alt="{{ $newProduct->getTranslation('name' , app()->getLocale()) }}">
+                                    @if($newProduct->brand)
+                                        <div class="position-absolute top-0 start-0 bg-dark-subtle  text-white py-2 px-3 m-2 rounded">
+                                            {{ $newProduct->brand->getTranslation('name' , app()->getLocale()) }}
+                                        </div>
+                                    @endif
+                                    <div class="product-cart-items">
+                                        <a href="{{ route('website.product.show' , $newProduct->slug) }}"
+                                           class="cart cart-item">
                                     <span>
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -42,8 +44,8 @@
                                           fill="black" fill-opacity="0.2"/>
                                     </svg>
                                     </span>
-                                    </a>
-                                    <a href="wishlist.html" class="favourite cart-item">
+                                        </a>
+                                        <a href="wishlist.html" class="favourite cart-item">
                                     <span>
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -52,8 +54,8 @@
                                           fill="#000"/>
                                     </svg>
                                     </span>
-                                    </a>
-                                    <a href="compaire.html" class="compaire cart-item">
+                                        </a>
+                                        <a href="compaire.html" class="compaire cart-item">
                                     <span>
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -68,11 +70,11 @@
                                           fill="black" fill-opacity="0.2"/>
                                     </svg>
                                     </span>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="ratings">
+                                <div class="product-info">
+                                    <div class="ratings">
                                 <span>
                                 <svg width="75" height="15" viewBox="0 0 75 15" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -88,31 +90,33 @@
                                       fill="#FFA800"/>
                                 </svg>
                                 </span>
-                                </div>
-                                <div class="product-description">
-                                    <a href="{{ route('website.product.show' , $newProduct->slug) }}"
-                                       class="product-details">
-                                        {{ $newProduct->getTranslation('name' , app()->getLocale()) }}
-                                    </a>
-                                    <div class="price">
-                                        @if($newProduct->isSimple())
-                                            @if($newProduct->has_discount)
-                                                <span class="price-cut">${{ $newProduct->price }}</span>
-                                                <span class="new-price">${{ $newProduct->getPriceAfterDiscount() }}</span>
+                                    </div>
+                                    <div class="product-description">
+                                        <a href="{{ route('website.product.show' , $newProduct->slug) }}"
+                                           class="product-details">
+                                            {{ $newProduct->getTranslation('name' , app()->getLocale()) }}
+                                        </a>
+                                        <div class="price">
+                                            @if($newProduct->isSimple())
+                                                @if($newProduct->has_discount)
+                                                    <span class="price-cut">${{ $newProduct->price }}</span>
+                                                    <span class="new-price">${{ $newProduct->getPriceAfterDiscount() }}</span>
+                                                @else
+                                                    <span class="new-price">${{ $newProduct->price }}</span>
+                                                @endif
                                             @else
-                                                <span class="new-price">${{ $newProduct->price }}</span>
-                                            @endif
-                                        @else
-                                            <span class="new-price">{{ __('website.has_variants') }}</span>
+                                                <span class="new-price">{{ __('website.has_variants') }}</span>
 
-                                        @endif
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="product-cart-btn">
+                                    <a href="{{ route('website.category.products' , $newProduct->category->slug) }}"
+                                       class="product-btn">{{$newProduct->category->getTranslation('name' , app()->getLocale())}}</a>
+                                </div>
                             </div>
-                            <div class="product-cart-btn">
-                                <a href="{{ route('website.category.products' , $newProduct->category->slug) }}" class="product-btn">{{$newProduct->category->getTranslation('name' , app()->getLocale())}}</a>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
 

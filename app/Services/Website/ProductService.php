@@ -9,10 +9,24 @@ class ProductService
 
     public function getProduct($slug)
     {
-        return Product::with(['brand', 'category', 'images'])
+        return Product::with(['brand', 'category', 'images', 'reviews'])
             ->active()
             ->where('slug', $slug)
             ->first();
+    }
+
+    public function getRelatedProductBySlug($slug, $limit = null)
+    {
+        $categoryId = Product::whereSlug($slug)->first()->category_id;
+        $products = Product::query()->with(['category', 'brand', 'images'])
+            ->active()
+            ->whereCategoryId($categoryId)
+            ->latest();
+        if ($limit) {
+            $products->paginate($limit);
+        }
+
+        return $products->paginate(30);
     }
 
     public function getNewArrivals($limit = null)

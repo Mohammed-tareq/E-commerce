@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <section class="product product-sidebar footer-padding @if($timerDay || $timerWeek) flash-sale @endif">
+    <section class="product product-sidebar footer-padding {{ ($timerDay ?? false) || ($timerWeek ?? false) ? 'flash-sale' : '' }}">
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-12">
@@ -24,7 +24,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @if($timerDay)
+                            @if($timerDay ?? false)
                                 <div class="countdown-section">
 
                                     <div class="countdown-items">
@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                             @endif
-                            @if($timerWeek)
+                            @if($timerWeek ?? false)
                                 <div class="countdown-section">
                                     <div class="countdown-items">
                                         <span id="day-week" class="number" style="color: red;">0</span>
@@ -63,19 +63,20 @@
                             @endif
                             @forelse($products as $product)
                                 <div class="col-lg-3 col-sm-6">
-                                    <div class="product-wrapper" data-aos="fade-up">
-                                        <div class="product-img">
-                                            <img src="{{ asset($product->imagesPath->first()) }}"
-                                                 alt="{{ $product->getTranslation('name' , app()->getLocale()) }}">
-                                            @if($product->brand)
-                                                <div class="position-absolute top-0 start-0 bg-dark-subtle  text-white py-2 px-3 m-2 rounded">
-                                                    {{ $product->brand->getTranslation('name' , app()->getLocale()) }}
-                                                </div>
-                                            @endif
+                                    <a href="{{ route('website.product.show',$product->slug) }}">
+                                        <div class="product-wrapper" data-aos="fade-up">
+                                            <div class="product-img">
+                                                <img src="{{ asset($product->imagesPath->first()) }}"
+                                                     alt="{{ $product->getTranslation('name' , app()->getLocale()) }}">
+                                                @if($product->brand)
+                                                    <div class="position-absolute top-0 start-0 bg-dark-subtle  text-white py-2 px-3 m-2 rounded">
+                                                        {{ $product->brand->getTranslation('name' , app()->getLocale()) }}
+                                                    </div>
+                                                @endif
 
-                                            <div class="product-cart-items">
-                                                <a href="{{ route('website.product.show' , $product->slug) }}"
-                                                   class="cart cart-item">
+                                                <div class="product-cart-items">
+                                                    <a href="{{ route('website.product.show' , $product->slug) }}"
+                                                       class="cart cart-item">
                                                         <span>
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                              xmlns="http://www.w3.org/2000/svg">
@@ -98,8 +99,8 @@
                                                               fill="black" fill-opacity="0.2"/>
                                                         </svg>
                                                         </span>
-                                                </a>
-                                                <a href="wishlist.html" class="favourite cart-item">
+                                                    </a>
+                                                    <a href="wishlist.html" class="favourite cart-item">
                                                         <span>
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                              xmlns="http://www.w3.org/2000/svg">
@@ -108,8 +109,8 @@
                                                               fill="#000"/>
                                                         </svg>
                                                         </span>
-                                                </a>
-                                                <a href="compaire.html" class="compaire cart-item">
+                                                    </a>
+                                                    <a href="compaire.html" class="compaire cart-item">
                                                         <span>
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                              xmlns="http://www.w3.org/2000/svg">
@@ -124,34 +125,35 @@
                                                               fill="black" fill-opacity="0.2"/>
                                                         </svg>
                                                         </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="product-info">
-
-                                            <div class="product-description">
-                                                <a href="product-info.html" class="product-details">
-                                                    {{ $product->getTranslation('name' , app()->getLocale()) }}
-                                                </a>
-                                                <div class="price">
-                                                    @if($product->isSimple())
-                                                        @if($product->has_discount)
-                                                            <span class="price-cut">${{ $product->price }}</span>
-                                                            <span class="new-price">${{ $product->getPriceAfterDiscount() }}</span>
-                                                        @else
-                                                            <span class="new-price">${{ $product->price }}</span>
-                                                        @endif
-                                                    @else
-                                                        <span class="new-price">{{ __('website.has_variants') }}</span>
-                                                    @endif
+                                                    </a>
                                                 </div>
                                             </div>
+                                            <div class="product-info">
+
+                                                <div class="product-description">
+                                                    <a href="product-info.html" class="product-details">
+                                                        {{ $product->getTranslation('name' , app()->getLocale()) }}
+                                                    </a>
+                                                    <div class="price">
+                                                        @if($product->isSimple())
+                                                            @if($product->has_discount)
+                                                                <span class="price-cut">${{ $product->price }}</span>
+                                                                <span class="new-price">${{ $product->getPriceAfterDiscount() }}</span>
+                                                            @else
+                                                                <span class="new-price">${{ $product->price }}</span>
+                                                            @endif
+                                                        @else
+                                                            <span class="new-price">{{ __('website.has_variants') }}</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-cart-btn">
+                                                <a href="{{ route('website.category.products' , $product->category->slug) }}"
+                                                   class="product-btn">{{ $product->category->getTranslation('name' , app()->getLocale()) }}</a>
+                                            </div>
                                         </div>
-                                        <div class="product-cart-btn">
-                                            <a href="{{ route('website.category.products' , $product->category->slug) }}"
-                                               class="product-btn">{{ $product->category->getTranslation('name' , app()->getLocale()) }}</a>
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>
                             @empty
                                 <section class="blog about-blog footer-padding">
@@ -187,7 +189,7 @@
 
 @endsection
 
-@if($timerWeek || $timerDay)
+@if( ($timerWeek ?? false) || ($timerDay ?? false))
     @push('js')
         <script src="{{ asset('assets/website/assets/js/flash-timer.js') }}"></script>
     @endpush

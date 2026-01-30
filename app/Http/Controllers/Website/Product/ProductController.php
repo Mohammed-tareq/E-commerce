@@ -12,6 +12,20 @@ class ProductController extends Controller
 
     }
 
+    public function getProduct($slug)
+    {
+        $product = $this->productService->getProduct($slug);
+        $productsRelated = $this->productService->getRelatedProductBySlug($slug,4);
+
+        return view('website.pages.product-info', compact('product', 'productsRelated'));
+    }
+
+    public function getRelatedProductBySlug($slug)
+    {
+        $products = $this->productService->getRelatedProductBySlug($slug);
+        return view('website.pages.products', compact('products'));
+    }
+
     public function getProductsForBaseOnSectionHome($type)
     {
         $timerDay = false;
