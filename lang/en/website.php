@@ -60,5 +60,58 @@ return [
     'has_variants' => 'Has variants',
     'add_to_cart' => 'Add to Cart',
     'no_products_found' => 'No Products Found',
+    'in_stock' => 'In Stock',
+    'product_details' => 'Product Details',
+    'description' => 'Description',
+    'specifications' => 'Specifications',
+    'reviews' => 'Reviews',
+    'rating' => 'Rating',
+    'price' => 'Price',
+    'category' => 'Category',
+    'brand' => 'Brand',
+    'size' => 'Size',
+    'color' => 'Color',
+    'quantity' => 'Quantity',
+
+    // Flash Sale Countdown
+    'days' => 'Days',
+    'hours' => 'Hours',
+    'minutes' => 'Minutes',
+    'seconds' => 'Seconds',
+
+    // Product Info Page
+    'product' => 'Product',
+    'shop' => 'Shop',
+    'availability' => 'Availability',
+    'products_available' => 'Products Available',
+    'select_your_size' => 'Select your size',
+    'small' => 'Small',
+    'medium' => 'Medium',
+    'large' => 'Large',
+    'extra_large' => 'Extra Large',
+    'size_2xl' => '2XL',
+    'report_this_item' => 'Report This Item',
+    'report_products' => 'Report Products',
+    'enter_report_title' => 'Enter Report Title*',
+    'reports_headline_here' => 'Reports Headline here',
+    'enter_report_note' => 'Enter Report Note*',
+    'type_here' => 'Type Here',
+    'submit_report' => 'Submit Report',
+    'share_this' => 'Share This:',
+    'related_product' => 'Related Products',
+    'reviews_count' => 'Reviews',
+    'view_all' => 'View All',
+
+    // Currency
+    'currency' => 'EGP',
+    'change_currency' => 'Change Currency',
+
+    // Language
+    'change_language' => 'Change Language',
+    'english' => 'English',
+    'arabic' => 'Arabic',
+
+    // Footer
+    'logout' => 'Logout',
 
 ];

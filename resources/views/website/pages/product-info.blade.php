@@ -280,8 +280,8 @@
                                                 </div>
                                                 <div class="author-details">
                                                     <h5>{{$review->user->first_name}} {{ $review->user->last_name }}</h5>
-                                                    <p>{{ $review->user->country->getTarnsaltion('name',app()->getLocale()) }}
-                                                        , {{ $review->user->city->getTarnsaltion('name',app()->getLocale()) }}</p>
+                                                    <p>{{ $review->user->country->getTranslation('name',app()->getLocale()) }}
+                                                        , {{ $review->user->city->getTranslation('name',app()->getLocale()) }}</p>
                                                 </div>
                                             </div>
                                             <div class="ratings">
