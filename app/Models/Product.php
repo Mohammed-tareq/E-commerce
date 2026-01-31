@@ -5,11 +5,12 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
-    use HasTranslations, Sluggable;
+    use HasTranslations;
 
     public $translatable = ['name', 'small_desc', 'desc'];
 
@@ -108,12 +109,12 @@ class Product extends Model
         );
     }
 
-    public function sluggable(): array
+    protected static function booted()
     {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
+        static::creating(function ($model) {
+                $model->sku ??= Str::uuid()->toString();
+
+        });
     }
+
 }

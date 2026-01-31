@@ -145,41 +145,5 @@
 @include('incloudes.file-input.file-input',['dataEdit'=>null])
 
 
-@include('incloudes.summernote.link')
-
-@push('js')
-    <script>
-        $('#summernote_ar').summernote({
-            placeholder: 'اكتب هنا',
-            tabsize: 2,
-            height: 300,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-            ]
-        });
-    </script>
-    <script>
-        $('#summernote_en').summernote({
-            placeholder: 'write here',
-            tabsize: 2,
-            height: 300,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-            ]
-        });
-    </script>
-@endpush
 
 

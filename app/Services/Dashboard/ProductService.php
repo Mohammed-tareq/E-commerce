@@ -7,6 +7,7 @@ use App\Repositories\Dashboard\Product\ProductVariantAttributeRepository;
 use App\Repositories\Dashboard\Product\ProductVariantRepository;
 use App\Utils\ImageManagement;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class ProductService
@@ -53,6 +54,7 @@ class ProductService
         try {
             DB::beginTransaction();
 
+            $product['slug'] = Str::slug($productData['name']['en']);
             $product = $this->productRepository->createProduct($productData);
 
             if (!$product) {
@@ -96,6 +98,7 @@ class ProductService
 
             DB::beginTransaction();
 
+            $productData['slug'] = Str::slug($productData['name']['en']);
             $productStatus = $this->productRepository->updateProduct($product, $productData);
             if (!$productStatus) {
                 return false;

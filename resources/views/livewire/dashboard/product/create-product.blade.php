@@ -129,15 +129,6 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="sku"> {{ __('dashboard.sku') }} :</label>
-                        <input wire:model="sku" type="text" class="form-control" id="sku">
-                        @error('sku')
-                        <span class="text-danger" role="alert">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -415,3 +406,39 @@
         </div>
     </form>
 </section>
+
+
+@push('js')
+    <script>
+        $('#desc_ar').summernote({
+            placeholder: 'اكتب هنا',
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    </script>
+    <script>
+        $('#desc_en').summernote({
+            placeholder: 'write here',
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    </script>
+@endpush

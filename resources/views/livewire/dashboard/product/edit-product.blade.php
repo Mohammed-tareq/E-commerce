@@ -89,7 +89,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="desc_ar"> {{ __('dashboard.desc_ar') }} :</label>
-                        <textarea wire:model="desc_ar" class="form-control" id="desc_ar"></textarea>
+                        <textarea wire:model="desc_ar" class="form-control" id="desc_ar_edit"></textarea>
                         @error('desc_ar')
                         <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
@@ -98,7 +98,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="desc_en"> {{ __('dashboard.desc_en') }} :</label>
-                        <textarea wire:model="desc_en" class="form-control" id="desc_en"></textarea>
+                        <textarea wire:model="desc_en" class="form-control" id="desc_en_edit"></textarea>
                         @error('desc_en')
                         <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
@@ -138,7 +138,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="sku"> {{ __('dashboard.sku') }} :</label>
-                        <input wire:model="sku" type="text" class="form-control" id="sku">
+                        <input wire:model="sku" readonly type="text" class="form-control" id="sku">
                         @error('sku')
                         <span class="text-danger" role="alert">{{ $message }}</span>
                         @enderror
@@ -430,3 +430,37 @@
     </form>
 </section>
 
+@push('js')
+    <script>
+        $('#desc_ar_edit').summernote({
+            placeholder: 'اكتب هنا',
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    </script>
+    <script>
+        $('#desc_en_edit').summernote({
+            placeholder: 'write here',
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    </script>
+@endpush

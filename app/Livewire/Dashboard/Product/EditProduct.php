@@ -18,7 +18,7 @@ class EditProduct extends Component
         $small_desc_ar, $small_desc_en,
         $desc_ar, $desc_en,
         $category_id, $brand_id,
-        $sku, $available_for, $tags, $price, $qty, $discount, $discount_start, $discount_end;
+          $sku, $available_for, $tags, $price, $qty, $discount, $discount_start, $discount_end;
     public $prices = [], $quantities = [], $attributeValues = [];
     public $has_discount, $manage_stock, $has_variants;
     public $newImages = [];
@@ -88,7 +88,6 @@ class EditProduct extends Component
             'desc_en' => 'required|string|min:10|max:5000',
             'category_id' => 'required|exists:categories,id',
             'brand_id' => 'required|exists:brands,id',
-            'sku' => 'required|string|max:255',
             'available_for' => 'required|date',
         ]);
 
@@ -197,7 +196,6 @@ class EditProduct extends Component
             ],
             'category_id' => $this->category_id,
             'brand_id' => $this->brand_id,
-            'sku' => $this->sku,
             'available_for' => $this->available_for,
             'has_variants' => $this->has_variants,
             'price' => $this->has_variants != 0 ? null : $this->price,
