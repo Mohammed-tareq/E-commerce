@@ -72,6 +72,7 @@ return [
     'size' => 'Size',
     'color' => 'Color',
     'quantity' => 'Quantity',
+    'sku' => 'SKU',
 
     // Flash Sale Countdown
     'days' => 'Days',

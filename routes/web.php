@@ -31,7 +31,7 @@ Route::group(
     });
 
     #################################################### logout #################################
-    Route::post('/logout', [LoginController::class, 'logOut'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'logOut'])->name('logout')->middleware('auth:web');
 
     #################################################### register #################################
     Route::controller(RegisterController::class)->middleware('guest:web')->group(function () {

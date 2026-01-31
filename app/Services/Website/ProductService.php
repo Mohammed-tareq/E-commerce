@@ -9,7 +9,7 @@ class ProductService
 
     public function getProduct($slug)
     {
-        return Product::with(['brand', 'category', 'images', 'reviews'])
+        return Product::with(['brand', 'category', 'images', 'reviews', 'variants'])
             ->active()
             ->where('slug', $slug)
             ->first();
