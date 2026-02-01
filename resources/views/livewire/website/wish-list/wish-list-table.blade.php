@@ -69,7 +69,7 @@
                     </table>
                 </div>
                 <div class="wishlist-btn">
-                    <a href="#" wire:click.prevent="cleanWishList()" class="clean-btn">Clean Wishlist</a>
+                    <a href="#" wire:click.prevent="cleanWishList" class="clean-btn">Clean Wishlist</a>
                 </div>
             </div>
         </section>

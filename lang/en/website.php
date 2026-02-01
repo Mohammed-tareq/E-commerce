@@ -80,6 +80,13 @@ return [
     'remove_from_wishlist' => 'Remove from Wishlist',
     'add_to_wishlist' => 'Add to Wishlist',
     'wish_list' => 'Wish List',
+    'empty_cart' => 'Empty! You don’t Cart any Products',
+    'cart' => 'Cart',
+    'remove_from_cart' => 'Remove from Cart',
+    'update_cart' => 'Update Cart',
+    'proceed_to_checkout' => 'Proceed to Checkout',
+    'clean_cart' => 'Clean Cart',
+
     // Flash Sale Countdown
     'days' => 'Days',
     'hours' => 'Hours',
