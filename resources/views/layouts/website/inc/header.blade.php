@@ -79,7 +79,7 @@
                         </a>
                     </div>
                     <div class="header-favourite">
-                       @livewire('website.wish-last.wish-list-navbar')
+                       @livewire('website.wish-list.wish-list-navbar')
                     </div>
                     <div class="header-cart">
                         <a href="cart.html" class="cart-item">

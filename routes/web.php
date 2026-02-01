@@ -9,6 +9,7 @@ use App\Http\Controllers\Website\Faq\FaqController;
 use App\Http\Controllers\Website\Home\HomeController;
 use App\Http\Controllers\Website\Product\ProductController;
 use App\Http\Controllers\Website\UserProfile\UserProfileController;
+use App\Http\Controllers\Website\WishList\WishLastController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -68,6 +69,7 @@ Route::group(
             Route::get('/user-profile', 'index')->name('user-profile');
         });
 
+        Route::get('/wish-list' , WishLastController::class)->name('wish-list');
     });
 
 });

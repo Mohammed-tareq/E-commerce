@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Website\WishLast;
+namespace App\Livewire\Website\WishList;
 
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
@@ -51,14 +51,12 @@ class ProductWishListIcon extends Component
             ->delete();
 
         $this->clicked = false;
-        $this->dispatch('wishlist-changed');
         $this->dispatch('wishlist-changed', __('website.remove_from_wishlist'));
-
 
     }
 
     public function render()
     {
-        return view('livewire.website.wish-last.product-wish-list-icon');
+        return view('livewire.website.wish-list.product-wish-list-icon');
     }
 }
