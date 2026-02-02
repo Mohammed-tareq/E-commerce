@@ -10,7 +10,7 @@
               fill="#6E6D79"/>
         <circle cx="26.9523" cy="8" r="8" fill="#AE1C9A"/>
         <text x="26.95" y="11" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">
-
+            {{ $cartItemsCount }}
         </text>
         </svg>
         </span>

@@ -32,6 +32,21 @@
     @if(!$product->isSimple())
         <div class="product-size">
             <P class="size-title">{{ __('website.variants') }}</P>
+            {{-- Show selected variant attributes --}}
+            <div class="selected-attributes">
+                @foreach ($variants as $item)
+                    @if ($item->id === $variantId)
+                        @foreach ($item->VariantAttributes as $itemAttr)
+                            <p class="size-title">
+                                {{ $itemAttr->attributeValue->attribute->name }}:
+                                {{ $itemAttr->attributeValue->value }}
+                            </p>
+                        @endforeach
+                    @endif
+                @endforeach
+            </div>
+            <br>
+
             <div class="size-section">
                 <span class="size-text">{{ __('website.select_your_variant') }}</span>
                 <div class="toggle-btn">
@@ -43,9 +58,11 @@
                 </span>
                 </div>
             </div>
+
+
             <ul class="size-option">
                 @foreach($variants as $variant)
-                    <a wire:click.prevent="secletVarint({{ $variant->id }})" class="option">
+                    <a wire:click.prevent="selectVariant({{ $variant->id }})" class="option">
                         @foreach($variant->variantAttributes as $attribute)
                             <span class="option-text">{{ $attribute->attributeValue->attribute->getTranslation('name',app()->getLocale()) }} : {{ $attribute->attributeValue->getTranslation('value',app()->getLocale()) }}</span>
                         @endforeach

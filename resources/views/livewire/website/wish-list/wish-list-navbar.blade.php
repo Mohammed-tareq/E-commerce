@@ -14,7 +14,7 @@
         </svg>
     </span>
         <span class="cart-text">
-        {{ __('website.wishlist') }}
+        {{ __('website.wish_list') }}
         </span>
     </a>
 

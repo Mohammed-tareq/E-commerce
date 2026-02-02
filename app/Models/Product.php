@@ -88,6 +88,16 @@ class Product extends Model
 
     }
 
+    public function getDiscountForProduct()
+    {
+        if(!$this->isSimple() && $this->has_discount){
+            return $this->variants->filter(function ($variant) {
+                return round(($this->discount / $variant->price)*100,2);
+            });
+        }
+        return round(($this->discount / $this->price)*100,2);
+    }
+
     public function createdAt(): Attribute
     {
         return Attribute::make(
