@@ -48,9 +48,13 @@ class AddToCartProductSection extends Component
         $cart = $this->getOrCreateCart();
 
         if ($this->product->isSimple()) {
-            return $this->updateOrCreateCartForProductSimple($cart);
+            $this->updateOrCreateCartForProductSimple($cart);
+            $this->dispatch('update-cart');
+            return;
         } else {
-            return $this->updateOrCreateCartForProductVariant($cart);
+            $this->updateOrCreateCartForProductVariant($cart);
+            $this->dispatch('update-cart');
+            return;
         }
         $this->dispatch('cart-error', __('website.not_found'));
 

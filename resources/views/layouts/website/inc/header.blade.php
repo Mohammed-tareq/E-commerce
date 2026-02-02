@@ -78,7 +78,7 @@
     </span>
                         </a>
                     </div>
-                    <div class="header-favourite">
+                    <div class="header-cart">
                        @livewire('website.wish-list.wish-list-navbar')
                     </div>
                     <div class="header-cart">
