@@ -16,9 +16,10 @@ class WishListNavbar extends Component
     public function render()
     {
         if (!Auth::check()) {
-            return false;
+            $this->wishlistCount = 0;
+        } else {
+            $this->wishlistCount = auth('web')->user()->wishlists()->count();
         }
-        $this->wishlistCount = auth('web')->user()->wishlists()->count();
         return view('livewire.website.wish-list.wish-list-navbar', ['wishlistCount' => $this->wishlistCount]);
     }
 }

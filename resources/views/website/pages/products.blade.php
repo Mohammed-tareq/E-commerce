@@ -63,7 +63,7 @@
                             @endif
                             @forelse($products as $product)
                                 <div class="col-lg-3 col-sm-6">
-                                    <a href="{{ route('website.product.show',$product->slug) }}">
+                                    <a href="{{ route('website.product.show',$product->slug) }}" style="all: unset">
                                         <div class="product-wrapper" data-aos="fade-up">
                                             <div class="product-img">
                                                 <img src="{{ asset($product->imagesPath->first()) }}"
@@ -75,7 +75,7 @@
                                                 @endif
 
                                                 <div class="product-cart-items">
-                                                    <a href="{{ route('website.product.show' , $product->slug) }} "
+                                                    <a href="{{ route('website.product.show' , $product->slug) }}"
                                                        style="all: unset"
                                                        class="cart cart-item">
                                                         <span>

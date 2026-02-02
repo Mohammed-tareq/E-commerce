@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Website;
+namespace App\Livewire\Website\Product;
 
 use App\Models\ProductVariant;
 use Livewire\Component;
@@ -9,6 +9,7 @@ class ProductShow extends Component
 {
     public $product, $price , $qty ,$variantId , $variants=[];
 
+    public $qtyAddedToCart = 1;
 
     public function mount($product)
     {
@@ -19,13 +20,14 @@ class ProductShow extends Component
         $this->variants = $this->product->variants ?? [];
     }
 
-    public function secletVarint($variantId)
+    public function selectVariant($variantId)
     {
         $variant = ProductVariant::find($variantId);
         if(!$variant){
             return false;
         }
         $this->changeAttributeForVariant($variant);
+        $this->dispatch('change-variantId',$variantId);
         return true;
     }
 
@@ -42,7 +44,7 @@ class ProductShow extends Component
            $this->variants = [];
        }
 
-        return view('livewire.website.product-show',
+        return view('livewire.website.product.product-show',
             [
                 'variants' => $this->variants
             ]);

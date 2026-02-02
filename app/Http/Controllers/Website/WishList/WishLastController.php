@@ -12,7 +12,6 @@ class WishLastController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $wishLists = auth('web')->user()->wishlists()->with('product.images')->get();
-        return view('website.pages.wish-list' ,compact('wishLists'));
+        return view('website.pages.wish-list');
     }
 }

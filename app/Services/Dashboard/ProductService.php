@@ -54,7 +54,7 @@ class ProductService
         try {
             DB::beginTransaction();
 
-            $product['slug'] = Str::slug($productData['name']['en']);
+            $productData['slug'] = Str::slug($productData['name']['en']);
             $product = $this->productRepository->createProduct($productData);
 
             if (!$product) {

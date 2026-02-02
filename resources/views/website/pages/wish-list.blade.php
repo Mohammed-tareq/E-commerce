@@ -16,7 +16,7 @@
         </div>
     </section>
 
-    @livewire('website.wish-list.wish-last-table',['wishLists' => $wishLists])
+    @livewire('website.wish-list.wish-last-table')
 @endsection
 
 @push('js')
