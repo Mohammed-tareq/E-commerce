@@ -3,7 +3,6 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Website\Brand\BrandController;
-use App\Http\Controllers\Website\Cart\CartController;
 use App\Http\Controllers\Website\Category\CategoryController;
 use App\Http\Controllers\Website\DynamicPage\PageController;
 use App\Http\Controllers\Website\Faq\FaqController;
@@ -70,12 +69,7 @@ Route::group(
             Route::get('/user-profile', 'index')->name('user-profile');
         });
 
-        ####################################### wish-list ###########################################
         Route::get('/wish-list' , WishLastController::class)->name('wish-list');
-
-        ####################################### cart ###########################################
-        Route::get('/cart' , CartController::class)->name('cart');
-
     });
 
 });
