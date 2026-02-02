@@ -95,6 +95,11 @@ return [
     'total' => 'Total',
     'action' => 'Action',
     'no_variants' => 'No Variants',
+    'user_my_account' => 'Using My Account Data',
+    'shipping_details' => 'Shipping Details',
+    'governorate' => 'Governorate',
+    'city' => 'City',
+    'shipping_address' => 'Shipping Address',
 
     // Flash Sale Countdown
     'days' => 'Days',

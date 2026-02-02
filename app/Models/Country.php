@@ -30,6 +30,11 @@ class Country extends Model
 
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
     public function status(): Attribute
     {
         return Attribute::make(
