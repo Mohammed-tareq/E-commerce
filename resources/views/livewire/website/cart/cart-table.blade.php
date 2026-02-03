@@ -1,5 +1,5 @@
 <div class="container">
-    @if(!$cartItems->items->isEmpty())
+    @if(!empty($cartItems->items))
 
         <div class="cart-section">
             <table>
@@ -44,7 +44,7 @@
                                          alt="{{ $item->product->getTranslation('name', app()->getLocale()) }}">
                                 </div>
                                 <div class="wrapper-content">
-                                    <h5 class="heading">{{ $item->product->getTranslation('name', app()->getLocale()) }}</h5>
+                                    <a href="{{ route('website.product.show', $item->product->slug) }}" style="cursor: pointer" class="heading">{{ $item->product->getTranslation('name', app()->getLocale()) }}</a>
                                 </div>
                             </div>
                         </td>
@@ -104,7 +104,7 @@
             <a href="#" class="clean-btn" wire:click.prevent="cleanCart">{{ __('website.clean_cart') }}</a>
             <a href="javascript:void(0)" class="shop-btn update-btn"
                @click="$dispatch('update-cart')">{{ __('website.update_cart') }}</a>
-            <a href="checkout.html" class="shop-btn">{{ __('website.proceed_to_checkout') }}</a>
+            <a href="{{ route('website.checkout.index') }}" class="shop-btn">{{ __('website.go_to_checkout') }}</a>
         </div>
     @else
         <div class="blog-item" data-aos="fade-up">

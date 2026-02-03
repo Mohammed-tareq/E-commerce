@@ -86,6 +86,7 @@ return [
     'remove_from_cart' => 'Remove from Cart',
     'update_cart' => 'Update Cart',
     'proceed_to_checkout' => 'Proceed to Checkout',
+    'go_to_checkout' => 'Go To Checkout',
     'clean_cart' => 'Clean Cart',
     'flash_sale' => 'Flash Sale',
     'new_arrivals'=>'New Arrivals',
@@ -100,6 +101,12 @@ return [
     'governorate' => 'Governorate',
     'city' => 'City',
     'shipping_address' => 'Shipping Address',
+    'country' => 'Country',
+    'enter_coupon_code' => 'Enter Coupon Code',
+    'order_summary' => 'Order Summary',
+    'check_out' => 'Check Out',
+    'subtotal' => 'SubTotal',
+    'shipping' => 'Shipping',
 
     // Flash Sale Countdown
     'days' => 'Days',

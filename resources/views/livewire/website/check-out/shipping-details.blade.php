@@ -40,36 +40,35 @@
                         @enderror
                     </div>
                 </div>
-                <div class="review-form-name">
+                <div class="review-form-name mt-3">
                     <label for="country" class="form-label">{{ __('website.country') }}*</label>
-                    <select id="country" class="form-select">
+                    <select id="country" class="form-select" wire:model.live="countryId">
                         <option>Choose...</option>
                         @foreach ($countries as $country)
-                            <option @selected($country->id === $countryId) value="{{ $country->id }}">{{ $country->getTranslation('name', app()->getLocale()) }}</option>
+                            <option value="{{ $country->id }}">{{ $country->getTranslation('name', app()->getLocale()) }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="review-form-name">
+                <div class="review-form-name mt-3">
                     <label for="governorate" class="form-label">{{ __('website.governorate') }}*</label>
-                    <select id="governorate" class="form-select">
+                    <select id="governorate" class="form-select" wire:model.live="governorateId">
                         <option>Choose...</option>
-                    @foreach ($governorates as $governorate)
-                            <option @selected($governorate->id === $governorateId) value="{{ $governorate->id }}">{{ $governorate->getTranslation('name', app()->getLocale() }}</option>
+                        @foreach ($governorates as $governorate)
+                            <option value="{{ $governorate->id }}">{{ $governorate->getTranslation('name', app()->getLocale()) }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="review-form-name">
+                <div class="review-form-name mt-3">
                     <label for="city" class="form-label">{{ __('website.city') }}*</label>
-                    <select id="city" class="form-select">
+                    <select id="city" class="form-select" wire:model.live="cityId">
                         <option>Choose...</option>
-                       @foreach ($cities as $city)
-                            <option @selected($city->id === $cityId) value="{{ $city->id }}">{{ $city->getTranslation('name', app()->getLocale()) }}</option>
+                        @foreach ($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->getTranslation('name', app()->getLocale()) }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="review-form-name shipping">
-                    <h5 class="wrapper-heading">{{ __('website.shipping_address') }}</h5>
-                </div>
+                <a href="" class="shop-btn mt-2">{{ __('website.user_my_account') }}</a>
+
             </div>
         </div>
     </div>

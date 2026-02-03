@@ -87,9 +87,9 @@ class AddToCartProductSection extends Component
             ->whereNull('product_variant_id')
             ->first();
         if ($cartItem)
-            return $this->updateItemCartForProductSimple($cartItem, $this->product->price);
+            return $this->updateItemCartForProductSimple($cartItem, $this->product->getPriceAfterDiscount());
         else
-            return $this->createItemCartForProductSimple($cartItem, $cart, $this->product->price);
+            return $this->createItemCartForProductSimple($cartItem, $cart, $this->product->getPriceAfterDiscount());
 
     }
 
@@ -124,12 +124,12 @@ class AddToCartProductSection extends Component
         $variants = $this->product->variants()->whereId($this->variantId)->first();
 
         if ($cartItem)
-            return $this->updateItemCartForProductVariant($cartItem, $variants);
+            return $this->updateItemCartForProductVariant($cartItem, $this->product->getPriceDiscountForVariants());
         else
-            return $this->createItemCartForProductVariant($cartItem, $variants, $cart);
+            return $this->createItemCartForProductVariant($cartItem, $this->product->getPriceDiscountForVariants(), $cart);
     }
 
-    protected function updateItemCartForProductVariant($cartItem, $variants)
+    protected function updateItemCartForProductVariant($cartItem, $variantPrice)
     {
         $cartItem->update([
             'quantity' => $cartItem->quantity + $this->qtyAddedToCart,
@@ -138,7 +138,7 @@ class AddToCartProductSection extends Component
         $this->dispatch('cart-updated', __('website.add_to_cart'));
     }
 
-    protected function createItemCartForProductVariant($cartItem, $variants, $cart)
+    protected function createItemCartForProductVariant($cartItem, $variantPrice, $cart)
     {
         $attributes = [];
         foreach ($variants->variantAttributes as $attribute) {

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('shipping_prices', function (Blueprint $table) {
             $table->id();
-            $table->decimal('price', 8, 3);
+            $table->decimal('price', 8, 2);
             $table->foreignId('governorate_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
