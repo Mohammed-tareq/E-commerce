@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Coupon extends Model
 {
     use HasFactory;
+
     protected $table = 'coupons';
     protected $fillable = [
         'code',
@@ -21,23 +22,29 @@ class Coupon extends Model
     ];
 
 
-    public function scopeValid($q)
+    public function scopeValid($query)
     {
-        return $q->where('status', 1)
-            ->where('used', '<', 'limiter')
-            ->where('end_date', '>=', now());
+
+        return $query->where('status', 1)
+            ->whereColumn('used', '<', 'limiter')
+            ->where('start_date', '<=', today())
+            ->where('end_date', '>', today());
     }
+
 
     public function scopeInvalid($q)
     {
         return $q->where('status', 0)
             ->orWhere('used', '>=', 'limiter')
-            ->orWhere('end_date', '<', now());
+            ->orWhere('end_date', '<', today());
     }
 
-    public function isValid()
+    public function isValid(): bool
     {
-        return $this->getRawOriginal('status') == true && $this->used > $this->limiter && $this->end_date >= now();
+        return (bool)$this->getRawOriginal('status') === true
+            && $this->used < $this->limiter
+            && $this->start_date <= today()
+            && $this->end_date >= today();
     }
 
     public function status(): Attribute

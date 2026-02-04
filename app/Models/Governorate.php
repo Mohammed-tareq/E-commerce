@@ -38,6 +38,11 @@ class Governorate extends Model
         return $this->hasMany(User::class);
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
     public function status(): Attribute
     {
         return Attribute::make(

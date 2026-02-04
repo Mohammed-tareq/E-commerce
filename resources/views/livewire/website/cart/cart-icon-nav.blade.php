@@ -21,20 +21,22 @@
     @if ($cartItemsCount !== 0)
         <div class="cart-submenu">
             <div class="cart-wrapper-item">
-                <div class="wrapper">
-                    @foreach ($cartItems->items as $item)
-                        <div class="wrapper-item">
-                            <div class="wrapper-img">
-                                <img src="{{ asset($item->product->images->first()->name) }}"
-                                     alt="{{ $item->product->getTranslation('name',app()->getLocale()) }}">
-                            </div>
-                            <div class="wrapper-content">
-                                <h5 class="wrapper-title">{{ $item->product->getTranslation('name',app()->getLocale()) }}</h5>
-                                <div class="price">
-                                    <p class="new-price">{{ $item->price }}</p>
+                @foreach ($cartItems->items as $item)
+                    <div class="wrapper">
+                        <a href="{{ route('website.product.show', $item->product->slug) }}">
+                            <div class="wrapper-item" style="cursor: pointer">
+                                <div class="wrapper-img">
+                                    <img src="{{ asset($item->product->images->first()->name) }}"
+                                         alt="{{ $item->product->getTranslation('name',app()->getLocale()) }}">
+                                </div>
+                                <div class="wrapper-content">
+                                    <h5 class="wrapper-title">{{ $item->product->getTranslation('name',app()->getLocale()) }}</h5>
+                                    <div class="price">
+                                        <p class="new-price">{{ $item->price }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                         <a class="close-btn" wire:click.prevent="removeItemFromCart({{ $item->id }})">
                             <svg viewBox="0 0 10 10" fill="none" class="fill-current"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -42,9 +44,8 @@
                                 </path>
                             </svg>
                         </a>
-                    @endforeach
-                </div>
-
+                    </div>
+                @endforeach
             </div>
             <div class="cart-wrapper-section">
                 <div class="wrapper-line"></div>
@@ -54,14 +55,16 @@
                 </div>
                 <div class="cart-btn">
                     <a href="{{ route('website.cart') }}" class="shop-btn view-btn">{{ __('website.go_to_cart') }}</a>
-                    <a href="checkout.html" class="shop-btn checkout-btn">Checkout Now</a>
+                    <a href="{{ route('website.checkout.index') }}"
+                       class="shop-btn checkout-btn">{{ __('website.proceed_to_checkout') }}</a>
                 </div>
             </div>
         </div>
     @else
         <div class="cart-submenu">
             <div class="cart-img">
-                <img src="{{ asset('assets/website/assets/images/homepage-one/empty-cart.webp') }}" alt="{{ __('website.empty_cart') }}">
+                <img src="{{ asset('assets/website/assets/images/homepage-one/empty-cart.webp') }}"
+                     alt="{{ __('website.empty_cart') }}">
             </div>
         </div>
     @endif

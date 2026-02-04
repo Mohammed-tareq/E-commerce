@@ -8,7 +8,12 @@
                 <span class="new-price">${{ $product->price }}</span>
             @endif
         @else
-            <span class="new-price">{{ $price }}</span>
+            @if($product->has_discount)
+                <span class="price-cut">${{$price }}</span>
+                <span class="new-price">${{ $productDiscountVariant }}</span>
+            @else
+                <span class="new-price">${{ $price }}</span>
+            @endif
 
         @endif
     </div>

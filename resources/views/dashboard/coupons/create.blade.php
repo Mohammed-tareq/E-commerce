@@ -16,11 +16,12 @@
 
                 <form id="create-coupon-form" method="post">
                     @csrf
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="code">{{ __('dashboard.code') }}</label>
-                                <input type="text" class="form-control" id="code"
+                                <input type="text" class="form-control" value="{{ uniqid('COUPON_',true) }}" id="code"
                                        placeholder="{{ __('placeHolder.code') }}" name="code">
 
                             </div>

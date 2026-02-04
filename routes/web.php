@@ -3,7 +3,9 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Website\Brand\BrandController;
+use App\Http\Controllers\Website\Cart\CartController;
 use App\Http\Controllers\Website\Category\CategoryController;
+use App\Http\Controllers\Website\CheckOut\CheckOutController;
 use App\Http\Controllers\Website\DynamicPage\PageController;
 use App\Http\Controllers\Website\Faq\FaqController;
 use App\Http\Controllers\Website\Home\HomeController;
@@ -69,7 +71,18 @@ Route::group(
             Route::get('/user-profile', 'index')->name('user-profile');
         });
 
-        Route::get('/wish-list' , WishLastController::class)->name('wish-list');
+        ####################################### wish-list routes ###########################################
+        Route::get('/wish-list', WishLastController::class)->name('wish-list');
+
+        ####################################### cart routes ###########################################
+        Route::get('/cart', CartController::class)->name('cart');
+
+        ####################################### check out routes ###########################################
+        Route::controller(CheckOutController::class)->name('checkout.')->group(function () {
+            Route::get('/check-out', 'index')->name('index');
+            Route::post('/check-out', 'checkout')->name('store');
+
+        });
     });
 
 });

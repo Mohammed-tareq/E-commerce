@@ -88,14 +88,24 @@ class Product extends Model
 
     }
 
+    public function getPriceDiscountForVariants()
+    {
+        return $this->variants->map(function ($variant) {
+            $variant['price'] = (!$this->isSimple() && $this->has_discount)?
+                $variant->price - $this->discount:
+                $variant->price;
+            return $variant;
+        });
+    }
+
     public function getDiscountForProduct()
     {
-        if(!$this->isSimple() && $this->has_discount){
-            return $this->variants->filter(function ($variant) {
-                return round(($this->discount / $variant->price)*100,2);
+        if (!$this->isSimple() && $this->has_discount) {
+            return $this->variants->map(function ($variant) {
+                return round(($this->discount / $variant->price) * 100, 2);
             });
         }
-        return round(($this->discount / $this->price)*100,2);
+        return round(($this->discount / $this->price) * 100, 2);
     }
 
     public function createdAt(): Attribute
@@ -122,7 +132,7 @@ class Product extends Model
     protected static function booted()
     {
         static::creating(function ($model) {
-                $model->sku ??= Str::uuid()->toString();
+            $model->sku ??= Str::uuid()->toString();
 
         });
     }

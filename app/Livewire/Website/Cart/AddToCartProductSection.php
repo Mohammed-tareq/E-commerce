@@ -87,9 +87,9 @@ class AddToCartProductSection extends Component
             ->whereNull('product_variant_id')
             ->first();
         if ($cartItem)
-            return $this->updateItemCartForProductSimple($cartItem, $this->product->price);
+            return $this->updateItemCartForProductSimple($cartItem, $this->product->getPriceAfterDiscount());
         else
-            return $this->createItemCartForProductSimple($cartItem, $cart, $this->product->price);
+            return $this->createItemCartForProductSimple($cartItem, $cart, $this->product->getPriceAfterDiscount());
 
     }
 
@@ -124,34 +124,38 @@ class AddToCartProductSection extends Component
         $variants = $this->product->variants()->whereId($this->variantId)->first();
 
         if ($cartItem)
-            return $this->updateItemCartForProductVariant($cartItem, $variants);
+            return $this->updateItemCartForProductVariant($cartItem, $this->product->getPriceDiscountForVariants());
         else
-            return $this->createItemCartForProductVariant($cartItem, $variants, $cart);
+            return $this->createItemCartForProductVariant($cartItem,$variants, $this->product->getPriceDiscountForVariants(), $cart);
     }
 
-    protected function updateItemCartForProductVariant($cartItem, $variants)
+    protected function updateItemCartForProductVariant($cartItem, $variantPrice)
     {
         $cartItem->update([
             'quantity' => $cartItem->quantity + $this->qtyAddedToCart,
-            'total_price' => $cartItem->total_price + ($variants->price * $this->qtyAddedToCart),
+            'total_price' => $cartItem->total_price + ($variantPrice->price * $this->qtyAddedToCart),
         ]);
         $this->dispatch('cart-updated', __('website.add_to_cart'));
     }
 
-    protected function createItemCartForProductVariant($cartItem, $variants, $cart)
+    protected function createItemCartForProductVariant($cartItem, $variants,$variantPrice, $cart)
     {
         $attributes = [];
         foreach ($variants->variantAttributes as $attribute) {
             $attributes [$attribute->attributeValue->attribute->name] = $attribute->attributeValue->value;
         }
-        $cart->items()->create([
-            'product_id' => $this->product->id,
-            'quantity' => $this->qtyAddedToCart,
-            'product_variant_id' => $this->variantId,
-            'price' => $variants->price,
-            'total_price' => $variants->price * $this->qtyAddedToCart,
-            'attributes' => $attributes
-        ]);
+        foreach ($variantPrice as $price){
+            if($price->id == $this->variantId){
+                $cart->items()->create([
+                    'product_id' => $this->product->id,
+                    'quantity' => $this->qtyAddedToCart,
+                    'product_variant_id' => $this->variantId,
+                    'price' => $price->price,
+                    'total_price' => $price->price * $this->qtyAddedToCart,
+                    'attributes' => $attributes
+                ]);
+            }
+        }
         $this->dispatch('cart-added', __('website.add_to_cart'));
     }
 
