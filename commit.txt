@@ -29,3 +29,4 @@ Add dynamic cart functionality with product quantity adjustments, variant select
 Implement checkout functionality: add `CheckOutController`, Livewire components for `OrderSummary` and `ShippingDetails`, new views for checkout pages, and update routes for streamlined integration.
 Enhance cart and wishlist features: add dynamic quantity updates, real-time cart subtotal calculation, clean cart functionality, and empty state handling. Refactor views for streamlined integration and UI consistency.
 Add dynamic location selection to ShippingDetails: implement governorate and city dropdowns, model scope queries, and user data autofill for smoother checkout. Refactor translations and views for UI consistency.
+Add coupon functionality: integrate coupon management in `OrderSummary`, update `Cart` and `Coupon` models, enhance Livewire components for validation and real-time updates, and refactor views for coupon application and messaging.
