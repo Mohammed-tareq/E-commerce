@@ -24,13 +24,12 @@ class CartIconNav extends Component
         if (!auth('web')->check()) {
             $this->cartItemsCount = 0;
         } else {
-            $this->cartItems = auth('web')->user()
-                ->cart()
-                ->withCount('items')
-                ->with('items.product.images')
-                ->first() ?? [];
 
-            $this->cartItemsCount = $this->cartItems ? $this->cartItems['items_count'] : 0;
+            $this->cartItems = auth('web')->user()->cart
+                ?->loadCount('items')
+                ?->load('items.product.images');
+
+          $this->cartItemsCount = $this->cartItems?->items_count ?? 0;
         }
         return view('livewire.website.cart.cart-icon-nav',
             ['cartItemsCount' => $this->cartItemsCount,

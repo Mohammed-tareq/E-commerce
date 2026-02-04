@@ -107,6 +107,11 @@ return [
     'check_out' => 'Check Out',
     'subtotal' => 'SubTotal',
     'shipping' => 'Shipping',
+    'added_to_wishlist' =>'Added To Wishlist',
+    'coupon_added' => 'Coupon Added Successfully',
+    'coupon_invalid' => 'Coupon Invalid',
+    'coupon_valid_for' => 'This coupon is valid For',
+    'discount_of' =>'with discount of',
 
     // Flash Sale Countdown
     'days' => 'Days',

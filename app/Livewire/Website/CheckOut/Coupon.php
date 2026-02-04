@@ -4,15 +4,81 @@ namespace App\Livewire\Website\CheckOut;
 
 use Livewire\Attributes\On;
 use Livewire\Component;
+use App\Models\Coupon as CouponModel;
 
 class Coupon extends Component
 {
-    public $couponCodesStatus = false;
+    public $code;
+    public $cart;
+    public $couponDetails = '';
+    public $cartItems = 0;
 
-    #[On('coupon-changed')]
-    public function couponChanged($showCoupon)
+    public $listeners = ['update-cart'];
+
+    public function mount()
     {
-        $this->couponCodesStatus = $showCoupon;
+        $this->cart = auth()->user()->cart;
+        $this->cart?->load('coupon', 'items');
+        $this->cartItems = $this->cart?->loadCount('items')->items_count ?? 0;
+
+        if ($this->cart->coupon_id) {
+            $this->couponDetails = __('website.coupon_valid_for') . " " . $this->cart->coupon->end_date . " " . __('website.discount_of') . " " . $this->cart->coupon->discount_percentage . "%" ?? '';
+        }
+
+    }
+
+    public function addCouponToCart()
+    {
+        if (!$code = $this->checkCouponIsValid($this->code)) {
+            $this->dispatch('coupon_invalid', __('website.coupon_invalid'));
+            return;
+        }
+
+        if (!$this->updateCartCoupon($code)) {
+            return;
+        }
+
+        if (!$code = $this->updateCouponUsed($code)) {
+            return;
+        }
+
+        $this->dispatch('coupon-added', __('website.coupon_added'));
+        $this->couponDetails = __('website.coupon_valid_for') . " " . $code->end_date . " " . __('website.discount_of') . " " . $code->discount_percentage . "%";
+
+    }
+
+    protected function checkCouponIsValid($code)
+    {
+        $codeObj = CouponModel::where('code', $code)->first();
+        if (!$codeObj) {
+            $this->reset('code');
+            return false;
+        }
+
+        if (!$codeObj->isValid()) {
+            dd($code);
+            $this->reset('code');
+            return false;
+        }
+        return $codeObj;
+    }
+
+    protected function updateCartCoupon($code)
+    {
+        $cartUpdate = auth()->user()->cart->update([
+            'coupon_id' => $code->id
+        ]);
+        if (!$cartUpdate) {
+            $this->dispatch('coupon_invalid', __('website.coupon_invalid'));
+            return;
+        }
+    }
+
+    protected function updateCouponUsed($code)
+    {
+        return $code->update([
+            'used' => $code->used + 1
+        ]);
     }
 
     public function render()

@@ -28,13 +28,13 @@ class ProductDiscountPercentage extends Component
         if ($this->product->variants()->exists() && $this->product->has_discount) {
             foreach ($this->product->variants as $variant) {
                 if ($variant->id === $this->variantId) {
-                    $this->discount = round(($this->product->discount / $variant->price), 2);
+                    $this->discount = round(($this->product->discount / $variant->price)*100, 2);
                 }
             }
             return $this->discount;
         }
 
-        $this->discount = round(($this->product->discount / $this->product->price),2);
+        $this->discount = round(($this->product->discount / $this->product->price)*100,2);
         return $this->discount;
 
     }

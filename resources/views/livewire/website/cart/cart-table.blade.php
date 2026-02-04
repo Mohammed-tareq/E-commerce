@@ -70,7 +70,7 @@
                             <div class="table-wrapper-center">
                                 @if($item->product->has_variants)
                                     @foreach($item->attributes as $key => $value)
-                                        <p class="size-title">{{ $key }}  {{ $value }}</p>
+                                        <p class="size-title">{{ $key }} {{ $value }}</p>
                                     @endforeach
                                 @else
                                     <h5 class="heading">{{ __('website.no_variants') }}</h5>

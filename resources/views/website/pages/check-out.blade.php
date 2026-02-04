@@ -26,11 +26,12 @@
                     <div class="col-lg-6">
                         @livewire('website.check-out.order-summary')
                         @livewire('website.check-out.coupon')
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+
+
 

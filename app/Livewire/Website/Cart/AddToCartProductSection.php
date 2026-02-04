@@ -126,32 +126,36 @@ class AddToCartProductSection extends Component
         if ($cartItem)
             return $this->updateItemCartForProductVariant($cartItem, $this->product->getPriceDiscountForVariants());
         else
-            return $this->createItemCartForProductVariant($cartItem, $this->product->getPriceDiscountForVariants(), $cart);
+            return $this->createItemCartForProductVariant($cartItem,$variants, $this->product->getPriceDiscountForVariants(), $cart);
     }
 
     protected function updateItemCartForProductVariant($cartItem, $variantPrice)
     {
         $cartItem->update([
             'quantity' => $cartItem->quantity + $this->qtyAddedToCart,
-            'total_price' => $cartItem->total_price + ($variants->price * $this->qtyAddedToCart),
+            'total_price' => $cartItem->total_price + ($variantPrice->price * $this->qtyAddedToCart),
         ]);
         $this->dispatch('cart-updated', __('website.add_to_cart'));
     }
 
-    protected function createItemCartForProductVariant($cartItem, $variantPrice, $cart)
+    protected function createItemCartForProductVariant($cartItem, $variants,$variantPrice, $cart)
     {
         $attributes = [];
         foreach ($variants->variantAttributes as $attribute) {
             $attributes [$attribute->attributeValue->attribute->name] = $attribute->attributeValue->value;
         }
-        $cart->items()->create([
-            'product_id' => $this->product->id,
-            'quantity' => $this->qtyAddedToCart,
-            'product_variant_id' => $this->variantId,
-            'price' => $variants->price,
-            'total_price' => $variants->price * $this->qtyAddedToCart,
-            'attributes' => $attributes
-        ]);
+        foreach ($variantPrice as $price){
+            if($price->id == $this->variantId){
+                $cart->items()->create([
+                    'product_id' => $this->product->id,
+                    'quantity' => $this->qtyAddedToCart,
+                    'product_variant_id' => $this->variantId,
+                    'price' => $price->price,
+                    'total_price' => $price->price * $this->qtyAddedToCart,
+                    'attributes' => $attributes
+                ]);
+            }
+        }
         $this->dispatch('cart-added', __('website.add_to_cart'));
     }
 

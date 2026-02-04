@@ -91,7 +91,7 @@ class Product extends Model
     public function getPriceDiscountForVariants()
     {
         return $this->variants->map(function ($variant) {
-            $variant = (!$this->isSimple && $this->has_discount)?
+            $variant['price'] = (!$this->isSimple() && $this->has_discount)?
                 $variant->price - $this->discount:
                 $variant->price;
             return $variant;
@@ -101,7 +101,7 @@ class Product extends Model
     public function getDiscountForProduct()
     {
         if (!$this->isSimple() && $this->has_discount) {
-            return $this->variants->filter(function ($variant) {
+            return $this->variants->map(function ($variant) {
                 return round(($this->discount / $variant->price) * 100, 2);
             });
         }

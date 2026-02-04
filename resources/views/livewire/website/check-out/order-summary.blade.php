@@ -19,6 +19,9 @@
                                             <p class="paragraph">{{ $key }} : {{ $attribute }} </p>
                                         @endforeach
                                     @endif
+                                    <p class="paragraph">{{ __('website.quantity') }} : {{ $item->quantity }} </p>
+
+
                                 </div>
                                 <div class="price">
                                     <h5 class="wrapper-heading">${{ $item->price }}</h5>
@@ -49,10 +52,9 @@
                 <hr>
                 <div class="subtotal total">
                     <h5 class="wrapper-heading">{{ __('website.total') }}</h5>
-                    <h5 class="wrapper-heading price">${{ $cartItems->items()->sum('total_price') + $shippingPrice }}</h5>
+                    <h5 class="wrapper-heading price">
+                        ${{ $cartItems->items()->sum('total_price') + $shippingPrice }}</h5>
                 </div>
-                <a href="#" wire:click.prevent="changeShowCouponStatus"  class="shop-btn">{{ __('website.enter_coupon_code') }}</a>
-
             </div>
         </div>
     </div>

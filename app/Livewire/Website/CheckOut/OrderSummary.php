@@ -17,15 +17,10 @@ class OrderSummary extends Component
         $this->shippingPrice = $price;
     }
 
-    public function changeShowCouponStatus()
-    {
-        $this->showCoupon = !$this->showCoupon;
-        $this->dispatch('coupon-changed',$this->showCoupon);
-    }
 
     public function render()
     {
-        $cartItems = auth('web')->user()->cart()->with('items.product')->first();
+        $cartItems = auth('web')->user()->cart?->load('items.product');
         return view('livewire.website.check-out.order-summary', compact('cartItems'));
     }
 }
