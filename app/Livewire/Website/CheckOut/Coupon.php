@@ -21,8 +21,9 @@ class Coupon extends Component
         $this->cart?->load('coupon', 'items');
         $this->cartItems = $this->cart?->loadCount('items')->items_count ?? 0;
 
-        if ($this->cart->coupon_id) {
-            $this->couponDetails = __('website.coupon_valid_for') . " " . $this->cart->coupon->end_date . " " . __('website.discount_of') . " " . $this->cart->coupon->discount_percentage . "%" ?? '';
+        if ($this->cart->coupon) {
+            $coupon = CouponModel::where('code',$this->cart->coupon)->first();
+            $this->couponDetails = __('website.coupon_valid_for') . " " . $coupon->end_date . " " . __('website.discount_of') . " " . $coupon->discount_percentage . "%" ?? '';
         }
 
     }
@@ -56,7 +57,6 @@ class Coupon extends Component
         }
 
         if (!$codeObj->isValid()) {
-            dd($code);
             $this->reset('code');
             return false;
         }
@@ -66,7 +66,7 @@ class Coupon extends Component
     protected function updateCartCoupon($code)
     {
         $cartUpdate = auth()->user()->cart->update([
-            'coupon_id' => $code->id
+            'coupon' => $code->code
         ]);
         if (!$cartUpdate) {
             $this->dispatch('coupon_invalid', __('website.coupon_invalid'));

@@ -73,10 +73,16 @@ Route::group(
 
         ####################################### wish-list routes ###########################################
         Route::get('/wish-list', WishLastController::class)->name('wish-list');
+
         ####################################### cart routes ###########################################
         Route::get('/cart', CartController::class)->name('cart');
+
         ####################################### check out routes ###########################################
-        Route::get('/check-out', [CheckOutController::class, 'index'])->name('checkout.index');
+        Route::controller(CheckOutController::class)->name('checkout.')->group(function () {
+            Route::get('/check-out', 'index')->name('index');
+            Route::post('/check-out', 'checkout')->name('store');
+
+        });
     });
 
 });

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,8 +13,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-
-            $table->string('user_name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('user_phone');
             $table->string('user_email');
             $table->string('country');
@@ -29,7 +28,10 @@ return new class extends Migration
             $table->decimal('shipping_price', 8, 3);
             $table->decimal('total_price', 8, 3);
 
-            $table->enum('status', ['pending', 'completed','delivered', 'canceled'])->default('pending');
+            $table->string('coupon')->nullable();
+            $table->integer('coupon_discount')->nullable();
+
+            $table->enum('status', ['pending', 'completed', 'delivered', 'canceled'])->default('pending');
             $table->timestamps();
         });
     }
