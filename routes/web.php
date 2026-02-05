@@ -42,6 +42,7 @@ Route::group(
         Route::post('/register', 'register')->name('register.post');
     });
 
+
     ####################################### global routes ###########################################
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('page/{slug}', [PageController::class, 'getPage'])->name('dynamic.page');
