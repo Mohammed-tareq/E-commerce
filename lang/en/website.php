@@ -27,6 +27,7 @@ return [
     'view_brands' => 'View Brands',
     'no_brands_found' => 'No Brands Found',
     'our_brands' => 'Our Brands',
+    'street' => 'Street',
 
 
     // Registration page
@@ -89,7 +90,7 @@ return [
     'go_to_checkout' => 'Go To Checkout',
     'clean_cart' => 'Clean Cart',
     'flash_sale' => 'Flash Sale',
-    'new_arrivals'=>'New Arrivals',
+    'new_arrivals' => 'New Arrivals',
     'variants' => 'Variants',
     'select_your_variant' => 'Select Your Variants',
     'attributes' => 'Attributes',
@@ -107,11 +108,13 @@ return [
     'check_out' => 'Check Out',
     'subtotal' => 'SubTotal',
     'shipping' => 'Shipping',
-    'added_to_wishlist' =>'Added To Wishlist',
+    'added_to_wishlist' => 'Added To Wishlist',
     'coupon_added' => 'Coupon Added Successfully',
     'coupon_invalid' => 'Coupon Invalid',
     'coupon_valid_for' => 'This coupon is valid For',
-    'discount_of' =>'with discount of',
+    'discount_of' => 'with discount of',
+    'error_in_order' => 'Your Order Not Compilate Please Try again',
+    'your_order_added' =>'Your Order Added Successfully',
 
     // Flash Sale Countdown
     'days' => 'Days',
