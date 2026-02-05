@@ -34,7 +34,7 @@ class OrderService
             }
         }
         $total = $subtotal + $shippingPrice;
-        $order = $this->createOrder($orderData, $subtotal, $shippingPrice, $total,$country, $governorate, $city, $coupon->code ?? null);
+        $order = $this->createOrder($orderData, $subtotal, $shippingPrice, $total,$country, $governorate, $city, $coupon);
         if (!$order) {
             return false;
         }
@@ -61,7 +61,7 @@ class OrderService
         return ShippingPrice::where('governorate_id', $governorateId)->first()?->price ?? 0;
     }
 
-    private function createOrder($orderData, $subtotal, $shippingPrice, $total,$country,$governorate,$city, $coupon = null)
+    private function createOrder($orderData, $subtotal, $shippingPrice, $total,$country,$governorate,$city, $coupon)
     {
         return Order::create([
             'user_id' => auth('web')->user()->id,
@@ -77,8 +77,8 @@ class OrderService
             'price' => $subtotal,
             'shipping_price' => $shippingPrice,
             'total_price' => $total,
-            'coupon' => $coupon,
-            'coupon_discount' => $coupon !== null ? $coupon?->discount_percentage : null,
+            'coupon' => $coupon?->code ?? null,
+            'coupon_discount' => $coupon !== null ? $coupon?->discount_percentage : null ,
         ]);
     }
     private function createOrderItems($order, $cart)

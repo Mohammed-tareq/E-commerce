@@ -11,6 +11,7 @@ class Coupon extends Component
     public $code;
     public $cart;
     public $couponDetails = '';
+    public $statusShow = false;
     public $cartItems = 0;
 
     public $listeners = ['update-cart'];
@@ -22,7 +23,7 @@ class Coupon extends Component
         $this->cartItems = $this->cart?->loadCount('items')->items_count ?? 0;
 
         if ($this->cart->coupon) {
-            $coupon = CouponModel::where('code',$this->cart->coupon)->first();
+            $coupon = CouponModel::where('code', $this->cart->coupon)->first();
             $this->couponDetails = __('website.coupon_valid_for') . " " . $coupon->end_date . " " . __('website.discount_of') . " " . $coupon->discount_percentage . "%" ?? '';
         }
 
@@ -35,17 +36,18 @@ class Coupon extends Component
             return;
         }
 
-        if (!$this->updateCartCoupon($code)) {
+        if (!$this->updateCartCoupon($code->code)) {
             return;
         }
 
-        if (!$code = $this->updateCouponUsed($code)) {
+        if (!$this->updateCouponUsed($code)) {
             return;
         }
 
         $this->dispatch('coupon-added', __('website.coupon_added'));
         $this->couponDetails = __('website.coupon_valid_for') . " " . $code->end_date . " " . __('website.discount_of') . " " . $code->discount_percentage . "%";
-
+        $this->reset('code');
+        $this->statusShow = true;
     }
 
     protected function checkCouponIsValid($code)
@@ -66,12 +68,13 @@ class Coupon extends Component
     protected function updateCartCoupon($code)
     {
         $cartUpdate = auth()->user()->cart->update([
-            'coupon' => $code->code
+            'coupon' => $code
         ]);
         if (!$cartUpdate) {
             $this->dispatch('coupon_invalid', __('website.coupon_invalid'));
-            return;
+            return false;
         }
+        return $cartUpdate;
     }
 
     protected function updateCouponUsed($code)

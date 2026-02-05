@@ -15,8 +15,10 @@ class ProductShow extends Component
     {
         $this->product = $product;
         $this->price = $this->product->isSimple() ? $product->price : $product->variants->first()->price;
-        $this->productDiscountVariant = ($this->product->isSimple() && $this->product->has_discount)
-            ? ($product->price - $product->discount) ?? null : ($product->variants->first()->price - $product->discount) ?? null;
+        $this->productDiscountVariant = ($this->product->isSimple())
+            ? ($product->price - ($product->discount ?? 0))
+            : ($product->variants->first()->price - ($product->discount ?? 0));
+
         $this->qty = $this->product->isSimple() ? $product->qty : $product->variants->first()->qty;
         $this->variantId = $this->product->isSimple() ? null : $product->variants->first()->id;
         $this->variants = $this->product->variants ?? [];
@@ -37,7 +39,7 @@ class ProductShow extends Component
     {
         $this->variantId = $variant->id;
         $this->price = $variant->price;
-        $this->productDiscountVariant = $variant->price -  $variant->product->discount;
+        $this->productDiscountVariant = $variant->price - $variant->product->discount;
         $this->qty = $variant->qty;
     }
 

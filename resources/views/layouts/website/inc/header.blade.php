@@ -79,10 +79,10 @@
                         </a>
                     </div>
                     <div class="header-cart">
-                       @livewire('website.wish-list.wish-list-navbar')
+                        @livewire('website.wish-list.wish-list-navbar')
                     </div>
                     <div class="header-cart">
-                       @livewire('website.cart.cart-icon-nav')
+                        @livewire('website.cart.cart-icon-nav')
                     </div>
                     <div class="header-user">
                         <a href="user-profile.html">
@@ -695,8 +695,8 @@ Baby Shop
                 <div class="header-nav-menu">
                     <ul class="menu-list">
                         <li>
-                            <a href="index-2.html">
-                                <span class="list-text">Home</span>
+                            <a href="{{ route('website.home') }}">
+                                <span class=" list-text">Home</span>
                             </a>
                         </li>
                         <li class="mega-menu">
@@ -744,7 +744,8 @@ Baby Shop
                                     </div>
                                 </div>
                                 <div class="shop-menu-img">
-                                    <img src="{{ asset('assets/website') }}/assets/images/homepage-one/empty-wishlist.webp" alt="img">
+                                    <img src="{{ asset('assets/website') }}/assets/images/homepage-one/empty-wishlist.webp"
+                                         alt="img">
                                 </div>
                             </div>
                         </li>
@@ -766,10 +767,12 @@ Baby Shop
 </span>
                             </a>
                             <ul class="header-sub-menu">
-                               @foreach ($pages as $page)
-                                   <li><a href="{{ route('website.dynamic.page', $page->slug) }}">{{ $page->getTranslation('title', app()->getLocale()) }}</a></li>
-                               @endforeach
-                                   <li><a href="{{ route('website.faq.index') }}">{{ __('website.faq') }}</a></li>
+                                @foreach ($pages as $page)
+                                    <li>
+                                        <a href="{{ route('website.dynamic.page', $page->slug) }}">{{ $page->getTranslation('title', app()->getLocale()) }}</a>
+                                    </li>
+                                @endforeach
+                                <li><a href="{{ route('website.faq.index') }}">{{ __('website.faq') }}</a></li>
                             </ul>
                         </li>
                         <li>

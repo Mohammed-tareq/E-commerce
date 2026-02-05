@@ -18,9 +18,9 @@ class CouponRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => 'required|string|max:10|unique:coupons,code,' . $this->route('coupon'),
+            'code' => 'required|string|max:30|unique:coupons,code,' . $this->route('coupon'),
             'discount_percentage' => 'required|numeric|min:1|max:100',
-            'start_date' => 'required|date|after_or_equal:now',
+            'start_date' => 'required|date|after_or_equal:today',
             'end_date' => 'required|date|after:start_date',
             'limiter' => 'required|integer|min:1',
             'status' => 'required|in:0,1',
