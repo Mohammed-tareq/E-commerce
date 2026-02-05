@@ -18,7 +18,7 @@ class Coupon extends Component
     public function mount()
     {
         $this->cart = auth()->user()->cart;
-        $this->cart?->load('coupon', 'items');
+        $this->cart?->load('items');
         $this->cartItems = $this->cart?->loadCount('items')->items_count ?? 0;
 
         if ($this->cart->coupon) {

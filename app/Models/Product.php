@@ -98,15 +98,15 @@ class Product extends Model
         });
     }
 
-    public function getDiscountForProduct()
-    {
-        if (!$this->isSimple() && $this->has_discount) {
-            return $this->variants->map(function ($variant) {
-                return round(($this->discount / $variant->price) * 100, 2);
-            });
-        }
-        return round(($this->discount / $this->price) * 100, 2);
-    }
+//    public function getDiscountForProductPercentage()
+//    {
+//        if (!$this->isSimple() && $this->has_discount) {
+//            return $this->variants->map(function ($variant) {
+//                return round(($this->discount / $variant->price) * 100, 2);
+//            });
+//        }
+//        return round(($this->discount / $this->price) * 100, 2);
+//    }
 
     public function createdAt(): Attribute
     {
@@ -115,12 +115,6 @@ class Product extends Model
         );
     }
 
-    public function updatedAt(): Attribute
-    {
-        return Attribute::make(
-            get: fn($value) => date('Y-m-d', strtotime($value))
-        );
-    }
 
     public function status(): Attribute
     {
