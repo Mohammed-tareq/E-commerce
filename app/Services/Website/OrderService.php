@@ -65,6 +65,7 @@ class OrderService
     {
         return Order::create([
             'user_id' => auth('web')->user()->id,
+
             'first_name' => $orderData['first_name'],
             'last_name' => $orderData['last_name'],
             'user_phone' => $orderData['user_phone'],

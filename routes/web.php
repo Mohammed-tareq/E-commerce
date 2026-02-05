@@ -13,6 +13,7 @@ use App\Http\Controllers\Website\Product\ProductController;
 use App\Http\Controllers\Website\UserProfile\UserProfileController;
 use App\Http\Controllers\Website\WishList\WishLastController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -87,3 +88,38 @@ Route::group(
     });
 
 });
+
+Route::get('/test', function () {
+    $response = Http::withHeaders([
+        'authorization' => 'Bearer SK_KWT_vVZlnnAqu8jRByOWaRPNId4ShzEDNt256dvnjebuyzo52dXjAfRx2ixW5umjWSUx',
+    ])->timeout(30)->withoutVerifying()
+        ->post('https://apitest.myfatoorah.com/v3/payments', [
+
+            "Order" => [
+                "Amount" => 20,
+                "Currency" => "KWD",
+            ],
+            "Customer" => [
+                "Mobile" => [
+                    "CountryCode" => "+20",
+                    "Number" => "1020304050"
+                ],
+                "Email" => "example@gmail.com"
+            ],
+            "IntegrationUrls" => [
+                "Redirection" => route('callback'),
+                "Error" => route('error')
+            ],
+            "NotificationOption" => "LINK"
+
+        ]);
+    return redirect($response['Data']['PaymentURL']);
+});
+
+Route::get('callback', function () {
+    return request();
+})->name('callback');
+
+Route::get('error', function () {
+    return request();
+})->name('error');
