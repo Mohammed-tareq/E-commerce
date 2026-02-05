@@ -53,7 +53,8 @@
                     </div>
                     <div class="review-form-name mt-3">
                         <label for="governorate" class="form-label">{{ __('website.governorate') }}*</label>
-                        <select id="governorate" class="form-select" name="governorate_id" wire:model.live="governorateId">
+                        <select id="governorate" class="form-select" name="governorate_id"
+                                wire:model.live="governorateId">
                             <option>Choose...</option>
                             @foreach ($governorates as $governorate)
                                 <option value="{{ $governorate->id }}">{{ $governorate->getTranslation('name', app()->getLocale()) }}</option>
@@ -69,11 +70,19 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="review-form-name">
+                    <div class="review-form-name mt-3">
                         <label for="notes" class="form-label">{{ __('website.enter_report_note') }}*</label>
                         <input type="text" id="notes" name="notes" class="form-control"
                                placeholder="{{  __('website.enter_report_note') }}">
                         @error('notes')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="review-form-name mt-3">
+                        <label for="notes" class="form-label">{{ __('website.street') }}*</label>
+                        <input type="text" id="notes" name="street" class="form-control"
+                               placeholder="{{  __('website.enter_report_note') }}">
+                        @error('street')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

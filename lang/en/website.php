@@ -27,6 +27,7 @@ return [
     'view_brands' => 'View Brands',
     'no_brands_found' => 'No Brands Found',
     'our_brands' => 'Our Brands',
+    'street' => 'Street',
 
 
     // Registration page
