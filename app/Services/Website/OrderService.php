@@ -13,9 +13,9 @@ class OrderService
     public function addItemsInOrder($orderData)
     {
         $country = $this->getAddress(Country::class, $orderData['country_id']);
-        $governorate = $this->getAddress(Country::class, $orderData['governorate_id']);
+        $governorate = $this->getAddress(Country::class,  $orderData['governorate_id']);
         $city = $this->getAddress(Country::class, $orderData['city_id']);
-        if (!$country || !$governorate || $city) {
+        if (!$country || !$governorate || !$city) {
             return false;
         }
 
@@ -34,7 +34,7 @@ class OrderService
             }
         }
         $total = $subtotal + $shippingPrice;
-        $order = $this->createOrder($orderData, $subtotal, $shippingPrice, $total, $coupon?->code);
+        $order = $this->createOrder($orderData, $subtotal, $shippingPrice, $total,$country, $governorate, $city, $coupon->code ?? null);
         if (!$order) {
             return false;
         }
@@ -48,7 +48,7 @@ class OrderService
 
     private function getAddress($model, $id)
     {
-        return $model->find($id);
+        return $model::find($id)?->name;
     }
 
     private function getCartUser()
@@ -61,7 +61,7 @@ class OrderService
         return ShippingPrice::where('governorate_id', $governorateId)->first()?->price ?? 0;
     }
 
-    private function createOrder($orderData, $subtotal, $shippingPrice, $total, $coupon = null)
+    private function createOrder($orderData, $subtotal, $shippingPrice, $total,$country,$governorate,$city, $coupon = null)
     {
         return Order::create([
             'user_id' => auth('web')->user()->id,
@@ -69,15 +69,15 @@ class OrderService
             'last_name' => $orderData['last_name'],
             'user_phone' => $orderData['user_phone'],
             'user_email' => $orderData['user_email'],
-            'country' => $orderData['country_id'],
-            'governorate' => $orderData['governorate_id'],
-            'city' => $orderData['city_id'],
+            'country' => $country,
+            'governorate' => $governorate,
+            'city' => $city,
             'street' => $orderData['street'],
             'notes' => $orderData['notes'],
             'price' => $subtotal,
             'shipping_price' => $shippingPrice,
             'total_price' => $total,
-            'coupon' => $coupon?->code ?? null,
+            'coupon' => $coupon,
             'coupon_discount' => $coupon !== null ? $coupon?->discount_percentage : null,
         ]);
     }
@@ -88,8 +88,10 @@ class OrderService
                 'product_id' => $item->product_id,
                 'product_variant_id' => $item->product_variant_id,
                 'product_name' => $item->product->name ?? 'No Name',
+                'product_desc' => $item->product->small_desc ?? 'No Description',
                 'product_quantity' => $item->quantity ?? 0,
                 'product_price' => $item->price,
+                'product_discount' => $item->product->has_discount ? $item->product->discount : null,
                 'total_price' => $item->total_price,
                 'attributes' => $item->attributes ?? null,
 

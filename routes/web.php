@@ -81,7 +81,7 @@ Route::group(
         ####################################### check out routes ###########################################
         Route::controller(CheckOutController::class)->name('checkout.')->group(function () {
             Route::get('/check-out', 'index')->name('index');
-            Route::post('/check-out', 'checkout')->name('store');
+            Route::post('/check-out/{userId}', 'checkout')->name('store');
 
         });
     });

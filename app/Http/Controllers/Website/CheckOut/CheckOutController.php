@@ -18,14 +18,14 @@ class CheckOutController extends Controller
         return view('website.pages.check-out');
     }
 
-    public function checkout(CheckOutRequest $request)
+    public function checkout(CheckOutRequest $request,$userId)
     {
         $orderDataUser = $request->validated();
+        $orderDataUser['user_id'] = $userId;
         if(!$this->orderService->addItemsInOrder($orderDataUser)){
             return redirect()->back()->with('error',__('website.error_in_order'));
         }
         return redirect()->back()->with('success',__('website.your_order_added'));
-
 
     }
 }

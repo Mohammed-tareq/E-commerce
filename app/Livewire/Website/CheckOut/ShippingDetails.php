@@ -10,24 +10,11 @@ use Livewire\Component;
 
 class ShippingDetails extends Component
 {
-    public $fname;
-    public $lname;
-    public $email;
-    public $phone;
+
     public $countryId = null, $governorateId = null, $cityId = null;
 
     public $countries = [], $governorates = [], $cities = [];
 
-
-    public function SendDataUser()
-    {
-        $user = auth('web')->user();
-        $this->fname = $user->first_name ?? '';
-        $this->lname = $user->last_name ?? '';
-        $this->email = $user->email ?? '';
-        $this->phone = $user->phone ?? '';
-
-    }
 
     public function updatedCityId()
     {
