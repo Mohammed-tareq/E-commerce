@@ -113,6 +113,7 @@ Route::get('/test', function () {
             "NotificationOption" => "LINK"
 
         ]);
+    return $response;
     return redirect($response['Data']['PaymentURL']);
 });
 
