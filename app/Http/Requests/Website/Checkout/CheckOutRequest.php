@@ -22,14 +22,13 @@ class CheckOutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "user_id" => ['required', 'integer', 'exists:users,id'],
             "first_name" => ['required', 'string', 'min:3', 'max:30'],
             "last_name" => ['required', 'string', 'min:3', 'max:30'],
             "user_phone" => ['required', 'string', 'min:10', 'max:15'],
             "user_email" => ['required', 'email:rfc,dns', 'max:50'],
-            "country" => ['required', 'integer', 'exists:countries,id'],
-            "governorate" => ['required', 'integer', 'exists:governorates,id'],
-            "city" => ['required', 'integer', 'exists:cities,id'],
+            "country_id" => ['required', 'integer', 'exists:countries,id'],
+            "governorate_id" => ['required', 'integer', 'exists:governorates,id'],
+            "city_id" => ['required', 'integer', 'exists:cities,id'],
             "street" => ['sometimes', 'string', 'min:3', 'max:100'],
             "notes" => ['sometimes', 'string', 'min:3', 'max:100'],
         ];

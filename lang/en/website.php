@@ -115,6 +115,7 @@ return [
     'discount_of' => 'with discount of',
     'error_in_order' => 'Your Order Not Compilate Please Try again',
     'your_order_added' =>'Your Order Added Successfully',
+    'continue' => 'Continue',
 
     // Flash Sale Countdown
     'days' => 'Days',

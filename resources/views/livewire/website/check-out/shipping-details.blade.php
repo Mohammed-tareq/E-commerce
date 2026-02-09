@@ -1,15 +1,15 @@
 <div>
     <div class="checkout-wrapper">
-        {{--        <a href="" class="shop-btn" wire:click.prevent="SendDataUser">{{ __('website.user_my_account') }}</a>--}}
         <div class="account-section billing-section">
             <h5 class="wrapper-heading">{{ __('website.shipping_details') }}</h5>
             <div class="review-form">
-                <form action="{{ route('website.checkout.store') }}" method="post">
+                <form  action="{{ route('website.checkout.store',auth()->id()) }}" method="post">
                     @csrf
+                    <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                     <div class=" account-inner-form">
                         <div class="review-form-name">
                             <label for="fname" class="form-label">{{ __('website.first_name') }}*</label>
-                            <input type="text" name="first_name" id="fname" class="form-control"
+                            <input type="text" value="{{ old('first_name') }}" name="first_name" id="fname" class="form-control"
                                    placeholder="{{ __('website.placeholder_first_name') }}">
                             @error('first_name' )
                             <span class="text-danger">{{ $message }}</span>
@@ -17,7 +17,7 @@
                         </div>
                         <div class="review-form-name">
                             <label for="lname" class="form-label">{{ __('website.last_name') }}*</label>
-                            <input type="text" name="last_name" id="lname" class="form-control"
+                            <input type="text" value="{{ old('last_name') }}" name="last_name" id="lname" class="form-control"
                                    placeholder="{{ __('website.placeholder_last_name') }}">
                             @error('last_name')
                             <span class="text-danger">{{ $message }}</span>
@@ -27,7 +27,8 @@
                     <div class=" account-inner-form">
                         <div class="review-form-name">
                             <label for="email" class="form-label">{{ __('website.email') }}*</label>
-                            <input type="email" id="email" name="user_email" class="form-control"
+                            <input type="email" value="{{ old('user_email') }}" id="email" name="user_email"
+                                   class="form-control"
                                    placeholder="user@gmail.com">
                             @error('user_email')
                             <span class="text-danger">{{ $message }}</span>
@@ -35,7 +36,8 @@
                         </div>
                         <div class="review-form-name">
                             <label for="phone" class="form-label">{{ __('website.phone') }}*</label>
-                            <input type="text" id="phone" name="user_phone" class="form-control"
+                            <input type="text" value="{{ old('user_phone') }}" id="phone" name="user_phone"
+                                   class="form-control"
                                    placeholder="+880388**0899">
                             @error('user_phone')
                             <span class="text-danger">{{ $message }}</span>
@@ -45,48 +47,57 @@
                     <div class="review-form-name mt-3">
                         <label for="country" class="form-label">{{ __('website.country') }}*</label>
                         <select id="country" class="form-select" name="country_id" wire:model.live="countryId">
-                            <option>Choose...</option>
+                            <option value="">Choose...</option>
                             @foreach ($countries as $country)
                                 <option value="{{ $country->id }}">{{ $country->getTranslation('name', app()->getLocale()) }}</option>
                             @endforeach
                         </select>
+                        @error('country_id')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="review-form-name mt-3">
                         <label for="governorate" class="form-label">{{ __('website.governorate') }}*</label>
                         <select id="governorate" class="form-select" name="governorate_id"
                                 wire:model.live="governorateId">
-                            <option>Choose...</option>
+                            <option value="">Choose...</option>
                             @foreach ($governorates as $governorate)
                                 <option value="{{ $governorate->id }}">{{ $governorate->getTranslation('name', app()->getLocale()) }}</option>
                             @endforeach
                         </select>
+                        @error('governorate_id')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="review-form-name mt-3">
                         <label for="city" class="form-label">{{ __('website.city') }}*</label>
                         <select id="city" class="form-select" name="city_id" wire:model.live="cityId">
-                            <option>Choose...</option>
+                            <option value="">Choose...</option>
                             @foreach ($cities as $city)
                                 <option value="{{ $city->id }}">{{ $city->getTranslation('name', app()->getLocale()) }}</option>
                             @endforeach
                         </select>
+                        @error('city_id')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="review-form-name mt-3">
                         <label for="notes" class="form-label">{{ __('website.enter_report_note') }}*</label>
-                        <input type="text" id="notes" name="notes" class="form-control"
+                        <input type="text" value="{{ old('notes') }}" id="notes" name="notes" class="form-control"
                                placeholder="{{  __('website.enter_report_note') }}">
                         @error('notes')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="review-form-name mt-3">
-                        <label for="notes" class="form-label">{{ __('website.street') }}*</label>
-                        <input type="text" id="notes" name="street" class="form-control"
+                        <label for="street" class="form-label">{{ __('website.street') }}*</label>
+                        <input type="text"  value="{{ old('street') }}" id="street" name="street" class="form-control"
                                placeholder="{{  __('website.enter_report_note') }}">
                         @error('street')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <btn class="shop-btn mt-2" type="submit">{{ __('website.user_my_account') }}</btn>
+                    <button class="shop-btn mt-2" type="submit">{{ __('website.continue') }}</button>
                 </form>
             </div>
         </div>

@@ -4,7 +4,7 @@
             {{ $couponDetails }}
         </p>
     @endif
-    @if($cartItems > 0 && $cart->coupon_id === null )
+    @if($cartItems > 0 && $cart->coupon === null )
         <div class="review-form">
             <div class="account-inner-form">
                 <div class="review-form-name">

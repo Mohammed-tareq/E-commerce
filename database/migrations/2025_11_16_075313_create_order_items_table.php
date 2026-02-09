@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('product_desc');
             $table->integer('product_quantity');
             $table->decimal('product_price', 8, 3);
+            $table->decimal('product_discount')->nullable();
             $table->json('attributes')->nullable();
             $table->timestamps();
         });

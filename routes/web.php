@@ -13,6 +13,7 @@ use App\Http\Controllers\Website\Product\ProductController;
 use App\Http\Controllers\Website\UserProfile\UserProfileController;
 use App\Http\Controllers\Website\WishList\WishLastController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -81,9 +82,13 @@ Route::group(
         ####################################### check out routes ###########################################
         Route::controller(CheckOutController::class)->name('checkout.')->group(function () {
             Route::get('/check-out', 'index')->name('index');
-            Route::post('/check-out', 'checkout')->name('store');
+            Route::post('/check-out/{userId}', 'checkout')->name('store');
+            Route::get('/callback', 'callback')->name('callback');
+            Route::get('/error', 'errorCallBack')->name('errorCallBack');
 
         });
     });
 
 });
+
+

@@ -15,8 +15,16 @@ class OrderItems extends Model
         "product_desc",
         "product_quantity",
         "product_price",
+        "product_discount",
         "attributes",
     ];
+
+    public function casts()
+    {
+        return [
+            'attributes' => 'array',
+        ];
+    }
 
     public function order(): BelongsTo
     {

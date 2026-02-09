@@ -1,0 +1,11 @@
+{
+    "agents": [
+        "junie",
+        "cursor"
+    ],
+    "skills": [
+        "livewire-development",
+        "pest-testing",
+        "tailwindcss-development"
+    ]
+}
