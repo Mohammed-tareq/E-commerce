@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\contact\ContactController;
 use App\Http\Controllers\Dashboard\Coupon\CouponController;
 use App\Http\Controllers\Dashboard\Faq\FaqController;
 use App\Http\Controllers\Dashboard\Faq\FaqQuestionController;
+use App\Http\Controllers\Dashboard\Order\OrderController;
 use App\Http\Controllers\Dashboard\Page\PageController;
 use App\Http\Controllers\Dashboard\Product\Attribute\AttributeController;
 use App\Http\Controllers\Dashboard\Product\ProductController;
@@ -141,6 +142,14 @@ Route::group(
                 Route::post('/create', 'createUser')->name('create');
                 Route::get('/{id}/status', 'changeStatus')->name('status');
                 Route::delete('/{id}/delete', 'deleteUser')->name('delete');
+            });
+            ######################################### Orders ###############################################
+            Route::prefix('orders')->middleware('can:orders')->controller(OrderController::class)->name('order.')->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/orders-all', 'getOrders')->name('all');
+                Route::get('/{id}/show', 'showOrder')->name('show');
+                Route::get('/{id}/status', 'changeStatus')->name('status');
+                Route::delete('/{id}/delete', 'deleteOrder')->name('delete');
             });
 
             ######################################### pages ###############################################

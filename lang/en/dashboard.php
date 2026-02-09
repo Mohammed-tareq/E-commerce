@@ -181,7 +181,28 @@ return [
     'content' => 'Content',
     'create_page' => 'Create Page',
     'edit_page' => 'Edit Page',
-    'faq_question' => 'FAQ Question'
+    'faq_question' => 'FAQ Question',
+    'no_coupon' => 'No Coupon',
+    'no_notes' => 'No Notes',
+    'no_transactions' => 'No Transactions',
+    'pending' => 'Pending',
+    'completed' => 'Completed',
+    'delivered' => 'Delivered',
+    'cancelled' => 'Cancelled',
+    'orders' => 'Orders',
+    'street' => 'Street',
+    'notes' => 'Notes',
+    'shipping_price' => 'Shipping Price',
+    'coupon' => 'Coupon',
+    'coupon_discount' => 'Coupon Discount',
+    'action' => 'Action',
+    'total_price' => 'Total Price',
+    'select_status' => 'Select Status',
+    'all' => 'All',
+    'order' => 'Order',
+    'order_items' => 'Order Items',
+    'confirm_mark_delivered' => 'Mark As Delivered'
+
 
 
 ];

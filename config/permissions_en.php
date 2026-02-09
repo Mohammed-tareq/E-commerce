@@ -29,4 +29,5 @@ return [
     'menus' => 'Manage Menus',
     'shipping' => 'Manage Shipping',
     'slider' => 'Manage Slider',
+    'notification' => 'Manage Notification',
 ];

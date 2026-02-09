@@ -54,6 +54,13 @@
                                 class="badge badge badge-success float-right mr-2">{{ $users_count }}</span></a>
                 </li>
             @endcan
+            @can('orders')
+                <li><a class="menu-item" href="{{ route('dashboard.order.index') }}"
+                       data-i18n="nav.templates.horz.main"><i
+                                class="la la-user-secret"></i>{{ __('dashboard.orders') }}<span
+                                class="badge badge badge-success float-right mr-2">{{ $orders_count }}</span></a>
+                </li>
+            @endcan
 
             @can('contact')
                 <li><a class="menu-item" href="{{ route('dashboard.contact.index') }}"
