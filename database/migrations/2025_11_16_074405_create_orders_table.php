@@ -31,7 +31,7 @@ return new class extends Migration {
             $table->string('coupon')->nullable();
             $table->integer('coupon_discount')->nullable();
 
-            $table->enum('status', ['pending', 'completed', 'delivered', 'canceled'])->default('pending');
+            $table->enum('status', ['pending', 'completed', 'delivered', 'cancelled'])->default('pending');
             $table->timestamps();
         });
     }

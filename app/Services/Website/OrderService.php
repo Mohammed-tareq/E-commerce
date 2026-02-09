@@ -6,14 +6,35 @@ use App\Models\Country;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\ShippingPrice;
+use App\Models\Transaction;
 
 class OrderService
 {
 
+
+    public function calcInvoicePrice($governorateId)
+    {
+        $shippingPrice = $this->getShippingPrice($governorateId);
+
+        $cart = $this->getCartUser();
+        if (!$cart || !$cart->items()->exists()) {
+            return null;
+        }
+        $subtotal = $cart->items->sum('total_price');
+        if ($cart->coupon !== null) {
+            $coupon = Coupon::valid()->where('code', $cart->coupon)->first();
+            if ($coupon) {
+                $subtotal -= ($subtotal * $coupon->discount_percentage / 100);
+            }
+        }
+        $totalPrice = $subtotal + $shippingPrice;
+        return $totalPrice;
+    }
+
     public function addItemsInOrder($orderData)
     {
         $country = $this->getAddress(Country::class, $orderData['country_id']);
-        $governorate = $this->getAddress(Country::class,  $orderData['governorate_id']);
+        $governorate = $this->getAddress(Country::class, $orderData['governorate_id']);
         $city = $this->getAddress(Country::class, $orderData['city_id']);
         if (!$country || !$governorate || !$city) {
             return false;
@@ -30,22 +51,37 @@ class OrderService
             $coupon = Coupon::valid()->where('code', $cart->coupon)->first();
             if ($coupon) {
                 $couponDiscount = $coupon->discount_percentage;
-                $subtotal -=  ($subtotal * $couponDiscount / 100);
+                $subtotal -= ($subtotal * $couponDiscount / 100);
             }
         }
         $totalPrice = $subtotal + $shippingPrice;
 
-        $order = $this->createOrder($orderData, $subtotal, $shippingPrice, $totalPrice,$country, $governorate, $city, $coupon);
+        $order = $this->createOrder($orderData, $subtotal, $shippingPrice, $totalPrice, $country, $governorate, $city, $coupon);
 
         if (!$order) {
             return false;
         }
 
-        $orderItems =   $this->createOrderItems($order, $cart);
+        $orderItems = $this->createOrderItems($order, $cart);
         if (!$orderItems) {
             return false;
         }
-        return true;
+        return $order;
+    }
+
+    public function createTransaction($orderId, $invoiceId, string $paymentType)
+    {
+        $transaction = Transaction::create([
+            'order_id' => $orderId,
+            'user_id' => auth('web')->user()->id,
+            'invoice_id' => $invoiceId,
+            'payment_method' => $paymentType,
+        ]);
+        if (!$transaction) {
+            return false;
+        }
+        return $transaction;
+
     }
 
     private function getAddress($model, $id)
@@ -63,7 +99,7 @@ class OrderService
         return ShippingPrice::where('governorate_id', $governorateId)->first()?->price ?? 0;
     }
 
-    private function createOrder($orderData, $subtotal, $shippingPrice, $totalPrice,$country,$governorate,$city, $coupon)
+    private function createOrder($orderData, $subtotal, $shippingPrice, $totalPrice, $country, $governorate, $city, $coupon)
     {
         return Order::create([
             'user_id' => auth('web')->user()->id,
@@ -81,9 +117,10 @@ class OrderService
             'shipping_price' => $shippingPrice,
             'total_price' => $totalPrice,
             'coupon' => $coupon?->code ?? null,
-            'coupon_discount' => $coupon !== null ? $coupon?->discount_percentage : null ,
+            'coupon_discount' => $coupon !== null ? $coupon?->discount_percentage : null,
         ]);
     }
+
     private function createOrderItems($order, $cart)
     {
         foreach ($cart->items as $item) {
@@ -104,5 +141,20 @@ class OrderService
             }
         }
         return true;
+    }
+
+    public function clearCart()
+    {
+        auth('web')->user()->cart->items()->delete();
+    }
+
+    public function changeOrderStatus($transactionId, $status)
+    {
+        $transaction = Transaction::where('invoice_id', $transactionId)->first();
+        if (!$transaction) {
+            return false;
+        }
+        return $transaction->order->update(['status' => $status]);
+
     }
 }
