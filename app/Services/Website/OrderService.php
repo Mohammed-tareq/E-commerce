@@ -2,6 +2,7 @@
 
 namespace App\Services\Website;
 
+use App\Models\Admin;
 use App\Models\Country;
 use App\Models\Coupon;
 use App\Models\Order;
@@ -82,6 +83,13 @@ class OrderService
         }
         return $transaction;
 
+    }
+
+    public function sendAdminNotification($order)
+    {
+        $admins = Admin::whereHas('role',function($q){
+            $q->whereJsonContains('permissions', 'order-paid');
+        })->get();
     }
 
     private function getAddress($model, $id)

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Coupon;
 use App\Models\Faq;
+use App\Models\Order;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\User;
@@ -35,6 +36,7 @@ class ViewCountServiceProvider extends ServiceProvider
                 'faqs_count' => Faq::class,
                 'products_count' => Product::class,
                 'users_count' => User::class,
+                'orders_count' => Order::class,
             ];
 
             $counts = [];
