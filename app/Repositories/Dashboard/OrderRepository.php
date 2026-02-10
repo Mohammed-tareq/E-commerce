@@ -31,6 +31,6 @@ class OrderRepository
 
     public function getOrderWithItems($order)
     {
-        return $order->load('orderItems')->first();
+        return $order->load('orderItems');
     }
 }

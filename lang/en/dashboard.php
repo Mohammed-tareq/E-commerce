@@ -201,7 +201,10 @@ return [
     'all' => 'All',
     'order' => 'Order',
     'order_items' => 'Order Items',
-    'confirm_mark_delivered' => 'Mark As Delivered'
+    'confirm_mark_delivered' => 'Mark As Delivered',
+    'notification' => 'Notification',
+    'no_notification' => 'No Notification',
+
 
 
 

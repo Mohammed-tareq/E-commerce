@@ -76,6 +76,9 @@ class CheckOutController extends Controller
         }
 
         $this->orderService->changeOrderStatus($invoice['Data']['InvoiceId'], 'completed');
+        if ($order = $this->orderService->getOrder($invoice['Data']["InvoiceId"])) {
+            $this->orderService->sendAdminNotification($order);
+        }
         return redirect()->route('website.checkout.index')->with('success', __('website.success_in_order'));
     }
 
@@ -87,7 +90,7 @@ class CheckOutController extends Controller
 
         $invoice = $this->myfatoorahService->checkInvoice($data);
         if ($invoice['Data']['InvoiceStatus'] !== 'Paid') {
-            $this->orderService->changeOrderStatus($invoice['Data']['InvoiceId'], 'cancelled');
+            $this->orderService->changeOrderStatus($invoice['Data']['InvoiceId'], 'canceled');
         }
         return redirect()->route('website.checkout.index')->with('error', __('website.error_in_order'));
     }

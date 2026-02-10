@@ -2,7 +2,6 @@
 @section('title')
     {{ __('dashboard.order') }}
 @endsection
-
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">

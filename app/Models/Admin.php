@@ -75,4 +75,9 @@ class Admin extends Authenticatable
            get: fn($valus) => (bool)$valus ? __('dashboard.Active') : __('dashboard.Inactive')
        );
    }
+
+    public function receivesBroadcastNotificationsOn(): string
+    {
+        return 'admins.'.$this->id;
+    }
 }
