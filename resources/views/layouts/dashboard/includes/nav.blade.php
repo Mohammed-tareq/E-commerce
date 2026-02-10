@@ -257,16 +257,16 @@
 
                     <li class="dropdown dropdown-notification nav-item">
                         <a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-bell"></i>
-                            <span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow">{{ auth('admin')->user()->unreadNotifications()->count() }}</span>
+                            <span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow" id="notificationCount">{{ auth('admin')->user()->unreadNotifications()->count() }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <li class="dropdown-menu-header">
                                 <h6 class="dropdown-header m-0">
                                     <span class="grey darken-2">{{ __('dashboard.notification') }}</span>
                                 </h6>
-                                <span class="notification-tag badge badge-default badge-danger float-right m-0">{{ auth('admin')->user()->unreadNotifications()->count() }} New</span>
+                                <span class="notification-tag badge badge-default badge-danger float-right m-0" id="notificationCount">{{ auth('admin')->user()->unreadNotifications()->count() }} New</span>
                             </li>
-                            <li class="scrollable-container media-list w-100">
+                            <li class="scrollable-container media-list w-100" id="pushNotification">
                                 @forelse(auth('admin')->user()->unreadNotifications as $notification)
                                 <a href="{{ $notification->data['link'] }}?notify_admin={{ $notification->id }}">
                                     <div class="media">
@@ -277,7 +277,7 @@
                                             <p class="notification-text font-small-3 text-muted">{{ $notification->data['user']." ". $notification->data['total'] }}</p>
                                             <small>
                                                 <time class="media-meta text-muted"
-                                                      datetime="2015-06-11T18:29:20+08:00">{{Carbon::parse($notification->data['create_at'])->diffForHumans() }}
+                                                      datetime="{{Carbon::parse($notification->data['create_at'])->diffForHumans() }}">{{Carbon::parse($notification->data['create_at'])->diffForHumans() }}
                                                 </time>
                                             </small>
                                         </div>
