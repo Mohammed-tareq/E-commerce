@@ -8,6 +8,8 @@ use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\ShippingPrice;
 use App\Models\Transaction;
+use App\Notifications\CreateOrderNotification;
+use Illuminate\Support\Facades\Notification;
 
 class OrderService
 {
@@ -87,9 +89,10 @@ class OrderService
 
     public function sendAdminNotification($order)
     {
-        $admins = Admin::whereHas('role',function($q){
-            $q->whereJsonContains('permissions', 'order-paid');
+        $admins = Admin::whereHas('role', function ($q) {
+            $q->whereJsonContains('permissions', 'notification');
         })->get();
+        Notification::send($admins, new CreateOrderNotification($order));
     }
 
     private function getAddress($model, $id)
@@ -163,6 +166,16 @@ class OrderService
             return false;
         }
         return $transaction->order->update(['status' => $status]);
+
+    }
+
+    public function getOrder($transactionId)
+    {
+        $transaction = Transaction::where('invoice_id', $transactionId)->first();
+        if (!$transaction) {
+            return false;
+        }
+        return $order = $transaction->order;
 
     }
 }

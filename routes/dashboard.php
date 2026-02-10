@@ -20,6 +20,7 @@ use App\Http\Controllers\Dashboard\Setting\SettingController;
 use App\Http\Controllers\Dashboard\Slider\SliderController;
 use App\Http\Controllers\Dashboard\User\UserController;
 use App\Http\Controllers\Dashboard\World\WorldController;
+use App\Http\Middleware\MarkNotificationAsRead;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -147,7 +148,7 @@ Route::group(
             Route::prefix('orders')->middleware('can:orders')->controller(OrderController::class)->name('order.')->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('/orders-all', 'getOrders')->name('all');
-                Route::get('/{id}/show', 'showOrder')->name('show');
+                Route::get('/{id}/show', 'showOrder')->name('show')->middleware(MarkNotificationAsRead::class);
                 Route::get('/{id}/status', 'changeStatus')->name('status');
                 Route::delete('/{id}/delete', 'deleteOrder')->name('delete');
             });

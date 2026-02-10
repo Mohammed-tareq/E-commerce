@@ -22,6 +22,7 @@
         "php-flasher/flasher-laravel": "^2.2",
         "php-flasher/flasher-notyf-laravel": "^2.2",
         "predis/predis": "^3.3",
+        "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-translatable": "^6.11",
         "yajra/laravel-datatables-oracle": "12"
     },
