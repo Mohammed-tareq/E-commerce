@@ -28,8 +28,9 @@
     let layout = 'admin';
     let adminId = {{ auth('admin')->user()->id }};
     let showNotificationRoute = '{{ route('dashboard.order.show',":id") }}';
+    let showContactRoute = '{{ route('dashboard.contact.index') }}';
 </script>
-<script src="{{ asset('build/assets/app-nqlKHGlj.js') }}"></script>
+<script src="{{ asset('build/assets/app-CPqQxigU.js') }}"></script>
 </body>
 
 </html>

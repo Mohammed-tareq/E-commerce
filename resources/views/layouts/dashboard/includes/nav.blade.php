@@ -223,7 +223,8 @@
                             <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>
                             <a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0)"  onclick="document.getElementById('logout-form-admin').submit();" id="logout-admin"><i
+                            <a class="dropdown-item" href="javascript:void(0)"
+                               onclick="document.getElementById('logout-form-admin').submit();" id="logout-admin"><i
                                         class="ft-power"></i> {{ __('auth.logout') }}</a>
 
                             <form id="logout-form-admin" action="{{ route('dashboard.logout') }}" method="POST"
@@ -257,32 +258,52 @@
 
                     <li class="dropdown dropdown-notification nav-item">
                         <a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-bell"></i>
-                            <span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow" id="notificationCount">{{ auth('admin')->user()->unreadNotifications()->count() }}</span>
+                            <span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow"
+                                  id="notificationCount">{{ auth('admin')->user()->unreadNotifications()->count() }}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <li class="dropdown-menu-header">
                                 <h6 class="dropdown-header m-0">
                                     <span class="grey darken-2">{{ __('dashboard.notification') }}</span>
                                 </h6>
-                                <span class="notification-tag badge badge-default badge-danger float-right m-0" id="notificationCount">{{ auth('admin')->user()->unreadNotifications()->count() }} New</span>
+                                <span class="notification-tag badge badge-default badge-danger float-right m-0"
+                                      id="notificationCount">{{ auth('admin')->user()->unreadNotifications()->count() }} New</span>
                             </li>
                             <li class="scrollable-container media-list w-100" id="pushNotification">
                                 @forelse(auth('admin')->user()->unreadNotifications as $notification)
-                                <a href="{{ $notification->data['link'] }}?notify_admin={{ $notification->id }}">
-                                    <div class="media">
-                                        <div class="media-left align-self-center"><i
-                                                    class="ft-plus-square icon-bg-circle bg-cyan"></i></div>
-                                        <div class="media-body">
-                                            <h6 class="media-heading">{{ $notification->type }}!</h6>
-                                            <p class="notification-text font-small-3 text-muted">{{ $notification->data['user']." ". $notification->data['total'] }}</p>
-                                            <small>
-                                                <time class="media-meta text-muted"
-                                                      datetime="{{Carbon::parse($notification->data['create_at'])->diffForHumans() }}">{{Carbon::parse($notification->data['create_at'])->diffForHumans() }}
-                                                </time>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </a>
+                                    @if($notification->type === 'order-created')
+                                        <a href="{{ $notification->data['link'] }}?notify_admin={{ $notification->id }}">
+                                            <div class="media">
+                                                <div class="media-left align-self-center"><i
+                                                            class="ft-plus-square icon-bg-circle bg-cyan"></i></div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">{{ $notification->type }}!</h6>
+                                                    <p class="notification-text font-small-3 text-muted">{{ $notification->data['user']." with price: ". $notification->data['total'] }}</p>
+                                                    <small>
+                                                        <time class="media-meta text-muted"
+                                                              datetime="{{Carbon::parse($notification->data['create_at'])->diffForHumans() }}">{{Carbon::parse($notification->data['create_at'])->diffForHumans() }}
+                                                        </time>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @else
+                                        <a href="{{route('dashboard.contact.index') }}?notify_admin={{ $notification->id }}">
+                                            <div class="media">
+                                                <div class="media-left align-self-center"><i
+                                                            class="ft-plus-square icon-bg-circle bg-blue"></i></div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">{{ $notification->type }}!</h6>
+                                                    <p class="notification-text font-small-3 text-muted">{{ $notification->data['name'] ." with Subject: " . implode(' ', str_split($notification->data['subject'], 15)) }}</p>
+                                                    <small>
+                                                        <time class="media-meta text-muted"
+                                                              datetime="{{Carbon::parse($notification->data['create_at'])->diffForHumans() }}">{{Carbon::parse($notification->data['create_at'])->diffForHumans() }}
+                                                        </time>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @endif
                                 @empty
                                     <p>{{ __('dashboard.no_notification') }}</p>
                                 @endforelse
