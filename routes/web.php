@@ -6,6 +6,7 @@ use App\Http\Controllers\Website\Brand\BrandController;
 use App\Http\Controllers\Website\Cart\CartController;
 use App\Http\Controllers\Website\Category\CategoryController;
 use App\Http\Controllers\Website\CheckOut\CheckOutController;
+use App\Http\Controllers\Website\Contactus\ContactUsController;
 use App\Http\Controllers\Website\DynamicPage\PageController;
 use App\Http\Controllers\Website\Faq\FaqController;
 use App\Http\Controllers\Website\Home\HomeController;
@@ -48,6 +49,7 @@ Route::group(
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('page/{slug}', [PageController::class, 'getPage'])->name('dynamic.page');
     Route::get('/faqs', [FaqController::class, 'index'])->name('faq.index');
+    Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact.index');
 
     ####################################### category routes ###########################################
     Route::controller(CategoryController::class)->name('category.')->group(function () {

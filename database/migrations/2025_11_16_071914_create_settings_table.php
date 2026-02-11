@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('linkedin')->nullable();
             $table->string('promotion_video_url')->nullable();
             $table->string('youtube')->nullable();
+            $table->string('phone')->nullable();
 
 
             $table->timestamps();

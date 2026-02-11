@@ -49,6 +49,7 @@ class SettingServiceProvider extends ServiceProvider
                 "linkedin" => 'https://www.linkedin.com/company/example',
                 "promotion_video_url" => 'https://www.youtube.com/watch?v=example',
                 'youtube' => 'https://www.youtube.com/channel/example',
+                'phone' => '+2011111111111'
             ]);
         });
     }

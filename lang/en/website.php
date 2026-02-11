@@ -28,6 +28,19 @@ return [
     'no_brands_found' => 'No Brands Found',
     'our_brands' => 'Our Brands',
     'street' => 'Street',
+    'support' => 'Support',
+    'need_help' => 'Need help? Call us:',
+    'compaire' => 'Compaire',
+    'all_category' =>'All Categories',
+    'contact' => 'Contact',
+    'user_profile' => 'User Profile',
+    'contact_info' => 'Contact Information',
+    'fill_form' => 'Fill the form below or write us .We will help you as soon as possible.',
+    'message' => 'Message',
+    'send' => 'Send',
+    'write_message' => 'Write Message',
+    'error_contact' =>'Error in sending your message',
+    'success_contact' => 'Your message has been sent successfully',
 
 
     // Registration page

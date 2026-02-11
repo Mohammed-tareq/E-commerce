@@ -89,7 +89,7 @@ class OrderService
 
     public function sendAdminNotification($order)
     {
-        $admins = Admin::whereHas('role', function ($q) {
+        $admins = Admin::active()->whereHas('role', function ($q) {
             $q->whereJsonContains('permissions', 'notification');
         })->get();
         Notification::send($admins, new CreateOrderNotification($order));

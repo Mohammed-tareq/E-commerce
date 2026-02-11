@@ -163,7 +163,7 @@ Route::group(
             });
 
             ######################################### contact ###############################################
-            Route::get('contacts', [ContactController::class, 'index'])->name('contact.index');
+            Route::get('contacts', [ContactController::class, 'index'])->name('contact.index')->middleware(MarkNotificationAsRead::class);
 
             Route::get('/welcome', function () {
                 return view('dashboard/welcome');

@@ -52,9 +52,35 @@ class ViewCountServiceProvider extends ServiceProvider
         });
 
 
-        view()->composer('website.*',function(){
-            $pages = Page::active()->select('id','title' , 'slug')->get();
-            view()->share(['pages'=>$pages]);
+        view()->composer('website.*', function () {
+            $pages = Page::active()->select('id', 'title', 'slug')->get();
+            $categories = $this->getCategory();
+            $categoryChildren = $this->getCategoryChild();
+            view()->share([
+                'pages' => $pages,
+                'categories' => $categories,
+                'categoryChildren' => $categoryChildren
+            ]);
         });
+    }
+
+    public function getCategory()
+    {
+        return Category::active()
+            ->latest()
+            ->limit(12)
+            ->get();
+    }
+    public function getCategoryChild()
+    {
+        return Category::active()
+            ->select('id', 'slug', 'name', 'image')
+            ->has('children', '>=', 3)
+            ->with([
+                'children' => fn($q) => $q->latest()->limit(4)
+            ])
+            ->latest()
+            ->limit(4)
+            ->get();
     }
 }
