@@ -8,16 +8,8 @@
             <div class="login-section">
                 <div class="review-form">
                     <h5 class="comment-title">Log In</h5>
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form action = "{{ route('website.login.post') }}" id="login-form" method="post" class="form-horizontal">
+                    <form action="{{ route('website.login.post') }}" id="login-form" method="post"
+                          class="form-horizontal">
                         @csrf
                         <div class="review-inner-form">
                             <div class="review-form-name">
@@ -29,6 +21,10 @@
                                         class="form-control"
                                         placeholder="Email"
                                 />
+                                @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+
                             </div>
                             <div class="review-form-name">
                                 <label for="password" class="form-label">Password*</label>
@@ -39,6 +35,16 @@
                                         class="form-control"
                                         placeholder="password"
                                 />
+                                @error('password')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+
+                            </div>
+                            <div class="review-form-name">
+                                {!! NoCaptcha::display() !!}
+                                @error('g-recaptcha-response')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="review-form-name checkbox">
                                 <div class="checkbox-item">
@@ -51,7 +57,8 @@
                             </div>
                         </div>
                         <div class="login-btn text-center">
-                            <a href="javascript:void(0);" onclick="document.getElementById('login-form').submit();" class="shop-btn">Log In</a>
+                            <a href="javascript:void(0);" onclick="document.getElementById('login-form').submit();"
+                               class="shop-btn">Log In</a>
                             <span class="shop-account"
                             >Dont't have an account ?<a href="{{ route('website.register') }}"
                                 >Sign Up Free</a

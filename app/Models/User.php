@@ -84,6 +84,12 @@ class User extends Authenticatable
             get: fn($value) => $value ? __('dashboard.Active') : __('dashboard.Inactive')
         );
     }
+    public function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => 'uploads/users/' . $value
+        );
+    }
 
     public function createdAt(): Attribute
     {
