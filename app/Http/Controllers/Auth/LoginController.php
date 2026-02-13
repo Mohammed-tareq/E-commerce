@@ -48,6 +48,7 @@ class LoginController extends Controller implements HasMiddleware
         $request->validate([
             $this->username() => 'required|string|email|max:50',
             'password' => 'required|string|min:6|max:50',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
     }
 

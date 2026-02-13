@@ -16,6 +16,7 @@
 
 @livewireScripts
 @include('layouts.website.inc.script')
+{!! NoCaptcha::renderJs() !!}
 
 </body>
 
