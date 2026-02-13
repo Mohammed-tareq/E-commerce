@@ -26,7 +26,7 @@
                         {{-- profile  --}}
                         @livewire('website.dashboard.info',['authUser'=>$authUser])
                         {{-- order  --}}
-                        @livewire('website.dashboard.order')
+                        @livewire('website.dashboard.order',['authUser' => $authUser])
                         {{-- wishlist  --}}
                         @livewire('website.dashboard.wishlist')
                         {{-- review  --}}

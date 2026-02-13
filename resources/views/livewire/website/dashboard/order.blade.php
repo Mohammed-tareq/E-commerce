@@ -1,221 +1,86 @@
 <div>
     @if ($screen === 'order')
-        <div class="tab-pane fade show active">
-            <div class="cart-section">
-                <table>
+
+        @if ($user->orders->count() > 0)
+            <div class="overflow-x-auto show active">
+                <table class="min-w-full bg-white border border-gray-200 text-sm">
+                    <thead class="bg-gray-100 text-left">
+                    <tr>
+                        <th class="p-2">#</th>
+                        <th class="p-2">Status</th>
+                        <th class="p-2">Total</th>
+                        <th class="p-2">Shipping</th>
+                        <th class="p-2">Date</th>
+                        <th class="p-2">Actions</th>
+                    </tr>
+                    </thead>
                     <tbody>
-                    <tr class="table-row table-top-row">
-                        <td class="table-wrapper wrapper-product">
-                            <h5 class="table-heading">PRODUCT</h5>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-                                <h5 class="table-heading">PRICE</h5>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-                                <h5 class="table-heading">QUANTITY</h5>
-                            </div>
-                        </td>
-                        <td class="table-wrapper wrapper-total">
-                            <div class="table-wrapper-center">
-                                <h5 class="table-heading">TOTAL</h5>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-                                <h5 class="table-heading">ACTION</h5>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="table-row ticket-row">
-                        <td class="table-wrapper wrapper-product">
-                            <div class="wrapper">
-                                <div class="wrapper-img">
-                                    <img src="assets/images/homepage-one/product-img/product-img-1.webp"
-                                         alt="img">
-                                </div>
-                                <div class="wrapper-content">
-                                    <h5 class="heading">Classic Design Skart</h5>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-                                <h5 class="heading">$20.00</h5>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-                                <div class="quantity">
-<span class="minus">
--
-</span>
-                                    <span class="number">1</span>
-                                    <span class="plus">
-+
-</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="table-wrapper wrapper-total">
-                            <div class="table-wrapper-center">
-                                <h5 class="heading">$40.00</h5>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-<span>
-<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z"
-      fill="#AAAAAA"></path>
-</svg>
-</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="table-row ticket-row">
-                        <td class="table-wrapper wrapper-product">
-                            <div class="wrapper">
-                                <div class="wrapper-img">
-                                    <img src="assets/images/homepage-one/product-img/product-img-2.webp"
-                                         alt="img">
-                                </div>
-                                <div class="wrapper-content">
-                                    <h5 class="heading">Classic Black Suit</h5>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-                                <h5 class="heading">$20.00</h5>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-                                <div class="quantity">
-<span class="minus">
--
-</span>
-                                    <span class="number">1</span>
-                                    <span class="plus">
-+
-</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="table-wrapper wrapper-total">
-                            <div class="table-wrapper-center">
-                                <h5 class="heading">$40.00</h5>
-                            </div>
-                        </td>
-                        <td class="table-wrapper ">
-                            <div class="table-wrapper-center">
-<span>
-<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z"
-      fill="#AAAAAA"></path>
-</svg>
-</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="table-row ticket-row">
-                        <td class="table-wrapper wrapper-product">
-                            <div class="wrapper">
-                                <div class="wrapper-img">
-                                    <img src="assets/images/homepage-one/product-img/product-img-3.webp"
-                                         alt="img">
-                                </div>
-                                <div class="wrapper-content">
-                                    <h5 class="heading">Blue Party Dress</h5>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-                                <h5 class="heading">$20.00</h5>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-                                <div class="quantity">
-<span class="minus">
--
-</span>
-                                    <span class="number">1</span>
-                                    <span class="plus">
-+
-</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="table-wrapper wrapper-total">
-                            <div class="table-wrapper-center">
-                                <h5 class="heading">$40.00</h5>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-<span>
-<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z"
-      fill="#AAAAAA"></path>
-</svg>
-</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="table-row ticket-row">
-                        <td class="table-wrapper wrapper-product">
-                            <div class="wrapper">
-                                <div class="wrapper-img">
-                                    <img src="assets/images/homepage-one/product-img/product-img-4.webp"
-                                         alt="img">
-                                </div>
-                                <div class="wrapper-content">
-                                    <h5 class="heading">Classic Party Dress</h5>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-                                <h5 class="heading">$20.00</h5>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-                                <div class="quantity">
-<span class="minus">
--
-</span>
-                                    <span class="number">1</span>
-                                    <span class="plus">
-+
-</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="table-wrapper wrapper-total">
-                            <div class="table-wrapper-center">
-                                <h5 class="heading">$40.00</h5>
-                            </div>
-                        </td>
-                        <td class="table-wrapper">
-                            <div class="table-wrapper-center">
-<span>
-<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9.7 0.3C9.3 -0.1 8.7 -0.1 8.3 0.3L5 3.6L1.7 0.3C1.3 -0.1 0.7 -0.1 0.3 0.3C-0.1 0.7 -0.1 1.3 0.3 1.7L3.6 5L0.3 8.3C-0.1 8.7 -0.1 9.3 0.3 9.7C0.7 10.1 1.3 10.1 1.7 9.7L5 6.4L8.3 9.7C8.7 10.1 9.3 10.1 9.7 9.7C10.1 9.3 10.1 8.7 9.7 8.3L6.4 5L9.7 1.7C10.1 1.3 10.1 0.7 9.7 0.3Z"
-      fill="#AAAAAA"></path>
-</svg>
-</span>
-                            </div>
-                        </td>
-                    </tr>
+                    @foreach ($user->orders as $order)
+                        <!-- Order Row -->
+                        <tr class="border-t">
+                            <td class="p-2">#{{ $order->id }}</td>
+                            <td class="p-2 capitalize">{{ $order->status }}</td>
+                            <td class="p-2">EGP{{ number_format($order->total_price, 2) }}</td>
+                            <td class="p-2">{{ $order->street }}, {{ $order->city }}</td>
+                            <td class="p-2 text-gray-500">{{ $order->created_at->diffForHumans()}}</td>
+                            <td class="p-2">
+                                <button wire:click="toggleOrderItems({{ $order->id }})"
+                                        class="text-blue-600 hover:underline">
+                                    {{ $showItemOrder === $order->id ? 'Hide' : 'View' }} Items
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Order Items Row -->
+                        @if ($showItemOrder === $order->id)
+                            <tr>
+                                <td colspan="6" class="bg-gray-50 p-4">
+                                    <div class="space-y-4">
+                                        @foreach ($order->orderItems as $item)
+                                            <div class="border p-3 rounded-md bg-white shadow-sm">
+                                                <div class="font-medium">{{ $item->product_name }}</div>
+                                                <div class="text-sm text-gray-600">{{ $item->product_desc }}</div>
+                                                <div>Quantity: {{ $item->product_quantity }}</div>
+                                                <div>Price: ${{ number_format($item->product_price, 2) }}</div>
+                                                @if ($item->attributes)
+                                                    <div class="text-sm mt-1">
+                                                        Attributes:
+                                                        @foreach ($item->attributes as $key => $value)
+                                                            <span
+                                                                    class="inline-block bg-gray-200 px-2 py-1 rounded text-xs">
+                                                                    {{ $key }}: {{ $value }}
+                                                                </span>
+                                                        @endforeach
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+
                     </tbody>
                 </table>
             </div>
-        </div>
+        @else
+            <section class="blog about-blog footer-padding">
+                <div class="container">
+                    <div class="blog-item" data-aos="fade-up">
+                        <div class="cart-img">
+                            <img src="{{ asset('assets/website/assets/images/homepage-one/empty-wishlist.webp') }}"
+                                 alt>
+                        </div>
+                        <div class="cart-content">
+                            <p class="content-title">{{ __('website.no_products') }}</p>
+                            <a href=""
+                               class="shop-btn">{{ __('website.back_to_shop') }}</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @endif
+
     @endif
 </div>

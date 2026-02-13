@@ -48,7 +48,8 @@
                                     </div>
                                 </div>
                                 <div class="product-cart-btn">
-                                    <a href="cart.html" class="product-btn">{{ __("website.edit_review") }}</a>
+                                    <a href="javascript:void(0)" wire:click.prevent="getReview({{ $review->id }})"
+                                       class="product-btn">{{ __("website.edit_review") }}</a>
                                     <a href="javascript:void(0)" data-id="{{ $review->id }}"
                                        class="product-btn delete_review">{{ __("website.delete_review") }}</a>
                                 </div>
@@ -63,7 +64,6 @@
                             </div>
                             <div class="cart-content">
                                 <p class="content-title">{{ __('website.empty_cart') }} </p>
-                                <a href="product-sidebar.html" class="shop-btn">{{ __('website.back_to_shop') }}</a>
                             </div>
                         </div>
                     @endforelse
@@ -76,6 +76,44 @@
                 </div>
             </div>
         </div>
+
+        @if($showModel)
+            <div class="modal fade show d-block">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{{ __('website.edit_review') }}</h5>
+                            <button type="button" class="close" wire:click.prevent="$set('showModel',false)">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-control">
+                                        <label for="code">{{ __('website.edit_review') }}</label>
+                                        <input type="text" class="form-control" wire:model="editComment">
+                                        @error('editComment')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit"
+                                                class="shop-btn"
+                                                wire:click.prevent="updateComment">{{ __('website.edit') }}</button>
+                                        <button type="button" class="shop-btn"
+                                                wire:click.prevent="$set('showModel',false)">{{ __('website.close') }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
     @endif
 </div>
 
@@ -108,6 +146,14 @@
         });
 
         $wire.on('deleted-review', (message) => {
+            Swal.fire({
+                icon: 'success',
+                title: message,
+                showConfirmButton: false,
+                timer: 1500
+            })
+        })
+        $wire.on('edit-review', (message) => {
             Swal.fire({
                 icon: 'success',
                 title: message,

@@ -157,6 +157,10 @@ return [
     'edit_review' => 'Edit Review',
     'delete_review' => 'Delete Review',
     'delete_review_success' => 'Delete Review Successfully',
+    'edit' => 'Edit',
+    'close' => 'Close',
+    'edit_review_success' => 'Edit Review Successfully',
+
 
     // Flash Sale Countdown
     'days' => 'Days',
