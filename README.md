@@ -1242,7 +1242,7 @@ This project is open-sourced software licensed under the [MIT license](LICENSE).
 - 📚 **[Documentation](docs/)** - Complete API and feature documentation
 - 💬 **[GitHub Discussions](https://github.com/yourusername/ecommerce-platform/discussions)** - Ask questions
 - 🐛 **[Issue Tracker](https://github.com/yourusername/ecommerce-platform/issues)** - Report bugs
-- 📧 **Email** - contact@yourproject.com
+- 📧 **Email** - mohtareq1999m@gmail.com
 
 ### Quick Links
 
