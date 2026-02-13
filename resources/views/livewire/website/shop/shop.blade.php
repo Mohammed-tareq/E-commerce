@@ -12,7 +12,8 @@
                             <ul class="sidebar-list">
                                 @forelse($categories as $category)
                                     <li class="form-check" id="{{ $category->id }}">
-                                        <input type="checkbox" value="{{ $category->id }}" id="cat-{{ $category->id }}" wire:model.live="categoriesId">
+                                        <input type="checkbox" value="{{ $category->id }}" id="cat-{{ $category->id }}"
+                                               wire:model.live="categoriesId">
                                         <label for="cat-{{ $category->id }}">{{ $category->getTranslation('name', app()->getLocale()) }}</label>
                                     </li>
                                 @empty
@@ -28,8 +29,8 @@
                         <h5 class="wrapper-heading">{{ __('website.price_range') }}</h5>
                         <div class="price-slide range-slider">
                             <div class="price">
-                                <div class="range-slider style-1" wire:ignore>
-                                    <div id="slider-tooltips" class="slider-range mb-3"></div>
+                                <div class="range-slider style-1">
+                                    <div id="slider-tooltips" class="slider-range mb-3" wire:ignore></div>
                                     <span class="example-val" id="slider-margin-value-min">${{ $minPrice }}</span>
                                     <span>-</span>
                                     <span class="example-val" id="slider-margin-value-max">${{ $maxPrice }}</span>
@@ -44,7 +45,8 @@
                             <ul class="sidebar-list">
                                 @forelse($brands as $brand)
                                     <li>
-                                        <input type="checkbox" value="{{ $brand->id }}" id="brand-{{ $brand->id }}" wire:model.live="brandsId">
+                                        <input type="checkbox" value="{{ $brand->id }}" id="brand-{{ $brand->id }}"
+                                               wire:model.live="brandsId">
                                         <label for="brand-{{ $brand->id }}">{{ $brand->getTranslation('name', app()->getLocale()) }}</label>
                                     </li>
                                 @empty
@@ -56,10 +58,70 @@
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-shop-section">
-                    <span class="wrapper-subtitle">TRENDY</span>
-                    <h5 class="wrapper-heading">Best wireless Shoes</h5>
-                    <a href="seller-sidebar.html" class="shop-btn deal-btn">Shop Now </a>
+
+                <div class="sidebar-section">
+                    <h5 class="fw-bold mb-3">{{ __('website.filters') }}</h5>
+                    @if (count($categoriesId) > 0 || count($brandsId) > 0 || $minPrice > 0 || $maxPrice < 5000)
+                        <div class="active-filters">
+                            @if (count($categoriesId) > 0)
+                                <div class="mb-2">
+                                    <span class="fw-bold d-block mb-1">{{ __('website.categories') }}:</span>
+                                    <div class="d-flex flex-wrap gap-1">
+                                        @foreach ($categoriesId as $catId)
+                                            @php $category = $categories->firstWhere('id', $catId); @endphp
+                                            @if ($category)
+                                                <span class="badge bg-primary">
+                                                    {{ $category->getTranslation('name', app()->getLocale()) }}
+                                                    <button
+                                                            wire:click="$set('categoriesId', {{ json_encode(array_values(array_diff($categoriesId, [$catId]))) }})"
+                                                            class="btn-close btn-close-white ms-2"
+                                                            style="font-size: 0.65rem;"></button>
+                                                </span>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if (count($brandsId) > 0)
+                                <div class="mb-2">
+                                    <span class="fw-bold d-block mb-1">{{ __('website.brands') }}:</span>
+                                    <div class="d-flex flex-wrap gap-1">
+                                        @foreach ($brandsId as $brId)
+                                            @php $brand = $brands->firstWhere('id', $brId); @endphp
+                                            @if ($brand)
+                                                <span class="badge bg-secondary">
+                                                    {{ $brand->getTranslation('name', app()->getLocale()) }}
+                                                    <button
+                                                            wire:click="$set('brandIds', {{ json_encode(array_values(array_diff($brandsId, [$brId]))) }})"
+                                                            class="btn-close btn-close-white ms-2"
+                                                            style="font-size: 0.65rem;"></button>
+                                                </span>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if ($minPrice > 0 || $maxPrice < 5000)
+                                <div class="mb-2">
+                                    <span class="fw-bold d-block mb-1">{{ __('website.price_range') }}:</span>
+                                    <span class="badge bg-info">
+                                        {{ $minPrice }} - {{ $maxPrice }} $
+                                        <button wire:click="setPriceRange(0, 6000)"
+                                                class="btn-close btn-close-white ms-2"
+                                                style="font-size: 0.65rem;"></button>
+                                    </span>
+                                </div>
+                            @endif
+
+                            <button class="btn btn-sm btn-danger mt-2" wire:click="clearAllFilters">
+                                Clear All Filters
+                            </button>
+                        </div>
+                    @else
+                        <p class="text-muted">No active filters</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -84,7 +146,7 @@
                     @forelse($products as $product)
                         <div class="col-lg-4 col-sm-6">
                             <a href="{{ route('website.product.show',$product->slug) }}" style="all: unset">
-                                <div class="product-wrapper" >
+                                <div class="product-wrapper">
                                     <div class="product-img">
                                         <img src="{{ asset($product->imagesPath->first()) }}"
                                              alt="{{ $product->getTranslation('name' , app()->getLocale()) }}">
@@ -198,3 +260,5 @@
         </div>
     </div>
 </div>
+
+

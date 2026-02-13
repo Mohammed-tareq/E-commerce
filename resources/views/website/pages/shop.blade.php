@@ -17,11 +17,11 @@
                 var tooltipSlider = document.getElementById("slider-tooltips");
 
                 noUiSlider.create(tooltipSlider, {
-                    start: [0, 5000],
+                    start: [0, 20000],
                     connect: true,
                     range: {
                         min: 0,
-                        max: 10000,
+                        max: 50,
                     },
                 });
 
@@ -37,6 +37,7 @@
                     maxEl.innerHTML = "$" + max;
 
                     Livewire.dispatch('priceUpdated', [min, max]);
+
                 });
             }
         });

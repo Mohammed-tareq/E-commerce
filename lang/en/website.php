@@ -164,6 +164,7 @@ return [
     'no_brands' => 'No Brands Found',
     'product_categories' => 'Product Categories',
     'price_range' => 'Price Range',
+    'filters' => 'Filters',
 
 
     // Flash Sale Countdown

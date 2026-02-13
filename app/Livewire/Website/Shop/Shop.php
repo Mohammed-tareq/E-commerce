@@ -17,7 +17,14 @@ class Shop extends Component
     public $categories, $brands;
     public array $categoriesId = [];
     public array $brandsId = [];
-    public $minPrice = 0 , $maxPrice = 6000;
+    public $minPrice = 0, $maxPrice = 20000;
+
+    protected $queryString = [
+        'categoriesId' => ['except' => []],
+        'brandsId' => ['except' => []],
+        'minPrice' => ['except' => 0],
+        'maxPrice' => ['except' => 20000],
+    ];
 
     public function mount()
     {
@@ -30,6 +37,29 @@ class Shop extends Component
     {
         $this->minPrice = (int)$min;
         $this->maxPrice = (int)$max;
+    }
+
+    public function setPriceRange($min, $max)
+    {
+        $this->minPrice = (int)$min;
+        $this->maxPrice = (int)$max;
+        $this->dispatch('reset-filters');
+        $this->resetPage();
+    }
+
+//    public function removeCategoryFilter($categoryId)   // if not model live yoy need to reset page
+//    {
+//        $this->categoriesId = array_values(array_diff($this->categoriesId, [$categoryId]));
+//    }
+
+
+    public function clearAllFilters()
+    {
+        $this->categoriesId = [];
+        $this->brandsId = [];
+        $this->setPriceRange(0, 20000);
+        $this->dispatch('reset-filters');
+        $this->resetPage();
     }
 
     public function FilterProducts()
