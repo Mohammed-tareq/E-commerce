@@ -293,7 +293,7 @@
                             </a>
                         </li>
                         <li class="mega-menu">
-                            <a href="product-sidebar.html">
+                            <a href="{{ route('website.shop') }}">
                                 <span class="list-text">{{ __('website.shop') }}</span>
                                 <span>
                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
@@ -365,14 +365,6 @@
                             <a href="about.html">
                                 <span class="list-text">About</span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="blogs.html">
-                                <span class="list-text">Blog</span>
-                            </a>
-                            <ul class="header-sub-menu">
-                                <li><a href="blogs-details.html">Blog-details</a></li>
-                            </ul>
                         </li>
                         @auth
                             <li>

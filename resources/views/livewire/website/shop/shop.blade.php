@@ -1,83 +1,103 @@
-@extends('layouts.website.app')
-@section('title' , __('website.products'))
+<div class="container">
+    <div class="row g-5">
 
-@section('content')
 
-    <section class="product product-sidebar footer-padding {{ ($timerDay ?? false) || ($timerWeek ?? false) ? 'flash-sale' : '' }}">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-12">
-                    <div class="product-sidebar-section">
-                        <div class="row g-5">
-                            <div class="col-lg-12">
-                                <div class="product-sorting-section">
-                                    <div class="result">
-                                        @php
-                                            $isPaginated = method_exists($products, 'hasPages');
-                                        @endphp
-
-                                        @if($isPaginated)
-                                            <span>{{ $products->firstItem() }}–{{ $products->lastItem() }} {{ __('website.of') }} {{ $products->total() }} {{ __('website.results') }}</span>
-                                        @else
-                                            <span>{{ $products->count() }} {{ __('website.results') }}</span>
-                                        @endif
-                                    </div>
+        {{-- filters--}}
+        <div class="col-lg-3">
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-wrapper">
+                        <h5 class="wrapper-heading">{{ __('website.product_categories') }}</h5>
+                        <div class="sidebar-item">
+                            <ul class="sidebar-list">
+                                @forelse($categories as $category)
+                                    <li class="form-check" id="{{ $category->id }}">
+                                        <input type="checkbox" value="{{ $category->id }}" id="cat-{{ $category->id }}" wire:model.live="categoriesId">
+                                        <label for="cat-{{ $category->id }}">{{ $category->getTranslation('name', app()->getLocale()) }}</label>
+                                    </li>
+                                @empty
+                                    <li>
+                                        <p class="text-danger">{{ __('website.no_categories') }}</p>
+                                    </li>
+                                @endforelse
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="sidebar-wrapper sidebar-range">
+                        <h5 class="wrapper-heading">{{ __('website.price_range') }}</h5>
+                        <div class="price-slide range-slider">
+                            <div class="price">
+                                <div class="range-slider style-1" wire:ignore>
+                                    <div id="slider-tooltips" class="slider-range mb-3"></div>
+                                    <span class="example-val" id="slider-margin-value-min">${{ $minPrice }}</span>
+                                    <span>-</span>
+                                    <span class="example-val" id="slider-margin-value-max">${{ $maxPrice }}</span>
                                 </div>
                             </div>
-                            @if($timerDay ?? false)
-                                <div class="countdown-section">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="sidebar-wrapper">
+                        <h5 class="wrapper-heading">{{ __('website.brands') }}</h5>
+                        <div class="sidebar-item">
+                            <ul class="sidebar-list">
+                                @forelse($brands as $brand)
+                                    <li>
+                                        <input type="checkbox" value="{{ $brand->id }}" id="brand-{{ $brand->id }}" wire:model.live="brandsId">
+                                        <label for="brand-{{ $brand->id }}">{{ $brand->getTranslation('name', app()->getLocale()) }}</label>
+                                    </li>
+                                @empty
+                                    <li>
+                                        <p class="text-danger">{{ __('website.no_brands') }}</p>
+                                    </li>
+                                @endforelse
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-shop-section">
+                    <span class="wrapper-subtitle">TRENDY</span>
+                    <h5 class="wrapper-heading">Best wireless Shoes</h5>
+                    <a href="seller-sidebar.html" class="shop-btn deal-btn">Shop Now </a>
+                </div>
+            </div>
+        </div>
 
-                                    <div class="countdown-items">
-                                        <span id="hour" class="number" style="color: skyblue;">0</span>
-                                        <span class="text">{{ __('website.hours') }}</span>
-                                    </div>
-                                    <div class="countdown-items">
-                                        <span id="minute" class="number" style="color: green;">0</span>
-                                        <span class="text">{{ __('website.minutes') }}</span>
-                                    </div>
-                                    <div class="countdown-items">
-                                        <span id="second" class="number" style="color: red;">0</span>
-                                        <span class="text">{{ __('website.seconds') }}</span>
-                                    </div>
-                                </div>
-                            @endif
-                            @if($timerWeek ?? false)
-                                <div class="countdown-section">
-                                    <div class="countdown-items">
-                                        <span id="day-week" class="number" style="color: red;">0</span>
-                                        <span class="text">{{ __('website.days') }}</span>
-                                    </div>
-                                    <div class="countdown-items">
-                                        <span id="hour-week" class="number" style="color: skyblue;">0</span>
-                                        <span class="text">{{ __('website.hours') }}</span>
-                                    </div>
-                                    <div class="countdown-items">
-                                        <span id="minute-week" class="number" style="color: green;">0</span>
-                                        <span class="text">{{ __('website.minutes') }}</span>
-                                    </div>
-                                    <div class="countdown-items">
-                                        <span id="second-week" class="number" style="color: red;">0</span>
-                                        <span class="text">{{ __('website.seconds') }}</span>
-                                    </div>
-                                </div>
-                            @endif
-                            @forelse($products as $product)
-                                <div class="col-lg-3 col-sm-6">
-                                    <a href="{{ route('website.product.show',$product->slug) }}" style="all: unset">
-                                        <div class="product-wrapper" >
-                                            <div class="product-img">
-                                                <img src="{{ asset($product->imagesPath->first()) }}"
-                                                     alt="{{ $product->getTranslation('name' , app()->getLocale()) }}">
-                                                @if($product->brand)
-                                                    <div class="position-absolute top-0 start-0 bg-dark-subtle  text-white py-2 px-3 m-2 rounded">
-                                                        {{ $product->brand->getTranslation('name' , app()->getLocale()) }}
-                                                    </div>
-                                                @endif
 
-                                                <div class="product-cart-items">
-                                                    <a href="{{ route('website.product.show' , $product->slug) }}"
-                                                       style="all: unset"
-                                                       class="cart cart-item">
+        <div class="col-lg-9">
+            <div class="product-sidebar-section">
+                <div class="row g-5">
+                    <div class="col-lg-12">
+                        <div class="product-sorting-section">
+                            @php
+                                $isPaginated = method_exists($products, 'hasPages');
+                            @endphp
+
+                            @if($isPaginated)
+                                <span>{{ $products->firstItem() }}–{{ $products->lastItem() }} {{ __('website.of') }} {{ $products->total() }} {{ __('website.results') }}</span>
+                            @else
+                                <span>{{ $products->count() }} {{ __('website.results') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                    @forelse($products as $product)
+                        <div class="col-lg-4 col-sm-6">
+                            <a href="{{ route('website.product.show',$product->slug) }}" style="all: unset">
+                                <div class="product-wrapper" >
+                                    <div class="product-img">
+                                        <img src="{{ asset($product->imagesPath->first()) }}"
+                                             alt="{{ $product->getTranslation('name' , app()->getLocale()) }}">
+                                        @if($product->brand)
+                                            <div class="position-absolute top-0 start-0 bg-dark-subtle  text-white py-2 px-3 m-2 rounded">
+                                                {{ $product->brand->getTranslation('name' , app()->getLocale()) }}
+                                            </div>
+                                        @endif
+
+                                        <div class="product-cart-items">
+                                            <a href="{{ route('website.product.show' , $product->slug) }}"
+                                               style="all: unset"
+                                               class="cart cart-item">
                                                         <span>
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                              xmlns="http://www.w3.org/2000/svg">
@@ -100,8 +120,8 @@
                                                               fill="black" fill-opacity="0.2"/>
                                                         </svg>
                                                         </span>
-                                                    </a>
-                                                    <a href="wishlist.html" class="favourite cart-item">
+                                            </a>
+                                            <a href="wishlist.html" class="favourite cart-item">
                                                         <span>
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                              xmlns="http://www.w3.org/2000/svg">
@@ -110,8 +130,8 @@
                                                               fill="#000"/>
                                                         </svg>
                                                         </span>
-                                                    </a>
-                                                    <a href="compaire.html" class="compaire cart-item">
+                                            </a>
+                                            <a href="compaire.html" class="compaire cart-item">
                                                         <span>
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                              xmlns="http://www.w3.org/2000/svg">
@@ -126,69 +146,55 @@
                                                               fill="black" fill-opacity="0.2"/>
                                                         </svg>
                                                         </span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="product-info">
-
-                                                <div class="product-description">
-                                                    <a href="product-info.html" class="product-details">
-                                                        {{ $product->getTranslation('name' , app()->getLocale()) }}
-                                                    </a>
-                                                    <div class="price">
-                                                        @if($product->isSimple())
-                                                            @if($product->has_discount)
-                                                                <span class="price-cut">${{ $product->price }}</span>
-                                                                <span class="new-price">${{ $product->getPriceAfterDiscount() }}</span>
-                                                            @else
-                                                                <span class="new-price">${{ $product->price }}</span>
-                                                            @endif
-                                                        @else
-                                                            <span class="new-price">{{ __('website.has_variants') }}</span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-cart-btn">
-                                                <a href="{{ route('website.category.products' , $product->category->slug) }}"
-                                                   class="product-btn">{{ $product->category->getTranslation('name' , app()->getLocale()) }}</a>
-                                            </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                            @empty
-                                <section class="blog about-blog footer-padding">
-                                    <div class="container">
-                                        <div class="blog-item">
-                                            <div class="cart-img">
-                                                <img src="{{ asset('assets/website/assets/images/homepage-one/empty-cart.webp') }}"
-                                                     alt>
-                                            </div>
-                                            <div class="cart-content">
-                                                <p class="content-title">{{ __('website.no_products_found') }}</p>
-                                                <a href="#" class="shop-btn">Back to Shop</a>
+                                    </div>
+                                    <div class="product-info">
+
+                                        <div class="product-description">
+                                            <a href="product-info.html" class="product-details">
+                                                {{ $product->getTranslation('name' , app()->getLocale()) }}
+                                            </a>
+                                            <div class="price">
+                                                @if($product->isSimple())
+                                                    @if($product->has_discount)
+                                                        <span class="price-cut">${{ $product->price }}</span>
+                                                        <span class="new-price">${{ $product->getPriceAfterDiscount() }}</span>
+                                                    @else
+                                                        <span class="new-price">${{ $product->price }}</span>
+                                                    @endif
+                                                @else
+                                                    <span class="new-price">{{ __('website.has_variants') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
-                                </section>
-                            @endforelse
-                            @if($isPaginated && $products->hasPages())
-                                <div class="pagination">
-                                    {{ $products->links() }}
+                                    <div class="product-cart-btn">
+                                        <a href="{{ route('website.category.products' , $product->category->slug) }}"
+                                           class="product-btn">{{ $product->category->getTranslation('name' , app()->getLocale()) }}</a>
+                                    </div>
                                 </div>
-                            @endif
+                            </a>
                         </div>
-                    </div>
+                    @empty
+                        <section class="blog about-blog footer-padding">
+                            <div class="container">
+                                <div class="blog-item">
+                                    <div class="cart-img">
+                                        <img src="{{ asset('assets/website/assets/images/homepage-one/empty-cart.webp') }}"
+                                             alt>
+                                    </div>
+                                    <div class="cart-content">
+                                        <p class="content-title">{{ __('website.no_products_found') }}</p>
+                                        <a href="{{ route('website.shop') }}" class="shop-btn">Back to Shop</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    @endforelse
+
                 </div>
             </div>
         </div>
-    </section>
-
-@endsection
-
-@if( ($timerWeek ?? false) || ($timerDay ?? false))
-    @push('js')
-        <script src="{{ asset('assets/website/assets/js/flash-timer.js') }}"></script>
-    @endpush
-
-@endif
+    </div>
+</div>

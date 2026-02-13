@@ -11,10 +11,10 @@ use App\Http\Controllers\Website\DynamicPage\PageController;
 use App\Http\Controllers\Website\Faq\FaqController;
 use App\Http\Controllers\Website\Home\HomeController;
 use App\Http\Controllers\Website\Product\ProductController;
+use App\Http\Controllers\Website\Shop\ShopController;
 use App\Http\Controllers\Website\UserProfile\UserProfileController;
 use App\Http\Controllers\Website\WishList\WishLastController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -50,6 +50,7 @@ Route::group(
     Route::get('page/{slug}', [PageController::class, 'getPage'])->name('dynamic.page');
     Route::get('/faqs', [FaqController::class, 'index'])->name('faq.index');
     Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact.index');
+    Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 
     ####################################### category routes ###########################################
     Route::controller(CategoryController::class)->name('category.')->group(function () {
@@ -87,7 +88,6 @@ Route::group(
             Route::post('/check-out/{userId}', 'checkout')->name('store');
             Route::get('/callback', 'callback')->name('callback');
             Route::get('/error', 'errorCallBack')->name('errorCallBack');
-
         });
     });
 

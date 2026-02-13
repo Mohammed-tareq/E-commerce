@@ -160,6 +160,10 @@ return [
     'edit' => 'Edit',
     'close' => 'Close',
     'edit_review_success' => 'Edit Review Successfully',
+    'no_categories' => 'No Categories Found',
+    'no_brands' => 'No Brands Found',
+    'product_categories' => 'Product Categories',
+    'price_range' => 'Price Range',
 
 
     // Flash Sale Countdown
