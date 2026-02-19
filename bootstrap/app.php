@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\ApiHandler;
 use App\Http\Middleware\MarkNotificationAsRead;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -51,5 +52,5 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->render([new ApiHandler, '__invoke']);
     })->create();

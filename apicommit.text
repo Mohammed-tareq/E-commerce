@@ -1,0 +1,1 @@
+Integrate Laravel Sanctum for API authentication: add `personal_access_tokens` migration, configure Sanctum, implement API response and exception handling traits, and set up secure routes with authentication middleware.
