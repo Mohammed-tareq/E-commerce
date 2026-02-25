@@ -77,11 +77,11 @@ class Shop extends Component
                                 [$this->minPrice, $this->maxPrice]);
                     });
                 $query->orWhereHas('variants', function ($q) {
-                    $q->where(function ($q) {
-                        $q->where('products.has_discount', 0)
+                    $q->where(function ($qq) {
+                        $qq->where('products.has_discount', 0)
                             ->whereRaw('product_variants.price BETWEEN ? AND ?', [$this->minPrice, $this->maxPrice])
-                            ->orWhere(function ($q) {
-                                $q->where('products.has_discount', 1)
+                            ->orWhere(function ($qqq) {
+                                $qqq->where('products.has_discount', 1)
                                     ->whereRaw('(product_variants.price - products.discount) BETWEEN ? AND ?', [$this->minPrice, $this->maxPrice]);
                             });
                     });
