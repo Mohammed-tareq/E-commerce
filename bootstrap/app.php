@@ -28,7 +28,6 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
 
         $middleware->use([
-            MarkNotificationAsRead::class,
         ]);
         $middleware->redirectGuestsTo(function () {
             if (request()->is('*/dashboard/*'))
@@ -51,6 +50,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'localeSessionRedirect' => LocaleSessionRedirect::class,
             'localeCookieRedirect' => LocaleCookieRedirect::class,
             'localeViewPath' => LaravelLocalizationViewPath::class,
+            'notificationRead' => MarkNotificationAsRead::class,
+
         ]);
 
         $middleware->api(prepend: [

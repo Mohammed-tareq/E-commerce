@@ -148,7 +148,7 @@ Route::group(
             Route::prefix('orders')->middleware('can:orders')->controller(OrderController::class)->name('order.')->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('/orders-all', 'getOrders')->name('all');
-                Route::get('/{id}/show', 'showOrder')->name('show')->middleware(MarkNotificationAsRead::class);
+                Route::get('/{id}/show', 'showOrder')->name('show')->middleware('notificationRead');
                 Route::get('/{id}/status', 'changeStatus')->name('status');
                 Route::delete('/{id}/delete', 'deleteOrder')->name('delete');
             });
@@ -163,7 +163,7 @@ Route::group(
             });
 
             ######################################### contact ###############################################
-            Route::get('contacts', [ContactController::class, 'index'])->name('contact.index')->middleware(MarkNotificationAsRead::class);
+            Route::get('contacts', [ContactController::class, 'index'])->name('contact.index')->middleware('notificationRead');
 
             Route::get('/welcome', function () {
                 return view('dashboard/welcome');
